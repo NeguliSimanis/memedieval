@@ -13,7 +13,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EditorBanks:
   - {fileID: 114517954911746612}
-  - {fileID: 114393380248276820}
+  - {fileID: 114787524129026058}
   EditorEvents:
   - {fileID: 114413976904849840}
   - {fileID: 114414578334982428}
@@ -26,9 +26,11 @@ MonoBehaviour:
   - {fileID: 114886958210001042}
   - {fileID: 114157642886785442}
   - {fileID: 114447551429393856}
-  MasterBankRef: {fileID: 114393380248276820}
+  - {fileID: 114522713594747524}
+  - {fileID: 114041166990487232}
+  MasterBankRef: {fileID: 114787524129026058}
   StringsBankRef: {fileID: 114517954911746612}
-  stringsBankWriteTime: 636424438603432593
+  stringsBankWriteTime: 636459994727436203
   cacheVersion: 2
 --- !u!114 &114003206923295908
 MonoBehaviour:
@@ -45,6 +47,26 @@ MonoBehaviour:
   Min: 0
   Max: 5
   Default: 0
+--- !u!114 &114008081611083458
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: event:/Coins
+  guid: ea18d68709e754469d13b63cc9baae5a
+  Banks: []
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
 --- !u!114 &114022074661909128
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -60,6 +82,61 @@ MonoBehaviour:
   Min: 0
   Max: 5
   Default: 0
+--- !u!114 &114034472976827746
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Transition
+  Min: 0
+  Max: 5
+  Default: 0
+--- !u!114 &114041166990487232
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: event:/Ui/Coins
+  guid: ea18d68709e754469d13b63cc9baae5a
+  Banks:
+  - {fileID: 114787524129026058}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+--- !u!114 &114041617168666310
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: D:\GitHub\MeMedieval\Me Medieval\Assets\Plugins\FMOD\Banks\Desktop\Master
+    Bank.bank
+  lastModified: 636458426291167923
+  LoadResult: 0
+  FileSizes:
+  - Name: 
+    Value: 7658912
+  Exists: 1
 --- !u!114 &114042034355167582
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -136,6 +213,40 @@ MonoBehaviour:
   - Name: 
     Value: 6176832
   Exists: 1
+--- !u!114 &114086229503453274
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Transition
+  Min: 0
+  Max: 5
+  Default: 0
+--- !u!114 &114098111671691948
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: C:\Users\Simanis Mikoss\Desktop\Unity projects\memedieval\Assets\Plugins\FMOD\Banks\Desktop\Master
+    Bank.bank
+  lastModified: 636448903681918191
+  LoadResult: 0
+  FileSizes:
+  - Name: 
+    Value: 7658624
+  Exists: 1
 --- !u!114 &114109840869107750
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -170,6 +281,25 @@ MonoBehaviour:
   - Name: 
     Value: 6297376
   Exists: 0
+--- !u!114 &114112095849719642
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: D:\Documents\GameDev\Me Medieval\Assets\Plugins\FMOD\Banks\Desktop\Master
+    Bank.bank
+  lastModified: 636447405642264840
+  LoadResult: 0
+  FileSizes:
+  - Name: 
+    Value: 6461856
+  Exists: 1
 --- !u!114 &114117771322204102
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -189,6 +319,55 @@ MonoBehaviour:
   - Name: 
     Value: 6461856
   Exists: 1
+--- !u!114 &114126583522326734
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Transition
+  Min: 0
+  Max: 5
+  Default: 0
+--- !u!114 &114126991452328130
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Transition
+  Min: 0
+  Max: 5
+  Default: 0
+--- !u!114 &114138140691217138
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: C:\Users\simanis\Documents\Unity\MeMedival\Me Medieval\Assets\Plugins\FMOD\Banks\Desktop\Master
+    Bank.bank
+  lastModified: 636459917420052369
+  LoadResult: 0
+  FileSizes:
+  - Name: 
+    Value: 7658912
+  Exists: 0
 --- !u!114 &114144556653561750
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -252,7 +431,7 @@ MonoBehaviour:
   Path: event:/Archer/Archer_Shoot
   guid: f53c9d4613f0a74292f96c7143509599
   Banks:
-  - {fileID: 114393380248276820}
+  - {fileID: 114787524129026058}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -275,6 +454,21 @@ MonoBehaviour:
   Max: 5
   Default: 0
 --- !u!114 &114165530961483530
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Transition
+  Min: 0
+  Max: 5
+  Default: 0
+--- !u!114 &114174566115311716
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
@@ -327,6 +521,25 @@ MonoBehaviour:
   - Name: 
     Value: 6461856
   Exists: 1
+--- !u!114 &114192749447975236
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: C:\Users\Simanis Mikoss\Desktop\Unity projects\memedieval\Assets\Plugins\FMOD\Banks\Desktop\Master
+    Bank.bank
+  lastModified: 636424246299713850
+  LoadResult: 0
+  FileSizes:
+  - Name: 
+    Value: 6461856
+  Exists: 1
 --- !u!114 &114206880895179452
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -342,6 +555,44 @@ MonoBehaviour:
   Min: 0
   Max: 5
   Default: 0
+--- !u!114 &114217169965456030
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: C:\Users\Simanis Mikoss\Desktop\Unity projects\memedieval\Assets\Plugins\FMOD\Banks\Desktop\Master
+    Bank.bank
+  lastModified: 636424246299713850
+  LoadResult: 0
+  FileSizes:
+  - Name: 
+    Value: 6461856
+  Exists: 1
+--- !u!114 &114218810405726860
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: C:\Users\simanis\Documents\Unity\MeMedival\Me Medieval\Assets\Plugins\FMOD\Banks\Desktop\Master
+    Bank.bank
+  lastModified: 636459917420052369
+  LoadResult: 0
+  FileSizes:
+  - Name: 
+    Value: 7658912
+  Exists: 1
 --- !u!114 &114218832116200418
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -376,6 +627,40 @@ MonoBehaviour:
   - Name: 
     Value: 6297376
   Exists: 1
+--- !u!114 &114227663951039486
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: D:\UnityProjects\Me Medieval\Me Medieval\Assets\Plugins\FMOD\Banks\Desktop\Master
+    Bank.bank
+  lastModified: 636424204252781133
+  LoadResult: 0
+  FileSizes:
+  - Name: 
+    Value: 6461856
+  Exists: 1
+--- !u!114 &114254694325662304
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Transition
+  Min: 0
+  Max: 5
+  Default: 0
 --- !u!114 &114258538194420366
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -409,13 +694,32 @@ MonoBehaviour:
   Path: event:/Castle_Death
   guid: 38605595fbdab6449beebb63466e99fd
   Banks:
-  - {fileID: 114393380248276820}
+  - {fileID: 114787524129026058}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
   Parameters: []
   MinDistance: 0
   MaxDistance: 0
+--- !u!114 &114259695563957134
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: D:\Documents\GameDev\Me Medieval\Assets\Plugins\FMOD\Banks\Desktop\Master
+    Bank.bank
+  lastModified: 636447405642264840
+  LoadResult: 0
+  FileSizes:
+  - Name: 
+    Value: 6461856
+  Exists: 0
 --- !u!114 &114262528641924552
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -543,7 +847,7 @@ MonoBehaviour:
   Path: event:/Peasant/Peasant_Spawn
   guid: 8d6bb9072c71f641b5f7000e0962fd0d
   Banks:
-  - {fileID: 114393380248276820}
+  - {fileID: 114787524129026058}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -564,7 +868,7 @@ MonoBehaviour:
   Path: event:/Archer/Archer_Spawn
   guid: 9349f437cf36cf4a985b54dafdbc659f
   Banks:
-  - {fileID: 114393380248276820}
+  - {fileID: 114787524129026058}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -590,6 +894,21 @@ MonoBehaviour:
   - Name: 
     Value: 6176832
   Exists: 1
+--- !u!114 &114341876294328660
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Transition
+  Min: 0
+  Max: 5
+  Default: 0
 --- !u!114 &114351412902431890
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -628,6 +947,59 @@ MonoBehaviour:
   - Name: 
     Value: 6176832
   Exists: 1
+--- !u!114 &114359481512865448
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Transition
+  Min: 0
+  Max: 5
+  Default: 0
+--- !u!114 &114365862463536710
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: C:\Users\Simanis Mikoss\Desktop\Unity projects\memedieval\Assets\Plugins\FMOD\Banks\Desktop\Master
+    Bank.bank
+  lastModified: 636424246299713850
+  LoadResult: 0
+  FileSizes:
+  - Name: 
+    Value: 6461856
+  Exists: 1
+--- !u!114 &114367509346214140
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: D:\Documents\GameDev\Me Medieval\Assets\Plugins\FMOD\Banks\Desktop\Master
+    Bank.bank
+  lastModified: 636447405642264840
+  LoadResult: 0
+  FileSizes:
+  - Name: 
+    Value: 6461856
+  Exists: 1
 --- !u!114 &114368175084327994
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -659,6 +1031,36 @@ MonoBehaviour:
   Max: 5
   Default: 0
 --- !u!114 &114372731748949626
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Transition
+  Min: 0
+  Max: 5
+  Default: 0
+--- !u!114 &114376148403838850
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Transition
+  Min: 0
+  Max: 5
+  Default: 0
+--- !u!114 &114377529061521760
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
@@ -725,7 +1127,7 @@ MonoBehaviour:
   FileSizes:
   - Name: 
     Value: 6461856
-  Exists: 1
+  Exists: 0
 --- !u!114 &114394193532015174
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -745,6 +1147,21 @@ MonoBehaviour:
   - Name: 
     Value: 6297376
   Exists: 1
+--- !u!114 &114402307233652876
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Transition
+  Min: 0
+  Max: 5
+  Default: 0
 --- !u!114 &114405272197035206
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -760,6 +1177,44 @@ MonoBehaviour:
   Min: 0
   Max: 5
   Default: 0
+--- !u!114 &114411574838860404
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: C:\Users\Simanis Mikoss\Desktop\Unity projects\memedieval\Assets\Plugins\FMOD\Banks\Desktop\Master
+    Bank.bank
+  lastModified: 636458507436132610
+  LoadResult: 0
+  FileSizes:
+  - Name: 
+    Value: 7658912
+  Exists: 1
+--- !u!114 &114412568945373060
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: C:\Users\Simanis Mikoss\Desktop\gamecamp\Me Medieval\Assets\Plugins\FMOD\Banks\Desktop\Master
+    Bank.bank
+  lastModified: 636424246299713850
+  LoadResult: 0
+  FileSizes:
+  - Name: 
+    Value: 6461856
+  Exists: 1
 --- !u!114 &114413976904849840
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -774,12 +1229,12 @@ MonoBehaviour:
   Path: event:/Music Test
   guid: c293a60c004beb498d0d4a4fc1125904
   Banks:
-  - {fileID: 114393380248276820}
+  - {fileID: 114787524129026058}
   IsStream: 1
   Is3D: 0
   IsOneShot: 0
   Parameters:
-  - {fileID: 114022074661909128}
+  - {fileID: 114753148885396502}
   MinDistance: 0
   MaxDistance: 0
 --- !u!114 &114414578334982428
@@ -796,7 +1251,7 @@ MonoBehaviour:
   Path: event:/Ui/Buttonklick
   guid: 33a4c565320ee2459289e30dfd5d8540
   Banks:
-  - {fileID: 114393380248276820}
+  - {fileID: 114787524129026058}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -804,6 +1259,21 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
 --- !u!114 &114421228470331122
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Transition
+  Min: 0
+  Max: 5
+  Default: 0
+--- !u!114 &114445306981596888
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
@@ -832,13 +1302,32 @@ MonoBehaviour:
   Path: event:/Fire
   guid: 7ace7b243c690a49b50d6c5276b7e208
   Banks:
-  - {fileID: 114393380248276820}
+  - {fileID: 114787524129026058}
   IsStream: 1
   Is3D: 0
   IsOneShot: 0
   Parameters: []
   MinDistance: 0
   MaxDistance: 0
+--- !u!114 &114450675850745230
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: D:\Documents\GameDev\Me Medieval\Assets\Plugins\FMOD\Banks\Desktop\Master
+    Bank.bank
+  lastModified: 636447405642264840
+  LoadResult: 0
+  FileSizes:
+  - Name: 
+    Value: 6461856
+  Exists: 1
 --- !u!114 &114456268565172968
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -868,7 +1357,7 @@ MonoBehaviour:
   Path: event:/Peasant/PlaceholderPeasant_Attack
   guid: 3793234960b32d4d9368c96a9b463e89
   Banks:
-  - {fileID: 114393380248276820}
+  - {fileID: 114787524129026058}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -940,12 +1429,33 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Path: Assets\Plugins\FMOD\Banks\Desktop\Master Bank.strings.bank
-  lastModified: 636424438603432593
+  lastModified: 636459994727436203
   LoadResult: 0
   FileSizes:
   - Name: 
-    Value: 1440
+    Value: 1530
   Exists: 1
+--- !u!114 &114522713594747524
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: event:/TavernMusic
+  guid: 1bc87ad67bb0694d92f73f8f0f7ecc31
+  Banks:
+  - {fileID: 114787524129026058}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
 --- !u!114 &114524317717977992
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -995,6 +1505,25 @@ MonoBehaviour:
   Min: 0
   Max: 5
   Default: 0
+--- !u!114 &114550425120551994
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: D:\Documents\GameDev\Me Medieval\Assets\Plugins\FMOD\Banks\Desktop\Master
+    Bank.bank
+  lastModified: 636447405642264840
+  LoadResult: 0
+  FileSizes:
+  - Name: 
+    Value: 6461856
+  Exists: 0
 --- !u!114 &114555903733019136
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1010,7 +1539,37 @@ MonoBehaviour:
   Min: 0
   Max: 5
   Default: 0
+--- !u!114 &114560329040531962
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Transition
+  Min: 0
+  Max: 5
+  Default: 0
 --- !u!114 &114566785535228734
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Transition
+  Min: 0
+  Max: 5
+  Default: 0
+--- !u!114 &114570997085034324
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
@@ -1112,6 +1671,51 @@ MonoBehaviour:
   - Name: 
     Value: 6297376
   Exists: 0
+--- !u!114 &114602457917095604
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Transition
+  Min: 0
+  Max: 5
+  Default: 0
+--- !u!114 &114604720162553946
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Transition
+  Min: 0
+  Max: 5
+  Default: 0
+--- !u!114 &114607672372053700
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Transition
+  Min: 0
+  Max: 5
+  Default: 0
 --- !u!114 &114608270733499952
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1146,6 +1750,21 @@ MonoBehaviour:
   Min: 0
   Max: 5
   Default: 0
+--- !u!114 &114608623043741294
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Transition
+  Min: 0
+  Max: 5
+  Default: 0
 --- !u!114 &114613197020589382
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1160,13 +1779,91 @@ MonoBehaviour:
   Path: event:/Unit_Death
   guid: 90a5673795164544af2444b8ea316ffe
   Banks:
-  - {fileID: 114393380248276820}
+  - {fileID: 114787524129026058}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
   Parameters: []
   MinDistance: 0
   MaxDistance: 0
+--- !u!114 &114620869873550758
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Transition
+  Min: 0
+  Max: 5
+  Default: 0
+--- !u!114 &114638386054315302
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Transition
+  Min: 0
+  Max: 5
+  Default: 0
+--- !u!114 &114639141621913430
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Transition
+  Min: 0
+  Max: 5
+  Default: 0
+--- !u!114 &114645796722830006
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Transition
+  Min: 0
+  Max: 5
+  Default: 0
+--- !u!114 &114658174540465916
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: D:\Dev\unity\Me Medieval\Assets\Plugins\FMOD\Banks\Desktop\Master Bank.bank
+  lastModified: 636459994813362570
+  LoadResult: 0
+  FileSizes:
+  - Name: 
+    Value: 7658912
+  Exists: 1
 --- !u!114 &114659462393729846
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1273,6 +1970,21 @@ MonoBehaviour:
   Min: 0
   Max: 5
   Default: 0
+--- !u!114 &114706902817827782
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Transition
+  Min: 0
+  Max: 5
+  Default: 0
 --- !u!114 &114714429069309082
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1292,6 +2004,40 @@ MonoBehaviour:
   - Name: 
     Value: 6297376
   Exists: 0
+--- !u!114 &114716078536346302
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Transition
+  Min: 0
+  Max: 5
+  Default: 0
+--- !u!114 &114731591195331658
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: D:\GitHub\MeMedieval\Me Medieval\Assets\Plugins\FMOD\Banks\Desktop\Master
+    Bank.bank
+  lastModified: 636448857620503527
+  LoadResult: 0
+  FileSizes:
+  - Name: 
+    Value: 7658624
+  Exists: 1
 --- !u!114 &114739116808362584
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1306,13 +2052,98 @@ MonoBehaviour:
   Path: event:/Knight/Knight_Attack
   guid: a15f31d16693234ab184d9eacf66ef71
   Banks:
-  - {fileID: 114393380248276820}
+  - {fileID: 114787524129026058}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
   Parameters: []
   MinDistance: 0
   MaxDistance: 0
+--- !u!114 &114750811186846882
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Transition
+  Min: 0
+  Max: 5
+  Default: 0
+--- !u!114 &114751418238852084
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: D:\Dev\unity\Me Medieval\Assets\Plugins\FMOD\Banks\Desktop\Master Bank.bank
+  lastModified: 636459994813362570
+  LoadResult: 0
+  FileSizes:
+  - Name: 
+    Value: 7658912
+  Exists: 1
+--- !u!114 &114753148885396502
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Transition
+  Min: 0
+  Max: 5
+  Default: 0
+--- !u!114 &114778970300955454
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: C:\Users\Simanis Mikoss\Desktop\Unity projects\memedieval\Assets\Plugins\FMOD\Banks\Desktop\Master
+    Bank.bank
+  lastModified: 636424246299713850
+  LoadResult: 0
+  FileSizes:
+  - Name: 
+    Value: 6461856
+  Exists: 1
+--- !u!114 &114787524129026058
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: D:\Dev\unity\Me Medieval\Assets\Plugins\FMOD\Banks\Desktop\Master Bank.bank
+  lastModified: 636459994813362570
+  LoadResult: 0
+  FileSizes:
+  - Name: 
+    Value: 7658912
+  Exists: 1
 --- !u!114 &114804606359946216
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1328,6 +2159,55 @@ MonoBehaviour:
   Min: 0
   Max: 5
   Default: 0
+--- !u!114 &114811925855884622
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Transition
+  Min: 0
+  Max: 5
+  Default: 0
+--- !u!114 &114823531945975002
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Transition
+  Min: 0
+  Max: 5
+  Default: 0
+--- !u!114 &114830968407751446
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: C:\Users\Simanis Mikoss\Desktop\Unity projects\memedieval\Assets\Plugins\FMOD\Banks\Desktop\Master
+    Bank.bank
+  lastModified: 636424246299713850
+  LoadResult: 0
+  FileSizes:
+  - Name: 
+    Value: 6461856
+  Exists: 1
 --- !u!114 &114843817297894270
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1347,6 +2227,21 @@ MonoBehaviour:
   - Name: 
     Value: 6297376
   Exists: 1
+--- !u!114 &114847738827625382
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Transition
+  Min: 0
+  Max: 5
+  Default: 0
 --- !u!114 &114856210187909806
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1366,6 +2261,21 @@ MonoBehaviour:
   - Name: 
     Value: 6297376
   Exists: 1
+--- !u!114 &114872189739716366
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Transition
+  Min: 0
+  Max: 5
+  Default: 0
 --- !u!114 &114877984419969220
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1395,13 +2305,51 @@ MonoBehaviour:
   Path: event:/Knight/Knight_Spawn
   guid: b4e8959c99b1464ca2adf555bf70a47b
   Banks:
-  - {fileID: 114393380248276820}
+  - {fileID: 114787524129026058}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
   Parameters: []
   MinDistance: 0
   MaxDistance: 0
+--- !u!114 &114887942846806682
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: C:\Users\Pleb\Documents\Me Medieval\Assets\Plugins\FMOD\Banks\Desktop\Master
+    Bank.bank
+  lastModified: 636452459910547690
+  LoadResult: 0
+  FileSizes:
+  - Name: 
+    Value: 7658624
+  Exists: 1
+--- !u!114 &114891805247840622
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: C:\Users\Simanis Mikoss\Desktop\Unity projects\memedieval\Assets\Plugins\FMOD\Banks\Desktop\Master
+    Bank.bank
+  lastModified: 636458507436132610
+  LoadResult: 0
+  FileSizes:
+  - Name: 
+    Value: 7658912
+  Exists: 1
 --- !u!114 &114893681299486064
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1564,6 +2512,21 @@ MonoBehaviour:
   Min: 0
   Max: 5
   Default: 0
+--- !u!114 &114951722325006572
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Transition
+  Min: 0
+  Max: 5
+  Default: 0
 --- !u!114 &114955124196121156
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1636,3 +2599,22 @@ MonoBehaviour:
   Min: 0
   Max: 5
   Default: 0
+--- !u!114 &114984572791167118
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: D:\Documents\GameDev\Me Medieval\Assets\Plugins\FMOD\Banks\Desktop\Master
+    Bank.bank
+  lastModified: 636447405642264840
+  LoadResult: 0
+  FileSizes:
+  - Name: 
+    Value: 6461856
+  Exists: 1

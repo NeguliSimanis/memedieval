@@ -186,5 +186,8 @@ public class MobileCam : MonoBehaviour
 
         testingImage.sprite = null;
     }
-
+    public void StopCamera()
+    {
+        backCam.Stop();
+    }
 }

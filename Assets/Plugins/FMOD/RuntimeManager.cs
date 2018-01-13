@@ -150,7 +150,7 @@ namespace FMODUnity
                     studioSystem.release();
 					studioSystem.clearHandle();
                 }
-                throw new SystemNotInitializedException(result, cause);
+                //throw new SystemNotInitializedException(result, cause);
             }
         }
 

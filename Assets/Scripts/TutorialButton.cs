@@ -51,13 +51,13 @@ public class TutorialButton : MonoBehaviour
 
                 child0 = tutorialPanel.transform.GetChild(0).gameObject;
                 child0.SetActive(true);
-                child0.GetComponent<Text>().text = "Take pictures with your phone to choose your champions.\n \n Champions are your strongest units.";
+                child0.GetComponent<Text>().text = "Go to tavern to hire new champions. \nChampions are your strongest units. \n \nYou'll need them when capturing castles.";
                 tutorialPanel.transform.GetChild(1).gameObject.SetActive(false);
                 break;
 
             case 2:
                 Debug.Log("tutorial state 2");
-                child0.GetComponent<Text>().text = "There are three unit types:\nPeasants, Knights, and Archers.\n \n Peasants are more effective against knights, knights are more effective against archers, and archers are more effective against peasants.";
+                child0.GetComponent<Text>().text = "There are three unit types:\nPeasants, Knights, and Archers.\n \nPeasants > Knights \nKnights > Archers \nArchers > Peasants.";
                 break;
 
             default:

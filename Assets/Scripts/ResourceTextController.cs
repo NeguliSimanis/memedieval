@@ -6,8 +6,8 @@ using UnityEngine.UI;
 public class ResourceTextController : MonoBehaviour
 {
     [SerializeField] private Text resourcesText;
-    [SerializeField] private Resources playerResources;
-    [SerializeField] private Resources enemyResources;
+    [SerializeField] private MeMedieval.Resources playerResources;
+    [SerializeField] private MeMedieval.Resources enemyResources;
 
     void Start()
     {

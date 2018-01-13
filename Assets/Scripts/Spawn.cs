@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Linq;
 
 public class Spawn : MonoBehaviour
 {
@@ -13,7 +14,7 @@ public class Spawn : MonoBehaviour
 
     [SerializeField] private Attack.Type captain;
     [SerializeField] private bool isCaptain;
-    [SerializeField] private Resources resources;
+    [SerializeField] private MeMedieval.Resources resources;
     [SerializeField] private float Cooldown;
     [SerializeField] private int UnitCost;
     [SerializeField] private bool Enemy;
@@ -26,6 +27,7 @@ public class Spawn : MonoBehaviour
     public WaypointFollower Character;
     public Waypoint startingPoint;
 
+    public AvatarFace avatarFacePrefab;
 
     void Awake()
     {
@@ -39,6 +41,7 @@ public class Spawn : MonoBehaviour
         {
             UnitCostText.text = "Cost: " + UnitCost;
         }
+
     }
 
 
@@ -77,6 +80,7 @@ public class Spawn : MonoBehaviour
             if (Health.Knight) return;
             else if (isCaptain)
             {
+                Debug.Log("Knight spawned!");
                 if (!resources.IsEnoughResources(UnitCost)) return;
                 if (KnightCaptainsLeft == 0) return;
                 KnightCaptainsLeft--;
@@ -111,13 +115,37 @@ public class Spawn : MonoBehaviour
                 if (Health.Peasant) return;
                 else if (isCaptain)
                 {
-                    GameObject captainFace = GameObject.FindWithTag("Peasant face");
-                    GameObject thisCaptainFace = Instantiate(captainFace, character.transform);
+                    var g = new GameObject();
+                    g.AddComponent<SpriteRenderer>();
+                    GameObject captainFace = g;
+
+                    var h = character.GetComponentInChildren<Transform>();
+                    g.transform.SetParent(h.transform);
+                    GameObject thisCaptainFace = g;
 
                     //thisCaptainFace.transform.localScale += new Vector3(1F, 1f, 1f);
-                    thisCaptainFace.transform.localPosition = new Vector3(0, 2.3f, 0);
-                    thisCaptainFace.transform.localScale = new Vector3(0.2f, 0.2f, 0);
-                    thisCaptainFace.transform.GetChild(0).GetComponent<SpriteRenderer>().sortingLayerName = "Foreground";
+                    thisCaptainFace.transform.localPosition = new Vector3(-1.2f, 2.0f, 0);
+                    thisCaptainFace.transform.localScale = new Vector3(0.4f, 0.4f, 0);
+                    thisCaptainFace.transform.GetComponent<SpriteRenderer>().sortingLayerName = "Foreground";
+
+
+                    AvatarFace face;
+                    var c = PlayerProfile.Singleton.champions.Where(x => x.champClass == 0).First();
+                    if (c != null)
+                    {
+                        face = Instantiate(avatarFacePrefab, h);
+                        face.SetFace(c.picture);
+                        face.transform.localPosition = new Vector3(-0.4f, 2.0f, 0);
+                        face.transform.localScale = new Vector3(0.02f, 0.02f, 0);
+                        //var p = c.picture;
+                        Debug.Log(c.Name);
+
+                        //thisCaptainFace.transform.GetComponent<SpriteRenderer>().sprite = Sprite.Create(p, new Rect(0, 0, p.width, p.height), Vector2.zero);
+                        c.onBattle = true;
+
+                    }
+
+                    //face.transform.GetComponent<SpriteRenderer>().sortingLayerName = "Foreground";
                     Debug.Log("face added");
                 }
             }
@@ -127,13 +155,31 @@ public class Spawn : MonoBehaviour
                 if (Health.Knight) return;
                 else if (isCaptain)
                 {
-                    GameObject captainFace = GameObject.FindWithTag("Knight face");
-                    GameObject thisCaptainFace = Instantiate(captainFace, character.transform);
+                    var g = new GameObject();
+                    g.AddComponent<SpriteRenderer>();
+                    GameObject captainFace = g;
+
+                    var h = character.GetComponentInChildren<Transform>();
+                    g.transform.SetParent(h.transform);
+                    GameObject thisCaptainFace = g;
 
                     //thisCaptainFace.transform.localScale += new Vector3(1F, 1f, 1f);
-                    thisCaptainFace.transform.localPosition = new Vector3(-0.2f, 2.5f, 0);
-                    thisCaptainFace.transform.localScale = new Vector3(0.2f, 0.2f, 0);
-                    thisCaptainFace.transform.GetChild(0).GetComponent<SpriteRenderer>().sortingLayerName = "Foreground";
+                    thisCaptainFace.transform.localPosition = new Vector3(-1.2f, 2.0f, 0);
+                    thisCaptainFace.transform.localScale = new Vector3(0.4f, 0.4f, 0);
+                    thisCaptainFace.transform.GetComponent<SpriteRenderer>().sortingLayerName = "Foreground";
+                    AvatarFace face;
+                    var c = PlayerProfile.Singleton.champions.Where(x => x.champClass == 1).First();
+                    if (c != null)
+                    {
+                        face = Instantiate(avatarFacePrefab, h);
+                        face.SetFace(c.picture);
+                        face.transform.localPosition = new Vector3(-0.2f, 2.5f, 0);
+                        face.transform.localScale = new Vector3(0.02f, 0.02f, 0);
+                        //var p = c.picture;
+                        //Debug.Log(c.Name);
+                        //thisCaptainFace.transform.GetComponent<SpriteRenderer>().sprite =Sprite.Create(p,new Rect(0,0,p.width,p.height),Vector2.zero);
+                        c.onBattle = true;
+                    }
                     Debug.Log("face added");
                 }
             }
@@ -143,13 +189,31 @@ public class Spawn : MonoBehaviour
                 if (Health.Archer) return;
                 else if (isCaptain)
                 {
-                    GameObject captainFace = GameObject.FindWithTag("Archer face");
-                    GameObject thisCaptainFace = Instantiate(captainFace, character.transform);
+                    var g = new GameObject();
+                    g.AddComponent<SpriteRenderer>();
+                    GameObject captainFace = g;
+
+                    var h = character.GetComponentInChildren<Transform>();
+                    g.transform.SetParent(h.transform);
+                    GameObject thisCaptainFace = g;
 
                     //thisCaptainFace.transform.localScale += new Vector3(1F, 1f, 1f);
-                    thisCaptainFace.transform.localPosition = new Vector3(-1f, 2.5f, 0);
-                    thisCaptainFace.transform.localScale = new Vector3(0.2f, 0.2f, 0);
-                    thisCaptainFace.transform.GetChild(0).GetComponent<SpriteRenderer>().sortingLayerName = "Foreground";
+                    thisCaptainFace.transform.localPosition = new Vector3(-1.8f, 2.0f, 0);
+                    thisCaptainFace.transform.localScale = new Vector3(0.4f, 0.4f, 0);
+                    thisCaptainFace.transform.GetComponent<SpriteRenderer>().sortingLayerName = "Foreground";
+                    AvatarFace face;
+                    var c = PlayerProfile.Singleton.champions.Where(x => x.champClass == 2).First();
+                    if (c != null)
+                    {
+                        face = Instantiate(avatarFacePrefab, h);
+                        face.SetFace(c.picture);
+                        face.transform.localPosition = new Vector3(-0.5f, 2.5f, 0);
+                        face.transform.localScale = new Vector3(0.02f, 0.02f, 0);
+                        //var p = c.picture;
+                        //Debug.Log(c.Name);
+                        //thisCaptainFace.transform.GetComponent<SpriteRenderer>().sprite = Sprite.Create(p, new Rect(0, 0, p.width, p.height), Vector2.zero);
+                        c.onBattle = true;
+                    }
                     Debug.Log("face added");
                 }
             }
@@ -158,7 +222,7 @@ public class Spawn : MonoBehaviour
             else spawnTimestamp = Time.time;
         }
     }
-    
+
 
     public static void ResetAllValues()
     {
@@ -166,5 +230,6 @@ public class Spawn : MonoBehaviour
         ArcherCaptainsLeft = 1;
         KnightCaptainsLeft = 1;
     }
+
 }
 

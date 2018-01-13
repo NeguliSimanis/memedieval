@@ -56,6 +56,32 @@ public class Health : MonoBehaviour
 
         if (victory || gameOver)
         {
+            if (victory)
+            {
+                PlayerProfile.Singleton.lastGameStatus = 1;
+                var c = PlayerProfile.Singleton.champions;
+                for (int i = 0; i < c.Count; i++)
+                {
+                    if (c[i].onBattle == true)
+                    {
+                        c[i].LevelUP();
+                        c[i].onBattle = false;
+                    }
+                }
+            }
+            else
+            {
+                PlayerProfile.Singleton.lastGameStatus = -1;
+                var c = PlayerProfile.Singleton.champions;
+                for (int i = 0; i < c.Count; i++)
+                {
+                    if (c[i].onBattle == true)
+                    {
+                        c[i].isDead = true;
+                        c[i].onBattle = false;
+                    }
+                }
+            }
             if (nextLevelScript == null) Debug.Log("LoadScene script not specified in inspector");
             if (nextLevelScript == null) Debug.Log("Next level name not specified in inspector");
             else// nextLevelScript.loadLevel(nextLevelToLoad); 
@@ -63,7 +89,7 @@ public class Health : MonoBehaviour
                 Spawn.ResetAllValues();
                 WaypointFollower.ResetAllValues();
                 ResetAllValues();
-                SceneManager.LoadScene(nextLevelToLoad);
+                SceneManager.LoadScene("Castle");
             }
 
         }

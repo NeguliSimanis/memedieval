@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class DontDestroyOnLoad : MonoBehaviour {
-    [SerializeField] bool keepChildren = false;
+    [SerializeField] public bool keepChildren = false;
 
     void Start ()
     {
