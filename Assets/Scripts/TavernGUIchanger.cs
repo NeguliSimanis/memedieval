@@ -24,6 +24,7 @@ public class TavernGUIchanger : MonoBehaviour
         while (true)
         {
             saltcount.text = PlayerProfile.Singleton.SaltCurrent.ToString();
+            Debug.Log("displaying salt");
             yield return new WaitForSeconds(1);
         }
     }
