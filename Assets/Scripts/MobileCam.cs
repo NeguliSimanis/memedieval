@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 
 /// <summary>
-/// code taken from https://www.youtube.com/watch?v=c6NXkZWXHnc
+/// references: https://www.youtube.com/watch?v=c6NXkZWXHnc
 /// and https://stackoverflow.com/questions/24496438/can-i-take-a-photo-in-unity-using-the-devices-camera
 /// </summary>
 
