@@ -17,11 +17,11 @@ public class BattleFaceCreate : MonoBehaviour {
     public void createAvatarFace( int class1, Vector3 pos)
     {
         AvatarFace face;
-        var c = PlayerProfile.Singleton.champions.Where(x => x.champClass == class1).FirstOrDefault();
+        var c = PlayerProfile.Singleton.champions.Where(x => x.properties.champClass == class1).FirstOrDefault();
         Texture2D facet = null;
         if (c != null)
         {
-            facet = c.picture;
+            facet = c.properties.LoadPictureAsTexture2D();
         }
         else
         {

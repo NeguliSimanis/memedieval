@@ -30,7 +30,7 @@ public class CastleHUB : MonoBehaviour {
         for(int i = 0; i < p.champions.Count; i++)
         {
             var champ = p.champions[i];
-            if (champ.isDead)
+            if (champ.properties.isDead)
             {
                 p.champions.Remove(champ);
                 Destroy(champ.gameObject);

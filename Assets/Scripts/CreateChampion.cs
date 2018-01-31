@@ -3,17 +3,38 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+/*
+ * Script is attached to CHARCREATE, ChampionCreate objects in the tavern scene
+ * ChampionCreate is tagged in the scene as "ChampionCreator"
+ * CHARCREATE is untagged
+ */
 
 public class CreateChampion : MonoBehaviour
 {
+    #region variable to deterimine if we need to use camera and some other methods
+    [SerializeField]
+    private bool scriptAttachedToRecruitPanel;
+    private bool useCamera; // false if previus is false
+    #endregion
+
     public GameObject[] ChampionsPrefabs;
     public GameObject StatsContainerPrefab;
     public InputField Name;
+
+    private Sprite championFace;
+    public static GameObject firstChampionFace;
+
+    private WebCamDevice[] devices;
+    private int camID;
     private bool camAvailable;
     private WebCamTexture backCam;
     public Texture2D pic;
+
     public RawImage background;
-    //bio strings
+
+    public bool isMan;
+
+    #region bio strings
     public string[] Sentence1part1= { "{0} was born", "{0} fondly recalls the time that was spent",
     "{0} spent the childhood","The scars borne by {0} were struck" };
     public string[] Sentence1part2 = {"in a poor family", "in a church","in a noble family","under the starry sky",
@@ -26,11 +47,22 @@ public class CreateChampion : MonoBehaviour
     public string[] Sentence3part1 = { " Now {0}", " Ever since, {0}", " Evermore, {0}" };
     public string[] Sentence3part2 = { "roams the lands", "is on a quest", "offers their sword for hire", "spends the days at the tavern" };
     public string[] Sentence3part3 = { "in search of vengeance.", "in search of cranberries.", "to find their true self.", "to clear thy name." };
+    #endregion
 
-    public string[] Motto = { "An veritas, an nihil", "De oppresso Liber", "Deus vult", "Ubi concordia, ibi victoria", "Vae victis!", "Nota Bene",
-"Tum podem extulit horridulum",
-"Fortes fortuna iuvat" };
+    #region motto strings
+    public string[] Motto = {
+        "An veritas, an nihil",
+        "De oppresso Liber",
+        "Deus vult",
+        "Ubi concordia, ibi victoria",
+        "Vae victis!",
+        "Nota Bene",
+        "Tum podem extulit horridulum",
+        "Fortes fortuna iuvat"
+    };
+    #endregion
 
+    #region Champion text generation
     public string MakeMotto()
     {
         int r = Random.Range(0, Motto.Length);
@@ -74,8 +106,8 @@ public class CreateChampion : MonoBehaviour
     {
         return MakeSentence1(charname) + MakeSentence2(charname) + MakeSentence3(charname);
     }
+    #endregion
 
-    //veidojam championa klasi
     public Champion createChamp()
     {
         var g = new GameObject();
@@ -83,15 +115,8 @@ public class CreateChampion : MonoBehaviour
         return c;
     }
 
-    private Sprite captainFace;
-    public static GameObject firstCaptainFace;
-
-    private WebCamDevice[] devices;
-    private int camID;
-
-    void Start()
+    public void StartUsingWebcam()
     {
-        //DontDestroyOnLoad(this.gameObject);
         devices = WebCamTexture.devices;
         if (devices.Length == 0)
         {
@@ -189,45 +214,77 @@ public class CreateChampion : MonoBehaviour
     //    Debug.Log("Load next scene");
     //    backCam.Stop();
     //}
-    public bool isMan;
+
+    
     public void setMan()
     {
         isMan = true;
     }
-    public void setwoman()
+    public void setWoman()
     {
         isMan = false;
     }
+
     public void SaveInfo()
     {
-        string Name1 = Name.text;
-        int number = Random.Range(0, ChampionsPrefabs.Length);
-
+        int champClassID = Random.Range(0, ChampionsPrefabs.Length);
         var player = PlayerProfile.Singleton;
         var pgo = player.gameObject;
-        var champ = Instantiate<GameObject>(ChampionsPrefabs[number]);
-        champ.SetActive(false);
-        champ.transform.parent = pgo.transform;
-        var champo = champ.GetComponent<Champion>();
-        champo.champClass = number;
+        var championObject = Instantiate<GameObject>(ChampionsPrefabs[champClassID]);
+ 
+        championObject.SetActive(false);
+        championObject.transform.parent = pgo.transform;
+
+        var champo = championObject.GetComponent<Champion>();     
+        string Name1 = Name.text;
+        champo.properties.champClass = champClassID;
         player.champions.Add(champo);
-        champo.Name = Name1;
-        champo.isMan = isMan;
-        champo.picture = pic;
-        champo.Bio = MakeBio(Name1);
-        champo.quote = MakeMotto();
+        champo.properties.Name = Name1;
+        champo.properties.isMan = isMan;
+        champo.properties.SetPicture(pic);
+        champo.properties.bio = MakeBio(Name1);
+        champo.properties.quote = MakeMotto();
+
         var stats = Instantiate(StatsContainerPrefab);
         stats.transform.parent = champo.transform;
+
         var o = FindObjectOfType<TavernGUIchanger>();
         PlayerProfile.Singleton.SaltCurrent -= 5;
-        o.changeLayout(0);
+        o.ChangeLayout(0);
 
+    }
 
+    public void LoadChampionFromSave(ChampionData championData)
+    {
+        int champClassID = championData.champClass;
+        var player = PlayerProfile.Singleton;
+        var pgo = player.gameObject;
+        var championObject = Instantiate<GameObject>(ChampionsPrefabs[champClassID]);
+
+        championObject.SetActive(false);
+        championObject.transform.parent = pgo.transform;
+
+        var champo = championObject.GetComponent<Champion>();
+        string Name1 = championData.Name;
+
+        // set champion properties
+        champo.properties.champClass = champClassID;
+        player.champions.Add(champo);
+        champo.properties.Name = Name1;
+        champo.properties.isMan = championData.isMan;
+        champo.properties.SetPicture(championData.LoadPictureAsTexture2D());
+        champo.properties.bio = championData.bio;
+        champo.properties.quote = championData.quote;
+
+        var stats = Instantiate(StatsContainerPrefab);
+        stats.transform.parent = champo.transform;
     }
 
     private void OnEnable()
     {
-        Start();
+        useCamera = scriptAttachedToRecruitPanel;
+        if (useCamera)
+            StartUsingWebcam();
     }
     public void StopCamera()
     {

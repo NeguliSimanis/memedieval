@@ -4,8 +4,10 @@ using UnityEngine;
 using UnityEngine.UI;
 
 /// <summary>
-/// this script is for changing the button images of captains. 
+/// For changing the button images of captains. 
 /// The captain unit images are changed in Spawn.cs
+/// 
+/// is attached to champion buttons in ChampionPanel in Main scene
 /// </summary>
 
 public class ChangeCaptainImage : MonoBehaviour

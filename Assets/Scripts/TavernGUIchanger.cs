@@ -9,7 +9,7 @@ public class TavernGUIchanger : MonoBehaviour
     public Text saltcount;
     public GameObject[] layouts;
     
-    public void changeLayout(int layoutID)
+    public void ChangeLayout(int layoutID)
     {
         for(int i=0;i<layouts.Length;i++)
         {
@@ -24,7 +24,6 @@ public class TavernGUIchanger : MonoBehaviour
         while (true)
         {
             saltcount.text = PlayerProfile.Singleton.SaltCurrent.ToString();
-            Debug.Log("displaying salt");
             yield return new WaitForSeconds(1);
         }
     }

@@ -77,7 +77,7 @@ public class Health : MonoBehaviour
                 {
                     if (c[i].onBattle == true)
                     {
-                        c[i].isDead = true;
+                        c[i].properties.isDead = true;
                         c[i].onBattle = false;
                     }
                 }

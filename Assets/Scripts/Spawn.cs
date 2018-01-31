@@ -130,15 +130,15 @@ public class Spawn : MonoBehaviour
 
 
                     AvatarFace face;
-                    var c = PlayerProfile.Singleton.champions.Where(x => x.champClass == 0).First();
+                    var c = PlayerProfile.Singleton.champions.Where(x => x.properties.champClass == 0).First();
                     if (c != null)
                     {
                         face = Instantiate(avatarFacePrefab, h);
-                        face.SetFace(c.picture);
+                        face.SetFace(c.properties.LoadPictureAsTexture2D());
                         face.transform.localPosition = new Vector3(-0.4f, 2.0f, 0);
                         face.transform.localScale = new Vector3(0.02f, 0.02f, 0);
                         //var p = c.picture;
-                        Debug.Log(c.Name);
+                        Debug.Log(c.properties.Name);
 
                         //thisCaptainFace.transform.GetComponent<SpriteRenderer>().sprite = Sprite.Create(p, new Rect(0, 0, p.width, p.height), Vector2.zero);
                         c.onBattle = true;
@@ -168,11 +168,11 @@ public class Spawn : MonoBehaviour
                     thisCaptainFace.transform.localScale = new Vector3(0.4f, 0.4f, 0);
                     thisCaptainFace.transform.GetComponent<SpriteRenderer>().sortingLayerName = "Foreground";
                     AvatarFace face;
-                    var c = PlayerProfile.Singleton.champions.Where(x => x.champClass == 1).First();
+                    var c = PlayerProfile.Singleton.champions.Where(x => x.properties.champClass == 1).First();
                     if (c != null)
                     {
                         face = Instantiate(avatarFacePrefab, h);
-                        face.SetFace(c.picture);
+                        face.SetFace(c.properties.LoadPictureAsTexture2D());
                         face.transform.localPosition = new Vector3(-0.2f, 2.5f, 0);
                         face.transform.localScale = new Vector3(0.02f, 0.02f, 0);
                         //var p = c.picture;
@@ -202,11 +202,11 @@ public class Spawn : MonoBehaviour
                     thisCaptainFace.transform.localScale = new Vector3(0.4f, 0.4f, 0);
                     thisCaptainFace.transform.GetComponent<SpriteRenderer>().sortingLayerName = "Foreground";
                     AvatarFace face;
-                    var c = PlayerProfile.Singleton.champions.Where(x => x.champClass == 2).First();
+                    var c = PlayerProfile.Singleton.champions.Where(x => x.properties.champClass == 2).First();
                     if (c != null)
                     {
                         face = Instantiate(avatarFacePrefab, h);
-                        face.SetFace(c.picture);
+                        face.SetFace(c.properties.LoadPictureAsTexture2D());
                         face.transform.localPosition = new Vector3(-0.5f, 2.5f, 0);
                         face.transform.localScale = new Vector3(0.02f, 0.02f, 0);
                         //var p = c.picture;
