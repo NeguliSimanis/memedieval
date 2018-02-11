@@ -23,8 +23,7 @@ public class ChampionData
     //public bool onBattle; - no need to save this
     public string Name;
     public bool isMan; 
-    public int level;
-    public int skillpoints = 3;
+    public int level;   
     public int champClass;
     public string bio;
     public string quote;
@@ -36,6 +35,16 @@ public class ChampionData
     private int pictureHeight = 720;
     private int pictureMipmapCount = 11;
     private TextureFormat pictureFormat = TextureFormat.RGBA32;
+
+    #region skills
+    public int skillpoints = 3;
+    public int charm = 0;
+    public int discipline = 0;
+    public int brawn = 0;
+    public int wisdom = 0;
+    public int luck = 0;
+    public int wealth = 0;
+    #endregion
 
     public void SetPicture(Texture2D texture)
     {
@@ -59,4 +68,3 @@ public class ChampionData
     }
     #endregion
 }
-

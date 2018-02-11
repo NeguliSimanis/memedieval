@@ -89,30 +89,76 @@ public class TavernStatsPageUI : MonoBehaviour {
         foreach (var b in _champButtons)
             Destroy(b);
     }
+
     private void loadSkills()
     {
-        var ChampSkills = _activeChamp.GetComponentInChildren<StatsContainer>();
-        for(int i=0;i<ChampSkills.stats.Count;i++)
-        {
-            var skill = ChampSkills.stats[i];
-            var item = Instantiate(SkillItem);
-            SkillItemList.Add(item.gameObject);
-            var list=item.GetComponentsInChildren<Text>();
-            list[0].text = skill.name;
-            list[1].text = skill.value.ToString();
-            item.transform.SetParent(SkillList.transform);
-            item.gameObject.SetActive(true);
+        // var ChampSkills =  GetComponentInChildren<StatsContainer>();
 
-                var b = item.gameObject.GetComponentInChildren<Button>();
-                b.onClick.AddListener(() => {
-                if (_activeChamp.properties.skillpoints > 0)
-                {
-                    skill.value++; _activeChamp.properties.skillpoints--;
-                    list[1].text=skill.value.ToString();
-                }});
-            
-        }
+        //Debug.Log("LOad skills called");
+        /* int charm = _activeChamp.properties.charm;
+         var item = Instantiate(SkillItem);
+
+         SkillItemList.Add(item.gameObject);
+         item.gameObject.SetActive(true);*/
+
+        // discipline
+        // brawn
+        // wisdomm
+        // luck
+        // wealth
+
+        //GetComponentInChildren<StatsContainer>();
+
+
+        // var ChampSkills = GetComponentInChildren<StatsContainer>();
+
+        Debug.Log("LOad skills called");
+     /*   var item = Instantiate(SkillItem);
+        SkillItemList.Add(item.gameObject);
+        var list = item.GetComponentsInChildren<Text>();
+        list[0].text = "Charm";
+        list[1].text = _activeChamp.properties.charm.ToString();
+        item.transform.SetParent(SkillList.transform);
+        item.gameObject.SetActive(true);
+
+        var b = item.gameObject.GetComponentInChildren<Button>();
+        b.onClick.AddListener(() =>
+        {
+            if (_activeChamp.properties.skillpoints > 0)
+            {
+                _activeChamp.properties.charm++;
+                _activeChamp.properties.skillpoints--;
+                list[1].text = _activeChamp.properties.charm.ToString();
+            }
+        });
+
+
+
+          /*for (int i=0; i<ChampSkills.stats.Count; i++)
+          {
+              var skill = ChampSkills.stats[i];
+              var item = Instantiate(SkillItem);  // create an item of sk
+              SkillItemList.Add(item.gameObject);
+
+              var list = item.GetComponentsInChildren<Text>();
+
+              list[0].text = skill.name;
+              list[1].text = skill.value.ToString();
+
+              item.transform.SetParent(SkillList.transform);
+              item.gameObject.SetActive(true);
+
+                  var b = item.gameObject.GetComponentInChildren<Button>();
+                  b.onClick.AddListener(() => {
+                  if (_activeChamp.properties.skillpoints > 0)
+                  {
+                      skill.value++; _activeChamp.properties.skillpoints--;
+                      list[1].text=skill.value.ToString();
+                  }});
+
+          }*/
     }
+
     public List<GameObject> SkillItemList = new List<GameObject>();
     private void UnLoadSkills()
     {
@@ -124,16 +170,24 @@ public class TavernStatsPageUI : MonoBehaviour {
 
     public void UpdateSkillNumbers()
     {
-        var skills = _activeChamp.GetComponentInChildren<StatsContainer>().stats;
-        skillPointsText.text = _activeChamp.properties.skillpoints + " skillpoints";
-        for(int i = 0; i < 6; i++)
-        {
-            skillNumbers[i].text = skills[i].value.ToString();
-        }
+       // var skills = _activeChamp.GetComponentInChildren<StatsContainer>().stats;
 
-        if(_activeChamp.properties.skillpoints <= 0)
+        skillPointsText.text = _activeChamp.properties.skillpoints + " skillpoints";
+
+        // bad hack
+        skillNumbers[0].text = _activeChamp.properties.charm.ToString();
+        skillNumbers[1].text = _activeChamp.properties.discipline.ToString();
+        skillNumbers[2].text = _activeChamp.properties.brawn.ToString();
+        skillNumbers[3].text = _activeChamp.properties.wisdom.ToString();
+        skillNumbers[4].text = _activeChamp.properties.luck.ToString();
+        skillNumbers[5].text = _activeChamp.properties.wealth.ToString();
+
+        // disable adding skillpoints button if the champion has no unspent skillpoints
+        if (_activeChamp.properties.skillpoints <= 0)
             foreach(var b in skillButtons)
                 b.gameObject.SetActive(false);
+
+        // enable adding skillpoints if the champion has unspent skillpoints
         else
             foreach (var b in skillButtons)
                 b.gameObject.SetActive(true);
@@ -143,11 +197,32 @@ public class TavernStatsPageUI : MonoBehaviour {
     {
         if (_activeChamp.properties.skillpoints > 0)
         {
+            switch (skillIndex)
+            {
+                case 0: // charm
+                    _activeChamp.properties.charm++;
+                    break;
+                case 1: // discipline
+                    _activeChamp.properties.discipline++;
+                    break;
+                case 2: // brawn
+                    _activeChamp.properties.brawn++;
+                    break;
+                case 3: // wisdom
+                    _activeChamp.properties.wisdom++;
+                    break;
+                case 4: // luck
+                    _activeChamp.properties.luck++;
+                    break;
+                case 5: // wealth
+                    _activeChamp.properties.wealth++;
+                    break;
+            }
+
             var skills = _activeChamp.GetComponentInChildren<StatsContainer>();
             skills.stats[skillIndex].value++;
             _activeChamp.properties.skillpoints--;
-            //skillText.text = skills.stats[skillIndex].value.ToString();
+            UpdateSkillNumbers();
         }
-        UpdateSkillNumbers();
     }
 }

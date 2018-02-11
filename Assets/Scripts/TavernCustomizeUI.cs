@@ -8,10 +8,6 @@ public class TavernCustomizeUI : MonoBehaviour {
     //mainīgie uz tabiem
     public GameObject SkillsContainer, UnitsContainer, BattleStatsContainer;
 
-	// Use this for initialization
-	void Start () {
-		
-	}
 	public void ButtonSkillsClick()
     {
         //Skills tabu ieslēdz, pārejos izslēdz
@@ -19,11 +15,6 @@ public class TavernCustomizeUI : MonoBehaviour {
         BattleStatsContainer.SetActive(false);
         SkillsContainer.SetActive(true);
     }
-
-	// Update is called once per frame
-	void Update () {
-		
-	}
 
     public void ButtonUnitsClick()
     {

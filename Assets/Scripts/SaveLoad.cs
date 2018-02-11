@@ -37,6 +37,8 @@ public class SaveLoad : MonoBehaviour
         for (int i = 0; i < championCount; i++)
         {
             GameData.current.championList.Add(PlayerProfile.Singleton.champions[i].properties);
+            Debug.Log("Saving skillpoints" + PlayerProfile.Singleton.champions[i].properties.skillpoints);
+            Debug.Log("Saving charm skillpoints" + PlayerProfile.Singleton.champions[i].properties.charm);
         }
 
         SaveLoad.savedGames.Add(GameData.current);
@@ -62,7 +64,7 @@ public class SaveLoad : MonoBehaviour
             // set champion data - DOES NOT DELETE CURRENT CHAMPIONS
             foreach (ChampionData championData in SaveLoad.savedGames[0].championList)
             {
-                Debug.Log(championData.Name + " loaded");
+                Debug.Log(" loaded " + championData.charm + " charm");
 
                 //createChampion.createChamp();
                 createChampion.LoadChampionFromSave(championData);

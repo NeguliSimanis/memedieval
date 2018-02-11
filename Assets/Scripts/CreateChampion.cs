@@ -44,7 +44,7 @@ public class CreateChampion : MonoBehaviour
     public string[] Sentence2part1 = { " But everything changed when ", " But one faithful day ", " That all changed when " };
     public string[] Sentence2part2 = { "he infidels attacked ", "a pastor arrived to the village ", "{0} lost their dog in the woods ", "the vikings arrived" };
     public string[] Sentence2part3 = { "and took their spouse away.", "and praised the Lord.", "and burned everything in sight.", "and drank all the mead in the village." };
-    public string[] Sentence3part1 = { " Now {0}", " Ever since, {0}", " Evermore, {0}" };
+    public string[] Sentence3part1 = { "Now {0}", "Ever since, {0}", "Evermore, {0}" };
     public string[] Sentence3part2 = { "roams the lands", "is on a quest", "offers their sword for hire", "spends the days at the tavern" };
     public string[] Sentence3part3 = { "in search of vengeance.", "in search of cranberries.", "to find their true self.", "to clear thy name." };
     #endregion
@@ -96,7 +96,7 @@ public class CreateChampion : MonoBehaviour
         int r1 = Random.Range(0, Sentence3part1.Length);
         int r2 = Random.Range(0, Sentence3part2.Length);
         int r3 = Random.Range(0, Sentence3part3.Length);
-        string Sentence = string.Format(Sentence3part1[r1], charname)+ " " +
+        string Sentence = string.Format(" " + Sentence3part1[r1], charname)+ " " +
            string.Format(Sentence3part2[r2], charname)+ " " +
            string.Format(Sentence3part3[r3], charname);
         return Sentence;
@@ -270,11 +270,7 @@ public class CreateChampion : MonoBehaviour
         // set champion properties
         champo.properties.champClass = champClassID;
         player.champions.Add(champo);
-        champo.properties.Name = Name1;
-        champo.properties.isMan = championData.isMan;
-        champo.properties.SetPicture(championData.LoadPictureAsTexture2D());
-        champo.properties.bio = championData.bio;
-        champo.properties.quote = championData.quote;
+        champo.properties = championData;
 
         var stats = Instantiate(StatsContainerPrefab);
         stats.transform.parent = champo.transform;
