@@ -31,6 +31,7 @@ public class PlayerProfile : MonoBehaviour
 
     private int saltCurrent = 10;
     private int ducatCurrent = 10;
+    private int baseHealth = 100;
 
     public int SaltCurrent
     {

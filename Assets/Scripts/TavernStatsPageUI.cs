@@ -92,14 +92,6 @@ public class TavernStatsPageUI : MonoBehaviour {
 
     private void loadSkills()
     {
-        // var ChampSkills =  GetComponentInChildren<StatsContainer>();
-
-        //Debug.Log("LOad skills called");
-        /* int charm = _activeChamp.properties.charm;
-         var item = Instantiate(SkillItem);
-
-         SkillItemList.Add(item.gameObject);
-         item.gameObject.SetActive(true);*/
 
         // discipline
         // brawn
@@ -107,56 +99,30 @@ public class TavernStatsPageUI : MonoBehaviour {
         // luck
         // wealth
 
-        //GetComponentInChildren<StatsContainer>();
-
-
-        // var ChampSkills = GetComponentInChildren<StatsContainer>();
-
-        Debug.Log("LOad skills called");
-     /*   var item = Instantiate(SkillItem);
-        SkillItemList.Add(item.gameObject);
-        var list = item.GetComponentsInChildren<Text>();
-        list[0].text = "Charm";
-        list[1].text = _activeChamp.properties.charm.ToString();
-        item.transform.SetParent(SkillList.transform);
-        item.gameObject.SetActive(true);
-
-        var b = item.gameObject.GetComponentInChildren<Button>();
-        b.onClick.AddListener(() =>
+        var ChampSkills = _activeChamp.GetComponentInChildren<StatsContainer>();
+        for (int i = 0; i < ChampSkills.stats.Count; i++)
         {
-            if (_activeChamp.properties.skillpoints > 0)
+            var skill = ChampSkills.stats[i];
+            var item = Instantiate(SkillItem);
+            SkillItemList.Add(item.gameObject);
+            var list = item.GetComponentsInChildren<Text>();
+            list[0].text = skill.name;
+            list[1].text = skill.value.ToString();
+            item.transform.SetParent(SkillList.transform);
+            item.gameObject.SetActive(true);
+
+            var b = item.gameObject.GetComponentInChildren<Button>();
+            b.onClick.AddListener(() =>
             {
-                _activeChamp.properties.charm++;
-                _activeChamp.properties.skillpoints--;
-                list[1].text = _activeChamp.properties.charm.ToString();
-            }
-        });
-
-
-
-          /*for (int i=0; i<ChampSkills.stats.Count; i++)
-          {
-              var skill = ChampSkills.stats[i];
-              var item = Instantiate(SkillItem);  // create an item of sk
-              SkillItemList.Add(item.gameObject);
-
-              var list = item.GetComponentsInChildren<Text>();
-
-              list[0].text = skill.name;
-              list[1].text = skill.value.ToString();
-
-              item.transform.SetParent(SkillList.transform);
-              item.gameObject.SetActive(true);
-
-                  var b = item.gameObject.GetComponentInChildren<Button>();
-                  b.onClick.AddListener(() => {
-                  if (_activeChamp.properties.skillpoints > 0)
-                  {
-                      skill.value++; _activeChamp.properties.skillpoints--;
-                      list[1].text=skill.value.ToString();
-                  }});
-
-          }*/
+                if (_activeChamp.properties.skillpoints > 0)
+                    if (_activeChamp.properties.skillpoints > 0)
+                    {
+                        skill.value++; _activeChamp.properties.skillpoints--;
+                        skill.value++; _activeChamp.properties.skillpoints--;
+                        list[1].text = skill.value.ToString();
+                    }
+            });
+        }
     }
 
     public List<GameObject> SkillItemList = new List<GameObject>();

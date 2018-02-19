@@ -51,6 +51,7 @@ public class SaveLoad : MonoBehaviour
     // loads current game data from a local file
     public void Load()
     {
+        Debug.Log("loading");
         if (File.Exists(Application.persistentDataPath + "/savedGames.gd"))
         {
             BinaryFormatter bf = new BinaryFormatter();
