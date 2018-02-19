@@ -54,4 +54,13 @@ public class PlayerProfile : MonoBehaviour
     {
         DucatCurrent += (int)product.CurrencyReceived;
     }
+
+    public bool SpendDucats(int amount)
+    {
+        if (ducatCurrent < amount)
+            return false;
+        else
+            ducatCurrent = ducatCurrent - amount;
+        return true;
+    }
 }
