@@ -9189,6 +9189,8 @@ MonoBehaviour:
   lastGameStatus: 0
   name: Player
   champions: []
+  battleSceneName: Main
+  battleHealthTag: Player castle
 --- !u!4 &1458223340
 Transform:
   m_ObjectHideFlags: 0
@@ -14303,6 +14305,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerProfile: {fileID: 1458223339}
   drinkCost: 1
+  drinkHPDecrease: 10
+  drinkAttackIncrease: 0.1
 --- !u!1 &2137165594
 GameObject:
   m_ObjectHideFlags: 0

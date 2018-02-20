@@ -128,24 +128,35 @@ public class Health : MonoBehaviour
     }
 
 
-    public void Damage(Attack.Type attackingType, int DamageAmount)
+    public void Damage(Attack.Type attackingType, int damageAmount)
     {
         if (IsCharacter)
         {
             if (attackingType == Attack.Type.Knight && UnitType == Attack.Type.Archer)
-                DamageAmount *= 2;
+                damageAmount *= 2;
             if (attackingType == Attack.Type.Archer)
             {
                 if (UnitType == Attack.Type.Peasant)
-                    DamageAmount = (int)(DamageAmount * 1.5f);
+                    damageAmount = (int)(damageAmount * 1.5f);
                 //if (UnitType == Attack.Type.Knight)
                 //    DamageAmount = (int)(DamageAmount * 0.75f);
             }
         }
 
-        currentHealth -= DamageAmount;
-        if (!IsCharacter && healthBar != null)
-            healthBar.fillAmount = (currentHealth * 1f) / MaximumHealth;
+        if (attackingType != Attack.Type.defaultType)
+        {
+            currentHealth -= damageAmount;
+            if (!IsCharacter && healthBar != null)
+                healthBar.fillAmount = (currentHealth * 1f) / MaximumHealth;
+        }
+        else
+        {
+            Debug.Log("health before damage: " + currentHealth);
+            currentHealth = MaximumHealth - damageAmount;
+            Debug.Log("health after damage: " + currentHealth);
+            if (!IsCharacter && healthBar != null)
+                healthBar.fillAmount = (currentHealth * 1f) / MaximumHealth;
+        }
     }
 
 

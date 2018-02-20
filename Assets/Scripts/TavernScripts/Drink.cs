@@ -4,18 +4,26 @@ using UnityEngine;
 
 public class Drink : MonoBehaviour {
 
+    #region variables
     [SerializeField]
     PlayerProfile playerProfile;
 
     [SerializeField]
     int drinkCost = 1;
 
+    [SerializeField]
+    int drinkHPDecrease = 10;
+
+    [SerializeField]
+    float drinkAttackIncrease = 0.1f;
+    #endregion
 
     public void DrinkMead()
     {
         if (playerProfile.SpendDucats(drinkCost))
         {
-            Debug.Log("That was refreshing!");
+            // Debug.Log("That was refreshing!");
+            playerProfile.Drink(drinkHPDecrease, drinkAttackIncrease);      
             /*
              * TO-DO:
              * > change tavern dialogue
