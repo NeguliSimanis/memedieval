@@ -6,6 +6,13 @@ using UnityEngine.SceneManagement;
 
 public class Health : MonoBehaviour
 {
+    private float hangoverStartTime; // only for player
+    private float hangoverDelay = 1f;
+    private int hangoverDamage;
+    private float hangoverBoost;
+    private bool isHangover = false;
+    private bool hasDrunk = false;
+
     private static bool victory;
     private static bool gameOver;
     private static bool PeasantCaptainDead;
@@ -15,7 +22,7 @@ public class Health : MonoBehaviour
     [SerializeField] private Attack.Type UnitType;
     [SerializeField] private int meadCarrying;
     [SerializeField] private bool IsCharacter;
-    [SerializeField] private bool IsPlayer;
+    [SerializeField] private bool isPlayer;
     [SerializeField] private Image healthBar;
     [SerializeField] private GameObject fire;
     [SerializeField] private bool isCaptain;
@@ -49,6 +56,15 @@ public class Health : MonoBehaviour
 
     void Update()
     {
+        if (hasDrunk && !isHangover)
+        {
+            if (Time.time >= hangoverStartTime)
+            {
+                Damage(Attack.Type.Archer, hangoverDamage);
+                isHangover = true;
+            }
+        }
+
         if (gameObject.tag.Equals("EnemyCastle") && fire != null && !fire.activeSelf && currentHealth <= MaximumHealth / 3f)
         {
             fire.SetActive(true);
@@ -93,7 +109,7 @@ public class Health : MonoBehaviour
             }
 
         }
-        //Debug.Log(CurrentHealth);
+        
         if (currentHealth <= 0)
         {
             if (isCaptain)
@@ -104,13 +120,13 @@ public class Health : MonoBehaviour
                 if (UnitType == Attack.Type.Knight) KnightCaptainDead = true;
             }
             if (IsCharacter) {
-                FindObjectOfType<ResourceTextController>().AddResources(IsPlayer, meadCarrying);
+                FindObjectOfType<ResourceTextController>().AddResources(isPlayer, meadCarrying);
                 GameObject.Destroy(gameObject);
             }
             else
             {
-                if (IsPlayer) gameOver = true;
-                if (!IsPlayer) victory = true;
+                if (isPlayer) gameOver = true;
+                if (!isPlayer) victory = true;
             }
         }
     }
@@ -177,6 +193,15 @@ public class Health : MonoBehaviour
         get { return PeasantCaptainDead; }
     }
 
+    public void InitiateHangover(int damageTaken, float attackBoost = 0f)
+    {
+        Debug.Log("Initiating hangover");
+        hasDrunk = true;
+        isHangover = false;
+        hangoverStartTime = Time.time + hangoverDelay;
+        hangoverDamage = damageTaken;
+        hangoverBoost = attackBoost;
+    }
 
     public void ResetAllValues()
     {

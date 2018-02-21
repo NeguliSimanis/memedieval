@@ -25,7 +25,7 @@ public class PlayerProfile : MonoBehaviour
 
     #region drinking 
     private bool isDrunk = false;
-    private int drinkHPEffect = 0;
+    private int drinkHPEffect = 15;
     private float drinkAttackEffect = 0f;
     #endregion
 
@@ -102,7 +102,7 @@ public class PlayerProfile : MonoBehaviour
         if (isDrunk)
         {
             Debug.Log("drink hp decrease: " + drinkHPEffect);
-            battleHealth.Damage(Attack.Type.defaultType, drinkHPEffect);
+            battleHealth.InitiateHangover(drinkHPEffect);
         } 
     }
 

@@ -85,7 +85,7 @@ public class Attack : MonoBehaviour {
 		if (( (isEnemy && (targets[0].gameObject.tag.Equals("Player castle"))) ||
               (!isEnemy && (targets[0].gameObject.tag.Equals("EnemyCastle"))) ) && targets.Count > 1)
         {
-            Debug.Log("Castle was not attacked.");
+            //Debug.Log("Castle was not attacked.");
             return targets[1];
         }
         //Debug.Log(!isEnemy + ", "  + (targets[0].gameObject.tag.Equals("EnemyCastle")) + ", " + targets.Count + ", " + targets[0].gameObject.tag);

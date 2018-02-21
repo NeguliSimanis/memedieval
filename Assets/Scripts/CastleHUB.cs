@@ -44,14 +44,12 @@ public class CastleHUB : MonoBehaviour {
 
     public void onTavernHubButtonClick()
     {
-        //funkcija tiks izsaukta kad nospiedīs pogu
-        Debug.Log("TAVERN HUB tiek izsaukta!");
+        Debug.Log("TAVERN HUB called!");
         SceneManager.LoadScene("Tavern");
     }
     public void onBattleClick()
     {
-        //funkcija tiks izsaukta kad nospiedīs pogu
-        Debug.Log("BATTLE SCREEN tiek izsaukta!");
+        Debug.Log("BATTLE SCREEN called!");
         SceneManager.LoadScene("Main");
     }
 }
