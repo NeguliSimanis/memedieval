@@ -38,18 +38,13 @@ public class CastleHUB : MonoBehaviour {
         }
 	}
 	
-	// Update is called once per frame
-	void Update () {	
-	}
 
     public void onTavernHubButtonClick()
     {
-        Debug.Log("TAVERN HUB called!");
         SceneManager.LoadScene("Tavern");
     }
     public void onBattleClick()
     {
-        Debug.Log("BATTLE SCREEN called!");
         SceneManager.LoadScene("Main");
     }
 }

@@ -11,6 +11,7 @@ using UnityEngine;
 [System.Serializable]
 public class GameData
 {
+    public string playerProfileTag = "Player profile";
     public static GameData current;
     public List<ChampionData> championList = new List<ChampionData>();
 

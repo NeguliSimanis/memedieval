@@ -27,7 +27,10 @@ public class SaveLoad : MonoBehaviour
     public void Save()
     {
         // creates current GameData object
-        GameData.current = new GameData();
+        if (GameData.current == null)
+        {
+            GameData.current = new GameData();
+        }
 
         // stores the values of PlayerProfile in the current GameData object
         GameData.current.salt = PlayerProfile.Singleton.SaltCurrent;

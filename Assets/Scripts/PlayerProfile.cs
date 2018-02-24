@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class PlayerProfile : MonoBehaviour
 {
-
+    public int profileID = 0;
     public int lastGameStatus;  //0-null -1-defeat 1-victory
     public string name = "Player";
     public List<Champion> champions = new List<Champion>();
@@ -115,7 +115,22 @@ public class PlayerProfile : MonoBehaviour
         if (scene.name == battleSceneName)
         {
             ModifyBattleProperties();
-        }    
+        }
+
+        profileID++;
+
+        //destroy copies of this game object
+        GameObject[] playerCopies;
+        playerCopies = GameObject.FindGameObjectsWithTag(this.gameObject.tag);
+        foreach (GameObject playerCopy in playerCopies)
+        {
+            if (playerCopy != this.gameObject)
+            {
+                int otherID = playerCopy.GetComponent<PlayerProfile>().profileID;
+                if (otherID < profileID)
+                    Destroy(playerCopy);
+            }
+        }
     }
     #endregion
 }

@@ -5,7 +5,7 @@ using UnityEngine;
 public class Drink : MonoBehaviour {
 
     #region variables
-    [SerializeField]
+    ///[SerializeField]
     PlayerProfile playerProfile;
 
     [SerializeField]
@@ -17,6 +17,17 @@ public class Drink : MonoBehaviour {
     [SerializeField]
     float drinkAttackIncrease = 100f;
     #endregion
+
+    void Start()
+    {
+        if (GameData.current == null)
+        {
+            GameData.current = new GameData();
+        }
+        Debug.Log("tag: " + GameData.current.playerProfileTag);
+        playerProfile = GameObject.FindGameObjectWithTag(GameData.current.playerProfileTag).GetComponent<PlayerProfile>();
+
+    }
 
     public void DrinkMead()
     {
