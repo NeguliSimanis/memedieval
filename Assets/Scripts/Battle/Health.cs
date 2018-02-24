@@ -58,6 +58,7 @@ public class Health : MonoBehaviour
 
         if (victory || gameOver)
         {
+            PlayerProfile.Singleton.isDrunk = false;
             if (victory)
             {
                 PlayerProfile.Singleton.lastGameStatus = 1;
@@ -98,6 +99,8 @@ public class Health : MonoBehaviour
         
         if (currentHealth <= 0)
         {
+            Debug.Log("battle over");
+            Debug.Log(gameObject.tag);
             if (isCaptain)
             {
                 //Debug.Log("Captain died");
@@ -111,8 +114,13 @@ public class Health : MonoBehaviour
             }
             else
             {
-                if (isPlayer) gameOver = true;
-                if (!isPlayer) victory = true;
+                if (isPlayer)
+                {
+                    Debug.Log("player loses");
+                    gameOver = true;
+                    victory = false;
+                }
+                else if (!isPlayer) victory = true;
             }
         }
     }

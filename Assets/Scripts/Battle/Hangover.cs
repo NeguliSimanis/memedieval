@@ -21,13 +21,12 @@ public class Hangover : MonoBehaviour {
 
     public void InitiateHangover(int damageTaken, float attackBoost = 0f)
     {
-        Debug.Log("Initiating hangover");
-        battleHealth = GameObject.FindGameObjectWithTag(battleHealthTag).GetComponent<Health>();
         hasDrunk = true;
         isHangover = false;
         hangoverStartTime = Time.time + hangoverDelay;
         hangoverDamage = damageTaken;
         hangoverBoost = attackBoost;
+        battleHealth = GameObject.FindGameObjectWithTag(battleHealthTag).GetComponent<Health>();
     }
     
     void Update ()
