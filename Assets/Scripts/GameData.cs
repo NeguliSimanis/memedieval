@@ -12,9 +12,12 @@ using UnityEngine;
 public class GameData
 {
     public static GameData current;
-    public int salt = 0;
-    public int ducats = 0; 
     public List<ChampionData> championList = new List<ChampionData>();
+
+    #region resources
+    public int salt = 0;
+    public int ducats = 0;
+    #endregion
 }
 
 [System.Serializable]

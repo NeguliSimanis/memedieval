@@ -15,18 +15,15 @@ public class PlayerProfile : MonoBehaviour
     [SerializeField]
     string battleSceneName = "Main";
 
-    Health battleHealth;
-    [SerializeField]
-    string battleHealthTag = "Player castle"; // will work if the same tag is set in the battle scene
-
     //private int baseHealth = 100;      // goes down from drinking
-    private float attackModifier = 1f;   // goes up as you drink
+    //private float attackModifier = 1f;   // goes up as you drink
     #endregion
 
     #region drinking 
-    private bool isDrunk = false;
+    public bool isDrunk = false;
     private int drinkHPEffect = 15;
     private float drinkAttackEffect = 0f;
+    Hangover hangover;
     #endregion
 
     #region resources
@@ -90,19 +87,14 @@ public class PlayerProfile : MonoBehaviour
             isDrunk = true;
         drinkHPEffect = drinkHPEffect + hpDecrease;
         drinkAttackEffect = drinkAttackEffect + attackIncrease;
-
-        //Debug.Log("Hp decrease:" + drinkHPEffect);
-        //Debug.Log("Attack increase:" + drinkAttackEffect);
     }
 
     private void ModifyBattleProperties()
     {
-        battleHealth = GameObject.FindGameObjectWithTag(battleHealthTag).GetComponent<Health>();
-
         if (isDrunk)
         {
-            Debug.Log("drink hp decrease: " + drinkHPEffect);
-            battleHealth.InitiateHangover(drinkHPEffect);
+            hangover = gameObject.GetComponent<Hangover>();
+            hangover.InitiateHangover(drinkHPEffect, drinkAttackEffect);
         } 
     }
 

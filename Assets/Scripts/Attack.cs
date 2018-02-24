@@ -5,16 +5,26 @@ using UnityEngine;
 public class Attack : MonoBehaviour {
     public enum Type { Peasant, Knight, Archer, defaultType }
 
+    #region assets
+    public FMODUnity.StudioEventEmitter AttackSound;
+    public Arrow ArrowPrefab; 
+    #endregion
+
     [SerializeField] private Type UnitType;
     [SerializeField] private bool isArcher;
     [SerializeField] private bool isEnemy;
+
+    #region damage variables
     [SerializeField] private int Damage;
+    private float damageModifier = 1f;
+    private bool hasDamageModifier = false;
+    #endregion
 
     private List<Health> targets;
     private float cooldown;
-	public FMODUnity.StudioEventEmitter AttackSound;
-    public Arrow ArrowPrefab;
-
+    private GameObject playerObject;
+    private PlayerProfile playerProfile;
+    private string playerProfileTag = "Player profile"; // the same profile must be set in the scene
 
     void Start()
     {
@@ -24,8 +34,35 @@ public class Attack : MonoBehaviour {
 			AttackSound = GetComponent<FMODUnity.StudioEventEmitter> ();
 		}
 
+        #region check for active attack modifiers
+        if (!isEnemy)
+        {
+            if (GameObject.FindGameObjectWithTag(playerProfileTag))
+            {
+                playerObject = GameObject.FindGameObjectWithTag(playerProfileTag);
+                playerProfile = playerObject.GetComponent<PlayerProfile>();
+                if (playerProfile.isDrunk)
+                {
+                    SetModifiers();
+                }
+            }
+            else
+            {
+                Debug.Log("No player profile set in the scene!");
+            }
+        }
+        #endregion
     }
 
+    private void SetModifiers()
+    {
+        // set hangover modifier
+        hasDamageModifier = true;
+        Hangover hangover = playerObject.GetComponent<Hangover>();
+        damageModifier = 1f + hangover.hangoverBoost;
+        Debug.Log("Hangover damage boost: " + damageModifier);
+     
+    }
 
     void Update()
     {
@@ -33,7 +70,6 @@ public class Attack : MonoBehaviour {
         if (cooldown > 0) cooldown -= Time.deltaTime;
         else if (targets.Count > 0) Strike();
     }
-
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -60,18 +96,32 @@ public class Attack : MonoBehaviour {
     }
 
 
+    // Deals damage to target
     private void Strike()
     {
-		
-		
-		if (isArcher)
+        if (hasDamageModifier && !isEnemy)
         {
-            Arrow arrow = Instantiate(ArrowPrefab, transform.position, Quaternion.identity);
-            arrow.Damage = Damage;
-            arrow.Target = StrikeUnitsFirst().gameObject.transform;
+            if (isArcher)
+            {
+                Arrow arrow = Instantiate(ArrowPrefab, transform.position, Quaternion.identity);
+                arrow.Damage = (int)(Damage * damageModifier);
+                arrow.Target = StrikeUnitsFirst().gameObject.transform;
+            }
+            else
+                StrikeUnitsFirst().Damage(UnitType, (int)(Damage * damageModifier));
         }
-        else StrikeUnitsFirst().Damage(UnitType, Damage);
-        cooldown = 0.5f;
+        else // damage is dealt by an enemy unit
+        {
+            if (isArcher)
+            {
+                Arrow arrow = Instantiate(ArrowPrefab, transform.position, Quaternion.identity);
+                arrow.Damage = Damage;
+                arrow.Target = StrikeUnitsFirst().gameObject.transform;
+            }
+            else
+                StrikeUnitsFirst().Damage(UnitType, Damage);  
+        }
+        cooldown = 0.5f;    
     }
 
 
