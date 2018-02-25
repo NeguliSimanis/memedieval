@@ -1091,8 +1091,9 @@ GameObject:
   - component: {fileID: 260694577}
   - component: {fileID: 260694579}
   - component: {fileID: 260694580}
+  - component: {fileID: 260694581}
   m_Layer: 0
-  m_Name: Background
+  m_Name: TavernUIControl
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1186,6 +1187,24 @@ MonoBehaviour:
   - {fileID: 1466795193}
   - {fileID: 963671869}
   - {fileID: 329026656}
+--- !u!114 &260694581
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 260694576}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b38223e2ebcd2b54eb52bb3207f622e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inkeeperText: {fileID: 1635757650}
+  drinkMeadButton: {fileID: 2122191278}
+  inkeeperDefaultText: How may I serve you, Sire?
+  drinkSold1: The finest brew of the Dutchy! How else may I serve?
+  drinkSold2: Another one?
+  drinkSold3: Sire has an unquenchable thirst
+  cantAfffordDrink: My humble apologies, Sire. There's no more mead.
 --- !u!1 &267260020
 GameObject:
   m_ObjectHideFlags: 0
@@ -5156,6 +5175,79 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 761885007}
+--- !u!1 &775164933
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 775164934}
+  - component: {fileID: 775164935}
+  m_Layer: 0
+  m_Name: Background
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &775164934
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 775164933}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -800.01825, y: -449.98578, z: 0}
+  m_LocalScale: {x: -1.2283599, y: 1.14876, z: 0.83333325}
+  m_Children: []
+  m_Father: {fileID: 1801267764}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!212 &775164935
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 775164933}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 21300000, guid: d76632eaa784ef64384446230aa971b5, type: 3}
+  m_Color: {r: 0.8235294, g: 0.80536336, b: 0.80536336, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 12.8, y: 7.2}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
 --- !u!1 &786902803
 GameObject:
   m_ObjectHideFlags: 0
@@ -9187,6 +9279,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eab2fe80d744b2b4981978a864b732f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  profileID: 0
   lastGameStatus: 0
   name: Player
   champions: []
@@ -10123,7 +10216,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1635757648}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -12.130005, y: 1.9000015, z: 0}
+  m_LocalPosition: {x: -11.399994, y: 2.5100021, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_Children: []
   m_Father: {fileID: 43981060}
@@ -10131,8 +10224,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -12.13, y: 1.9}
-  m_SizeDelta: {x: -91.78, y: -2.11}
+  m_AnchoredPosition: {x: -11.4, y: 2.51}
+  m_SizeDelta: {x: 22.81, y: -15.49}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1635757650
 MonoBehaviour:
@@ -10155,16 +10248,16 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 12800000, guid: 361ec0eb38bc53946a0d8c0eaf6fc04c, type: 3}
-    m_FontSize: 25
+    m_FontSize: 24
     m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 2
-    m_MaxSize: 40
+    m_MaxSize: 50
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
-    m_HorizontalOverflow: 1
-    m_VerticalOverflow: 0
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 1
     m_LineSpacing: 1
   m_Text: How may I serve you, sire?
 --- !u!222 &1635757651
@@ -11052,6 +11145,7 @@ RectTransform:
   - {fileID: 1500692025}
   - {fileID: 2071245453}
   - {fileID: 1204114449}
+  - {fileID: 775164934}
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -14260,17 +14354,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 2122191281}
-        m_MethodName: DrinkMead
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &2122191279
@@ -14317,8 +14400,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34b77f7ca1abdaf4d8f61214ac0221ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerProfile: {fileID: 1458223339}
-  drinkCost: 1
+  drinkCost: 2
   drinkHPDecrease: 15
   drinkAttackIncrease: 100
 --- !u!1 &2137165594

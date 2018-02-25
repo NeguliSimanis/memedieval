@@ -29,15 +29,16 @@ public class Drink : MonoBehaviour {
 
     }
 
-    public void DrinkMead()
+    // returns false if cant afford drink
+    public bool DrinkMead()
     {
         if (playerProfile.SpendDucats(drinkCost))
         {
             // Debug.Log("That was refreshing!");
-            playerProfile.Drink(drinkHPDecrease, drinkAttackIncrease);      
+            playerProfile.Drink(drinkHPDecrease, drinkAttackIncrease);
+            return true;    
             /*
              * TO-DO:
-             * > change tavern dialogue
              * > add sfx
              * > inform player about losing health? (nah)
              */
@@ -47,9 +48,9 @@ public class Drink : MonoBehaviour {
             Debug.Log("Can't afford anymore drinks. You have a problem, man.");
             /*
              * TO-DO:
-             * > change tavern dialogue
              * > add sfx
              */
         }
+        return false;
     }
 }
