@@ -21,7 +21,7 @@ public class PlayerProfile : MonoBehaviour
 
     #region drinking 
     public bool isDrunk = false;
-    private int drinkHPEffect = 15;
+    private int drinkHPEffect = 0;
     private float drinkAttackEffect = 0f;
     Hangover hangover;
     #endregion
@@ -83,8 +83,7 @@ public class PlayerProfile : MonoBehaviour
 
     public void Drink(int hpDecrease, float attackIncrease)
     {
-        if (!isDrunk)
-            isDrunk = true;
+        isDrunk = true;
         drinkHPEffect = drinkHPEffect + hpDecrease;
         drinkAttackEffect = drinkAttackEffect + attackIncrease;
     }
@@ -96,6 +95,16 @@ public class PlayerProfile : MonoBehaviour
             hangover = gameObject.GetComponent<Hangover>();
             hangover.InitiateHangover(drinkHPEffect, drinkAttackEffect);
         } 
+    }
+
+    public void ResetBattleProperties()
+    {
+        isDrunk = false;
+        drinkHPEffect = 0;
+        drinkAttackEffect = 0f;
+        if (hangover == null)
+            hangover = gameObject.GetComponent<Hangover>();
+        hangover.Reset();
     }
 
     #region listen to scene changes

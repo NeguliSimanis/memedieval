@@ -14,7 +14,7 @@ public class Hangover : MonoBehaviour {
 
     private float hangoverStartTime;
     private float hangoverDelay = 1f;
-    private int hangoverDamage;
+    private int hangoverDamage; // how much the player will be damaged by the hangover
     public float hangoverBoost; // determined by Drink script
     private bool isHangover = false;
     private bool hasDrunk = false;
@@ -29,6 +29,14 @@ public class Hangover : MonoBehaviour {
         battleHealth = GameObject.FindGameObjectWithTag(battleHealthTag).GetComponent<Health>();
     }
     
+    public void Reset()
+    {
+        hasDrunk = false;
+        isHangover = false;
+        hangoverDamage = 0;
+        hangoverBoost = 0f;
+    }
+
     void Update ()
     {
         if (hasDrunk && !isHangover)

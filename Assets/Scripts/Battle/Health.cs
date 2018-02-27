@@ -58,7 +58,7 @@ public class Health : MonoBehaviour
 
         if (victory || gameOver)
         {
-            PlayerProfile.Singleton.isDrunk = false;
+            PlayerProfile.Singleton.ResetBattleProperties();
             if (victory)
             {
                 PlayerProfile.Singleton.lastGameStatus = 1;

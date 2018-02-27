@@ -25,7 +25,7 @@ GameObject:
   - component: {fileID: 114726119767806526}
   m_Layer: 0
   m_Name: PlayerProfile
-  m_TagString: Untagged
+  m_TagString: Player profile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -90,6 +90,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eab2fe80d744b2b4981978a864b732f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  profileID: 0
   lastGameStatus: 0
   name: Player
   champions: []
