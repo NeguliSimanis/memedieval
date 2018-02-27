@@ -4,14 +4,19 @@ using UnityEngine;
 using System.Linq;
 
 public class BattleFaceCreate : MonoBehaviour {
+    [SerializeField]
+    bool isTestingGame;
     public AvatarFace avatarFacePrefab;
     public Texture2D defaultFace;
     // Use this for initialization
     void Start () {
 
+        if (!isTestingGame)
+        {
             createAvatarFace(0, new Vector3(7.25f, 3.59f, -0.57f));
             createAvatarFace(1, new Vector3(7.25f, 0.4f, -0.57f));
             createAvatarFace(2, new Vector3(7.25f, -2.79f, -0.57f));
+        }
     }
 
     public void createAvatarFace( int class1, Vector3 pos)
