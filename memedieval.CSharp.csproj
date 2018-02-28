@@ -255,10 +255,11 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\Arrow.cs" />
     <Compile Include="Assets\Scripts\AssignCaptainFace.cs" />
     <Compile Include="Assets\Scripts\Attack.cs" />
     <Compile Include="Assets\Scripts\AvatarFace.cs" />
+    <Compile Include="Assets\Scripts\Battle\Arrow.cs" />
+    <Compile Include="Assets\Scripts\Battle\CastleArrow.cs" />
     <Compile Include="Assets\Scripts\Battle\EnemyController.cs" />
     <Compile Include="Assets\Scripts\Battle\Hangover.cs" />
     <Compile Include="Assets\Scripts\Battle\Health.cs" />
@@ -267,6 +268,7 @@
     <Compile Include="Assets\Scripts\Champion.cs" />
     <Compile Include="Assets\Scripts\ChangeCaptainImage.cs" />
     <Compile Include="Assets\Scripts\CreateChampion.cs" />
+    <Compile Include="Assets\Scripts\DestroyOnTap.cs" />
     <Compile Include="Assets\Scripts\DontDestroyOnLoad.cs" />
     <Compile Include="Assets\Scripts\EnemyCastleController.cs" />
     <Compile Include="Assets\Scripts\GameData.cs" />

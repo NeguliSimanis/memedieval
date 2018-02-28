@@ -12,7 +12,7 @@ public class EnemyController : MonoBehaviour {
     #region castle arrows
     [Header("Castle arrows")]
     [SerializeField]
-    Arrow castleArrowPrefab;
+    CastleArrow castleArrowPrefab;
     [SerializeField]
     int arrowDamage = 10;
     [SerializeField]
@@ -28,13 +28,13 @@ public class EnemyController : MonoBehaviour {
 
     void Start ()
     {
-        arrowSpawnDelay = Random.Range(minArrowSpawnDelay, maxArrowSpawnDelay);
+        arrowSpawnDelay = maxArrowSpawnDelay;
         arrrowShootTime = Time.time + arrowSpawnDelay;
     }
 	
     void ShootArrow()
     {
-        Arrow arrow = Instantiate(castleArrowPrefab, transform.position, Quaternion.identity);
+        CastleArrow arrow = Instantiate(castleArrowPrefab, transform.position, Quaternion.identity);
         arrow.Damage = arrowDamage;
         arrow.Target = arrowTarget;
     }
