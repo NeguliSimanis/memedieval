@@ -35,7 +35,7 @@ public class EnemyController : MonoBehaviour {
     void ShootArrow()
     {
         CastleArrow arrow = Instantiate(castleArrowPrefab, transform.position, Quaternion.identity);
-        arrow.Damage = arrowDamage;
+        //arrow.Damage = arrowDamage;
         arrow.Target = arrowTarget;
     }
 

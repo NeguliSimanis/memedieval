@@ -4,9 +4,12 @@ using UnityEngine;
 
 public class CastleArrow : MonoBehaviour {
     [SerializeField]
+    private string playerUnitTag = "Player unit";
+    [SerializeField]
     private float Speed;
     private float SelfDestruct;
     public Transform Target;
+    [SerializeField]
     private int damage;
 
 
@@ -19,7 +22,6 @@ public class CastleArrow : MonoBehaviour {
 
     void Update()
     {
-
         /*Vector3 dir = gameObject.GetComponent<Rigidbody2D>().velocity;
         float angle = Mathf.Atan2(-dir.y, -dir.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);*/
@@ -34,24 +36,18 @@ public class CastleArrow : MonoBehaviour {
 
         if (Vector3.Distance(transform.position, Target.transform.position) <= float.Epsilon)
         {
-            Target.GetComponent<Health>().Damage(Attack.Type.Archer, Damage);
             GameObject.Destroy(gameObject);
         }
-
-        
-
     }
 
-
-    public int Damage
+    void OnTriggerEnter2D(Collider2D other)
     {
-        get { return damage; }
-        set
+        Debug.Log("collision0");
+        if (other.gameObject.tag == playerUnitTag)
         {
-            if (damage <= 0)
-            {
-                damage = value;
-            }
+            Debug.Log("collision1");
+            Destroy(other.gameObject);
+            Target.GetComponent<Health>().Damage(Attack.Type.Archer, damage);
         }
-    }
+    }   
 }
