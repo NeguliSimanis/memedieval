@@ -15,6 +15,7 @@ TagManager:
   - Archer face
   - ChampionCreator
   - Player profile
+  - Castle arrow target
   layers:
   - Default
   - TransparentFX
@@ -25,8 +26,8 @@ TagManager:
   - 
   - 
   - UI_Cull
-  - 
-  - 
+  - ArrowLayer
+  - ArrowBlocker
   - 
   - 
   - 
@@ -63,4 +64,10 @@ TagManager:
     locked: 0
   - name: Foreground
     uniqueID: 2204800459
+    locked: 0
+  - name: ArrowBlocker
+    uniqueID: 3072700777
+    locked: 0
+  - name: New Layer
+    uniqueID: 1422192767
     locked: 0
