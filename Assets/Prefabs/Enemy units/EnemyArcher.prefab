@@ -24,9 +24,9 @@ GameObject:
   - component: {fileID: 50460574665704932}
   - component: {fileID: 61759885126876354}
   - component: {fileID: 58084715251569988}
-  - component: {fileID: 114030224101963834}
   - component: {fileID: 114011270435510992}
   - component: {fileID: 114459281006083988}
+  - component: {fileID: 114330924560392592}
   m_Layer: 0
   m_Name: EnemyArcher
   m_TagString: Enemy unit
@@ -59,7 +59,7 @@ Transform:
   m_GameObject: {fileID: 1736995468023074}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.25, y: 0.25, z: 0.5}
+  m_LocalScale: {x: 0.4, y: 0.4, z: 0.5}
   m_Children:
   - {fileID: 4419871176575824}
   m_Father: {fileID: 0}
@@ -149,14 +149,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1830b07c71f7c044920b23db88d84d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  UnitType: 2
-  isArcher: 1
-  isEnemy: 1
-  Damage: 8
   AttackSound: {fileID: 0}
   ArrowPrefab: {fileID: 114897854359872036, guid: d437c5c319a768e499b63ed5f08aa456,
     type: 2}
---- !u!114 &114030224101963834
+  UnitType: 2
+  isArcher: 1
+  isEnemy: 1
+  Damage: 2
+--- !u!114 &114330924560392592
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -164,19 +164,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1736995468023074}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 873306a5eb122c748877b2ce4e952dec, type: 3}
+  m_Script: {fileID: 11500000, guid: a01e958b829f8bf44a381ef4ad789d4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  UnitType: 2
-  meadCarrying: 55
-  IsCharacter: 1
-  IsPlayer: 0
-  healthBar: {fileID: 0}
-  fire: {fileID: 0}
-  isCaptain: 0
-  nextLevelScript: {fileID: 0}
-  nextLevelToLoad: 
   MaximumHealth: 20
+  UnitType: 2
+  killReward: 55
 --- !u!114 &114459281006083988
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -243,7 +236,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73078653526df044184809e5fbf34fa7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Enemy: 1
+  isEnemy: 1
   Speed: 1.2
 --- !u!212 &212547332265820062
 SpriteRenderer:
@@ -254,6 +247,7 @@ SpriteRenderer:
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -269,6 +263,7 @@ SpriteRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 0
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5

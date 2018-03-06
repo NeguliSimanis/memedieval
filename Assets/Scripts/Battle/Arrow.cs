@@ -28,7 +28,8 @@ public class Arrow : MonoBehaviour
 
         if (Vector3.Distance(transform.position, Target.transform.position) <= float.Epsilon)
         {
-            Target.GetComponent<Health>().Damage(Attack.Type.Archer, Damage);
+            Target.GetComponent<Health>().Damage(Damage, Attack.Type.Archer);
+            Target.GetComponent<EnemyUnit>().Damage(PlayerUnit.Type.Archer, Damage);
             GameObject.Destroy(gameObject);
         }
     }

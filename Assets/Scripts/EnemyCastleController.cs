@@ -28,7 +28,7 @@ public class EnemyCastleController : MonoBehaviour
         if (CountToStart < 3 && !TextSet)
         {
             TextSet = true;
-            switch (CurrentEnemy)
+            /*switch (CurrentEnemy)
             {
                 case Attack.Type.Archer:
                     WarningText.text = HardcodedText[0];
@@ -39,7 +39,7 @@ public class EnemyCastleController : MonoBehaviour
                 case Attack.Type.Peasant:
                     WarningText.text = HardcodedText[2];
                     return;
-            }
+            }*/
         }
 
         if (CountToStart >= 0)

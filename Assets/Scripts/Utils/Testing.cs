@@ -9,22 +9,39 @@ public class Testing : MonoBehaviour {
     [SerializeField]
     bool spawnEnemyUnits = true;
     [SerializeField]
+    bool shootCastleArrows = true;
+
+    [SerializeField]
     EnemyCastleController enemySpawner;
+    [SerializeField]
+    EnemyController castleArrowController;
+
     bool isPaused = false;
 
     void Start()
     {
+        /*GameObject[] gameControllers = GameObject.FindGameObjectsWithTag("GameController");
+        foreach (GameObject gameController in gameControllers)
+        {
+            Debug.Log(gameController.name);
+        }*/
+
         if (!spawnEnemyUnits)
         {
             enemySpawner.enabled = false;
         }
         else
             enemySpawner.enabled = true;
+
+        if (shootCastleArrows)
+            castleArrowController.enabled = true;
+        else
+            castleArrowController.enabled = false;
     }
 
 	void Update ()
     {
-        if (Input.GetKey(KeyCode.P))
+        if (Input.GetKey(KeyCode.P) && allowGamePause)
         {
             if (isPaused == false)
             {

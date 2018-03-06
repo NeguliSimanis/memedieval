@@ -2,20 +2,26 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// handles only attacks from the enemy. Player attacks are handled by PlayerUnit
 public class Attack : MonoBehaviour {
+
     public enum Type { Peasant, Knight, Archer, defaultType }
 
     #region assets
     public FMODUnity.StudioEventEmitter AttackSound;
-    public Arrow ArrowPrefab; 
+    public Arrow ArrowPrefab;
     #endregion
 
-    [SerializeField] private Type UnitType;
-    [SerializeField] private bool isArcher;
-    [SerializeField] private bool isEnemy;
+    [SerializeField]
+    private Type UnitType;
+    [SerializeField]
+    private bool isArcher;
+    [SerializeField]
+    private bool isEnemy;
 
     #region damage variables
-    [SerializeField] private int Damage;
+    [SerializeField]
+    private int Damage;
     private float damageModifier = 1f;
     private bool hasDamageModifier = false;
     #endregion
@@ -29,10 +35,10 @@ public class Attack : MonoBehaviour {
     void Start()
     {
         targets = new List<Health>();
-		if (gameObject.GetComponent<FMODUnity.StudioEventEmitter> ()) 
-		{
-			AttackSound = GetComponent<FMODUnity.StudioEventEmitter> ();
-		}
+        if (gameObject.GetComponent<FMODUnity.StudioEventEmitter>())
+        {
+            AttackSound = GetComponent<FMODUnity.StudioEventEmitter>();
+        }
 
         #region check for active attack modifiers
         if (!isEnemy)
@@ -61,7 +67,7 @@ public class Attack : MonoBehaviour {
         Hangover hangover = playerObject.GetComponent<Hangover>();
         damageModifier = 1f + hangover.hangoverBoost;
         Debug.Log("Hangover damage boost: " + damageModifier);
-     
+
     }
 
     void Update()
@@ -99,19 +105,8 @@ public class Attack : MonoBehaviour {
     // Deals damage to target
     private void Strike()
     {
-        if (hasDamageModifier && !isEnemy)
-        {
-            if (isArcher)
-            {
-                Arrow arrow = Instantiate(ArrowPrefab, transform.position, Quaternion.identity);
-                arrow.Damage = (int)(Damage * damageModifier);
-                arrow.Target = StrikeUnitsFirst().gameObject.transform;
-            }
-            else
-                StrikeUnitsFirst().Damage(UnitType, (int)(Damage * damageModifier));
-        }
-        else // damage is dealt by an enemy unit
-        {
+       
+        
             if (isArcher)
             {
                 Arrow arrow = Instantiate(ArrowPrefab, transform.position, Quaternion.identity);
@@ -119,21 +114,22 @@ public class Attack : MonoBehaviour {
                 arrow.Target = StrikeUnitsFirst().gameObject.transform;
             }
             else
-                StrikeUnitsFirst().Damage(UnitType, Damage);  
-        }
-        cooldown = 0.5f;    
+                StrikeUnitsFirst().Damage(Damage, UnitType);
+        
+        cooldown = 0.5f;
     }
 
 
     private Health StrikeUnitsFirst()
     {
-        
-		if (AttackSound != null) {
-			AttackSound.Play ();
-		}
 
-		if (( (isEnemy && (targets[0].gameObject.tag.Equals("Player castle"))) ||
-              (!isEnemy && (targets[0].gameObject.tag.Equals("EnemyCastle"))) ) && targets.Count > 1)
+        if (AttackSound != null)
+        {
+            AttackSound.Play();
+        }
+
+        if (((isEnemy && (targets[0].gameObject.tag.Equals("Player castle"))) ||
+              (!isEnemy && (targets[0].gameObject.tag.Equals("EnemyCastle")))) && targets.Count > 1)
         {
             //Debug.Log("Castle was not attacked.");
             return targets[1];
@@ -142,4 +138,5 @@ public class Attack : MonoBehaviour {
         return targets[0];
     }
 }
+
 

@@ -16,8 +16,12 @@ public class GameData
     public List<ChampionData> championList = new List<ChampionData>();
 
     #region resources
-    public int salt = 0;
-    public int ducats = 0;
+    public int salt = 10;
+    public int ducats = 10;
+    #endregion
+
+    #region game progress
+    public bool[] destroyedCastles = new bool[4];
     #endregion
 }
 

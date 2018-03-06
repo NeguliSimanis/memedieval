@@ -125,7 +125,7 @@ public class CastleArrow : MonoBehaviour {
         {
            
             Destroy(other.gameObject);
-            Target.GetComponent<Health>().Damage(Attack.Type.Archer, damage);
+            Target.GetComponent<Health>().Damage(damage, Attack.Type.Archer);
         }
     }   
 

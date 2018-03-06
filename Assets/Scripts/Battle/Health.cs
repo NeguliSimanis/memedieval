@@ -99,8 +99,6 @@ public class Health : MonoBehaviour
         
         if (currentHealth <= 0)
         {
-            Debug.Log("battle over");
-            Debug.Log(gameObject.tag);
             if (isCaptain)
             {
                 //Debug.Log("Captain died");
@@ -138,8 +136,9 @@ public class Health : MonoBehaviour
     }
 
 
-    public void Damage(Attack.Type attackingType, int damageAmount)
+    public void Damage(int damageAmount, Attack.Type attackingType = Attack.Type.defaultType)
     {
+        Debug.Log("taking" + damageAmount + " damage");
         if (IsCharacter)
         {
             if (attackingType == Attack.Type.Knight && UnitType == Attack.Type.Archer)
@@ -153,6 +152,8 @@ public class Health : MonoBehaviour
             }
         }
 
+        Debug.Log("taking" + damageAmount + " damage"); 
+
         if (attackingType != Attack.Type.defaultType)
         {
             currentHealth -= damageAmount;
@@ -161,7 +162,7 @@ public class Health : MonoBehaviour
         }
         else
         {
-            currentHealth = MaximumHealth - damageAmount;
+            currentHealth -= damageAmount;
             if (!IsCharacter && healthBar != null)
                 healthBar.fillAmount = (currentHealth * 1f) / MaximumHealth;
         }

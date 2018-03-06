@@ -5,10 +5,13 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class CastleHUB : MonoBehaviour {
-    //poga ved uz krogu
+
     public Button TavernButton;
     public Text StatusText;
     private string defaultText="";
+
+    [SerializeField]
+    private string battleSceneName = "Test scene";
 	void Start () {
         var p = PlayerProfile.Singleton;
         if(string.IsNullOrEmpty(defaultText))
@@ -45,6 +48,6 @@ public class CastleHUB : MonoBehaviour {
     }
     public void onBattleClick()
     {
-        SceneManager.LoadScene("Main");
+        SceneManager.LoadScene(battleSceneName  );
     }
 }

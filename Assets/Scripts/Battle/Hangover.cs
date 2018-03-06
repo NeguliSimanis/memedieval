@@ -43,7 +43,7 @@ public class Hangover : MonoBehaviour {
         {
             if (Time.time >= hangoverStartTime)
             {
-                battleHealth.Damage(Attack.Type.defaultType, hangoverDamage);
+                battleHealth.Damage(hangoverDamage);
                 isHangover = true;
             }
         }

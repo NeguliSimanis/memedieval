@@ -11,8 +11,9 @@ public class WaypointFollower : MonoBehaviour
 
     private Waypoint Target;
     private Attack attackClass;
+    private PlayerUnit playerAttackClass;
 
-    [SerializeField] private bool Enemy;
+    [SerializeField] private bool isEnemy;
     public float Speed;
 
 
@@ -24,14 +25,16 @@ public class WaypointFollower : MonoBehaviour
 
     void Start()
     {
-        attackClass = gameObject.GetComponent<Attack>();
-        if (Enemy)
+
+        if (isEnemy)
         {
+            attackClass = gameObject.GetComponent<Attack>();
             enemyCounter++;
             totalEnemies++;
         }
         else
         {
+            playerAttackClass = gameObject.GetComponent<PlayerUnit>();
             allyCounter++;
             totalAllies++;
         }
@@ -40,13 +43,15 @@ public class WaypointFollower : MonoBehaviour
 
     void Update()
     {
-        if (Target == null || Health.Victory || Health.GameOver || attackClass.TargetAmount() > 0) return;
+        if (Target == null || Health.Victory || Health.GameOver) return;
+        if (isEnemy && attackClass.TargetAmount() > 0) return;
+        if (!isEnemy && playerAttackClass.TargetAmount() > 0) return;
 
         transform.position = Vector3.MoveTowards(transform.position, Target.transform.position, Speed * Time.deltaTime);
 
         if (Vector3.Distance(transform.position, Target.transform.position) <= float.Epsilon)
         {
-            if (Enemy) Target = Target.Previous;
+            if (isEnemy) Target = Target.Previous;
             else Target = Target.Next;
         }
     }
@@ -54,7 +59,7 @@ public class WaypointFollower : MonoBehaviour
 
     private void OnDestroy()
     {
-        if (Enemy) enemyCounter--;
+        if (isEnemy) enemyCounter--;
         else allyCounter--;
     }
 

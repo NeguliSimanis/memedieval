@@ -13,7 +13,7 @@ public class PlayerProfile : MonoBehaviour
 
     #region battle
     [SerializeField]
-    string battleSceneName = "Main";
+    string battleSceneName = "Test scene";
 
     //private int baseHealth = 100;      // goes down from drinking
     //private float attackModifier = 1f;   // goes up as you drink
