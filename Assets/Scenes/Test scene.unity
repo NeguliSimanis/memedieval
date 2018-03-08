@@ -1246,7 +1246,7 @@ GameObject:
   - component: {fileID: 238649157}
   m_Layer: 0
   m_Name: Castle1
-  m_TagString: Untagged
+  m_TagString: Enemy balancer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1275,6 +1275,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25dc119f6aab45b48b33ad30c4ada28f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentCastleID: 0
   enemyArcherHealth: 0
   enemyPeasantHealth: 0
   enemyKnightHealth: 0
@@ -3567,11 +3568,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4261302353595126, guid: b5a5fb333e6447342b79476b9eedefee, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 5.05
+      value: -6.97
       objectReference: {fileID: 0}
     - target: {fileID: 4261302353595126, guid: b5a5fb333e6447342b79476b9eedefee, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -0.39
+      value: -1.22
       objectReference: {fileID: 0}
     - target: {fileID: 4261302353595126, guid: b5a5fb333e6447342b79476b9eedefee, type: 2}
       propertyPath: m_LocalPosition.z
@@ -3900,7 +3901,7 @@ GameObject:
   - component: {fileID: 907507699}
   m_Layer: 0
   m_Name: Castle4
-  m_TagString: Untagged
+  m_TagString: Enemy balancer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3929,6 +3930,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25dc119f6aab45b48b33ad30c4ada28f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentCastleID: 0
   enemyArcherHealth: 0
   enemyPeasantHealth: 0
   enemyKnightHealth: 0
@@ -4128,7 +4130,7 @@ GameObject:
   - component: {fileID: 944426077}
   m_Layer: 0
   m_Name: Castle3
-  m_TagString: Untagged
+  m_TagString: Enemy balancer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4157,6 +4159,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25dc119f6aab45b48b33ad30c4ada28f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentCastleID: 0
   enemyArcherHealth: 0
   enemyPeasantHealth: 0
   enemyKnightHealth: 0
@@ -6672,7 +6675,7 @@ GameObject:
   - component: {fileID: 1619097412}
   m_Layer: 0
   m_Name: Castle2
-  m_TagString: Untagged
+  m_TagString: Enemy balancer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6701,6 +6704,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25dc119f6aab45b48b33ad30c4ada28f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentCastleID: 0
   enemyArcherHealth: 0
   enemyPeasantHealth: 0
   enemyKnightHealth: 0
@@ -7042,6 +7046,11 @@ Prefab:
       propertyPath: m_LocalPosition.y
       value: 1.47
       objectReference: {fileID: 0}
+    - target: {fileID: 114811938265176078, guid: fd7cda00cec118648aa774802d41f409,
+        type: 2}
+      propertyPath: MaximumHealth
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: fd7cda00cec118648aa774802d41f409, type: 2}
   m_IsPrefabParent: 0
@@ -7382,7 +7391,7 @@ GameObject:
   - component: {fileID: 1815237851}
   - component: {fileID: 1815237850}
   m_Layer: 5
-  m_Name: 'Rois Ducs '
+  m_Name: Rois Ducs
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7997,7 +8006,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   allowGamePause: 1
-  spawnEnemyUnits: 1
+  spawnEnemyUnits: 0
   shootCastleArrows: 0
   enemySpawner: {fileID: 1531685979}
   castleArrowController: {fileID: 1896993541}
