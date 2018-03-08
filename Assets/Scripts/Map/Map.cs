@@ -14,7 +14,7 @@ public class Map : MonoBehaviour {
     Button battleButton;
 
     [SerializeField]
-    GameObject[] castles;
+    GameObject[] castles; // game objects with an EnemyBalancer attached
 
     [SerializeField]
     Button[] castleButtons;
@@ -32,21 +32,28 @@ public class Map : MonoBehaviour {
         ActivateCastleButton(0);
         battleButton.onClick.AddListener(EnterBattle);
         LoadMap();
+
     }
 
     // activates castles that have been unlocked
     void LoadMap()
     {
+        Debug.Log("loading map");
         if (GameData.current == null)
+        {
+            Debug.Log("no game data object");   
             GameData.current = new GameData();
+        }
 
         int destroyedCastleID = 0;
         foreach(bool castle in GameData.current.destroyedCastles)
         {
+            //Debug.Log("checking for destroyed castles");
             if (castle == true)
             {
                 MarkAsDestroyed(destroyedCastleID);
             }
+            else Debug.Log("castle " + destroyedCastleID + "not destroyed");
             destroyedCastleID++;
         }
         
@@ -54,11 +61,27 @@ public class Map : MonoBehaviour {
 
     void MarkAsDestroyed(int castleID)
     {
-        if (castleID != 3)
+        Debug.Log(castles.Length);
+
+        // destroying first castle unlocks the second and third castles
+        if (castleID == 0)
         {
+            ActivateCastleButton(castleID + 1);
+            ActivateCastleButton(castleID + 2);
+        }
+            
+        // destroying the third or the last castle doesn't unlock anything new
+        else if (castleID != 2 && castleID != castles.Length-1)
+        {
+            Debug.Log("activating next castle (" + castleID + 1 + ")");
             ActivateCastleButton(castleID+1);
         }
-        ActivateCastleButton(castleID);
+
+        // unlock the destroyed castle and all previous castles    
+        for (int i = castleID; i >= 0; i--)
+        {
+            ActivateCastleButton(castleID);
+        }
     }
 
     void ActivateCastleButton(int castleID)
@@ -69,6 +92,7 @@ public class Map : MonoBehaviour {
 
     void ChooseBattle()
     {
+        Debug.Log("battle location chosen");
         castleSelected = true;
         selectedCastle = EventSystem.current.currentSelectedGameObject.name;
 
@@ -88,6 +112,12 @@ public class Map : MonoBehaviour {
     void EnterBattle()
     {
         Debug.Log("entering battle");
+
+        castles[selectedCastleID].SetActive(true);
+        EnemyBalancer activatedEnemyCastle = castles[selectedCastleID].GetComponent<EnemyBalancer>();
+        // activatedEnemyCastle.enabled = true;
+        activatedEnemyCastle.currentCastleID = selectedCastleID;
+
         if (castleSelected)
         {
             battleObject.SetActive(true);

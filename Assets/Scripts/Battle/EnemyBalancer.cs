@@ -8,6 +8,9 @@ public class EnemyBalancer : MonoBehaviour
      */
 
     #region variable declarations
+
+    public int currentCastleID; // set by Map
+
     #region unitProperties
     [Header("Enemy units")]
     [SerializeField]

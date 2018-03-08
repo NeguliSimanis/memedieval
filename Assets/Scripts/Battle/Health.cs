@@ -23,6 +23,7 @@ public class Health : MonoBehaviour
 
     [SerializeField] LoadScene nextLevelScript;
     [SerializeField] string nextLevelToLoad;
+    [SerializeField] string enemyBalancerTag = "Enemy balancer";
 
 	private int currentHealth;
 	public int CurrentHealth
@@ -118,11 +119,27 @@ public class Health : MonoBehaviour
                     gameOver = true;
                     victory = false;
                 }
-                else if (!isPlayer) victory = true;
+                else if (!isPlayer) WinBattle(); 
             }
         }
     }
 
+    void WinBattle()
+    {
+        victory = true;
+        Debug.Log("Victory!");
+        
+        if (GameData.current != null)
+        {
+            GameData.current = new GameData();
+        }
+
+        int defeatedCastleID = GameObject.FindGameObjectWithTag(enemyBalancerTag).GetComponent<EnemyBalancer>().currentCastleID;
+        GameData.current.destroyedCastles[defeatedCastleID] = true;
+        Debug.Log("castle " + defeatedCastleID + "marked as destroyed");
+
+        
+    }
 
     public static bool GameOver
     {
