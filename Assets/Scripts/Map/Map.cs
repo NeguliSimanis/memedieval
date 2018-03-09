@@ -11,9 +11,6 @@ public class Map : MonoBehaviour {
     GameObject battleObject;
 
     [SerializeField]
-    Button battleButton;
-
-    [SerializeField]
     GameObject[] castles; // game objects with an EnemyBalancer attached
 
     [SerializeField]
@@ -25,6 +22,16 @@ public class Map : MonoBehaviour {
     private string selectedCastle;
     private int selectedCastleID;
     private bool castleSelected = false;
+
+    #region battle button
+    [SerializeField] Button battleButton;
+    [SerializeField] GameObject battleButtonActiveImage;
+    [SerializeField] Text battleButtonText;
+
+    private string selectCastle = "Select castle";
+    private string noCastleSelected = "No castle selected!";
+    #endregion
+
     #endregion
 
     void Start ()
@@ -32,12 +39,13 @@ public class Map : MonoBehaviour {
         ActivateCastleButton(0);
         battleButton.onClick.AddListener(EnterBattle);
         LoadMap();
-
     }
 
     // activates castles that have been unlocked
     void LoadMap()
     {
+        battleButtonText.text = selectCastle;
+
         Debug.Log("loading map");
         if (GameData.current == null)
         {
@@ -103,26 +111,38 @@ public class Map : MonoBehaviour {
             {
                 Debug.Log("Castle " + selectedCastle + " selected");
                 selectedCastleID = currentID;
-                castleSelected = true;
+                ActivateBattleButton();
             }
             currentID++; 
         }
     }
 
+    void ActivateBattleButton()
+    {
+        castleSelected = true;
+
+        battleButtonActiveImage.SetActive(true);
+        battleButtonText.enabled = false;
+    }
+
     void EnterBattle()
     {
-        Debug.Log("entering battle");
-
-        castles[selectedCastleID].SetActive(true);
-        EnemyBalancer activatedEnemyCastle = castles[selectedCastleID].GetComponent<EnemyBalancer>();
-        // activatedEnemyCastle.enabled = true;
-        activatedEnemyCastle.currentCastleID = selectedCastleID;
-
         if (castleSelected)
         {
+            //Debug.Log("entering battle");
+
+            castles[selectedCastleID].SetActive(true);
+            EnemyBalancer activatedEnemyCastle = castles[selectedCastleID].GetComponent<EnemyBalancer>();
+            activatedEnemyCastle.currentCastleID = selectedCastleID;
+
             battleObject.SetActive(true);
             this.gameObject.SetActive(false);
         }  
+
+        else
+        {
+            battleButtonText.text = noCastleSelected;
+        }
     }
 
 
