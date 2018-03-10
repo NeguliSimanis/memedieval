@@ -3,10 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems; // to get the name of the selected button
+using UnityEngine.SceneManagement;
 
 public class Map : MonoBehaviour {
 
     #region variables
+    private string destroyedMarkerName = "DestroyedAnim";
+
+    [SerializeField]
+    Button CloseMapButton;
+    private string sceneAfterCloseMap = "Castle";
+
     [SerializeField]
     GameObject battleObject;
 
@@ -15,6 +22,7 @@ public class Map : MonoBehaviour {
 
     [SerializeField]
     Button[] castleButtons;
+    private List<GameObject> castleButtonContainers;
 
     [SerializeField]
     string[] castleNames;
@@ -34,29 +42,33 @@ public class Map : MonoBehaviour {
 
     #endregion
 
-    void Start ()
+    void Start()
     {
         ActivateCastleButton(0);
         battleButton.onClick.AddListener(EnterBattle);
+        CloseMapButton.onClick.AddListener(CloseMap);
         LoadMap();
     }
 
     // activates castles that have been unlocked
     void LoadMap()
     {
+        // tell player to select target castle
         battleButtonText.text = selectCastle;
 
-        Debug.Log("loading map");
+        SetCastleButtonContainers();
+
+        // access game data about destroyed castles
         if (GameData.current == null)
         {
-            Debug.Log("no game data object");   
+            Debug.Log("no game data object");
             GameData.current = new GameData();
         }
 
+        // check for destroyed castles
         int destroyedCastleID = 0;
-        foreach(bool castle in GameData.current.destroyedCastles)
+        foreach (bool castle in GameData.current.destroyedCastles)
         {
-            //Debug.Log("checking for destroyed castles");
             if (castle == true)
             {
                 MarkAsDestroyed(destroyedCastleID);
@@ -64,12 +76,26 @@ public class Map : MonoBehaviour {
             else Debug.Log("castle " + destroyedCastleID + "not destroyed");
             destroyedCastleID++;
         }
-        
-    }	
+
+    }
+
+    void SetCastleButtonContainers()
+    {
+        castleButtonContainers = new List<GameObject>();
+        foreach (Button castleButton in castleButtons)
+        {
+            castleButtonContainers.Add(castleButton.gameObject.transform.parent.gameObject);
+        }
+    }
+
+    void CloseMap()
+    {
+        SceneManager.LoadScene(sceneAfterCloseMap);
+    }
 
     void MarkAsDestroyed(int castleID)
     {
-        Debug.Log(castles.Length);
+        EnableDestroyedCastleMarker(castleID);
 
         // destroying first castle unlocks the second and third castles
         if (castleID == 0)
@@ -77,12 +103,12 @@ public class Map : MonoBehaviour {
             ActivateCastleButton(castleID + 1);
             ActivateCastleButton(castleID + 2);
         }
-            
-        // destroying the third or the last castle doesn't unlock anything new
-        else if (castleID != 2 && castleID != castles.Length-1)
+
+        // destroying a castle other than the last or third one unlocks the next castle 
+        else if (castleID != 2 && castleID != castles.Length - 1)
         {
-            Debug.Log("activating next castle (" + castleID + 1 + ")");
-            ActivateCastleButton(castleID+1);
+            //Debug.Log("activating next castle (" + castleID + 1 + ")");
+            ActivateCastleButton(castleID + 1);
         }
 
         // unlock the destroyed castle and all previous castles    
@@ -95,12 +121,12 @@ public class Map : MonoBehaviour {
     void ActivateCastleButton(int castleID)
     {
         castleButtons[castleID].enabled = true;
-        castleButtons[castleID].onClick.AddListener(ChooseBattle);
+        castleButtons[castleID].onClick.AddListener(SelectTargetCastle);
+
     }
 
-    void ChooseBattle()
+    void SelectTargetCastle()
     {
-        Debug.Log("battle location chosen");
         castleSelected = true;
         selectedCastle = EventSystem.current.currentSelectedGameObject.name;
 
@@ -109,12 +135,17 @@ public class Map : MonoBehaviour {
         {
             if (castle == selectedCastle)
             {
-                Debug.Log("Castle " + selectedCastle + " selected");
+               // Debug.Log("Castle " + selectedCastle + " selected");
                 selectedCastleID = currentID;
                 ActivateBattleButton();
             }
-            currentID++; 
-        }
+            currentID++;
+        }    
+    }
+
+    void EnableDestroyedCastleMarker(int castleID)
+    {
+        castleButtonContainers[castleID].transform.Find(destroyedMarkerName).gameObject.SetActive(true);
     }
 
     void ActivateBattleButton()
