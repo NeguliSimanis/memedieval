@@ -1205,6 +1205,7 @@ MonoBehaviour:
   drinkSold2: Another one?
   drinkSold3: Sire has an unquenchable thirst
   cantAfffordDrink: My humble apologies, Sire. There's no more mead.
+  noChampions: You have no champions, Sire..
 --- !u!1 &267260020
 GameObject:
   m_ObjectHideFlags: 0
@@ -6076,7 +6077,7 @@ GameObject:
   - component: {fileID: 963671871}
   m_Layer: 5
   m_Name: STATSPAGE
-  m_TagString: Untagged
+  m_TagString: Tavern champion stats
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9250,79 +9251,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1443278251}
---- !u!1 &1458223338
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 1458223340}
-  - component: {fileID: 1458223339}
-  - component: {fileID: 1458223341}
-  - component: {fileID: 1458223342}
-  m_Layer: 0
-  m_Name: thePlayer
-  m_TagString: Player profile
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1458223339
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1458223338}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eab2fe80d744b2b4981978a864b732f1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  profileID: 0
-  lastGameStatus: 0
-  name: Player
-  champions: []
-  battleSceneName: Main
-  isDrunk: 0
---- !u!4 &1458223340
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1458223338}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 413.19815, y: 314.31833, z: -7.5625}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 9
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1458223341
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1458223338}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 157ee042b164bba4ca0c9f86a23c5f16, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  keepChildren: 1
---- !u!114 &1458223342
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1458223338}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4b39169b32249a142a22dabc714079f4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  battleHealthTag: Test scene
-  hangoverBoost: 0
 --- !u!1001 &1462748347
 Prefab:
   m_ObjectHideFlags: 0
@@ -10942,6 +10870,48 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1723847873}
+--- !u!1001 &1725067731
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4900715823933538, guid: fca8e275fd907a4469c4d73acdc27cd7, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 358.07758
+      objectReference: {fileID: 0}
+    - target: {fileID: 4900715823933538, guid: fca8e275fd907a4469c4d73acdc27cd7, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 241.75954
+      objectReference: {fileID: 0}
+    - target: {fileID: 4900715823933538, guid: fca8e275fd907a4469c4d73acdc27cd7, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4900715823933538, guid: fca8e275fd907a4469c4d73acdc27cd7, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4900715823933538, guid: fca8e275fd907a4469c4d73acdc27cd7, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4900715823933538, guid: fca8e275fd907a4469c4d73acdc27cd7, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4900715823933538, guid: fca8e275fd907a4469c4d73acdc27cd7, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4900715823933538, guid: fca8e275fd907a4469c4d73acdc27cd7, type: 2}
+      propertyPath: m_RootOrder
+      value: 9
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: fca8e275fd907a4469c4d73acdc27cd7, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &1743702217
 GameObject:
   m_ObjectHideFlags: 0

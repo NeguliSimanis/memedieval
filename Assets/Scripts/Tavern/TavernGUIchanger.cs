@@ -5,17 +5,39 @@ using UnityEngine.UI;
 
 public class TavernGUIchanger : MonoBehaviour
 {
-	public Text ducatcount;    // Artis added 
+	public Text ducatcount;    
     public Text saltcount;
     public GameObject[] layouts;
-    
+
+    private TavernDialogueControl tavernDialogueContol;
+    private string statsPanelTag = "Tavern champion stats";
+
+    private void Start()
+    {
+        StartCoroutine(SetSaltCount());
+        StartCoroutine(SetDucatCount());
+        tavernDialogueContol = this.gameObject.GetComponent<TavernDialogueControl>();
+    }
+
     public void ChangeLayout(int layoutID)
     {
+        // player has no champions and tries to open champion stats - ignore request
+        if (layouts[layoutID].gameObject.tag == statsPanelTag)
+        {
+            if (PlayerProfile.Singleton.champions.Count == 0)
+            {
+                tavernDialogueContol.SayNoChampions();
+                return;
+            }
+        }
+
+        // valid request
         for(int i=0;i<layouts.Length;i++)
         {
             layouts[i].SetActive(false);
         }
         layouts[layoutID].SetActive(true);
+        tavernDialogueContol.ResetDialogue();
     }
 
     public IEnumerator SetSaltCount()
@@ -28,10 +50,8 @@ public class TavernGUIchanger : MonoBehaviour
         }
     }
 
-	//For Ducat obtaining
 	public IEnumerator SetDucatCount()
 	{
-
 		while (true)
 		{
 			ducatcount.text = PlayerProfile.Singleton.DucatCurrent.ToString();
@@ -39,10 +59,4 @@ public class TavernGUIchanger : MonoBehaviour
 		}
 	}
 
-
-    private void Start()
-    {
-        StartCoroutine(SetSaltCount());
-		StartCoroutine(SetDucatCount());
-    }
 }

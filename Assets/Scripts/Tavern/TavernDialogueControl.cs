@@ -10,8 +10,6 @@ public class TavernDialogueControl : MonoBehaviour {
      * move all inkeeper and shady guy dialogue logic to this script
      */
 
-    PlayerProfile playerProfile;
-    private string playerProfileTag = "Player profile";
 
     #region Inkeeper
     private Drink drink;
@@ -39,12 +37,14 @@ public class TavernDialogueControl : MonoBehaviour {
 
     [SerializeField]
     private string cantAfffordDrink = "My humble apologies, Sire. There's no more mead.";
+
+    [SerializeField]
+    private string noChampions = "You have no champions, Sire.";
     #endregion
     #endregion
 
     void Start()
     {
-        playerProfile = GameObject.FindGameObjectWithTag(playerProfileTag).GetComponent<PlayerProfile>();
         drink = drinkMeadButton.GetComponent<Drink>();
         drinkMeadButton.onClick.AddListener(DrinkMead);
     }
@@ -75,5 +75,15 @@ public class TavernDialogueControl : MonoBehaviour {
         {
             inkeeperText.text = cantAfffordDrink;
         }      
+    }
+
+    public void SayNoChampions()
+    {
+        inkeeperText.text = noChampions;
+    }
+
+    public void ResetDialogue()
+    {
+        inkeeperText.text = inkeeperDefaultText;
     }
 }

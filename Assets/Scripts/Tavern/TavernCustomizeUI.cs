@@ -5,7 +5,10 @@ using UnityEngine.UI;
 
 public class TavernCustomizeUI : MonoBehaviour {
 
-    //mainīgie uz tabiem
+    /*
+     * script switches between different tabs when viewing owned champions
+     */
+
     public GameObject SkillsContainer, UnitsContainer, BattleStatsContainer;
 
 	public void ButtonSkillsClick()
