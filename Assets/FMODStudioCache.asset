@@ -34,9 +34,11 @@ MonoBehaviour:
   - {fileID: 114822844772850382}
   - {fileID: 114903647776142582}
   - {fileID: 114154899971919840}
+  - {fileID: 114594029452783362}
+  - {fileID: 114489770940026110}
   MasterBankRef: {fileID: 114112717575960710}
   StringsBankRef: {fileID: 114517954911746612}
-  stringsBankWriteTime: 636545932078045675
+  stringsBankWriteTime: 636563164635235073
   cacheVersion: 2
 --- !u!114 &114003206923295908
 MonoBehaviour:
@@ -319,13 +321,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Path: C:\Users\Simanis Mikoss\Desktop\Unity projects\memedieval\Assets\Plugins\FMOD\Banks\Desktop\Master
     Bank.bank
-  lastModified: 636545932078035668
+  lastModified: 636563164635210051
   LoadResult: 0
   FileSizes:
   - Name: Desktop
-    Value: 8027872
+    Value: 8039008
   - Name: Mobile
-    Value: 17061504
+    Value: 17082112
   Exists: 1
 --- !u!114 &114117771322204102
 MonoBehaviour:
@@ -346,6 +348,21 @@ MonoBehaviour:
   - Name: 
     Value: 6461856
   Exists: 1
+--- !u!114 &114126508138559334
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Transition
+  Min: 0
+  Max: 5
+  Default: 0
 --- !u!114 &114126583522326734
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -429,7 +446,7 @@ MonoBehaviour:
   Is3D: 0
   IsOneShot: 0
   Parameters:
-  - {fileID: 114515653561032042}
+  - {fileID: 114331412939436566}
   MinDistance: 0
   MaxDistance: 0
 --- !u!114 &114144556653561750
@@ -1010,6 +1027,21 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 0
   MaxDistance: 0
+--- !u!114 &114331412939436566
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Transition
+  Min: 0
+  Max: 5
+  Default: 0
 --- !u!114 &114333576455385164
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1405,7 +1437,7 @@ MonoBehaviour:
   Is3D: 0
   IsOneShot: 0
   Parameters:
-  - {fileID: 114469601448835028}
+  - {fileID: 114126508138559334}
   MinDistance: 0
   MaxDistance: 0
 --- !u!114 &114414578334982428
@@ -1584,6 +1616,27 @@ MonoBehaviour:
   - Name: 
     Value: 6297376
   Exists: 1
+--- !u!114 &114489770940026110
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: event:/CastleArrowBreak
+  guid: ccc701ec698eb542a36f42a234a198ca
+  Banks:
+  - {fileID: 114112717575960710}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
 --- !u!114 &114495088844386020
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1645,13 +1698,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Path: Assets\Plugins\FMOD\Banks\Desktop\Master Bank.strings.bank
-  lastModified: 636545932078045675
+  lastModified: 636563164635235073
   LoadResult: 0
   FileSizes:
   - Name: Desktop
-    Value: 1786
+    Value: 1882
   - Name: Mobile
-    Value: 1786
+    Value: 1882
   Exists: 1
 --- !u!114 &114522713594747524
 MonoBehaviour:
@@ -1887,6 +1940,27 @@ MonoBehaviour:
   Min: 0
   Max: 5
   Default: 0
+--- !u!114 &114594029452783362
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: event:/CastleArrow
+  guid: 48d57a1a4d07dc4fa4ecb84fdcdce853
+  Banks:
+  - {fileID: 114112717575960710}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
 --- !u!114 &114595483849050326
 MonoBehaviour:
   m_ObjectHideFlags: 0

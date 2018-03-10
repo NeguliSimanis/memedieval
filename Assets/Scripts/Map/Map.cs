@@ -11,6 +11,8 @@ public class Map : MonoBehaviour {
     private string destroyedMarkerName = "DestroyedAnim";
     private Color inactiveElementColor = new Color(0, 0, 0, 1);
 
+    private GameObject selectedCastleMarker = null;
+    private string selectedCastleMarkerName = "CastleSelected";
 
     [SerializeField]
     Button CloseMapButton;
@@ -136,6 +138,7 @@ public class Map : MonoBehaviour {
                 foreach (Transform child in castleButtonContainers[i].transform)
                 {
                     child.gameObject.GetComponent<Image>().color = inactiveElementColor;
+                   // child.gameObject.SetActive(true);
                 }       
             }
             i++;
@@ -164,7 +167,17 @@ public class Map : MonoBehaviour {
                 ActivateBattleButton();
             }
             currentID++;
-        }    
+        }
+
+        // disable castle markers that are not currently selected
+        if (selectedCastleMarker != null)
+        {
+            selectedCastleMarker.SetActive(false);
+        }
+
+        // enable selected castle marker
+        selectedCastleMarker = castleButtonContainers[selectedCastleID].transform.Find(selectedCastleMarkerName).gameObject;
+        selectedCastleMarker.SetActive(true);
     }
 
     void EnableDestroyedCastleMarker(int castleID)
