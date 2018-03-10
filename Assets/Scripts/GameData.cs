@@ -23,6 +23,12 @@ public class GameData
     #region game progress
     public bool[] destroyedCastles = new bool[4];
     #endregion
+
+    #region tags
+    // must be the same in the scenes or some scripts might not work
+    public string enemyCastleTag = "EnemyCastle"; 
+
+    #endregion
 }
 
 [System.Serializable]

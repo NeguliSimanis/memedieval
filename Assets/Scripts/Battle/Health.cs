@@ -48,7 +48,6 @@ public class Health : MonoBehaviour
         currentHealth = MaximumHealth;
     }
 
-
     void Update()
     {
 
@@ -210,6 +209,12 @@ public class Health : MonoBehaviour
         PeasantCaptainDead = false;
         ArcherCaptainDead = false;
         KnightCaptainDead = false;
+    }
+
+    public void SetMaxHealth(int value)
+    {
+        MaximumHealth = value;
+        currentHealth = value;
     }
 }
 

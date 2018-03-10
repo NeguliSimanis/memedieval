@@ -80,12 +80,10 @@ public class EnemyBalancer : MonoBehaviour
 
     void OnEnable()
     {
-
+        Health enemyHealth = GameObject.FindGameObjectWithTag(GameData.current.enemyCastleTag).GetComponent<Health>();
+        enemyHealth.SetMaxHealth(castleMaxHealth);
     }
 
     // Update is called once per frame
-    void Update()
-    {
 
-    }
 }
