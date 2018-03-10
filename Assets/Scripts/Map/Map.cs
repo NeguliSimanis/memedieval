@@ -9,6 +9,8 @@ public class Map : MonoBehaviour {
 
     #region variables
     private string destroyedMarkerName = "DestroyedAnim";
+    private Color inactiveElementColor = new Color(0, 0, 0, 1);
+
 
     [SerializeField]
     Button CloseMapButton;
@@ -48,6 +50,7 @@ public class Map : MonoBehaviour {
         battleButton.onClick.AddListener(EnterBattle);
         CloseMapButton.onClick.AddListener(CloseMap);
         LoadMap();
+        HideUnavailableCastles();
     }
 
     // activates castles that have been unlocked
@@ -71,9 +74,10 @@ public class Map : MonoBehaviour {
         {
             if (castle == true)
             {
+                Debug.Log("castle " + destroyedCastleID + " destroyed");
                 MarkAsDestroyed(destroyedCastleID);
             }
-            else Debug.Log("castle " + destroyedCastleID + "not destroyed");
+            //else Debug.Log("castle " + destroyedCastleID + "not destroyed");
             destroyedCastleID++;
         }
 
@@ -97,25 +101,45 @@ public class Map : MonoBehaviour {
     {
         EnableDestroyedCastleMarker(castleID);
 
-        // destroying first castle unlocks the second and third castles
-        if (castleID == 0)
-        {
-            ActivateCastleButton(castleID + 1);
-            ActivateCastleButton(castleID + 2);
-        }
-
-        // destroying a castle other than the last or third one unlocks the next castle 
-        else if (castleID != 2 && castleID != castles.Length - 1)
-        {
-            //Debug.Log("activating next castle (" + castleID + 1 + ")");
-            ActivateCastleButton(castleID + 1);
-        }
-
         // unlock the destroyed castle and all previous castles    
         for (int i = castleID; i >= 0; i--)
         {
             ActivateCastleButton(castleID);
         }
+
+        // destroying first castle unlocks the second and third castles
+        if (castleID == 0)
+        {
+            ActivateCastleButton(castleID + 1);
+            ActivateCastleButton(castleID + 2);
+        }    
+        else if (castleID == 2 || castleID == castles.Length)
+        {
+            //Debug.Log("castle 2 not destroyed");
+            //ActivateCastleButton(castleID + 1);
+        }
+        // destroying a castle other than the last or third one unlocks the next castle 
+        else
+        {
+            ActivateCastleButton(castleID + 1);
+            ActivateCastleButton(castleID + 2);
+        }
+    }
+
+    void HideUnavailableCastles()
+    {
+        int i = 0;
+        foreach (Button castleButton in castleButtons)
+        {
+            if (castleButton.enabled == false)
+            {
+                foreach (Transform child in castleButtonContainers[i].transform)
+                {
+                    child.gameObject.GetComponent<Image>().color = inactiveElementColor;
+                }       
+            }
+            i++;
+        }      
     }
 
     void ActivateCastleButton(int castleID)

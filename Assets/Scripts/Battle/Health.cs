@@ -129,7 +129,7 @@ public class Health : MonoBehaviour
         victory = true;
         Debug.Log("Victory!");
         
-        if (GameData.current != null)
+        if (GameData.current == null)
         {
             GameData.current = new GameData();
         }
