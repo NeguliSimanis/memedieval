@@ -108,10 +108,15 @@ public class CreateChampion : MonoBehaviour
     }
     #endregion
 
+
+
     public Champion createChamp()
     {
         var g = new GameObject();
         var c = g.AddComponent<Champion>();
+
+        this.gameObject.GetComponent<ChampionSkillGenerator>().GenerateChampionSkills(c);
+       
         return c;
     }
 
@@ -244,6 +249,8 @@ public class CreateChampion : MonoBehaviour
         champo.properties.SetPicture(pic);
         champo.properties.bio = MakeBio(Name1);
         champo.properties.quote = MakeMotto();
+
+        this.gameObject.GetComponent<ChampionSkillGenerator>().GenerateChampionSkills(champo);
 
         var stats = Instantiate(StatsContainerPrefab);
         stats.transform.parent = champo.transform;

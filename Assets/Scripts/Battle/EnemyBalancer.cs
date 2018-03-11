@@ -53,8 +53,8 @@ public class EnemyBalancer : MonoBehaviour
     #region enemy castle
     [Header("Enemy castle")]
     [SerializeField][Range(1,2000)]
-    int castleMaxHealth; //TO-DO
-   // int castleHealth; //TO-DO
+    int castleMaxHealth; // DONE
+   // int castleHealth;
     #endregion
 
     #region castle arrows

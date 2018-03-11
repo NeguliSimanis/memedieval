@@ -38,7 +38,7 @@ public class ChampionData
     public string Name;
     public bool isMan; 
     public int level;   
-    public int champClass;
+    public int champClass; // 0 - archer, 1 - Knight, 2 - peasant
     public string bio;
     public string quote;
     public bool isDead;
@@ -51,7 +51,7 @@ public class ChampionData
     private TextureFormat pictureFormat = TextureFormat.RGBA32;
 
     #region skills
-    public int skillpoints = 3;
+    public int skillpoints = 1;
     public int charm = 0;
     public int discipline = 0;
     public int brawn = 0;

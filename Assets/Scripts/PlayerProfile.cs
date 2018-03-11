@@ -27,7 +27,7 @@ public class PlayerProfile : MonoBehaviour
     #endregion
 
     #region resources
-    private int saltCurrent = 10;
+    private int saltCurrent = 40;
     private int ducatCurrent = 10;
 
     public int SaltCurrent
