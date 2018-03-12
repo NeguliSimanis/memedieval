@@ -6,6 +6,17 @@ using System.Linq;
 
 public class Spawn : MonoBehaviour
 {
+    /************************
+     
+     Script is attached to:
+        RecruitArcher
+        RecruitKnight
+        RecruitPeasant
+        DeployChampion
+    game objects
+
+     ************************/
+
     private static int PeasantCaptainsLeft;
     private static int ArcherCaptainsLeft;
     private static int KnightCaptainsLeft;

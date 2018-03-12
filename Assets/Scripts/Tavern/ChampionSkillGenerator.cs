@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class ChampionSkillGenerator : MonoBehaviour {
 
+    /*
+     * ABOUT:
+     * script gives new champions random skills
+     */
+
     private Champion champion;
 
     // ID's same as in CreateChampion
