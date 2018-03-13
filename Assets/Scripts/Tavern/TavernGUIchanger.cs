@@ -11,6 +11,7 @@ public class TavernGUIchanger : MonoBehaviour
 
     private TavernDialogueControl tavernDialogueContol;
     private string statsPanelTag = "Tavern champion stats";
+    private string championRecruitTag = "Tavern champion recruit";
 
     private void Start()
     {
@@ -29,6 +30,17 @@ public class TavernGUIchanger : MonoBehaviour
                 tavernDialogueContol.SayNoChampions();
                 return;
             }
+        }
+
+        // player has too many champions - ignore request
+        else if (layouts[layoutID].gameObject.tag == championRecruitTag)
+        {
+            if (PlayerProfile.Singleton.champions.Count >= 5)
+            {
+                tavernDialogueContol.SayTooManyChampions();
+                return;
+            }
+              
         }
 
         // valid request

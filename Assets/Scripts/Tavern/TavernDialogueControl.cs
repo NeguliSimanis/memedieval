@@ -40,6 +40,9 @@ public class TavernDialogueControl : MonoBehaviour {
 
     [SerializeField]
     private string noChampions = "You have no champions, Sire.";
+
+    [SerializeField]
+    private string tooManyChampions = "There are no swords for hire, Sire.";
     #endregion
     #endregion
 
@@ -80,6 +83,11 @@ public class TavernDialogueControl : MonoBehaviour {
     public void SayNoChampions()
     {
         inkeeperText.text = noChampions;
+    }
+
+    public void SayTooManyChampions()
+    {
+        inkeeperText.text = tooManyChampions;
     }
 
     public void ResetDialogue()

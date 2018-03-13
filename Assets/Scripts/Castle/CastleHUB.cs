@@ -8,12 +8,23 @@ public class CastleHUB : MonoBehaviour {
 
     public Button TavernButton;
     public Text statusText;
+
+    [SerializeField]
+    private string battleSceneName = "Test scene";
     private string defaultText="";
 
     private string noChampions = "We have no armies to do battle, my liege.";
 
+
     [SerializeField]
-    private string battleSceneName = "Test scene";
+    GameObject ChampSelectButtonPrefab;
+    [SerializeField]
+    GameObject ChampSelect;
+    private List<GameObject> _champButtons = new List<GameObject>();
+    [SerializeField]
+    GameObject championSelectionText;
+
+    
 
 	void Start ()
     {
@@ -51,6 +62,32 @@ public class CastleHUB : MonoBehaviour {
         SceneManager.LoadScene("Tavern");
     }
 
+
+    private void DisplayChampions()
+    {
+        statusText.enabled = false;
+        championSelectionText.SetActive(true);
+
+        foreach (Champion champ in PlayerProfile.Singleton.champions)
+        {
+            var buttonp = Instantiate(ChampSelectButtonPrefab);
+            var button = buttonp.GetComponent<Image>();
+            button.gameObject.SetActive(true);
+            button.transform.SetParent(ChampSelect.transform);
+            var rect = new Rect(0, 0, champ.properties.LoadPictureAsTexture2D().width, champ.properties.LoadPictureAsTexture2D().height);
+            button.sprite = Sprite.Create(champ.properties.LoadPictureAsTexture2D(), rect, Vector2.zero);
+
+            //buttonp.GetComponent<Button>().onClick.AddListener(() => { ChangeChamp(champ); });
+            button.GetComponentInChildren<Text>().text = champ.properties.Name;
+            _champButtons.Add(button.gameObject);
+        }
+    }
+
+    private void ChooseChampions()
+    {
+
+    }
+
     public void onBattleClick()
     {
         if (PlayerProfile.Singleton.champions.Count == 0)
@@ -59,8 +96,8 @@ public class CastleHUB : MonoBehaviour {
             return;
         }
 
-        
-        SceneManager.LoadScene(battleSceneName);
+        DisplayChampions();
+        //SceneManager.LoadScene(battleSceneName);
     }
 
    
