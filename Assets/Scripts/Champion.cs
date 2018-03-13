@@ -7,6 +7,7 @@ public class Champion : MonoBehaviour {
 
     public ChampionData properties;
     public bool onBattle;
+    public bool invitedToBattle = false;
 
     /* This all is now stored in GameData script in ChampionData class
       public Texture2D picture;

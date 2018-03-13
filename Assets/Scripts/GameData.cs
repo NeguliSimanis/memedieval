@@ -26,8 +26,12 @@ public class GameData
 
     #region tags
     // must be the same in the scenes or some scripts might not work
-    public string enemyCastleTag = "EnemyCastle"; 
+    public string enemyCastleTag = "EnemyCastle";
+    #endregion
 
+    #region scenes
+    public string tavernSceneName = "Tavern";
+    public string battleSceneName = "Test scene";
     #endregion
 }
 

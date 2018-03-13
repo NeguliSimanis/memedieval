@@ -188,17 +188,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1832897421}
-        m_MethodName: onTavernHubButtonClick
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 1928314581}
         m_MethodName: Play
         m_Mode: 1
@@ -891,17 +880,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1832897421}
-        m_MethodName: onBattleClick
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 1928314581}
         m_MethodName: Play
         m_Mode: 1
@@ -1402,12 +1380,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7b3fa07ff10bf048b53b69c36327cfe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TavernButton: {fileID: 14442113}
-  statusText: {fileID: 698852964}
-  battleSceneName: Test scene
+  tavernButton: {fileID: 14442113}
+  battleButton: {fileID: 839457934}
+  servantDialogue: {fileID: 698852964}
   ChampSelectButtonPrefab: {fileID: 1006696351}
   ChampSelect: {fileID: 1017772201}
-  championSelectionText: {fileID: 1423107209}
+  championSelectionTextContainer: {fileID: 1423107209}
 --- !u!4 &1832897422
 Transform:
   m_ObjectHideFlags: 0
