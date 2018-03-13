@@ -1,4 +1,4 @@
-Android
+WindowsStandalone
 314e9745ca661d81123c9d4fc99c88a4 Assembly-CSharp.dll:.LoadGamePanel
 05524b8f659e7bfe5756d1335fec24ba Stores.dll:UnityEngine.Purchasing.AsyncWebUtil
 05524b8f659e7bfe5756d1335fec24ba Stores.dll:UnityEngine.Purchasing.MoolahStoreImpl
@@ -87,8 +87,8 @@ f61c0793411f10cf5fbfa1473fef5ef2 UnityEngine.UI.dll:UnityEngine.UI.ToggleGroup
 127daf6cc99a5cfb80dfa430235858f2 Assembly-CSharp-firstpass.dll:.FMOD_Listener
 1ee6cac08436d2df0de2ca276339b36f Assembly-CSharp.dll:.EnemyCastleController
 1883791c8c7b36b8e2c2e2ffd6f11bb9 Assembly-CSharp-firstpass.dll:FMODUnity.StudioEventEmitter
-1af2b7017a0be015354c05fa50c8bcae Assembly-CSharp.dll:.TavernDialogueControl
-23eff6d79af4a15efb89e6b775e6aa14 Assembly-CSharp.dll:.Champion
+8d31a50b6878c857f0ab4ac48e1cff4b Assembly-CSharp.dll:.TavernDialogueControl
+af3f09e31d8331bb33c337510f32215b Assembly-CSharp.dll:.Champion
 05524b8f659e7bfe5756d1335fec24ba UnityEngine.Timeline.dll:UnityEngine.Timeline.ActivationPlayableAsset
 970a95104359198fe1a98ef48655de8c UnityEngine.Timeline.dll:UnityEngine.Timeline.ActivationTrack
 8144169769d51429c4aedc8b0f92d47b UnityEngine.Timeline.dll:UnityEngine.Timeline.AnimationPlayableAsset
@@ -101,7 +101,7 @@ ff05dcdf90651c3d98a9cad3df5e471e UnityEngine.Timeline.dll:UnityEngine.Timeline.C
 6af7378a45ad6da4992a71ef50ddc2eb UnityEngine.Timeline.dll:UnityEngine.Timeline.GroupTrack
 6af7378a45ad6da4992a71ef50ddc2eb UnityEngine.Timeline.dll:UnityEngine.Timeline.PlayableTrack
 af723155c251fcfa0e66530a75f3ea4c UnityEngine.Timeline.dll:UnityEngine.Timeline.TimelineAsset
-d90bffb51b72d14a4da9f8bcda4df856 Assembly-CSharp.dll:.WaypointFollower
+7166da067567e8588dca19965beb25d0 Assembly-CSharp.dll:.WaypointFollower
 d0c3dcce8c9d8a3f8eeaf87a067c62d3 Assembly-CSharp.dll:.PaymentButton
 fc1e0f4d8439d9928083474691511a13 UnityEngine.Networking.dll:UnityEngine.Networking.NetworkAnimator
 05524b8f659e7bfe5756d1335fec24ba UnityEngine.Networking.dll:UnityEngine.Networking.NetworkBehaviour
@@ -128,15 +128,15 @@ bc68edb0af574bf79f9550ead8ebae5c UnityEngine.HoloLens.dll:UnityEngine.Audio.Audi
 c2275a8bfbb9f9942cad75ecdfded41d UnityEngine.HoloLens.dll:UnityEngine.XR.WSA.SpatialMappingCollider
 45f3431f0103c41611e8d4eec3d439df UnityEngine.HoloLens.dll:UnityEngine.XR.WSA.SpatialMappingRenderer
 50667894c33b478dc38ae949114bb1e8 Assembly-CSharp-firstpass.dll:AppStoresSupport.AppStoreSettings
-d3cb417bb2a10e213d97fc6741602c17 Assembly-CSharp.dll:.Health
-519ddae8928c7098e1f10893ad9fdd1f Assembly-CSharp.dll:.Testing
+7c7515fcfbb13aac6fe2828d58153a10 Assembly-CSharp.dll:.Health
+97240a93157148c9fca6b1690f3b97a6 Assembly-CSharp.dll:.Testing
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.AssignCaptainFace
 0cbb0ad82f71afa4cb8b381922b42f5e Assembly-CSharp.dll:.EnemyController
 c300206ffdd3eeee26f260651736b66e Assembly-CSharp.dll:.StatsContainer
 3d805a08d81b2afae99e645134cad86f Assembly-CSharp.dll:.MobileCam
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.QuitController
 b1b57fdff07f7f9b70c0c50258fd9aca Assembly-CSharp.dll:.TavernCustomizeUI
-190bc92a887c927c203f0538912fb207 Assembly-CSharp.dll:.CastleHUB
+a6cc3114abb170b0ac820c3be44dc461 Assembly-CSharp.dll:.CastleHUB
 d4eef00b5f86cd28a008b40c2c412d40 Assembly-CSharp.dll:.Attack
 3e8ac271c3972f0f73208b3e25675ebe Assembly-CSharp-firstpass.dll:.FMOD_StudioEventEmitter
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.LoadScene
@@ -145,6 +145,7 @@ f5c3031670d4512c1a65d1cb73d2911b Assembly-CSharp-firstpass.dll:FMODUnity.StudioL
 943a35f24793f207600a087f6b102544 Assembly-CSharp.dll:.ChangeCaptainImage
 fad26b5cd4d2d07866e4da8e9a1d49ae Assembly-CSharp.dll:MeMedieval.Resources
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.SaveLoad
+d307f1ce9d892e98d8562de1f89c2106 Assembly-CSharp.dll:.PlayerUnit
 fc1e0f4d8439d9928083474691511a13 UnityEngine.Networking.dll:UnityEngine.Networking.NetworkAnimator
 05524b8f659e7bfe5756d1335fec24ba UnityEngine.Networking.dll:UnityEngine.Networking.NetworkBehaviour
 60b2bb652410a5867a5ab9a01cd38461 UnityEngine.Networking.dll:UnityEngine.Networking.NetworkDiscovery
@@ -174,20 +175,25 @@ e0f7ffd5d5c2abe4b2e16569a21163da UnityEngine.GoogleAudioSpatializer.dll:UnityEng
 e0f7ffd5d5c2abe4b2e16569a21163da UnityEngine.GoogleAudioSpatializer.dll:UnityEngine.Experimental.Audio.Google.GvrAudioRoom
 523299913ec7c89131a0f6bfd1ea0f7a Assembly-CSharp.dll:.ResourceTextController
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.RenderController
+c0fe13799991be761f5d96d2cc7e670a Assembly-CSharp.dll:.EnemyUnit
 82b69d014b5d5ced3c07e127b9efeaeb Assembly-CSharp.dll:.Hangover
 bc68edb0af574bf79f9550ead8ebae5c UnityEngine.HoloLens.dll:UnityEngine.Audio.AudioSpatializerMicrosoft
 05524b8f659e7bfe5756d1335fec24ba UnityEngine.HoloLens.dll:UnityEngine.EventSystems.HoloLensInput
 463516d5b5fe8e67a0a24c48f2095b04 UnityEngine.HoloLens.dll:UnityEngine.EventSystems.HoloLensInputModule
 c2275a8bfbb9f9942cad75ecdfded41d UnityEngine.HoloLens.dll:UnityEngine.XR.WSA.SpatialMappingCollider
 45f3431f0103c41611e8d4eec3d439df UnityEngine.HoloLens.dll:UnityEngine.XR.WSA.SpatialMappingRenderer
+05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.ChampionEffect
+05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.ChampionSkillGenerator
 0654e52f419d842dd1d49d0df705dc42 Assembly-CSharp.dll:.CastleArrow
 75f7b089f208967a310e275ae8f891c1 Assembly-CSharp-firstpass.dll:.FMODAsset
 9de3a22eca9aefadba2d10d5987cefe3 UnityEngine.SpatialTracking.dll:UnityEngine.SpatialTracking.TrackedPoseDriver
 258dd390c46ca4d2582bbaae1f026591 Assembly-CSharp.dll:.Drink
 8cc632c1d9d880ccebcfd32cc9d963fd Assembly-CSharp-firstpass.dll:FMODUnity.StudioParameterTrigger
+87302e84d2d6c6e5fe9d117462351e32 Assembly-CSharp.dll:.Map
 e0507e0086157afa8f9bc14f827af19e Assembly-CSharp.dll:.TavernGUIchanger
 4b4cc5a055250c37c3d90973e6fb6759 Assembly-CSharp-firstpass.dll:FMODUnity.RuntimeManager
 9541343f9936f12f6a8a2f4d0bb837db Assembly-CSharp-firstpass.dll:FMODUnity.StudioBankLoader
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.MusicControl
+7b1ab91161827f0df7b7cc80fe7df97b Assembly-CSharp.dll:.EnemyBalancer
 e364c1b761b5043e2ca6f1ca67316368 Assembly-CSharp.dll:.CreateChampion
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp-firstpass.dll:.IAPDemo
