@@ -56,6 +56,9 @@ public class ChampionData
     private TextureFormat pictureFormat = TextureFormat.RGBA32;
 
     #region skills
+    public int currentExp = 0;
+    public int nextLevelExp = 10;
+
     public int skillpoints = 1;
     public int charm = 0;
     public int discipline = 0;

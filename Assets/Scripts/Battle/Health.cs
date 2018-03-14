@@ -62,15 +62,7 @@ public class Health : MonoBehaviour
             if (victory)
             {
                 PlayerProfile.Singleton.lastGameStatus = 1;
-                var c = PlayerProfile.Singleton.champions;
-                for (int i = 0; i < c.Count; i++)
-                {
-                    if (c[i].onBattle == true)
-                    {
-                        c[i].LevelUP();
-                        c[i].onBattle = false;
-                    }
-                }
+                Debug.Log("victory");
             }
             else
             {
@@ -126,6 +118,7 @@ public class Health : MonoBehaviour
     void WinBattle()
     {
         victory = true;
+        AllocateExp();
         
         if (GameData.current == null)
         {
@@ -138,6 +131,20 @@ public class Health : MonoBehaviour
         Debug.Log("castle " + defeatedCastleID + "marked as destroyed");
 
         PlayerProfile.Singleton.gameObject.GetComponent<ChampionEffect>().ResetChampionEffect();
+    }
+
+    private void AllocateExp()
+    {
+        foreach (Champion champion in PlayerProfile.Singleton.champions)
+        {
+            //Debug.Log("checking champion");
+            if (champion.invitedToBattle == true)
+            {
+                //Debug.Log(champion.properties.Name + " deserves exp");
+                champion.EarnExp(10);
+                champion.onBattle = false;
+            }
+        }
     }
 
     public static bool GameOver
