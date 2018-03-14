@@ -111,6 +111,7 @@ public class Attack : MonoBehaviour {
             {
                 Arrow arrow = Instantiate(ArrowPrefab, transform.position, Quaternion.identity);
                 arrow.Damage = Damage;
+                arrow.isEnemy = isEnemy;
                 arrow.Target = StrikeUnitsFirst().gameObject.transform;
             }
             else

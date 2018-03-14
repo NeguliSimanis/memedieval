@@ -204,6 +204,7 @@ public class Map : MonoBehaviour {
             activatedEnemyCastle.currentCastleID = selectedCastleID;
 
             battleObject.SetActive(true);
+            PlayerProfile.Singleton.ModifyBattleProperties();
             this.gameObject.SetActive(false);
         }  
 

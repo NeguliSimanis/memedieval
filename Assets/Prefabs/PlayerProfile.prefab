@@ -23,6 +23,7 @@ GameObject:
   - component: {fileID: 114892528796807458}
   - component: {fileID: 114428564772373090}
   - component: {fileID: 114726119767806526}
+  - component: {fileID: 114160482598264780}
   m_Layer: 0
   m_Name: PlayerProfile
   m_TagString: Player profile
@@ -43,6 +44,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114160482598264780
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1529472686515804}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38da58db05aa9bc4fbe76209bfd50e2b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114428564772373090
 MonoBehaviour:
   m_ObjectHideFlags: 1

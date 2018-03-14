@@ -122,9 +122,8 @@ public class CastleArrow : MonoBehaviour {
     {
         
         if (other.gameObject.tag == playerUnitTag && isActive)
-        {
-           
-            Destroy(other.gameObject);
+        {  
+            Destroy(gameObject);
             Target.GetComponent<Health>().Damage(damage, Attack.Type.Archer);
         }
     }   

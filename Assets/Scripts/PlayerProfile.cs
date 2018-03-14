@@ -88,13 +88,16 @@ public class PlayerProfile : MonoBehaviour
         drinkAttackEffect = drinkAttackEffect + attackIncrease;
     }
 
-    private void ModifyBattleProperties()
+    public void ModifyBattleProperties()
     {
         if (isDrunk)
         {
             hangover = gameObject.GetComponent<Hangover>();
             hangover.InitiateHangover(drinkHPEffect, drinkAttackEffect);
-        } 
+        }
+
+        ChampionEffect championEffect = this.gameObject.GetComponent<ChampionEffect>();
+        championEffect.SetTotalEffect();
     }
 
     public void ResetBattleProperties()
@@ -121,10 +124,10 @@ public class PlayerProfile : MonoBehaviour
 
     void OnLevelFinishedLoading(Scene scene, LoadSceneMode mode)
     {
-        if (scene.name == battleSceneName)
+       /* if (scene.name == battleSceneName)
         {
             ModifyBattleProperties();
-        }
+        }*/
 
         profileID++;
 

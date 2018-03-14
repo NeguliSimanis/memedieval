@@ -108,20 +108,15 @@ public class CastleHUB : MonoBehaviour {
 	
     void AcceptChampion()
     {
-        /* if (hasSelectedChampions)
-         {
-             isSelectingChampions = false;
-         }*/
-        Debug.Log(championCount);
+        //Debug.Log(championCount);
+        currentChampion.invitedToBattle = true;
         canEnterBattle = true;
         if (currentChampionID < championCount - 1)
         {
-            currentChampion.invitedToBattle = true;
             ShowNextChampion();
         }
         else if (championCount == 1)
         {
-            currentChampion.invitedToBattle = true;
             CheckBattleReadiness();
         }
         else

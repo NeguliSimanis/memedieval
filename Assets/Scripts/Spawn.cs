@@ -27,7 +27,7 @@ public class Spawn : MonoBehaviour
     [SerializeField] private bool isCaptain;
     [SerializeField] private MeMedieval.Resources resources;
     [SerializeField] private float Cooldown;
-    [SerializeField] private int UnitCost;
+    [SerializeField] private int unitCost;
     [SerializeField] private bool Enemy;
     [SerializeField] private Image CooldownBar;
     [SerializeField] private Button unit;
@@ -48,13 +48,31 @@ public class Spawn : MonoBehaviour
 
     void Start()
     {
+        if (!Enemy)
+            SetPriceModifiers();
+
         if (UnitCostText != null)
         {
-            UnitCostText.text = "Cost: " + UnitCost;
+            UnitCostText.text = "Cost: " + unitCost;
         }
-
     }
 
+    void SetPriceModifiers()
+    {
+        GameObject player = GameObject.FindGameObjectWithTag(GameData.current.playerProfileTag);
+
+        // set champion effect
+        ChampionEffect championEffect = player.GetComponent<ChampionEffect>();
+        float tempCost = championEffect.priceCoefficient * unitCost;
+        unitCost = Mathf.RoundToInt(tempCost);
+
+        if (unitCost < championEffect.minUnitPrice)
+        {
+            Debug.Log("very high charm");
+            unitCost = championEffect.minUnitPrice;
+        }
+        
+    }
 
     void Update()
     {
@@ -79,7 +97,7 @@ public class Spawn : MonoBehaviour
             if (Health.Archer) return;
             else if (isCaptain)
             {
-                if (!resources.IsEnoughResources(UnitCost)) return;
+                if (!resources.IsEnoughResources(unitCost)) return;
                 if (ArcherCaptainsLeft == 0) return;
                 ArcherCaptainsLeft--;
                 capt.interactable = false;
@@ -91,8 +109,8 @@ public class Spawn : MonoBehaviour
             if (Health.Knight) return;
             else if (isCaptain)
             {
-                Debug.Log("Knight spawned!");
-                if (!resources.IsEnoughResources(UnitCost)) return;
+                //Debug.Log("Knight spawned!");
+                if (!resources.IsEnoughResources(unitCost)) return;
                 if (KnightCaptainsLeft == 0) return;
                 KnightCaptainsLeft--;
                 capt.interactable = false;
@@ -104,7 +122,7 @@ public class Spawn : MonoBehaviour
             if (Health.Peasant) return;
             else if (isCaptain)
             {
-                if (!resources.IsEnoughResources(UnitCost)) return;
+                if (!resources.IsEnoughResources(unitCost)) return;
                 if (PeasantCaptainsLeft == 0) return;
                 PeasantCaptainsLeft--;
                 capt.interactable = false;
@@ -115,7 +133,7 @@ public class Spawn : MonoBehaviour
             (!Enemy && (Character == null || spawnTimestamp + Cooldown >= Time.time)) ||
             Health.Victory || Health.GameOver) return;
 
-        if (resources.WasEnoughResources(UnitCost))
+        if (resources.WasEnoughResources(unitCost))
         {
             WaypointFollower character = Instantiate(Character, startingPoint.transform.position, Quaternion.identity);
             character.SetTarget(startingPoint);

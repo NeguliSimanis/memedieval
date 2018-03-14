@@ -14,12 +14,17 @@ public class ChampionEffect : MonoBehaviour {
     Discipline - Less damage from castle arrows
     */
 
-    #region unit prices
-    int minUnitPrice = 1;
+    #region charm - unit prices
+    public float priceCoefficient = 1f;
+    public int minUnitPrice = 1;
+    private float charmEffect = 0.01f;
     #endregion
+
+    List<Champion> activeChampions = new List<Champion>();
 
     public void SetTotalEffect()
     {
+        FindActiveChampions();
         SetCharmEffect();
         SetLuckEffect();
         SetWisdomEffect();
@@ -28,10 +33,33 @@ public class ChampionEffect : MonoBehaviour {
         SetDisciplineEffect();
     }
 
+    private void FindActiveChampions()
+    {
+        foreach (Champion champion in PlayerProfile.Singleton.champions)
+        {
+            if (champion.invitedToBattle)
+            {
+                activeChampions.Add(champion);
+                Debug.Log(champion.properties.Name);
+            }
+        }
+    }
+
+
     #region skill-specific functions
+    // the actual effect is implemented in Spawn script
     private void SetCharmEffect()
     {
+        int totalCharm = 0;
+        foreach (Champion champion in activeChampions)
+        {
+            totalCharm = totalCharm + champion.properties.charm;
+        }
 
+         priceCoefficient = priceCoefficient - (totalCharm * charmEffect);
+         Debug.Log("Price coefficient is " + priceCoefficient);
+        
+        
     }
     private void SetLuckEffect()
     {

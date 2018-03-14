@@ -11,7 +11,7 @@ using UnityEngine;
 [System.Serializable]
 public class GameData
 {
-    public string playerProfileTag = "Player profile";
+    
     public static GameData current;
     public List<ChampionData> championList = new List<ChampionData>();
 
@@ -27,6 +27,7 @@ public class GameData
     #region tags
     // must be the same in the scenes or some scripts might not work
     public string enemyCastleTag = "EnemyCastle";
+    public string playerProfileTag = "Player profile";
     #endregion
 
     #region scenes
