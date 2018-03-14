@@ -74,8 +74,7 @@ public class CastleHUB : MonoBehaviour {
     {
         LoadData();
         SetDefaultDialogue();
-        SetupButtons();
-       
+        SetupButtons();  
     }
 
     void ChooseChampions()
@@ -224,8 +223,6 @@ public class CastleHUB : MonoBehaviour {
         }
     }
 
-
-
     private void EnterTavern()
     {
         if (canEnterTavern)
@@ -248,7 +245,7 @@ public class CastleHUB : MonoBehaviour {
         if (s > 0)
         {
             servantDialogue.text = "Most glorious victory, oh great leader. You get 10 SALT! What is Your next action?";
-            PlayerProfile.Singleton.SaltCurrent += 10;
+            ObtainVictorySpoils();
         }
         if (s < 0)
         {
@@ -265,5 +262,22 @@ public class CastleHUB : MonoBehaviour {
                 Destroy(champ.gameObject);
             }
         }
+    }
+
+    void ObtainVictorySpoils()
+    {
+        PlayerProfile playerProfile = PlayerProfile.Singleton;
+
+        //salt
+        playerProfile.SaltCurrent += 10;
+
+        //ducats
+        float obtainDucatChance = playerProfile.gameObject.GetComponent<ChampionEffect>().ducatFindChance;
+        Debug.Log("ducat chance: " + obtainDucatChance);
+        float ducatRoll = Random.Range(0f, 0.99f);
+        Debug.Log("ducat roll: " + ducatRoll);
+
+        if (obtainDucatChance > ducatRoll)
+            playerProfile.DucatCurrent++;
     }
 }

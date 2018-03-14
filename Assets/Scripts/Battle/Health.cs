@@ -126,18 +126,18 @@ public class Health : MonoBehaviour
     void WinBattle()
     {
         victory = true;
-        Debug.Log("Victory!");
         
         if (GameData.current == null)
         {
             GameData.current = new GameData();
         }
 
+        // mark destroyed castle
         int defeatedCastleID = GameObject.FindGameObjectWithTag(enemyBalancerTag).GetComponent<EnemyBalancer>().currentCastleID;
         GameData.current.destroyedCastles[defeatedCastleID] = true;
         Debug.Log("castle " + defeatedCastleID + "marked as destroyed");
 
-        
+        PlayerProfile.Singleton.gameObject.GetComponent<ChampionEffect>().ResetChampionEffect();
     }
 
     public static bool GameOver

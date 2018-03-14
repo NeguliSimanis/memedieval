@@ -20,6 +20,11 @@ public class ChampionEffect : MonoBehaviour {
     private float charmEffect = 0.01f;
     #endregion
 
+    #region luck - ducat chance
+    public float ducatFindChance = 0f;
+    private float maxLuckEffect = 1f;
+    private float luckEffect = 0.02f;
+    #endregion
     List<Champion> activeChampions = new List<Champion>();
 
     public void SetTotalEffect()
@@ -28,8 +33,8 @@ public class ChampionEffect : MonoBehaviour {
         SetCharmEffect();
         SetLuckEffect();
         SetWisdomEffect();
+        SetBrawnEffect();
         SetWealthEffect();
-        SetWisdomEffect();
         SetDisciplineEffect();
     }
 
@@ -40,11 +45,21 @@ public class ChampionEffect : MonoBehaviour {
             if (champion.invitedToBattle)
             {
                 activeChampions.Add(champion);
-                Debug.Log(champion.properties.Name);
+                //Debug.Log(champion.properties.Name);
             }
         }
     }
 
+    public void ResetChampionEffect()
+    {
+        ducatFindChance = 0f;
+        foreach (Champion champion in activeChampions)
+        {
+            champion.invitedToBattle = false;
+            Debug.Log(champion.properties.Name + " removed from active champions");         
+        }
+        activeChampions.Clear();
+    }
 
     #region skill-specific functions
     // the actual effect is implemented in Spawn script
@@ -55,17 +70,32 @@ public class ChampionEffect : MonoBehaviour {
         {
             totalCharm = totalCharm + champion.properties.charm;
         }
-
-         priceCoefficient = priceCoefficient - (totalCharm * charmEffect);
-         Debug.Log("Price coefficient is " + priceCoefficient);
-        
-        
+         priceCoefficient = priceCoefficient - (totalCharm * charmEffect); 
     }
     private void SetLuckEffect()
     {
+        int totalLuck = 0;
+        foreach (Champion champion in activeChampions)
+        {
+            totalLuck = totalLuck + champion.properties.charm;
+        }
 
+        float totalLuckEffect = totalLuck * luckEffect;
+        Debug.Log("total luck effect in championeffect" + totalLuckEffect);
+        ducatFindChance = ducatFindChance + totalLuckEffect;
+        Debug.Log("ducat find chance in championeffect " + ducatFindChance);
+        if (ducatFindChance > maxLuckEffect)
+        {
+            Debug.Log("Very high luck");
+            ducatFindChance = maxLuckEffect;
+        }
     }
     private void SetWisdomEffect()
+    {
+
+    }
+
+    private void SetBrawnEffect()
     {
 
     }
@@ -79,10 +109,4 @@ public class ChampionEffect : MonoBehaviour {
     }
     #endregion
 
-    #region functions for specific effects
-    private void SetUnitDiscount()
-    {
-
-    }
-    #endregion
 }
