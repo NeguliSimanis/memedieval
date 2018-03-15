@@ -40,7 +40,7 @@ public class Champion : MonoBehaviour {
         Debug.Log("earned " + exp + "exp");
         properties.currentExp += exp;
         
-        if (properties.currentExp >= properties.nextLevelExp)
+        while (properties.currentExp >= properties.nextLevelExp)
         {
             properties.currentExp -= properties.nextLevelExp;
             LevelUp();

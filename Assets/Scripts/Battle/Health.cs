@@ -135,13 +135,15 @@ public class Health : MonoBehaviour
 
     private void AllocateExp()
     {
+        ChampionEffect championEffect =  PlayerProfile.Singleton.gameObject.GetComponent<ChampionEffect>();
+
         foreach (Champion champion in PlayerProfile.Singleton.champions)
         {
             //Debug.Log("checking champion");
             if (champion.invitedToBattle == true)
             {
                 //Debug.Log(champion.properties.Name + " deserves exp");
-                champion.EarnExp(10);
+                champion.EarnExp(championEffect.championFinalExpEarn);
                 champion.onBattle = false;
             }
         }

@@ -58,7 +58,7 @@ public class Spawn : MonoBehaviour
     }
 
     void SetPriceModifiers()
-    {
+    {   
         GameObject player = PlayerProfile.Singleton.gameObject;
         // set champion effect
         ChampionEffect championEffect = player.GetComponent<ChampionEffect>();

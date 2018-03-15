@@ -25,6 +25,18 @@ public class ChampionEffect : MonoBehaviour {
     private float maxLuckEffect = 1f;
     private float luckEffect = 0.02f;
     #endregion
+
+    #region wisdom - more exp
+    public int championFinalExpEarn = 10;
+    private float playerExpCoefficient = 1f;
+    private int defaultExpEarn = 10;
+    private float wisdomEffect = 0.05f;
+    #endregion
+
+    #region brawn - more unit hp
+    
+    #endregion
+
     List<Champion> activeChampions = new List<Champion>();
 
     public void SetTotalEffect()
@@ -53,6 +65,8 @@ public class ChampionEffect : MonoBehaviour {
     public void ResetChampionEffect()
     {
         ducatFindChance = 0f;
+        playerExpCoefficient = 1f;
+
         foreach (Champion champion in activeChampions)
         {
             champion.invitedToBattle = false;
@@ -77,13 +91,11 @@ public class ChampionEffect : MonoBehaviour {
         int totalLuck = 0;
         foreach (Champion champion in activeChampions)
         {
-            totalLuck = totalLuck + champion.properties.charm;
+            totalLuck = totalLuck + champion.properties.luck;
         }
 
         float totalLuckEffect = totalLuck * luckEffect;
-        Debug.Log("total luck effect in championeffect" + totalLuckEffect);
         ducatFindChance = ducatFindChance + totalLuckEffect;
-        Debug.Log("ducat find chance in championeffect " + ducatFindChance);
         if (ducatFindChance > maxLuckEffect)
         {
             Debug.Log("Very high luck");
@@ -92,7 +104,13 @@ public class ChampionEffect : MonoBehaviour {
     }
     private void SetWisdomEffect()
     {
-
+        int totalWisdom = 0;
+        foreach (Champion champion in activeChampions)
+        {
+            totalWisdom = totalWisdom + champion.properties.wisdom;
+        }
+        playerExpCoefficient = playerExpCoefficient + (totalWisdom * wisdomEffect);
+        championFinalExpEarn = Mathf.RoundToInt(defaultExpEarn * playerExpCoefficient);
     }
 
     private void SetBrawnEffect()
