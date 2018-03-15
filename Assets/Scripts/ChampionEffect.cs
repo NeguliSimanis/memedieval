@@ -22,6 +22,7 @@ public class ChampionEffect : MonoBehaviour {
 
     #region luck - ducat chance
     public float ducatFindChance = 0f;
+    private float defaultDucatFindChance = 0f;
     private float maxLuckEffect = 1f;
     private float luckEffect = 0.02f;
     #endregion
@@ -29,12 +30,15 @@ public class ChampionEffect : MonoBehaviour {
     #region wisdom - more exp
     public int championFinalExpEarn = 10;
     private float playerExpCoefficient = 1f;
+    private float defaultExpCoefficent = 1f;
     private int defaultExpEarn = 10;
     private float wisdomEffect = 0.05f;
     #endregion
 
     #region brawn - more unit hp
-    
+    public float playerUnitHPCoefficient = 1f;
+    private float defaultPlayerUnitHPCoefficient = 1f;
+    private float brawnEffect = 0.01f;
     #endregion
 
     List<Champion> activeChampions = new List<Champion>();
@@ -64,13 +68,14 @@ public class ChampionEffect : MonoBehaviour {
 
     public void ResetChampionEffect()
     {
-        ducatFindChance = 0f;
-        playerExpCoefficient = 1f;
+        ducatFindChance = defaultDucatFindChance;
+        playerExpCoefficient = defaultExpCoefficent;
+        playerUnitHPCoefficient = defaultPlayerUnitHPCoefficient;
 
         foreach (Champion champion in activeChampions)
         {
             champion.invitedToBattle = false;
-            Debug.Log(champion.properties.Name + " removed from active champions");         
+            //Debug.Log(champion.properties.Name + " removed from active champions");         
         }
         activeChampions.Clear();
     }
@@ -84,7 +89,7 @@ public class ChampionEffect : MonoBehaviour {
         {
             totalCharm = totalCharm + champion.properties.charm;
         }
-         priceCoefficient = priceCoefficient - (totalCharm * charmEffect); 
+        priceCoefficient = priceCoefficient - (totalCharm * charmEffect); 
     }
     private void SetLuckEffect()
     {
@@ -115,7 +120,12 @@ public class ChampionEffect : MonoBehaviour {
 
     private void SetBrawnEffect()
     {
-
+        int totalBrawn = 0;
+        foreach (Champion champion in activeChampions)
+        {
+            totalBrawn = totalBrawn + champion.properties.brawn;
+        }
+        playerUnitHPCoefficient = playerUnitHPCoefficient + (totalBrawn * brawnEffect);
     }
     private void SetWealthEffect()
     {

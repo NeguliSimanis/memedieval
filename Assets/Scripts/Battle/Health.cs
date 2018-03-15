@@ -15,7 +15,7 @@ public class Health : MonoBehaviour
     [SerializeField] private Attack.Type UnitType;
     [SerializeField] private int meadCarrying;
     [SerializeField] private bool IsCharacter;
-    [SerializeField] private bool isPlayer;
+    [SerializeField] private bool isPlayer; // as opposed to player unit
     [SerializeField] private Image healthBar;
     [SerializeField] private GameObject fire;
     [SerializeField] private bool isCaptain;
@@ -44,8 +44,18 @@ public class Health : MonoBehaviour
 
     void Start()
     {
-        //Debug.Log("current salt: " + GameData.current.salt);
-        currentHealth = MaximumHealth;
+        if (GameData.current == null)
+            GameData.current = new GameData();
+
+        // set health modifiers to player units
+        if (!isPlayer && gameObject.tag != GameData.current.enemyCastleTag)
+        {
+            ChampionEffect championEffect = PlayerProfile.Singleton.gameObject.GetComponent<ChampionEffect>();
+            currentHealth = Mathf.RoundToInt(MaximumHealth * championEffect.playerUnitHPCoefficient);
+            Debug.Log(UnitType + " hp is " + currentHealth);
+        }
+        else
+            currentHealth = MaximumHealth;
     }
 
     void Update()
