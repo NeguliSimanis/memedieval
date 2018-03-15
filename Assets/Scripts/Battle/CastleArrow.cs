@@ -18,8 +18,7 @@ public class CastleArrow : MonoBehaviour {
     #region properties
     [SerializeField]
     private float Speed;
-    [SerializeField]
-    private int damage;
+    public int damage;
     [SerializeField]
     float shootingAngle = 20f;
     Rigidbody2D rigidbody2d;
@@ -33,10 +32,22 @@ public class CastleArrow : MonoBehaviour {
 
     void Start()
     {
+        SetArrowDamage();
         arrowBirthTime = Time.time;
         SelectTarget();
         rigidbody2d = gameObject.GetComponent<Rigidbody2D>();
         rigidbody2d.velocity = CalculateArrowVelocity(shootingAngle);
+    }
+
+    void SetArrowDamage()
+    {
+        Debug.Log("Arrow damage before modifiers: " + damage);
+        ChampionEffect championEffect = PlayerProfile.Singleton.gameObject.GetComponent<ChampionEffect>();
+
+        damage = Mathf.RoundToInt(championEffect.castleArrowDamageCoefficient * damage);
+        if (damage < championEffect.minCastleArrowDamage)
+            damage = championEffect.minCastleArrowDamage;
+        Debug.Log("Arrow damage after modifiers: " + damage);
     }
 
     void SelectTarget()
@@ -122,9 +133,9 @@ public class CastleArrow : MonoBehaviour {
     {
         
         if (other.gameObject.tag == playerUnitTag && isActive)
-        {  
+        {
+            other.gameObject.GetComponent<Health>().Damage(damage, Attack.Type.Archer);
             Destroy(gameObject);
-            Target.GetComponent<Health>().Damage(damage, Attack.Type.Archer);
         }
     }   
 

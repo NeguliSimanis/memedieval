@@ -47,6 +47,12 @@ public class ChampionEffect : MonoBehaviour {
     private float wealthEffect = 0.05f;
     #endregion
 
+    #region discipline - less damage from castle arrows
+    public float castleArrowDamageCoefficient = 1f;
+    private float defaultCastleArrowDamageCoeffient = 1f;
+    private float disciplineEffect = 0.95f;
+    public int minCastleArrowDamage = 1;
+    #endregion
     List<Champion> activeChampions = new List<Champion>();
 
     public void SetTotalEffect()
@@ -78,6 +84,7 @@ public class ChampionEffect : MonoBehaviour {
         playerExpCoefficient = defaultExpCoefficent;
         playerUnitHPCoefficient = defaultPlayerUnitHPCoefficient;
         startingMeatCoefficient = defaultStartingMeatCoefficient;
+        castleArrowDamageCoefficient = defaultCastleArrowDamageCoeffient;
 
         foreach (Champion champion in activeChampions)
         {
@@ -136,11 +143,6 @@ public class ChampionEffect : MonoBehaviour {
     }
     private void SetWealthEffect()
     {
-        /*
-        public float startingMeatCoefficient = 1f;
-        private float defaultStartingMeatCoefficient = 1f;
-        private float wealthEffect = 0.05f;
-        */
         int totalWealth = 0;
             foreach (Champion champion in activeChampions)
             {
@@ -151,7 +153,17 @@ public class ChampionEffect : MonoBehaviour {
 
     private void SetDisciplineEffect()
     {
+        int totalDiscipline = 0;
+        foreach (Champion champion in activeChampions)
+        {
+            totalDiscipline = totalDiscipline + champion.properties.discipline;
+        }
 
+        while (totalDiscipline > 0)
+        {
+            castleArrowDamageCoefficient = castleArrowDamageCoefficient * disciplineEffect;
+            totalDiscipline--; 
+        }
     }
     #endregion
 
