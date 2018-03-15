@@ -28,6 +28,7 @@ GameObject:
   - component: {fileID: 114308667225171046}
   - component: {fileID: 114753140051048264}
   - component: {fileID: 114161126855933466}
+  - component: {fileID: 95773879925844510}
   m_Layer: 0
   m_Name: Peasant
   m_TagString: Player unit
@@ -139,6 +140,23 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.14, y: 2.41}
   m_EdgeRadius: 0
+--- !u!95 &95773879925844510
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1131093518672646}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 384982c7f21a63847b9d1727166a1469, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!114 &114161126855933466
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -192,6 +210,7 @@ MonoBehaviour:
   isCaptain: 0
   nextLevelScript: {fileID: 0}
   nextLevelToLoad: 
+  enemyBalancerTag: Enemy balancer
   MaximumHealth: 18
 --- !u!114 &114634638762769494
 MonoBehaviour:

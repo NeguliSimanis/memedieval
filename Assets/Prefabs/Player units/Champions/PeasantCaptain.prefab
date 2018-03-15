@@ -30,6 +30,7 @@ GameObject:
   - component: {fileID: 222717205250865086}
   - component: {fileID: 114152071382324088}
   - component: {fileID: 114532789845320288}
+  - component: {fileID: 95102504449343892}
   m_Layer: 0
   m_Name: PeasantCaptain
   m_TagString: Player unit
@@ -134,7 +135,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 5.57, y: 7.56}
+    oldSize: {x: 3.8799999, y: 5.6}
     newSize: {x: 0.2, y: 0.2}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -143,6 +144,23 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.14, y: 2.41}
   m_EdgeRadius: 0
+--- !u!95 &95102504449343892
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1131093518672646}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 384982c7f21a63847b9d1727166a1469, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!114 &114033205970166694
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -185,6 +203,8 @@ MonoBehaviour:
     quote: 
     isDead: 0
     picture: 
+    currentExp: 0
+    nextLevelExp: 10
     skillpoints: 3
     charm: 0
     discipline: 0
@@ -193,6 +213,7 @@ MonoBehaviour:
     luck: 0
     wealth: 0
   onBattle: 0
+  invitedToBattle: 0
 --- !u!114 &114308667225171046
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -224,6 +245,7 @@ MonoBehaviour:
   isCaptain: 1
   nextLevelScript: {fileID: 0}
   nextLevelToLoad: 
+  enemyBalancerTag: Enemy balancer
   MaximumHealth: 100
 --- !u!114 &114520787170439764
 MonoBehaviour:
@@ -377,7 +399,7 @@ SpriteRenderer:
   m_SortingLayerID: -485233633
   m_SortingLayer: 3
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 29aa2c589453de54798586300c02af56, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d3880892f901ebc46ba747652a8c92cc, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -400,7 +422,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1131093518672646}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3.6332493, y: -1.6427534, z: 0}
+  m_LocalPosition: {x: 3.33, y: 1.59, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children:
   - {fileID: 224574063636721212}
@@ -410,7 +432,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 3.6332493, y: -1.6427534}
+  m_AnchoredPosition: {x: 3.33, y: 1.59}
   m_SizeDelta: {x: 4.2846155, y: 5.8153844}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224574063636721212

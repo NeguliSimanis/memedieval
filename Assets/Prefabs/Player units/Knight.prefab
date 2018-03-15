@@ -45,6 +45,7 @@ GameObject:
   - component: {fileID: 114018146053837242}
   - component: {fileID: 114673752636256332}
   - component: {fileID: 114957387598894312}
+  - component: {fileID: 95771231836468368}
   m_Layer: 0
   m_Name: Knight
   m_TagString: Player unit
@@ -139,6 +140,23 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.2347353, y: 2.5034986}
   m_EdgeRadius: 0
+--- !u!95 &95771231836468368
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1736995468023074}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: c8fce9a7eb100fe49a0a20705ed6bc19, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!114 &114018146053837242
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -192,6 +210,7 @@ MonoBehaviour:
   isCaptain: 0
   nextLevelScript: {fileID: 0}
   nextLevelToLoad: 
+  enemyBalancerTag: Enemy balancer
   MaximumHealth: 20
 --- !u!114 &114673752636256332
 MonoBehaviour:
