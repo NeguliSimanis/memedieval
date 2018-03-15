@@ -41,6 +41,12 @@ public class ChampionEffect : MonoBehaviour {
     private float brawnEffect = 0.01f;
     #endregion
 
+    #region wealth - more starting resources
+    public float startingMeatCoefficient = 1f;
+    private float defaultStartingMeatCoefficient = 1f;
+    private float wealthEffect = 0.05f;
+    #endregion
+
     List<Champion> activeChampions = new List<Champion>();
 
     public void SetTotalEffect()
@@ -71,6 +77,7 @@ public class ChampionEffect : MonoBehaviour {
         ducatFindChance = defaultDucatFindChance;
         playerExpCoefficient = defaultExpCoefficent;
         playerUnitHPCoefficient = defaultPlayerUnitHPCoefficient;
+        startingMeatCoefficient = defaultStartingMeatCoefficient;
 
         foreach (Champion champion in activeChampions)
         {
@@ -129,8 +136,19 @@ public class ChampionEffect : MonoBehaviour {
     }
     private void SetWealthEffect()
     {
-
+        /*
+        public float startingMeatCoefficient = 1f;
+        private float defaultStartingMeatCoefficient = 1f;
+        private float wealthEffect = 0.05f;
+        */
+        int totalWealth = 0;
+            foreach (Champion champion in activeChampions)
+            {
+                totalWealth = totalWealth + champion.properties.wealth;
+            }
+        startingMeatCoefficient = startingMeatCoefficient + (totalWealth * wealthEffect);
     }
+
     private void SetDisciplineEffect()
     {
 

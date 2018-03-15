@@ -7,6 +7,7 @@ namespace MeMedieval
 {
     public class Resources : MonoBehaviour
     {
+        [SerializeField] private bool isPlayerResources = false;
         [SerializeField] private int resources;
         [SerializeField] private int resourcesPerFiveSeconds;
         [SerializeField] Image resourceBar;
@@ -15,6 +16,11 @@ namespace MeMedieval
 
         void Start()
         {
+            if (isPlayerResources)
+            {
+                ChampionEffect championEffect = PlayerProfile.Singleton.gameObject.GetComponent<ChampionEffect>();
+                resources = Mathf.RoundToInt(resources * championEffect.startingMeatCoefficient);
+            }
             second = 0;
         }
 
