@@ -244,7 +244,7 @@ public class CastleHUB : MonoBehaviour {
         var s = PlayerProfile.Singleton.lastGameStatus;
         if (s > 0)
         {
-            servantDialogue.text = "Most glorious victory, oh great leader. You get 10 SALT! What is Your next action?";
+            servantDialogue.text = "Most glorious victory, oh great leader. You get 5 SALT! What is Your next action?";
             ObtainVictorySpoils();
         }
         if (s < 0)
@@ -269,7 +269,7 @@ public class CastleHUB : MonoBehaviour {
         PlayerProfile playerProfile = PlayerProfile.Singleton;
 
         //salt
-        playerProfile.SaltCurrent += 10;
+        playerProfile.SaltCurrent += 5;
 
         //ducats
         float obtainDucatChance = playerProfile.gameObject.GetComponent<ChampionEffect>().ducatFindChance;

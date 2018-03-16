@@ -61,7 +61,7 @@ public class Health : MonoBehaviour
     void Update()
     {
 
-        if (gameObject.tag.Equals("EnemyCastle") && fire != null && !fire.activeSelf && currentHealth <= MaximumHealth / 3f)
+        if (fire != null && !fire.activeSelf && currentHealth <= MaximumHealth / 3f)
         {
             fire.SetActive(true);
         } //else if (gameObject.tag.Equals("EnemyCastle") && fire != null && fire.activeSelf && CurrentHealth > MaximumHealth / 3f)

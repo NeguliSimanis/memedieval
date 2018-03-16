@@ -8,6 +8,9 @@ using UnityEngine.SceneManagement;
 public class Map : MonoBehaviour {
 
     #region variables
+    [SerializeField]
+    GameObject battleController;
+
     private string destroyedMarkerName = "DestroyedAnim";
     private Color inactiveElementColor = new Color(0, 0, 0, 1);
 
@@ -197,8 +200,12 @@ public class Map : MonoBehaviour {
     {
         if (castleSelected)
         {
-            //Debug.Log("entering battle");
-
+            // disable enemy spawning in the first battle
+            if (selectedCastleID == 0)
+            {
+                battleController.GetComponent<Testing>().spawnEnemyUnits = false;
+            }
+            
             castles[selectedCastleID].SetActive(true);
             EnemyBalancer activatedEnemyCastle = castles[selectedCastleID].GetComponent<EnemyBalancer>();
             activatedEnemyCastle.currentCastleID = selectedCastleID;

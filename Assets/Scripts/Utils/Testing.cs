@@ -6,10 +6,10 @@ public class Testing : MonoBehaviour {
 
     [SerializeField]
     bool allowGamePause = true;
-    [SerializeField]
-    bool spawnEnemyUnits = true;
-    [SerializeField]
-    bool shootCastleArrows = true;
+   
+    public bool spawnEnemyUnits = true;
+  
+    public bool shootCastleArrows = true;
 
     [SerializeField]
     EnemyCastleController enemySpawner;
