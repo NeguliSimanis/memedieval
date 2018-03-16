@@ -27,6 +27,7 @@ public class CreateChampion : MonoBehaviour
     private WebCamDevice[] devices;
     private int camID;
     private bool camAvailable;
+    public bool hasPicture = false;
     private WebCamTexture backCam;
     public Texture2D pic;
 
@@ -162,7 +163,10 @@ public class CreateChampion : MonoBehaviour
 
     public void TakePhoto()
     {
+        if (hasPicture)
+            return;
         StartCoroutine(TestPhoto());
+        hasPicture = true;
     }
 
     public void SwitchCamera()
