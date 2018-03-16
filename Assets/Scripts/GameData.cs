@@ -28,6 +28,7 @@ public class GameData
     // must be the same in the scenes or some scripts might not work
     public string enemyCastleTag = "EnemyCastle";
     public string playerProfileTag = "Player profile"; // TO-DO replace all references to PlayerProfile.Singleton
+    public string enemyBalancerTag = "Enemy balancer";
     #endregion
 
     #region scenes

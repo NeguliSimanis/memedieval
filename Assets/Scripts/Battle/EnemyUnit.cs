@@ -6,12 +6,10 @@ public class EnemyUnit : MonoBehaviour
 {
 
     public int MaximumHealth;
+    [SerializeField] private Attack.Type UnitType;
+    [SerializeField] private int killReward;
 
-    [SerializeField]
-    private Attack.Type UnitType;
-    [SerializeField]
-    private int killReward;
-
+    private EnemyBalancer enemyBalancer;
 
     private int currentHealth;
 
@@ -23,9 +21,11 @@ public class EnemyUnit : MonoBehaviour
         }
     }
 
-    void Start()
+    void Start()    
     {
-        currentHealth = MaximumHealth;
+        enemyBalancer = GameObject.FindGameObjectWithTag(GameData.current.enemyBalancerTag).GetComponent<EnemyBalancer>();
+        currentHealth = Mathf.RoundToInt(MaximumHealth * enemyBalancer.enemyUnitHPMultiplier);
+        //currentHealth = MaximumHealth;
     }
 
     public void Damage(PlayerUnit.Type attackingType, int damageAmount)

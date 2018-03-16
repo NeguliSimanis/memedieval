@@ -8,12 +8,14 @@ public class EnemyBalancer : MonoBehaviour
      */
 
     #region variable declarations
-
-    public int currentCastleID; // set by Map
+    public int currentCastleID; // set by Map.cs
 
     #region unitProperties
     [Header("Enemy units")]
-    [SerializeField]
+    [Range(-10f, 10f)]
+    public float enemyUnitHPMultiplier = 1f;
+
+    /* [SerializeField]
     int enemyArcherHealth; //TO-DO
     [SerializeField]
     int enemyPeasantHealth; //TO-DO
@@ -26,13 +28,13 @@ public class EnemyBalancer : MonoBehaviour
 
     float enemyArcherMoveSpeed; //TO-DO
     float enemyPeasantMoveSpeed; //TO-DO
-    float enemyKnightMoveSpeed; //TO-DO
+    float enemyKnightMoveSpeed; //TO-DO */
     #endregion
 
     #region unit spawning
-    [Header("Enemy unit spawning")]
-    [SerializeField]
-    bool spawnEnemies; //TO-DO
+   /* [Header("Enemy unit spawning")]
+    //[SerializeField]
+   // bool spawnEnemies; //TO-DO
 
     [SerializeField][Range(1,2000)]
     float minArcherSpawnDelay; //TO-DO
@@ -47,18 +49,18 @@ public class EnemyBalancer : MonoBehaviour
     [SerializeField][Range(1, 2000)]
     float minKnightSpawnDelay; //TO-DO
     [SerializeField][Range(1, 2000)]
-    float maxKnightSpawnDelay; //TO-DO
+    float maxKnightSpawnDelay; //TO-DO */
     #endregion
 
     #region enemy castle
     [Header("Enemy castle")]
     [SerializeField][Range(1,2000)]
     int castleMaxHealth; // DONE
-   // int castleHealth;
+                         // int castleHealth;
     #endregion
 
     #region castle arrows
-    [Header("Castle arrows")]
+    /*[Header("Castle arrows")]
     [SerializeField]
     bool shootArrows; //TO-DO
 
@@ -74,6 +76,7 @@ public class EnemyBalancer : MonoBehaviour
 
     [SerializeField][Range(1, 200)]
     float maxShootDelay; //TO-DO
+    */
     #endregion
     #endregion
 

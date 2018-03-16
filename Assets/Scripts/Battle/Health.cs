@@ -52,7 +52,7 @@ public class Health : MonoBehaviour
         {
             ChampionEffect championEffect = PlayerProfile.Singleton.gameObject.GetComponent<ChampionEffect>();
             currentHealth = Mathf.RoundToInt(MaximumHealth * championEffect.playerUnitHPCoefficient);
-            Debug.Log(UnitType + " hp is " + currentHealth);
+           // Debug.Log(UnitType + " hp is " + currentHealth);
         }
         else
             currentHealth = MaximumHealth;

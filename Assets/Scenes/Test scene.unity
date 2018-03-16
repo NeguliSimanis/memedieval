@@ -1817,22 +1817,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentCastleID: 0
-  enemyArcherHealth: 0
-  enemyPeasantHealth: 0
-  enemyKnightHealth: 0
-  spawnEnemies: 0
-  minArcherSpawnDelay: 0
-  maxArcherSpawnDelay: 0
-  minPeasantSpawnDelay: 0
-  maxPeasantSpawnDelay: 0
-  minKnightSpawnDelay: 0
-  maxKnightSpawnDelay: 0
-  castleMaxHealth: 20
-  shootArrows: 0
-  arrowDamage: 0
-  arrowAngle: 90
-  minShootDelay: 0
-  maxShootDelay: 0
+  enemyUnitHPMultiplier: 1
+  castleMaxHealth: 100
 --- !u!1001 &245049008
 Prefab:
   m_ObjectHideFlags: 0
@@ -2356,7 +2342,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 300670954}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 19886.664, y: -22259.998, z: 0}
+  m_LocalPosition: {x: 18926.664, y: -22259.998, z: 0}
   m_LocalScale: {x: 48, y: 48, z: 60}
   m_Children:
   - {fileID: 1880612173}
@@ -2514,7 +2500,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 305190989}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 771, y: -868.95, z: 0}
+  m_LocalPosition: {x: -189, y: -868.95, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 979321713}
@@ -2982,7 +2968,7 @@ Transform:
   m_Children:
   - {fileID: 1704347741}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &359921912
 MonoBehaviour:
@@ -4142,52 +4128,6 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
---- !u!1001 &488969639
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4172237643613538, guid: 6ba656189c6926c498e3816675b8dc82, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 2.6014006
-      objectReference: {fileID: 0}
-    - target: {fileID: 4172237643613538, guid: 6ba656189c6926c498e3816675b8dc82, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 1.9624602
-      objectReference: {fileID: 0}
-    - target: {fileID: 4172237643613538, guid: 6ba656189c6926c498e3816675b8dc82, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4172237643613538, guid: 6ba656189c6926c498e3816675b8dc82, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4172237643613538, guid: 6ba656189c6926c498e3816675b8dc82, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4172237643613538, guid: 6ba656189c6926c498e3816675b8dc82, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4172237643613538, guid: 6ba656189c6926c498e3816675b8dc82, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4172237643613538, guid: 6ba656189c6926c498e3816675b8dc82, type: 2}
-      propertyPath: m_RootOrder
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1319428950145392, guid: 6ba656189c6926c498e3816675b8dc82, type: 2}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 6ba656189c6926c498e3816675b8dc82, type: 2}
-  m_IsPrefabParent: 0
 --- !u!1 &497090608
 GameObject:
   m_ObjectHideFlags: 0
@@ -4902,7 +4842,7 @@ RectTransform:
   - {fileID: 1989402725}
   - {fileID: 1736417074}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -7059,7 +6999,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 892594595}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1315.4004, y: -28, z: 0}
+  m_LocalPosition: {x: 355.4004, y: -28, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 161536634}
@@ -7375,22 +7315,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentCastleID: 0
-  enemyArcherHealth: 0
-  enemyPeasantHealth: 0
-  enemyKnightHealth: 0
-  spawnEnemies: 0
-  minArcherSpawnDelay: 0
-  maxArcherSpawnDelay: 0
-  minPeasantSpawnDelay: 0
-  maxPeasantSpawnDelay: 0
-  minKnightSpawnDelay: 0
-  maxKnightSpawnDelay: 0
-  castleMaxHealth: 40
-  shootArrows: 0
-  arrowDamage: 0
-  arrowAngle: 90
-  minShootDelay: 0
-  maxShootDelay: 0
+  enemyUnitHPMultiplier: 2
+  castleMaxHealth: 450
 --- !u!1 &909468702
 GameObject:
   m_ObjectHideFlags: 0
@@ -7604,22 +7530,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentCastleID: 0
-  enemyArcherHealth: 0
-  enemyPeasantHealth: 0
-  enemyKnightHealth: 0
-  spawnEnemies: 0
-  minArcherSpawnDelay: 0
-  maxArcherSpawnDelay: 0
-  minPeasantSpawnDelay: 0
-  maxPeasantSpawnDelay: 0
-  minKnightSpawnDelay: 0
-  maxKnightSpawnDelay: 0
-  castleMaxHealth: 30
-  shootArrows: 0
-  arrowDamage: 0
-  arrowAngle: 90
-  minShootDelay: 0
-  maxShootDelay: 0
+  enemyUnitHPMultiplier: 1.2
+  castleMaxHealth: 150
 --- !u!1 &947161547
 GameObject:
   m_ObjectHideFlags: 0
@@ -8169,7 +8081,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4900715823933538, guid: fca8e275fd907a4469c4d73acdc27cd7, type: 2}
       propertyPath: m_RootOrder
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4900715823933538, guid: fca8e275fd907a4469c4d73acdc27cd7, type: 2}
       propertyPath: m_LocalScale.x
@@ -8209,7 +8121,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1040285645}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -25466.666, y: 13619.998, z: 0}
+  m_LocalPosition: {x: -24506.666, y: 13079.998, z: 0}
   m_LocalScale: {x: 36, y: 36, z: 60}
   m_Children: []
   m_Father: {fileID: 2035799658}
@@ -8497,7 +8409,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1112559324}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -32447.646, y: 18239.996, z: 0}
+  m_LocalPosition: {x: -31487.646, y: 17699.996, z: 0}
   m_LocalScale: {x: 36, y: 36, z: 60}
   m_Children:
   - {fileID: 892594596}
@@ -11424,7 +11336,7 @@ Transform:
   - {fileID: 1249753830}
   - {fileID: 534180152}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1619097410
 GameObject:
@@ -11467,22 +11379,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentCastleID: 0
-  enemyArcherHealth: 0
-  enemyPeasantHealth: 0
-  enemyKnightHealth: 0
-  spawnEnemies: 0
-  minArcherSpawnDelay: 0
-  maxArcherSpawnDelay: 0
-  minPeasantSpawnDelay: 0
-  maxPeasantSpawnDelay: 0
-  minKnightSpawnDelay: 0
-  maxKnightSpawnDelay: 0
-  castleMaxHealth: 25
-  shootArrows: 0
-  arrowDamage: 0
-  arrowAngle: 90
-  minShootDelay: 0
-  maxShootDelay: 0
+  enemyUnitHPMultiplier: 1
+  castleMaxHealth: 125
 --- !u!1 &1628133853
 GameObject:
   m_ObjectHideFlags: 0
@@ -14311,7 +14209,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1948697969
 GameObject:
@@ -14988,7 +14886,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2035799654}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -50, y: -50, z: 0}
   m_LocalScale: {x: 0.009259259, y: 0.009259259, z: 0.009259259}
   m_Children:
   - {fileID: 1112559325}
