@@ -16,6 +16,7 @@ public class ChampionEffect : MonoBehaviour {
 
     #region charm - unit prices
     public float priceCoefficient = 1f;
+    private float defaultPriceCoefficient = 1f;
     public int minUnitPrice = 1;
     private float charmEffect = 0.01f;
     #endregion
@@ -80,16 +81,27 @@ public class ChampionEffect : MonoBehaviour {
 
     public void ResetChampionEffect()
     {
+        // reset charm
+        priceCoefficient = defaultPriceCoefficient;
+
+        // reset luck
         ducatFindChance = defaultDucatFindChance;
+        
+        // reset wisdom
         playerExpCoefficient = defaultExpCoefficent;
+
+        // reset brawn
         playerUnitHPCoefficient = defaultPlayerUnitHPCoefficient;
+
+        // reset wealth
         startingMeatCoefficient = defaultStartingMeatCoefficient;
+
+        // reset discipline
         castleArrowDamageCoefficient = defaultCastleArrowDamageCoeffient;
 
         foreach (Champion champion in activeChampions)
         {
-            champion.invitedToBattle = false;
-            //Debug.Log(champion.properties.Name + " removed from active champions");         
+            champion.invitedToBattle = false;    
         }
         activeChampions.Clear();
     }
