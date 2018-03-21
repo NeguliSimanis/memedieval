@@ -147,4 +147,19 @@ public class CastleArrow : MonoBehaviour {
             isActive = false;
         }
     }
+
+    void OnMouseDown()
+    {
+        Split();
+        Destroy(gameObject);
+    }
+
+    // splits the arrow into two parts when it's clicked
+    public void Split()
+    {
+        GameObject arrowSplinters = this.gameObject.transform.GetChild(0).gameObject;
+        arrowSplinters.SetActive(true);
+        arrowSplinters.transform.parent = null;
+        Destroy(arrowSplinters, .5f);
+    }
 }

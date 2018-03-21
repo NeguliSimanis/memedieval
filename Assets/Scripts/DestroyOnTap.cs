@@ -4,11 +4,8 @@ using UnityEngine;
 
 public class DestroyOnTap : MonoBehaviour {
 
-    
-
     void OnMouseDown()
     {
-
         Destroy(gameObject);
     }
 }

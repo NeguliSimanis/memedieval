@@ -29,6 +29,7 @@ public class GameData
     public string enemyCastleTag = "EnemyCastle";
     public string playerProfileTag = "Player profile"; // TO-DO replace all references to PlayerProfile.Singleton
     public string enemyBalancerTag = "Enemy balancer";
+   // public string castleArrowTag = "CastleArrow";
     #endregion
 
     #region scenes
