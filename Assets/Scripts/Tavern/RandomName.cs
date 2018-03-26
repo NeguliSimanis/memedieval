@@ -5,6 +5,11 @@ using UnityEngine.UI;
 
 public class RandomName : MonoBehaviour {
 
+    /*
+     * Generates a random full name from a given list of names and surnames
+     * List of names available here: https://docs.google.com/spreadsheets/d/1bU8xhprB7hKEfMUuGSFNypsKsXxkt5fWZ_A3n-66lDU/edit#gid=0
+     */
+
     [SerializeField]
     InputField inputField;
     Button randomNameButton;
@@ -39,8 +44,24 @@ public class RandomName : MonoBehaviour {
         "Dante",
         "Levi",
         "Eva",
-        "Heloïse ",
-        "Anselm"
+        "Heloise ",
+        "Anselm",
+        "Lambert",
+        "Raphael",
+        "Cassius",
+        "Gwendolynn",
+        "Garett",
+        "Garth",
+        "Isolde",
+        "Sibyl",
+        "Drake",
+        "Cadwaladr",
+        "Thurstan",
+        "Hadrian",
+        "Brom",
+        "Ulric",
+        "Helewys",
+        "Isolde"
     };
     #endregion
 
@@ -74,6 +95,19 @@ public class RandomName : MonoBehaviour {
         "Boez",
         "Abelard",
         "Martel",
+        "of Warwick",
+        "Holinshed",
+        "Peronell",
+        "Muller",
+        "Drake",
+        "ap Gruffydd",
+        "Gwynedd",
+        "de Clare",
+        "of Aragon",
+        "Ceredigion",
+        "Regiomontanus",
+        "of Bayeux",
+        "Montagu",
     };
     #endregion
 
