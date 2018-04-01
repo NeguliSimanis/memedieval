@@ -12,7 +12,7 @@ public class TavernStatsPageUI : MonoBehaviour {
 
     public Image avatar;
     public Text ChampionName;
-    public Text ChampionLvl;
+    //public Text ChampionLvl;
     public Text ClassName;
 
     public GameObject SkillList;
@@ -33,23 +33,22 @@ public class TavernStatsPageUI : MonoBehaviour {
         var rect = new Rect(0, 0, p.width, p.height);
         avatar.sprite = Sprite.Create(_activeChamp.properties.LoadPictureAsTexture2D(), rect, Vector2.zero);
         ChampionName.text = _activeChamp.properties.Name;
-        ChampionLvl.text = _activeChamp.properties.level.ToString();
         switch(_activeChamp.properties.champClass)
         {
             case 0:
-                ClassName.text = "PEASANT";
+                ClassName.text = "Level " + (c.properties.level+1) + " Peasant";
                 UnitImage[1].SetActive(false);
                 UnitImage[2].SetActive(false);
                 UnitImage[0].SetActive(true);
                 break;
             case 1:
-                ClassName.text = "KNIGHT";
+                ClassName.text = "Level " + (c.properties.level + 1) + " Knight";
                 UnitImage[1].SetActive(true);
                 UnitImage[2].SetActive(false);
                 UnitImage[0].SetActive(false);
-                break;
+                break;  
             case 2:
-                ClassName.text = "ARCHER";
+                ClassName.text = "Level " + (c.properties.level + 1) + " Archer";
                 UnitImage[1].SetActive(false);
                 UnitImage[2].SetActive(true);
                 UnitImage[0].SetActive(false);
@@ -65,21 +64,21 @@ public class TavernStatsPageUI : MonoBehaviour {
         var p = PlayerProfile.Singleton;
         for (int i = 0; i < p.champions.Count; i++)
         {
-            //hack
-
-            var champ = p.champions[i];
-            ChangeChamp(champ);
+            var currentChampion = p.champions[i];
+            ChangeChamp(currentChampion);
             UnLoadSkills();
             loadSkills();
+
             var buttonp = Instantiate(ChampSelectButtonPrefab);
             var button = buttonp.GetComponent<Image>();
             button.gameObject.SetActive(true);
             button.transform.SetParent(ChampSelect.transform);
+
             var p1 = _activeChamp.properties.LoadPictureAsTexture2D();          
             var rect = new Rect(0, 0, p1.width, p1.height);
-            button.sprite= Sprite.Create(champ.properties.LoadPictureAsTexture2D(), rect, Vector2.zero);
-            button.GetComponentInChildren<Text>().text = champ.properties.Name;
-            buttonp.GetComponent<Button>().onClick.AddListener(() => { ChangeChamp(champ); });
+            button.sprite= Sprite.Create(currentChampion.properties.LoadPictureAsTexture2D(), rect, Vector2.zero);
+            button.GetComponentInChildren<Text>().text = currentChampion.properties.Name;
+            buttonp.GetComponent<Button>().onClick.AddListener(() => { ChangeChamp(currentChampion); });
             _champButtons.Add(button.gameObject);
         }
         
@@ -92,12 +91,6 @@ public class TavernStatsPageUI : MonoBehaviour {
 
     private void loadSkills()
     {
-
-        // discipline
-        // brawn
-        // wisdomm
-        // luck
-        // wealth
 
         var ChampSkills = _activeChamp.GetComponentInChildren<StatsContainer>();
         for (int i = 0; i < ChampSkills.stats.Count; i++)
@@ -136,8 +129,6 @@ public class TavernStatsPageUI : MonoBehaviour {
 
     public void UpdateSkillNumbers()
     {
-       // var skills = _activeChamp.GetComponentInChildren<StatsContainer>().stats;
-
         skillPointsText.text = _activeChamp.properties.skillpoints + " skillpoints";
 
         // bad hack
