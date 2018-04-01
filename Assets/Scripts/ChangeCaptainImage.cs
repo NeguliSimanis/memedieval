@@ -20,6 +20,11 @@ public class ChangeCaptainImage : MonoBehaviour
 
     void Start ()
     {
+        if (!GameObject.FindGameObjectWithTag("Game manager"))
+        {
+            Debug.Log("No game manager object found!");
+            return;
+        }
         gameManager = GameObject.FindGameObjectWithTag("Game manager");
         gameManager.GetComponent<AssignCaptainFace>().AwakeChildren();
 

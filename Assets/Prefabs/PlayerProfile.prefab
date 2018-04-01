@@ -31,6 +31,35 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1732049417886902
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4055829699153478}
+  - component: {fileID: 114387966339466434}
+  m_Layer: 0
+  m_Name: ChampionCreate
+  m_TagString: ChampionCreator
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4055829699153478
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1732049417886902}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 1271.5227, y: 730.24054, z: 2.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4900715823933538}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4900715823933538
 Transform:
   m_ObjectHideFlags: 1
@@ -40,7 +69,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 358.07758, y: 241.75954, z: -2.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 4055829699153478}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -55,6 +85,97 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38da58db05aa9bc4fbe76209bfd50e2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  priceCoefficient: 1
+  minUnitPrice: 1
+  ducatFindChance: 0
+  championFinalExpEarn: 10
+  playerUnitHPCoefficient: 1
+  startingMeatCoefficient: 1
+  castleArrowDamageCoefficient: 1
+  minCastleArrowDamage: 1
+--- !u!114 &114387966339466434
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1732049417886902}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e45068efa92a3804788e8e2f69d56a10, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scriptAttachedToRecruitPanel: 0
+  ChampionsPrefabs:
+  - {fileID: 1131093518672646, guid: ab1ad3b96eb29404e94afbb1030fb1a1, type: 2}
+  - {fileID: 1131093518672646, guid: f0a3cababd84fed4c82bfca0d61c0670, type: 2}
+  - {fileID: 1131093518672646, guid: 5ec1021a675b11746ae4b82da8263aa2, type: 2}
+  StatsContainerPrefab: {fileID: 1977390364845042, guid: 763d3d642123e39478d414b4d6bfbe90,
+    type: 2}
+  Name: {fileID: 0}
+  hasPicture: 0
+  pic: {fileID: 0}
+  background: {fileID: 0}
+  isMan: 0
+  Sentence1part1:
+  - '{0} was born'
+  - '{0} fondly recalls the time that was spent'
+  - '{0} spent the childhood'
+  - The scars borne by {0} were struck
+  Sentence1part2:
+  - in a poor family
+  - in a church
+  - in a noble family
+  - under the starry sky
+  - on the battlefield
+  - in the woods
+  - on a mountain
+  - under the bridge
+  - in secrecy
+  - in a strange land
+  Sentence1part3:
+  - when the bell tolled midnight.
+  - under the guise of the night.
+  - a long time ago.
+  - and without shame.
+  - "illuminated by God\u2019s light."
+  - and guided by truth in sword.
+  Sentence2part1:
+  - ' But everything changed when '
+  - ' But one faithful day '
+  - ' That all changed when '
+  Sentence2part2:
+  - 'he infidels attacked '
+  - 'a pastor arrived to the village '
+  - '{0} lost their dog in the woods '
+  - the vikings arrived
+  Sentence2part3:
+  - and took their spouse away.
+  - and praised the Lord.
+  - and burned everything in sight.
+  - and drank all the mead in the village.
+  Sentence3part1:
+  - ' Now {0}'
+  - ' Ever since, {0}'
+  - ' Evermore, {0}'
+  Sentence3part2:
+  - roams the lands
+  - is on a quest
+  - offers their sword for hire
+  - spends the days at the tavern
+  Sentence3part3:
+  - in search of vengeance.
+  - in search of cranberries.
+  - to find their true self.
+  - to clear thy name.
+  Motto:
+  - An veritas, an nihil
+  - De oppresso Liber
+  - Deus vult
+  - Ubi concordia, ibi victoria
+  - Vae victis!
+  - Nota Bene
+  - Tum podem extulit horridulum
+  - Fortes fortuna iuvat
 --- !u!114 &114428564772373090
 MonoBehaviour:
   m_ObjectHideFlags: 1

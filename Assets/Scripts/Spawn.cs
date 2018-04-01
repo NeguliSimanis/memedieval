@@ -49,10 +49,8 @@ public class Spawn : MonoBehaviour
     void Start()
     {
         if (!Enemy)
-            SetPriceModifiers();
-
-        if (UnitCostText != null)
         {
+            SetPriceModifiers();
             UnitCostText.text = "Cost: " + unitCost;
         }
     }
@@ -174,7 +172,6 @@ public class Spawn : MonoBehaviour
                     }
 
                     //face.transform.GetComponent<SpriteRenderer>().sortingLayerName = "Foreground";
-                    Debug.Log("face added");
                 }
             }
 

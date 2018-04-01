@@ -64,7 +64,7 @@ public class PlayerProfile : MonoBehaviour
 
     private void Start()
     {
-        MictransactionsManager.Instance.OnTransactionSuccessful += Instance_OnTransactionSuccessful;
+       // MictransactionsManager.Instance.OnTransactionSuccessful += Instance_OnTransactionSuccessful;
     }
 
     private void Instance_OnTransactionSuccessful(MictransactionsManager.PremiumCurrencyProduct product)

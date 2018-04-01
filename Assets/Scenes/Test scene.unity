@@ -13588,9 +13588,10 @@ GameObject:
   - component: {fileID: 1896993541}
   - component: {fileID: 1896993543}
   - component: {fileID: 1896993542}
+  - component: {fileID: 1896993544}
   m_Layer: 0
   m_Name: BattleController
-  m_TagString: Untagged
+  m_TagString: BattleController
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -13662,6 +13663,17 @@ MonoBehaviour:
   shootCastleArrows: 1
   enemySpawner: {fileID: 1531685979}
   castleArrowController: {fileID: 1896993541}
+--- !u!114 &1896993544
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1896993539}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6e8b039f4fc6cd46bb0822263cd92bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1897450396
 GameObject:
   m_ObjectHideFlags: 0
