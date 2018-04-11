@@ -16,7 +16,11 @@ public class GameData
     public List<ChampionData> championList = new List<ChampionData>();
 
     #region resources
+    // salt
     public int salt = 10;
+    public int newChampionCost = 5; // not used everywhere
+
+    // ducats
     public int ducats = 10;
     #endregion
 

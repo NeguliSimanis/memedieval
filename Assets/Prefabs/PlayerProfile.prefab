@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 114428564772373090}
   - component: {fileID: 114726119767806526}
   - component: {fileID: 114160482598264780}
+  - component: {fileID: 114409104781831364}
   m_Layer: 0
   m_Name: PlayerProfile
   m_TagString: Player profile
@@ -176,6 +177,18 @@ MonoBehaviour:
   - Nota Bene
   - Tum podem extulit horridulum
   - Fortes fortuna iuvat
+--- !u!114 &114409104781831364
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1529472686515804}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb1098bd9efa5e44a9574145b391fe1c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  unlimitedResources: 0
 --- !u!114 &114428564772373090
 MonoBehaviour:
   m_ObjectHideFlags: 1

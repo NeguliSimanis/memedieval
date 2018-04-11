@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class TavernGUIchanger : MonoBehaviour
 {
+    private ResourceControl resourceControl;
+
 	public Text ducatcount;    
     public Text saltcount;
     public GameObject[] layouts;
@@ -17,14 +19,17 @@ public class TavernGUIchanger : MonoBehaviour
     {
         StartCoroutine(SetSaltCount());
         StartCoroutine(SetDucatCount());
+
+        // intialize variables
         tavernDialogueContol = this.gameObject.GetComponent<TavernDialogueControl>();
+        resourceControl = PlayerProfile.Singleton.gameObject.GetComponent<ResourceControl>();
     }
 
     public void ChangeLayout(int layoutID)
-    {
-        // player has no champions and tries to open champion stats - ignore request
+    {     
         if (layouts[layoutID].gameObject.tag == statsPanelTag)
         {
+            // player has no champions and tries to open champion stats - ignore request
             if (PlayerProfile.Singleton.champions.Count == 0)
             {
                 tavernDialogueContol.SayNoChampions();
@@ -32,15 +37,23 @@ public class TavernGUIchanger : MonoBehaviour
             }
         }
 
-        // player has too many champions - ignore request
+        
         else if (layouts[layoutID].gameObject.tag == championRecruitTag)
         {
+            // player has too many champions - ignore request
             if (PlayerProfile.Singleton.champions.Count >= 5)
             {
                 tavernDialogueContol.SayTooManyChampions();
                 return;
             }
-              
+
+            // player resource check
+            if (!resourceControl.CheckSalt(GameData.current.newChampionCost))
+            {
+                tavernDialogueContol.SayNotEnoughSalt();
+                Debug.Log("required salt " + GameData.current.newChampionCost);
+                return;
+            } 
         }
 
         // valid request
