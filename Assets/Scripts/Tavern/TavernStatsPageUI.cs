@@ -12,8 +12,11 @@ public class TavernStatsPageUI : MonoBehaviour {
 
     public Image avatar;
     public Text ChampionName;
-    //public Text ChampionLvl;
     public Text ClassName;
+
+    [Header("Experience")]
+    [SerializeField] Image championExpBar;
+    [SerializeField] Text championExpText;
 
     public GameObject SkillList;
     public GameObject SkillItem;
@@ -56,7 +59,14 @@ public class TavernStatsPageUI : MonoBehaviour {
         }
         BioText.text = _activeChamp.properties.bio;
         Motto.text = _activeChamp.properties.quote;
+        SetChampionExpBar();
         UpdateSkillNumbers();
+    }
+
+    private void SetChampionExpBar()
+    {
+        championExpBar.fillAmount = (float)_activeChamp.properties.currentExp / (float)_activeChamp.properties.nextLevelExp;
+        championExpText.text = _activeChamp.properties.currentExp.ToString() + " / " + _activeChamp.properties.nextLevelExp.ToString() + " exp";
     }
 
     private void OnEnable()

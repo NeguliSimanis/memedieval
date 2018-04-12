@@ -104,6 +104,8 @@ public class Map : MonoBehaviour {
 
     void MarkAsDestroyed(int castleID)
     {
+        Debug.Log("destroyed castle id: " + castleID);
+        Debug.Log("castles length: " + castles.Length);
         EnableDestroyedCastleMarker(castleID);
 
         // unlock the destroyed castle and all previous castles    
@@ -118,7 +120,7 @@ public class Map : MonoBehaviour {
             ActivateCastleButton(castleID + 1);
             ActivateCastleButton(castleID + 2);
         }    
-        else if (castleID == 2 || castleID == castles.Length)
+        else if (castleID == 2 || castleID == castles.Length-1)
         {
             //Debug.Log("castle 2 not destroyed");
             //ActivateCastleButton(castleID + 1);
