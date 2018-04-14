@@ -57,10 +57,17 @@ public class TavernStatsPageUI : MonoBehaviour {
                 UnitImage[0].SetActive(false);
                 break;
         }
-        BioText.text = _activeChamp.properties.bio;
-        Motto.text = _activeChamp.properties.quote;
+        
+        SetChampionFlairText();
         SetChampionExpBar();
         UpdateSkillNumbers();
+        CheckUnspentSkillpoints();
+    }
+
+    private void SetChampionFlairText()
+    {
+        BioText.text = _activeChamp.properties.bio;
+        Motto.text = _activeChamp.properties.quote;
     }
 
     private void SetChampionExpBar()
@@ -139,8 +146,6 @@ public class TavernStatsPageUI : MonoBehaviour {
 
     public void UpdateSkillNumbers()
     {
-        skillPointsText.text = _activeChamp.properties.skillpoints + " skillpoints";
-
         // bad hack
         skillNumbers[0].text = _activeChamp.properties.charm.ToString();
         skillNumbers[1].text = _activeChamp.properties.discipline.ToString();
@@ -148,16 +153,29 @@ public class TavernStatsPageUI : MonoBehaviour {
         skillNumbers[3].text = _activeChamp.properties.wisdom.ToString();
         skillNumbers[4].text = _activeChamp.properties.luck.ToString();
         skillNumbers[5].text = _activeChamp.properties.wealth.ToString();
+    }
 
-        // disable adding skillpoints button if the champion has no unspent skillpoints
+    private void CheckUnspentSkillpoints()
+    {
         if (_activeChamp.properties.skillpoints <= 0)
-            foreach(var b in skillButtons)
+        {
+            // disable adding skillpoints
+            foreach (var b in skillButtons)
                 b.gameObject.SetActive(false);
 
-        // enable adding skillpoints if the champion has unspent skillpoints
+            // disable skillpoint text
+            skillPointsText.enabled = false;
+        }
         else
+        {
+            // enable adding skillpoints
             foreach (var b in skillButtons)
                 b.gameObject.SetActive(true);
+
+            // enable skillpoint text
+            skillPointsText.enabled = true;
+            skillPointsText.text = _activeChamp.properties.skillpoints + " skillpoints";
+        }
     }
 
     public void AddSkillPoint(int skillIndex)
@@ -190,6 +208,7 @@ public class TavernStatsPageUI : MonoBehaviour {
             skills.stats[skillIndex].value++;
             _activeChamp.properties.skillpoints--;
             UpdateSkillNumbers();
+            CheckUnspentSkillpoints();
         }
     }
 }
