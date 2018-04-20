@@ -72,6 +72,7 @@ public class CastleHUB : MonoBehaviour {
 
     void Start ()
     {
+        championCount = PlayerProfile.Singleton.champions.Count;
         LoadData();
         SetDefaultDialogue();
         SetupButtons();  
@@ -141,18 +142,13 @@ public class CastleHUB : MonoBehaviour {
         battleButton.onClick.RemoveListener(AcceptChampion);
         tavernButton.onClick.RemoveListener(DeclineChampion);
 
-        if (canEnterBattle)
+        if (championCount > 0)
         {
-            servantDialogue.text = readyForBattle;
-            tavernButton.gameObject.SetActive(false);
-            battleButtonText.text = battleButtonFinalText;
-            battleButton.onClick.AddListener(EnterBattle);
+            EnterBattle();
         }
         else
         {
-            servantDialogue.text = noChampionsSelected;
-            tavernButtonText.text = tavernButtonDefaultText;
-            isSelectingChampions = false;
+            servantDialogue.text = noChampions;
             canEnterTavern = true;
         }
     }
@@ -184,7 +180,7 @@ public class CastleHUB : MonoBehaviour {
     void SetupButtons()
     {
         tavernButton.onClick.AddListener(EnterTavern);
-        battleButton.onClick.AddListener(ChooseChampions);
+        battleButton.onClick.AddListener(CheckBattleReadiness);
 
         tavernButtonText = tavernButton.gameObject.transform.GetChild(0).gameObject.GetComponent<Text>();
         battleButtonText = battleButton.gameObject.transform.GetChild(0).gameObject.GetComponent<Text>();

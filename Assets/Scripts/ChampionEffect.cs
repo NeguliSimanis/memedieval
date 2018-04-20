@@ -99,10 +99,10 @@ public class ChampionEffect : MonoBehaviour {
         // reset discipline
         castleArrowDamageCoefficient = defaultCastleArrowDamageCoeffient;
 
-        foreach (Champion champion in activeChampions)
+        /*foreach (Champion champion in activeChampions)
         {
             champion.invitedToBattle = false;    
-        }
+        }*/
         activeChampions.Clear();
     }
 

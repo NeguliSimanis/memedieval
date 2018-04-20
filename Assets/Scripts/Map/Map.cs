@@ -9,9 +9,6 @@ public class Map : MonoBehaviour {
 
     #region variables
     [SerializeField]
-    Button selectChampionsButton;
-
-    [SerializeField]
     GameObject battleController;
 
     private string destroyedMarkerName = "DestroyedAnim";
@@ -21,7 +18,7 @@ public class Map : MonoBehaviour {
     private string selectedCastleMarkerName = "CastleSelected";
 
     [SerializeField]
-    Button CloseMapButton;
+    Button closeMapButton;
     private string sceneAfterCloseMap = "Castle";
 
     [SerializeField]
@@ -37,9 +34,9 @@ public class Map : MonoBehaviour {
     [SerializeField]
     string[] castleNames;
 
-    private string selectedCastle;
-    private int selectedCastleID;
-    private bool castleSelected = false;
+    public static string selectedCastle;
+    public static int selectedCastleID;
+    public static bool isCastleSelected = false;
 
     #region battle button
     [SerializeField] Button battleButton;
@@ -50,22 +47,57 @@ public class Map : MonoBehaviour {
     private string noCastleSelected = "No castle selected!";
     #endregion
 
+    #region selecting champions
+    bool isArmyReady = false;
+    private string strategyViewScene = "Strategy view";
+
+    [SerializeField]
+    Button selectChampionsButton;
+    private string selectChampionsButtonDefaultText = "Select Champions";
+    private string selectChampionsButtonSelectedText = "Change Army";
+    #endregion
     #endregion
 
     void Start()
     {
         ActivateCastleButton(0);
-        battleButton.onClick.AddListener(EnterBattle);
-        CloseMapButton.onClick.AddListener(CloseMap);
+        AddButtonListeners();
         LoadMap();
         HideUnavailableCastles();
+        CheckArmyReadiness();
+
+        if (isArmyReady && isCastleSelected)
+        {
+            Debug.Log("check 1");
+            SelectTargetCastle();
+        }
+    }
+
+    void CheckArmyReadiness()
+    {
+        foreach (Champion champion in PlayerProfile.Singleton.champions)
+        {
+            if (champion.invitedToBattle)
+            {
+                isArmyReady = true;
+                Debug.Log("army ready");
+                break;
+            }
+        }
+    }
+
+    void AddButtonListeners()
+    {
+        selectChampionsButton.onClick.AddListener(EnterStrategyView);
+        battleButton.onClick.AddListener(EnterBattle);
+        closeMapButton.onClick.AddListener(CloseMap);
     }
 
     // activates castles that have been unlocked
     void LoadMap()
     {
-        // tell player to select target castle
-        battleButtonText.text = selectCastle;
+        if (!isArmyReady)
+            HideBattleButton();
 
         SetCastleButtonContainers();
 
@@ -89,6 +121,8 @@ public class Map : MonoBehaviour {
             destroyedCastleID++;
         }
 
+        if (isCastleSelected)
+            ActivateCastleMarker();
     }
 
     void SetCastleButtonContainers()
@@ -101,7 +135,7 @@ public class Map : MonoBehaviour {
     }
 
     void CloseMap()
-    {
+    {   
         SceneManager.LoadScene(sceneAfterCloseMap);
     }
 
@@ -157,35 +191,36 @@ public class Map : MonoBehaviour {
     {
         castleButtons[castleID].enabled = true;
         castleButtons[castleID].onClick.AddListener(SelectTargetCastle);
-
     }
 
     void SelectTargetCastle()
     {
-        castleSelected = true;
-        selectedCastle = EventSystem.current.currentSelectedGameObject.name;
+        isCastleSelected = true;
+        if (EventSystem.current.currentSelectedGameObject != null)
+            selectedCastle = EventSystem.current.currentSelectedGameObject.name;
+        Debug.Log("Selected castle " + selectCastle);
 
         int currentID = 0;
         foreach (string castle in castleNames)
         {
             if (castle == selectedCastle)
             {
-               // Debug.Log("Castle " + selectedCastle + " selected");
+                Debug.Log("Castle " + selectedCastle + " selected");
                 selectedCastleID = currentID;
+                isCastleSelected = true;
                 ActivateBattleButton();
             }
             currentID++;
         }
 
-        // disable castle markers that are not currently selected
+        // disable castle marker that are not currently selected
         if (selectedCastleMarker != null)
         {
             selectedCastleMarker.SetActive(false);
         }
 
         // enable selected castle marker
-        selectedCastleMarker = castleButtonContainers[selectedCastleID].transform.Find(selectedCastleMarkerName).gameObject;
-        selectedCastleMarker.SetActive(true);
+        ActivateCastleMarker();
     }
 
     void EnableDestroyedCastleMarker(int castleID)
@@ -195,15 +230,13 @@ public class Map : MonoBehaviour {
 
     void ActivateBattleButton()
     {
-        castleSelected = true;
-
-        battleButtonActiveImage.SetActive(true);
-        battleButtonText.enabled = false;
+        if (isArmyReady)
+            battleButton.gameObject.SetActive(true);
     }
 
     void EnterBattle()
     {
-        if (castleSelected)
+        if (isCastleSelected)
         {
             // disable enemy spawning in the first battle
             if (selectedCastleID == 0)
@@ -226,5 +259,20 @@ public class Map : MonoBehaviour {
         }
     }
 
+    void HideBattleButton()
+    {
+        battleButton.gameObject.SetActive(false);
+    }
 
+    void EnterStrategyView()
+    {
+        SceneManager.LoadScene(strategyViewScene);
+    }
+
+    void ActivateCastleMarker()
+    {
+        selectedCastleMarker = castleButtonContainers[selectedCastleID].transform.Find(selectedCastleMarkerName).gameObject;
+        selectedCastleMarker.SetActive(true);
+    }
+     
 }

@@ -54,4 +54,18 @@ public class Champion : MonoBehaviour {
         properties.skillpoints++;
         properties.nextLevelExp = Mathf.RoundToInt(properties.nextLevelExp * 1.5f);
     }
+
+    public string GetClassName()
+    {
+        switch (properties.champClass)
+        {
+            case 0:
+                return "Archer";
+            case 1:
+                return "Knight";
+            case 2:
+                return "Peasant";
+        }
+        return "error";
+    }
 }
