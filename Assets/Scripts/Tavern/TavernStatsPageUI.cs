@@ -174,6 +174,10 @@ public class TavernStatsPageUI : MonoBehaviour {
 
             // enable skillpoint text
             skillPointsText.enabled = true;
+
+            if (_activeChamp.properties.skillpoints == 1)
+                skillPointsText.text = _activeChamp.properties.skillpoints + " skillpoint";
+            else
             skillPointsText.text = _activeChamp.properties.skillpoints + " skillpoints";
         }
     }

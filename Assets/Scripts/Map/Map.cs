@@ -9,6 +9,9 @@ public class Map : MonoBehaviour {
 
     #region variables
     [SerializeField]
+    Button selectChampionsButton;
+
+    [SerializeField]
     GameObject battleController;
 
     private string destroyedMarkerName = "DestroyedAnim";
