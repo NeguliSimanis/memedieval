@@ -103,8 +103,8 @@ public class ChampionData
 
     public void ChooseRandomAbility()
     {
-        //int abilityID = Random.Range(0, (int)Ability.AbilityCount);
-        int abilityID = 0;
+        int abilityID = Random.Range(0, (int)Ability.AbilityCount);
+        //int abilityID = 0;
         currentChampionAbility = (Ability)abilityID;
         Debug.Log("Ability " + currentChampionAbility + " chosen");
     }

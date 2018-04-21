@@ -43,7 +43,7 @@ public class LoadGamePanel : MonoBehaviour
     private void DisablePanel()
     {
         isMovingDown = true;
-        targetPositionY = inactivePanelPosition.localPosition.y;
+        //targetPositionY = inactivePanelPosition.localPosition.y;
     }
     #endregion
 
