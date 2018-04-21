@@ -12,6 +12,7 @@ public class ChampionAbilities : MonoBehaviour {
     Animator animator;
     float defaultAnimSpeed;
 
+    bool hasChargingBar = false;
     bool canChargeAbility = true;
     bool isChargingAbility = false;
 
@@ -23,13 +24,16 @@ public class ChampionAbilities : MonoBehaviour {
     private float chargingEndsTime;
 
     [SerializeField]
-    Texture2D chargingBar;
-    private int chargingBarWidth = 100;
-    private int chargingBarHeight = 20;
-    int chargingCounter = 0;
-    private Color chargingColor = new Color(0.875f, 0.445f, 0.167f, 1.000f);
+    GameObject chargingBar;
+    Transform canvasTransform;
 
     void Start()
+    {
+        SetDefaultValues();
+        canvasTransform = gameObject.transform.Find("Canvas").GetComponent<Canvas>().transform; 
+    }
+
+    void SetDefaultValues()
     {
         waypointFollower = gameObject.GetComponent<WaypointFollower>();
         defaultMoveSpeed = waypointFollower.Speed;
@@ -48,6 +52,10 @@ public class ChampionAbilities : MonoBehaviour {
 
     void ChargeAbility()
     {
+        
+
+        chargingBar.SetActive(true);
+        
         canChargeAbility = false;
         isChargingAbility = true;
 
@@ -62,9 +70,9 @@ public class ChampionAbilities : MonoBehaviour {
         if (isChargingAbility)
         {
             //chargingBar.FillAreaByWidth(10, 10, chargingColor,10);
-            chargingBar.FloodFillArea(1, 1, chargingColor, chargingCounter);
-            chargingBar.Apply();
-            chargingCounter++;
+            //chargingBar.FloodFillArea(1, 1, chargingColor, chargingCounter);
+            //chargingBar.Apply();
+         
 
             if (Time.time > chargingEndsTime)
             {
@@ -72,26 +80,10 @@ public class ChampionAbilities : MonoBehaviour {
                 isChargingAbility = false;
                 waypointFollower.Speed = defaultMoveSpeed;
                 animator.speed = defaultAnimSpeed;
-                chargingCounter = 0;
+                chargingBar.SetActive(false);
             }
         }
     }
 
-    void OnGUI()
-    {
-        if (!isChargingAbility)
-            return;
 
-        Vector2 targetPos;
-        targetPos = Camera.main.WorldToScreenPoint(gameObject.transform.position);
-        //chargingBar.FillAreaByWidth(10, 10, chargingColor, 10);
-        
-        //GUI.Box(new Rect(targetPos.x-100, targetPos.y, 100, 100), chargingBar);
-
-        //chargingBar.FloodFillArea(10, 10, Color.red);
-        //chargingBar.Apply();
-
-        GUI.DrawTexture(new Rect(targetPos.x - 100, targetPos.y, chargingBarWidth, chargingBarHeight), chargingBar);
-
-    }
 }

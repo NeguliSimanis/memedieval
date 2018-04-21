@@ -1,5 +1,6 @@
 WindowsStandalone
 314e9745ca661d81123c9d4fc99c88a4 Assembly-CSharp.dll:.LoadGamePanel
+9bd36d2f323743aacf739d2182077dfe Assembly-CSharp.dll:.ChampionAbilities
 05524b8f659e7bfe5756d1335fec24ba Stores.dll:UnityEngine.Purchasing.AsyncWebUtil
 05524b8f659e7bfe5756d1335fec24ba Stores.dll:UnityEngine.Purchasing.MoolahStoreImpl
 05524b8f659e7bfe5756d1335fec24ba Stores.dll:UnityEngine.Purchasing.Extension.UnityUtil
@@ -87,8 +88,8 @@ f61c0793411f10cf5fbfa1473fef5ef2 UnityEngine.UI.dll:UnityEngine.UI.ToggleGroup
 127daf6cc99a5cfb80dfa430235858f2 Assembly-CSharp-firstpass.dll:.FMOD_Listener
 1ee6cac08436d2df0de2ca276339b36f Assembly-CSharp.dll:.EnemyCastleController
 1883791c8c7b36b8e2c2e2ffd6f11bb9 Assembly-CSharp-firstpass.dll:FMODUnity.StudioEventEmitter
-8d31a50b6878c857f0ab4ac48e1cff4b Assembly-CSharp.dll:.TavernDialogueControl
-0c03ef4a15ed068f0d330469fcc2d366 Assembly-CSharp.dll:.Champion
+0aa67ee1054b76fe547947fd64023dc3 Assembly-CSharp.dll:.TavernDialogueControl
+081aad2489bbcdbb5cd3dee95621f83d Assembly-CSharp.dll:.Champion
 05524b8f659e7bfe5756d1335fec24ba UnityEngine.Timeline.dll:UnityEngine.Timeline.ActivationPlayableAsset
 970a95104359198fe1a98ef48655de8c UnityEngine.Timeline.dll:UnityEngine.Timeline.ActivationTrack
 8144169769d51429c4aedc8b0f92d47b UnityEngine.Timeline.dll:UnityEngine.Timeline.AnimationPlayableAsset
@@ -130,6 +131,7 @@ c2275a8bfbb9f9942cad75ecdfded41d UnityEngine.HoloLens.dll:UnityEngine.XR.WSA.Spa
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.QuitGame
 50667894c33b478dc38ae949114bb1e8 Assembly-CSharp-firstpass.dll:AppStoresSupport.AppStoreSettings
 7c7515fcfbb13aac6fe2828d58153a10 Assembly-CSharp.dll:.Health
+05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.Dash
 97240a93157148c9fca6b1690f3b97a6 Assembly-CSharp.dll:.Testing
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.AssignCaptainFace
 0cbb0ad82f71afa4cb8b381922b42f5e Assembly-CSharp.dll:.EnemyController
@@ -142,9 +144,10 @@ d4eef00b5f86cd28a008b40c2c412d40 Assembly-CSharp.dll:.Attack
 3e8ac271c3972f0f73208b3e25675ebe Assembly-CSharp-firstpass.dll:.FMOD_StudioEventEmitter
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.LoadScene
 f5c3031670d4512c1a65d1cb73d2911b Assembly-CSharp-firstpass.dll:FMODUnity.StudioListener
-4c6debe811613fdfa28e2389bb8447bd Assembly-CSharp.dll:.TavernStatsPageUI
+297ab0b0cae580b7de4d08d831bb8a91 Assembly-CSharp.dll:.TavernStatsPageUI
 943a35f24793f207600a087f6b102544 Assembly-CSharp.dll:.ChangeCaptainImage
 8f075bd8e72eb498ace0df46c316449a Assembly-CSharp.dll:MeMedieval.Resources
+05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.CheckColor
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.SaveLoad
 d307f1ce9d892e98d8562de1f89c2106 Assembly-CSharp.dll:.PlayerUnit
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.UnitSortingLayers
@@ -177,6 +180,8 @@ e0f7ffd5d5c2abe4b2e16569a21163da UnityEngine.GoogleAudioSpatializer.dll:UnityEng
 05524b8f659e7bfe5756d1335fec24ba UnityStore.dll:UnityEngine.Store.MainThreadDispatcher
 e0f7ffd5d5c2abe4b2e16569a21163da UnityEngine.GoogleAudioSpatializer.dll:UnityEngine.Experimental.Audio.Google.GvrAudioRoom
 523299913ec7c89131a0f6bfd1ea0f7a Assembly-CSharp.dll:.ResourceTextController
+05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.ChangeFormationButton
+c754d493a936e72b6057d960499d7835 Assembly-CSharp.dll:.StrategyView
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.RenderController
 c0fe13799991be761f5d96d2cc7e670a Assembly-CSharp.dll:.EnemyUnit
 82b69d014b5d5ced3c07e127b9efeaeb Assembly-CSharp.dll:.Hangover
@@ -189,11 +194,13 @@ c2275a8bfbb9f9942cad75ecdfded41d UnityEngine.HoloLens.dll:UnityEngine.XR.WSA.Spa
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.ChampionSkillGenerator
 0654e52f419d842dd1d49d0df705dc42 Assembly-CSharp.dll:.CastleArrow
 75f7b089f208967a310e275ae8f891c1 Assembly-CSharp-firstpass.dll:.FMODAsset
+032529bdca1612dd7368ef5c736f056c Assembly-CSharp.dll:.FollowObject
 9de3a22eca9aefadba2d10d5987cefe3 UnityEngine.SpatialTracking.dll:UnityEngine.SpatialTracking.TrackedPoseDriver
 258dd390c46ca4d2582bbaae1f026591 Assembly-CSharp.dll:.Drink
 8cc632c1d9d880ccebcfd32cc9d963fd Assembly-CSharp-firstpass.dll:FMODUnity.StudioParameterTrigger
+bd70dd01b094cc7224c5de22e9c3ec43 Assembly-CSharp.dll:.ResourceControl
 50c5d3ffbdecfef214041ddec5935115 Assembly-CSharp.dll:.RandomName
-3f9662fdb15a073f21f50546b494ad1a Assembly-CSharp.dll:.Map
+2eb7d77c3a1a46ebee6beae99c3d3acf Assembly-CSharp.dll:.Map
 e0507e0086157afa8f9bc14f827af19e Assembly-CSharp.dll:.TavernGUIchanger
 4b4cc5a055250c37c3d90973e6fb6759 Assembly-CSharp-firstpass.dll:FMODUnity.RuntimeManager
 481e1d4e8ab0c4ead50301103e359744 Assembly-CSharp.dll:.RecruitUI

@@ -7,19 +7,23 @@ using UnityEngine.UI;
 public class FollowObject : MonoBehaviour {
 
     public GameObject objectToFollow;
-    //private Image thisImage;
+    bool isFollowing = false;
 
-	// Use this for initialization
-	void Start ()
+    public void StartFollowing (GameObject target)
     {
-        //thisImage = gameObject.GetComponent<Image>();	
-	}
-	
-	// Update is called once per frame
+
+        objectToFollow = target;
+        isFollowing = true;
+    }
+
 	void Update ()
     {
-        var objectPos = Camera.main.WorldToScreenPoint(objectToFollow.transform.position);
-        gameObject.transform.position = objectPos;
+        if (!isFollowing)
+            return;
+        //var objectPos = Camera.main.WorldToScreenPoint(objectToFollow.transform.position);
+        Debug.Log("following " + objectToFollow.name);
+        gameObject.transform.position = objectToFollow.transform.position;
+        //gameObject.transform.position = objectPos;
         
 	}
 }
