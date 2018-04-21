@@ -6,6 +6,10 @@ using UnityEngine.SceneManagement;
 
 public class Health : MonoBehaviour
 {
+    private bool isRegening = false;
+    private float regenEndTime;
+    private int regenPerSecond;
+
     private static bool victory;
     private static bool gameOver;
     private static bool PeasantCaptainDead;
@@ -60,6 +64,10 @@ public class Health : MonoBehaviour
 
     void Update()
     {
+        if (isRegening && Time.time > regenEndTime)
+        {
+            EndRegen();
+        }
 
         if (fire != null && !fire.activeSelf && currentHealth <= MaximumHealth / 3f)
         {
@@ -204,10 +212,35 @@ public class Health : MonoBehaviour
     }
 
 
-    public void Regen (int amount, float duration)
+    public void StartRegen (int amount, float targetTime)
+    {   
+        regenEndTime = targetTime;
+        Debug.Log(amount);
+        regenPerSecond = (int)(amount/(regenEndTime-Time.time));
+        isRegening = true;
+        StartCoroutine(Regen());
+
+        gameObject.transform.Find("RegenAnimation").gameObject.SetActive(true);
+    }
+
+    IEnumerator Regen()
+    {
+        Heal(regenPerSecond);
+        Debug.Log(regenPerSecond);
+        yield return new WaitForSeconds(1);
+    }
+
+    private void Heal (int amount)
     {
         currentHealth = currentHealth + amount;
-        Debug.Log(currentHealth);
+    }
+
+    private void EndRegen ()
+    {
+        StopCoroutine(Regen());
+        isRegening = false;
+        gameObject.transform.Find("RegenAnimation").gameObject.SetActive(false);
+        Debug.Log("regen ended");
     }
 
     public static bool Archer

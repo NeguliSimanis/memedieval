@@ -49,7 +49,7 @@ public class ChampionData
     public string Name;
     public bool isMan; 
     public int level;   
-    public int champClass; // 0 - peasant, 1 - Knight, 2 - archer
+    public int champClass; // 0 - peasant, 1 - Knight, 2 - archer (in some places peasant and archer are inversed)
     public string bio;
     public string quote;
     public bool isDead;

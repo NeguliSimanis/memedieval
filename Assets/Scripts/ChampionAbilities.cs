@@ -267,7 +267,7 @@ public class ChampionAbilities : MonoBehaviour {
         playerUnits = Object.FindObjectsOfType<PlayerUnit>();
         foreach (PlayerUnit playerUnit in playerUnits)
         {
-            playerUnit.gameObject.GetComponent<Health>().Regen(healAmount, abilityEffectDuration);
+            playerUnit.gameObject.GetComponent<Health>().StartRegen(healAmount, Time.time + abilityEffectDuration);
         }
         animator.speed = defaultAnimSpeed;
         waypointFollower.Speed = defaultMoveSpeed;
