@@ -30,7 +30,7 @@ public class PlayerUnit : MonoBehaviour {
 
     #region targetting
     [SerializeField]
-    private float defaultCooldown;
+    public float defaultCooldown;
     private float cooldown;
     private List<EnemyUnit> targets;
 

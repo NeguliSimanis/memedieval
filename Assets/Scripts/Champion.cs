@@ -59,11 +59,11 @@ public class Champion : MonoBehaviour {
     {
         switch (properties.champClass)
         {
-            case 0:
+            case 2:
                 return "Archer";
             case 1:
                 return "Knight";
-            case 2:
+            case 0:
                 return "Peasant";
         }
         return "error";

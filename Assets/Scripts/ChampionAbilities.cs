@@ -21,7 +21,7 @@ public class ChampionAbilities : MonoBehaviour {
 
     private float chargingDuration = 3f; 
 
-    private float abilityEffectDuration = 4f;
+    private float abilityEffectDuration = 3.5f;
     private float abilityAvailableDuration = 2f;
     private float abilityCooldown = 5f;
 
@@ -43,6 +43,14 @@ public class ChampionAbilities : MonoBehaviour {
     private AudioClip abilitySFX;
     private Image abilityImage;
     ChampionData.Ability ability;
+
+    // components necessary for berserk fury
+    private PlayerUnit championUnit;
+    float furyAttackSpeedEffect = 2f;
+    float furyMoveSpeedEffect = 3f;
+    float defaultAttackCooldown;
+
+    Champion champion;
     void Start()
     {
         SetDefaultValues();
@@ -54,7 +62,9 @@ public class ChampionAbilities : MonoBehaviour {
     {
         canvasTransform = gameObject.transform.Find("Canvas").GetComponent<Canvas>().transform;
         chargingBarImage = chargingBar.transform.Find("AbilityChargingBar").gameObject.GetComponent<Image>();
-        ability = gameObject.GetComponent<Champion>().properties.currentChampionAbility;
+        champion = gameObject.GetComponent<Champion>();
+        ability = champion.properties.currentChampionAbility;
+        championUnit = gameObject.GetComponent<PlayerUnit>();
         //abilitySFX = gameObject.GetComponent<Champion>().properties.championAbilitySFX;
     }
 
@@ -101,8 +111,7 @@ public class ChampionAbilities : MonoBehaviour {
         abilityImage.enabled = true;
         isWaitingOrder = false;
         isOnCooldown = true;
-        isAbilityActive = true;
-
+        
         abilityReadyAnimation.SetActive(false);
         cooldownEndTime = Time.time + abilityCooldown;
         abilityEffectEndTime = Time.time + abilityEffectDuration;
@@ -119,7 +128,7 @@ public class ChampionAbilities : MonoBehaviour {
         {
             StartRallyingShout();
         }
-
+        isAbilityActive = true;
         // gameObject.GetComponent<AudioSource>().PlayOneShot(abilitySFX, 0.7F);
     }
 
@@ -173,7 +182,6 @@ public class ChampionAbilities : MonoBehaviour {
         canChargeAbility = allowCharging;
         waypointFollower.Speed = defaultMoveSpeed;
         animator.speed = defaultAnimSpeed;
-
     }
 
     void StopUsingAbility()
@@ -190,6 +198,7 @@ public class ChampionAbilities : MonoBehaviour {
         {
             EndRallyingShout();
         }
+        isAbilityActive = false;
     }
 
     void Update()
@@ -228,11 +237,22 @@ public class ChampionAbilities : MonoBehaviour {
     void StartBerserkFury()
     {
         Debug.Log("Berserk fury activated");
+        defaultAttackCooldown = championUnit.defaultCooldown;
+        if (champion.GetClassName() == "Archer")
+            championUnit.defaultCooldown = 0.4f;//championUnit.cooldown / furyAttackSpeedEffect;
+        else
+            championUnit.defaultCooldown = 0.2f;
+        animator.speed = 3f; //animator.speed * furyMoveSpeedEffect;
+        waypointFollower.Speed = 3f; // waypointFollower.Speed * furyMoveSpeedEffect;
     }
 
     void EndBerserkFury()
     {
         Debug.Log("Berserk fury deactivated");
+        championUnit.defaultCooldown = defaultAttackCooldown;
+        animator.speed = defaultAnimSpeed;
+        waypointFollower.Speed = defaultMoveSpeed;
+
     }
 
     void StartPrayer()
