@@ -18,16 +18,24 @@ public class TavernStatsPageUI : MonoBehaviour {
     [SerializeField] Image championExpBar;
     [SerializeField] Text championExpText;
 
+    [Header("Skills")]
     public GameObject SkillList;
     public GameObject SkillItem;
-    public Text BioText;
-    public Text Motto;
-    public GameObject[] UnitImage;
 
     public Text[] skillNumbers;
     public Button[] skillButtons;
 
     public Text skillPointsText;
+    public List<GameObject> SkillItemList = new List<GameObject>();
+
+    [Header("Abilities")]
+    [SerializeField]
+    private Text abilityText;
+
+    [Header("Flair")]
+    public Text BioText;
+    public Text Motto;
+    public GameObject[] UnitImage;
 
     public void ChangeChamp(Champion c)
     {
@@ -59,6 +67,7 @@ public class TavernStatsPageUI : MonoBehaviour {
         }
         
         SetChampionFlairText();
+        SetChampionAbilityText();
         SetChampionExpBar();
         UpdateSkillNumbers();
         CheckUnspentSkillpoints();
@@ -84,7 +93,7 @@ public class TavernStatsPageUI : MonoBehaviour {
             var currentChampion = p.champions[i];
             ChangeChamp(currentChampion);
             UnLoadSkills();
-            loadSkills();
+            LoadSkills();
 
             var buttonp = Instantiate(ChampSelectButtonPrefab);
             var button = buttonp.GetComponent<Image>();
@@ -106,7 +115,7 @@ public class TavernStatsPageUI : MonoBehaviour {
             Destroy(b);
     }
 
-    private void loadSkills()
+    private void LoadSkills()
     {
 
         var ChampSkills = _activeChamp.GetComponentInChildren<StatsContainer>();
@@ -135,7 +144,7 @@ public class TavernStatsPageUI : MonoBehaviour {
         }
     }
 
-    public List<GameObject> SkillItemList = new List<GameObject>();
+    
     private void UnLoadSkills()
     {
         foreach (var game in SkillItemList)
@@ -214,5 +223,24 @@ public class TavernStatsPageUI : MonoBehaviour {
             UpdateSkillNumbers();
             CheckUnspentSkillpoints();
         }
+    }
+
+    void SetChampionAbilityText()
+    {
+        string newAbilityText;
+        if (_activeChamp.properties.currentChampionAbility == ChampionData.Ability.BerserkFury)
+        {
+            newAbilityText = "Berserk Fury";
+        }
+        else if (_activeChamp.properties.currentChampionAbility == ChampionData.Ability.Prayer)
+        {
+            newAbilityText = "Prayer";
+        }
+        else //(_activeChamp.properties.currentChampionAbility == ChampionData.Ability.RallyingShout)
+        {
+            newAbilityText = "Rallying Shout";
+        }
+
+        abilityText.text = "Ability: " + newAbilityText;
     }
 }

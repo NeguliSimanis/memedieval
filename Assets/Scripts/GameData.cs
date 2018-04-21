@@ -54,6 +54,9 @@ public class ChampionData
     public string quote;
     public bool isDead;
 
+    public enum Ability { RallyingShout, BerserkFury, Prayer, AbilityCount };
+    public Ability currentChampionAbility;
+
     #region Picture stuff
     public byte[] picture;
     private int pictureWidth = 1280;
@@ -94,5 +97,14 @@ public class ChampionData
         tex.Apply();
         return tex;
     }
-    #endregion
+
+    public void ChooseRandomAbility()
+    {
+        int abilityID = Random.Range(0, (int)Ability.AbilityCount);
+        currentChampionAbility = (Ability)abilityID;
+        Debug.Log("Ability " + currentChampionAbility + " chosen");
+
+    }
 }
+    #endregion
+

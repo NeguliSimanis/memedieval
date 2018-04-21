@@ -253,6 +253,7 @@ public class CreateChampion : MonoBehaviour
         champo.properties.SetPicture(pic);
         champo.properties.bio = MakeBio(Name1);
         champo.properties.quote = MakeMotto();
+        champo.properties.ChooseRandomAbility();
 
         this.gameObject.GetComponent<ChampionSkillGenerator>().GenerateChampionSkills(champo);
 
