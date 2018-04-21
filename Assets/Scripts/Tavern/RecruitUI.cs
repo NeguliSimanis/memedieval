@@ -26,10 +26,13 @@ public class RecruitUI : MonoBehaviour {
     [SerializeField]
     GameObject genderBottomFrame;
 
+    [Header("Face creation")]
     [SerializeField]
     GameObject faceCreatePanel;
     [SerializeField]
     Button faceAcceptButton;
+    [SerializeField]
+    Button switchCameraButton;
     [SerializeField]
     GameObject faceCreateButtonPanel;
 
@@ -44,7 +47,7 @@ public class RecruitUI : MonoBehaviour {
     void Start()
     {
         ResetUI();
-       
+        
         nameAcceptButton.onClick.AddListener(SaveName);
         genderAcceptButton.onClick.AddListener(SaveGender);
         faceAcceptButton.onClick.AddListener(SaveFace);
@@ -73,6 +76,13 @@ public class RecruitUI : MonoBehaviour {
 
         saveChampionBackground.SetActive(false);
         saveChampionButtonPanel.SetActive(false);
+
+        if (championCreate.GetDeviceLength() <= 1)
+        {
+            switchCameraButton.gameObject.SetActive(false);
+        }
+        else
+            switchCameraButton.gameObject.SetActive(true);
     }
 
     void SaveFace()

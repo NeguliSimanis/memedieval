@@ -117,6 +117,10 @@ public class CreateChampion : MonoBehaviour
     #endregion
 
 
+    public int GetDeviceLength()
+    {
+        return WebCamTexture.devices.Length;
+    }
 
     public Champion createChamp()
     {
