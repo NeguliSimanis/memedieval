@@ -31,6 +31,7 @@ GameObject:
   - component: {fileID: 114395487346362638}
   - component: {fileID: 114385849707751662}
   - component: {fileID: 95936024481190558}
+  - component: {fileID: 114955344522801792}
   m_Layer: 0
   m_Name: KnightCaptain
   m_TagString: Player unit
@@ -66,6 +67,22 @@ GameObject:
   - component: {fileID: 114714713724733062}
   m_Layer: 0
   m_Name: SfxKnightCaptain
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1861677099627546
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 224182530919952666}
+  - component: {fileID: 61664775307213756}
+  m_Layer: 0
+  m_Name: AbilityDetector
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -143,6 +160,31 @@ BoxCollider2D:
   m_AutoTiling: 0
   serializedVersion: 2
   m_Size: {x: 1.14, y: 2.41}
+  m_EdgeRadius: 0
+--- !u!61 &61664775307213756
+BoxCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1861677099627546}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.18611622, y: 0.17441654}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 4.3501043, y: 6.3587513}
   m_EdgeRadius: 0
 --- !u!95 &95936024481190558
 Animator:
@@ -230,6 +272,7 @@ MonoBehaviour:
     bio: 
     quote: 
     isDead: 0
+    currentChampionAbility: 0
     picture: 
     currentExp: 0
     nextLevelExp: 10
@@ -321,6 +364,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isEnemy: 0
   Speed: 1
+--- !u!114 &114955344522801792
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1131093518672646}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84e5f1108b3a18b48ae98755294ccb10, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  chargingBar: {fileID: 2800000, guid: 317be993928c72e408d126154d9a5ac8, type: 3}
 --- !u!212 &212278090391766810
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -415,6 +470,24 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1131093518672646}
+--- !u!224 &224182530919952666
+RectTransform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1861677099627546}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 224380646346456648}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -0.0000019073486, y: 0.00000059604645}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224380646346456648
 RectTransform:
   m_ObjectHideFlags: 1
@@ -422,17 +495,18 @@ RectTransform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1131093518672646}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 6.52, y: -1.7, z: 0}
+  m_LocalPosition: {x: -4.45, y: -1.3666089, z: 0}
   m_LocalScale: {x: 0.48, y: 0.48, z: 0.5}
   m_Children:
   - {fileID: 224574063636721212}
   - {fileID: 4443352704463982}
+  - {fileID: 224182530919952666}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 6.52, y: -1.7}
+  m_AnchoredPosition: {x: -4.45, y: -1.3666089}
   m_SizeDelta: {x: 4.2846155, y: 5.8153844}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224574063636721212
