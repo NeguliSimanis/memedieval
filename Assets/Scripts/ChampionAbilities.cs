@@ -41,14 +41,13 @@ public class ChampionAbilities : MonoBehaviour {
 
     [SerializeField]
     private AudioClip abilitySFX;
-    [SerializeField]
     private Image abilityImage;
     ChampionData.Ability ability;
     void Start()
     {
-        FindAbilityEffect();
         SetDefaultValues();
-        GetComponents();      
+        GetComponents();
+        FindAbilityEffect();
     }
 
     void GetComponents()
@@ -61,20 +60,18 @@ public class ChampionAbilities : MonoBehaviour {
 
     void FindAbilityEffect()
     { 
-        GameObject abilityImageObject;
         if (ability == ChampionData.Ability.BerserkFury)
         {
-            abilityImageObject = GameObject.Find("BerserkFury");
+            abilityImage = GameObject.Find("BerserkFury").GetComponent<Image>();
         }
         else if (ability == ChampionData.Ability.Prayer)
         {
-            abilityImageObject = GameObject.Find("Prayer");
+            abilityImage = GameObject.Find("Prayer").GetComponent<Image>();
         }
         else // (ability == ChampionData.Ability.RallyingShout)
         {
-            abilityImageObject = GameObject.Find("RallyingShout");
+            abilityImage = GameObject.Find("RallyingShout").GetComponent<Image>();
         }
-        abilityImage = abilityImageObject.GetComponent<Image>();
     }
 
     void SetDefaultValues()
@@ -109,7 +106,20 @@ public class ChampionAbilities : MonoBehaviour {
         abilityReadyAnimation.SetActive(false);
         cooldownEndTime = Time.time + abilityCooldown;
         abilityEffectEndTime = Time.time + abilityEffectDuration;
-        
+       
+        if (ability == ChampionData.Ability.BerserkFury)
+        {
+            StartBerserkFury();
+        }
+        else if (ability == ChampionData.Ability.Prayer)
+        {
+            StartPrayer();
+        }
+        else if (ability == ChampionData.Ability.RallyingShout)
+        {
+            StartRallyingShout();
+        }
+
         // gameObject.GetComponent<AudioSource>().PlayOneShot(abilitySFX, 0.7F);
     }
 
@@ -157,10 +167,29 @@ public class ChampionAbilities : MonoBehaviour {
     {
         if (isWaitingOrder)
             StopWaitingOrder();
+        if (isAbilityActive)
+            StopUsingAbility();
         abilityImage.enabled = false;
         canChargeAbility = allowCharging;
         waypointFollower.Speed = defaultMoveSpeed;
         animator.speed = defaultAnimSpeed;
+
+    }
+
+    void StopUsingAbility()
+    {
+        if (ability == ChampionData.Ability.BerserkFury)
+        {
+            EndBerserkFury();
+        }
+        else if (ability == ChampionData.Ability.Prayer)
+        {
+            EndPrayer();
+        }
+        else if (ability == ChampionData.Ability.RallyingShout)
+        {
+            EndRallyingShout();
+        }
     }
 
     void Update()

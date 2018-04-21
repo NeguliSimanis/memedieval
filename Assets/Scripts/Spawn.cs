@@ -167,6 +167,7 @@ public class Spawn : MonoBehaviour
                         Debug.Log(c.properties.Name);
 
                         //thisCaptainFace.transform.GetComponent<SpriteRenderer>().sprite = Sprite.Create(p, new Rect(0, 0, p.width, p.height), Vector2.zero);
+                        character.GetComponent<Champion>().properties.currentChampionAbility = c.properties.currentChampionAbility;
                         c.onBattle = true;
 
                     }
@@ -203,6 +204,7 @@ public class Spawn : MonoBehaviour
                         //var p = c.picture;
                         //Debug.Log(c.Name);
                         //thisCaptainFace.transform.GetComponent<SpriteRenderer>().sprite =Sprite.Create(p,new Rect(0,0,p.width,p.height),Vector2.zero);
+                        character.GetComponent<Champion>().properties.currentChampionAbility = c.properties.currentChampionAbility;
                         c.onBattle = true;
                     }
                     Debug.Log("face added");
@@ -237,6 +239,7 @@ public class Spawn : MonoBehaviour
                         //var p = c.picture;
                         //Debug.Log(c.Name);
                         //thisCaptainFace.transform.GetComponent<SpriteRenderer>().sprite = Sprite.Create(p, new Rect(0, 0, p.width, p.height), Vector2.zero);
+                        character.GetComponent<Champion>().properties.currentChampionAbility = c.properties.currentChampionAbility;
                         c.onBattle = true;
                     }
                     Debug.Log("face added");

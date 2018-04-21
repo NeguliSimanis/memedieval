@@ -41,13 +41,11 @@ public class CastleArrow : MonoBehaviour {
 
     void SetArrowDamage()
     {
-        Debug.Log("Arrow damage before modifiers: " + damage);
         ChampionEffect championEffect = PlayerProfile.Singleton.gameObject.GetComponent<ChampionEffect>();
 
         damage = Mathf.RoundToInt(championEffect.castleArrowDamageCoefficient * damage);
         if (damage < championEffect.minCastleArrowDamage)
             damage = championEffect.minCastleArrowDamage;
-        Debug.Log("Arrow damage after modifiers: " + damage);
     }
 
     void SelectTarget()
