@@ -13,7 +13,6 @@ public class Dash : MonoBehaviour {
     float dashResetTime;
 
     float defaultMoveSpeed;
-    float defaultAnimSpeed;
 
     AnimatorSpeed animatorSpeed;
     WaypointFollower waypointFollower;
@@ -23,7 +22,6 @@ public class Dash : MonoBehaviour {
         waypointFollower = gameObject.GetComponent<WaypointFollower>();
         animatorSpeed = gameObject.GetComponent<AnimatorSpeed>();
         defaultMoveSpeed = waypointFollower.Speed;
-        defaultAnimSpeed = animatorSpeed.speed;
     }
 
 	void OnMouseDown()
@@ -51,9 +49,9 @@ public class Dash : MonoBehaviour {
             if (waypointFollower.isDashing == true)
             {
                 waypointFollower.isDashing = false;
-                animatorSpeed.ChangeAnimSpeed(dashEffect);
+                animatorSpeed.ChangeAnimSpeed(-dashEffect);
+                waypointFollower.ChangeSpeed(-dashEffect);
             }
-            animatorSpeed.speed = defaultAnimSpeed;
         }
     }
 }

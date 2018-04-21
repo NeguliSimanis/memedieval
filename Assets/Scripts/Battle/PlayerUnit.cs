@@ -43,7 +43,20 @@ public class PlayerUnit : MonoBehaviour {
     private GameObject playerObject;
     private PlayerProfile playerProfile;
     private string playerProfileTag = "Player profile"; // the same profile must be set in the scene
+
+    public bool isBerserkFury = false;
+    public bool isRallyingShoutActive = false;
     #endregion
+
+    public void ChangeAttackCooldown(float amount)
+    {
+        defaultCooldown = defaultCooldown + amount;
+        if (defaultCooldown < 0.01f)
+        {
+            defaultCooldown = 0.01f;
+        }
+
+    }
 
     void Start()
     {

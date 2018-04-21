@@ -181,7 +181,6 @@ public class Health : MonoBehaviour
 
     public void Damage(int damageAmount, Attack.Type attackingType = Attack.Type.defaultType)
     {
-        Debug.Log("taking" + damageAmount + " damage");
         if (IsCharacter)
         {
             if (attackingType == Attack.Type.Knight && UnitType == Attack.Type.Archer)
@@ -194,8 +193,6 @@ public class Health : MonoBehaviour
                 //    DamageAmount = (int)(DamageAmount * 0.75f);
             }
         }
-
-        Debug.Log("taking" + damageAmount + " damage"); 
 
         if (attackingType != Attack.Type.defaultType)
         {

@@ -229,7 +229,7 @@ public class Spawn : MonoBehaviour
                     thisCaptainFace.transform.localScale = new Vector3(0.4f, 0.4f, 0);
                     thisCaptainFace.transform.GetComponent<SpriteRenderer>().sortingLayerName = "Foreground";
                     AvatarFace face;
-                    var c = PlayerProfile.Singleton.champions.Where(x => x.properties.champClass == 2).First();
+                    var c = PlayerProfile.Singleton.champions.Where(x => x.properties.champClass == 2).First(); // this can cause errors because different champion class index is used in some places 
                     if (c != null)
                     {
                         face = Instantiate(avatarFacePrefab, h);

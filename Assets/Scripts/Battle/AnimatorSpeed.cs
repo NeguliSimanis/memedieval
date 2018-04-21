@@ -9,7 +9,7 @@ public class AnimatorSpeed : MonoBehaviour {
 
 	void Start ()
     {
-        animator.gameObject.GetComponent<Animator>();
+        animator = gameObject.GetComponent<Animator>();
 	}
 	
 	public void ChangeAnimSpeed(float amount)

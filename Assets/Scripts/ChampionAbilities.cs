@@ -46,14 +46,20 @@ public class ChampionAbilities : MonoBehaviour {
     private Image abilityImage;
     ChampionData.Ability ability;
 
-    // components necessary for berserk fury
+    #region berserk fury
     private PlayerUnit championUnit;
-    float furyAttackSpeedEffect = 2f;
+    float furyAttackSpeedEffect = 0.3f;
     float furyMoveSpeedEffect = 3f;
     float defaultAttackCooldown;
+    #endregion
 
     #region praying
     private int healAmount = 20;
+    #endregion
+
+    #region Rallying shout
+    float rallyingShoutMoveSpeedEffect = 2f;
+    float rallyingShoutAttackSpeedEffect = 0.1f;
     #endregion
 
     void Start()
@@ -182,7 +188,10 @@ public class ChampionAbilities : MonoBehaviour {
         if (isWaitingOrder)
             StopWaitingOrder();
         if (isAbilityActive)
+        {
+            Debug.Log("calling stop ability");
             StopUsingAbility();
+        }
         abilityImage.enabled = false;
         canChargeAbility = allowCharging;
         waypointFollower.Speed = defaultMoveSpeed;
@@ -191,6 +200,7 @@ public class ChampionAbilities : MonoBehaviour {
 
     void StopUsingAbility()
     {
+        Debug.Log("stopping abbility");
         if (ability == ChampionData.Ability.BerserkFury)
         {
             EndBerserkFury();
@@ -228,25 +238,25 @@ public class ChampionAbilities : MonoBehaviour {
         {
             if (Time.time > abilityEffectEndTime)
             {
-                isAbilityActive = false;
+                Debug.Log("ability reset check -1");
                 Reset(false);
             }        
         }
         else if (isOnCooldown)
         {
             if (Time.time > cooldownEndTime)
+            {
                 Reset();
+            }
+                
         }
     }
 
     void StartBerserkFury()
     {
         Debug.Log("Berserk fury activated");
-        defaultAttackCooldown = championUnit.defaultCooldown;
-        if (champion.GetClassName() == "Archer")
-            championUnit.defaultCooldown = 0.4f;//championUnit.cooldown / furyAttackSpeedEffect;
-        else
-            championUnit.defaultCooldown = 0.2f;
+        defaultAttackCooldown = championUnit.defaultCooldown;;
+        championUnit.ChangeAttackCooldown(-furyAttackSpeedEffect);
         animator.speed = 3f; //animator.speed * furyMoveSpeedEffect;
         waypointFollower.Speed = 3f; // waypointFollower.Speed * furyMoveSpeedEffect;
     }
@@ -255,9 +265,9 @@ public class ChampionAbilities : MonoBehaviour {
     {
         Debug.Log("Berserk fury deactivated");
         championUnit.defaultCooldown = defaultAttackCooldown;
+        championUnit.ChangeAttackCooldown(furyAttackSpeedEffect);
         animator.speed = defaultAnimSpeed;
         waypointFollower.Speed = defaultMoveSpeed;
-
     }
 
     void StartPrayer()
@@ -289,9 +299,19 @@ public class ChampionAbilities : MonoBehaviour {
             if (gameObject != playerUnit.gameObject)
             {
                 Debug.Log(playerUnit.gameObject.name + " boosted");
+
+                // set move speed
                 waypointFollower = playerUnit.gameObject.GetComponent<WaypointFollower>();
-                waypointFollower.ChangeSpeed(4f);
+                waypointFollower.ChangeSpeed(rallyingShoutMoveSpeedEffect);
                 waypointFollower.isRallyingShoutBoostActive = true;
+
+                // set attack speed
+                playerUnit.isRallyingShoutActive = true;
+                playerUnit.ChangeAttackCooldown(-rallyingShoutAttackSpeedEffect);
+
+                // set animator speed
+                AnimatorSpeed animatorSpeed = playerUnit.gameObject.GetComponent<AnimatorSpeed>();
+                animatorSpeed.ChangeAnimSpeed(rallyingShoutMoveSpeedEffect);
             }
             //playerUnit.gameObject.GetComponent<Health>().StartRegen(healAmount, Time.time + abilityEffectDuration);
         }
@@ -311,8 +331,16 @@ public class ChampionAbilities : MonoBehaviour {
                 waypointFollower = playerUnit.gameObject.GetComponent<WaypointFollower>();
                 if (waypointFollower.isRallyingShoutBoostActive)
                 {
-                    waypointFollower.Speed -= 10f;
+                    waypointFollower.ChangeSpeed(-rallyingShoutMoveSpeedEffect);
                     waypointFollower.isRallyingShoutBoostActive = false;
+
+                    // set attack speed
+                    playerUnit.isRallyingShoutActive = false;
+                    playerUnit.ChangeAttackCooldown(rallyingShoutAttackSpeedEffect);
+
+                    // set animator speed
+                    AnimatorSpeed animatorSpeed = playerUnit.gameObject.GetComponent<AnimatorSpeed>();
+                    animatorSpeed.ChangeAnimSpeed(-rallyingShoutMoveSpeedEffect);
                 }
             }
             //playerUnit.gameObject.GetComponent<Health>().StartRegen(healAmount, Time.time + abilityEffectDuration);
