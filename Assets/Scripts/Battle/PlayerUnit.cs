@@ -84,7 +84,7 @@ public class PlayerUnit : MonoBehaviour {
         if (Health.Victory || Health.GameOver) return;
         if (cooldown > 0)
         {
-            Debug.Log("cooldown");
+           // Debug.Log("cooldown");
             cooldown -= Time.deltaTime;
         }
         else if (targets.Count > 0 || isNearCastle)

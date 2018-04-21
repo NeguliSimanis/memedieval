@@ -6,6 +6,8 @@ using UnityEngine.UI;
 
 public class ChampionAbilities : MonoBehaviour {
 
+    Champion champion;
+
     WaypointFollower waypointFollower;
     float defaultMoveSpeed;
 
@@ -50,7 +52,10 @@ public class ChampionAbilities : MonoBehaviour {
     float furyMoveSpeedEffect = 3f;
     float defaultAttackCooldown;
 
-    Champion champion;
+    #region praying
+    private int healAmount = 20;
+    #endregion
+
     void Start()
     {
         SetDefaultValues();
@@ -258,6 +263,14 @@ public class ChampionAbilities : MonoBehaviour {
     void StartPrayer()
     {
         Debug.Log("Prayer activated");
+        PlayerUnit[] playerUnits;
+        playerUnits = Object.FindObjectsOfType<PlayerUnit>();
+        foreach (PlayerUnit playerUnit in playerUnits)
+        {
+            playerUnit.gameObject.GetComponent<Health>().Regen(healAmount, abilityEffectDuration);
+        }
+        animator.speed = defaultAnimSpeed;
+        waypointFollower.Speed = defaultMoveSpeed;
     }
 
     void EndPrayer()

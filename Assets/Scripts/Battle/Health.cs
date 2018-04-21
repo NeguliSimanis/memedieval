@@ -204,6 +204,12 @@ public class Health : MonoBehaviour
     }
 
 
+    public void Regen (int amount, float duration)
+    {
+        currentHealth = currentHealth + amount;
+        Debug.Log(currentHealth);
+    }
+
     public static bool Archer
     {
         get { return ArcherCaptainDead; }
