@@ -15,6 +15,7 @@ public class ChampionAbilities : MonoBehaviour {
     bool hasChargingBar = false;
     bool canChargeAbility = true;
     bool isChargingAbility = false;
+    bool isWaitingOrder = false;
 
     private float chargingDuration = 3f; 
 
@@ -25,16 +26,21 @@ public class ChampionAbilities : MonoBehaviour {
     private float chargingStartTime;
     private float chargingEndsTime;
 
+    private float waitingEndTime;
+
     [SerializeField]
     GameObject chargingBar;
     Image chargingBarImage;
     Transform canvasTransform;
 
+    [SerializeField]
+    GameObject abilityReadyAnimation;
+
     void Start()
     {
         SetDefaultValues();
         canvasTransform = gameObject.transform.Find("Canvas").GetComponent<Canvas>().transform;
-        chargingBarImage = chargingBar.GetComponent<Image>();
+        chargingBarImage = chargingBar.transform.Find("AbilityChargingBar").gameObject.GetComponent<Image>();
     }
 
     void SetDefaultValues()
@@ -56,7 +62,7 @@ public class ChampionAbilities : MonoBehaviour {
 
     void ChargeAbility()
     {
-        chargingBar.SetActive(true);
+        chargingBar.gameObject.SetActive(true);
         
         canChargeAbility = false;
         isChargingAbility = true;
@@ -70,16 +76,37 @@ public class ChampionAbilities : MonoBehaviour {
 
     void EndCharging()
     {
-        canChargeAbility = true;
         isChargingAbility = false;
-        waypointFollower.Speed = defaultMoveSpeed;
-        animator.speed = defaultAnimSpeed;
-        chargingBar.SetActive(false);
+        chargingBar.gameObject.SetActive(false);
+        WaitOrder();
     }
 
     void UpdateChargingBarImage()
     {
         chargingBarImage.fillAmount = (Time.time - chargingStartTime)/chargingDuration;
+    }
+
+    // waits when the player will use the ability
+    void WaitOrder()
+    {
+        isWaitingOrder = true;
+        abilityReadyAnimation.SetActive(true);
+        waitingEndTime = Time.time + abilityAvailableDuration;
+    }
+
+    void StopWaitingOrder()
+    {
+        isWaitingOrder = false;
+        abilityReadyAnimation.SetActive(false);
+    }
+
+    void Reset()
+    {
+        if (isWaitingOrder)
+            StopWaitingOrder();   
+        canChargeAbility = true;
+        waypointFollower.Speed = defaultMoveSpeed;
+        animator.speed = defaultAnimSpeed;
     }
 
     void Update()
@@ -92,6 +119,12 @@ public class ChampionAbilities : MonoBehaviour {
             {
                 EndCharging();
             }
+        }
+
+        if (isWaitingOrder)
+        {
+            if (Time.time > waitingEndTime)
+                Reset();
         }
     }
 
