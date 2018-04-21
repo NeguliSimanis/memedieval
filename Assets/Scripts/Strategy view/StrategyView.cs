@@ -12,7 +12,8 @@ public class StrategyView : MonoBehaviour {
     private string sceneAfterClose = "Test scene";
 
     [SerializeField] GameObject championCard;
-    [SerializeField] GameObject championPanel;
+    [SerializeField] GameObject championLeftPanel;
+    [SerializeField] GameObject championRightPanel;
 
     private GameObject championSelectedMarker;
     private string championSelectedMarkerName = "ChampionSelected";
@@ -43,12 +44,19 @@ public class StrategyView : MonoBehaviour {
     {
 
         currentChampionID = 0;
+        bool isLeftPanelAvailable = true;
 
         foreach (Champion champion in PlayerProfile.Singleton.champions)
         {
             // initialize new champion card
             GameObject newChampionCard = Instantiate(championCard, new Vector3(1, 1, 1), Quaternion.identity);
-            newChampionCard.transform.parent = championPanel.transform;           
+            if (isLeftPanelAvailable)
+            {
+                newChampionCard.transform.parent = championLeftPanel.transform;
+            }
+            else
+                newChampionCard.transform.parent = championRightPanel.transform;
+            isLeftPanelAvailable = !isLeftPanelAvailable;
             newChampionCard.GetComponent<RectTransform>().localScale = new Vector3(1,1,1);
 
             // initialize the button component of the card

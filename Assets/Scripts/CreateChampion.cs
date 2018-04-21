@@ -11,6 +11,13 @@ using UnityEngine.UI;
 
 public class CreateChampion : MonoBehaviour
 {
+    [SerializeField]
+    AudioClip prayerDefaultAudio;
+    [SerializeField]
+    AudioClip berserkFuryDefaultAudio;
+    [SerializeField]
+    AudioClip rallyingShoutDefaultAudio;
+
     #region variable to deterimine if we need to use camera and some other methods
     [SerializeField]
     private bool scriptAttachedToRecruitPanel;
@@ -253,7 +260,7 @@ public class CreateChampion : MonoBehaviour
         champo.properties.SetPicture(pic);
         champo.properties.bio = MakeBio(Name1);
         champo.properties.quote = MakeMotto();
-        champo.properties.ChooseRandomAbility();
+        SetChampionAbility(champo);
 
         this.gameObject.GetComponent<ChampionSkillGenerator>().GenerateChampionSkills(champo);
 
@@ -264,6 +271,26 @@ public class CreateChampion : MonoBehaviour
         PlayerProfile.Singleton.SaltCurrent -= 5;
         o.ChangeLayout(0);
 
+    }
+
+    void SetChampionAbility(Champion champion)
+    {
+        champion.properties.ChooseRandomAbility();
+        /*
+        if (champion.properties.currentChampionAbility == ChampionData.Ability.BerserkFury)
+        {
+            champion.properties.championAbilitySFX = berserkFuryDefaultAudio;
+        }
+
+        else if (champion.properties.currentChampionAbility == ChampionData.Ability.RallyingShout)
+        {
+            champion.properties.championAbilitySFX = rallyingShoutDefaultAudio;
+        }
+
+        else // if (champion.properties.currentChampionAbility == ChampionData.Ability.Prayer)
+        {
+            champion.properties.championAbilitySFX = prayerDefaultAudio;
+        }*/
     }
 
     public void LoadChampionFromSave(ChampionData championData)

@@ -56,6 +56,7 @@ public class ChampionData
 
     public enum Ability { RallyingShout, BerserkFury, Prayer, AbilityCount };
     public Ability currentChampionAbility;
+   // public AudioClip championAbilitySFX;
 
     #region Picture stuff
     public byte[] picture;
@@ -76,6 +77,8 @@ public class ChampionData
     public int luck = 0;
     public int wealth = 0;
     #endregion
+
+   
 
     public void SetPicture(Texture2D texture)
     {
@@ -103,7 +106,6 @@ public class ChampionData
         int abilityID = Random.Range(0, (int)Ability.AbilityCount);
         currentChampionAbility = (Ability)abilityID;
         Debug.Log("Ability " + currentChampionAbility + " chosen");
-
     }
 }
     #endregion
