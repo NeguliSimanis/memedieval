@@ -143,6 +143,7 @@ GameObject:
   - component: {fileID: 114957387598894312}
   - component: {fileID: 95771231836468368}
   - component: {fileID: 114755867561048106}
+  - component: {fileID: 114895450101019788}
   m_Layer: 0
   m_Name: Knight
   m_TagString: Player unit
@@ -464,6 +465,17 @@ MonoBehaviour:
   OverrideAttenuation: 0
   OverrideMinDistance: 0
   OverrideMaxDistance: 0
+--- !u!114 &114895450101019788
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1736995468023074}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1945736824a566747b29970c36aa1193, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114957387598894312
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -499,6 +511,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isEnemy: 0
   Speed: 1.5
+  isRallyingShoutBoostActive: 0
+  isDashing: 0
 --- !u!212 &212421421348100294
 SpriteRenderer:
   m_ObjectHideFlags: 1

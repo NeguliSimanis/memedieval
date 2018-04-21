@@ -15,6 +15,8 @@ public class WaypointFollower : MonoBehaviour
 
     [SerializeField] private bool isEnemy;
     public float Speed;
+    public bool isRallyingShoutBoostActive = false;
+    public bool isDashing = false;
 
 
     private void Awake()
@@ -22,6 +24,12 @@ public class WaypointFollower : MonoBehaviour
         ResetAllValues();
     }
 
+    public void ChangeSpeed(float amount)
+    {
+        Debug.Log("speed before: " + Speed);
+        Speed = Speed + amount;
+        Debug.Log("new speed: " + Speed);
+    }
 
     void Start()
     {

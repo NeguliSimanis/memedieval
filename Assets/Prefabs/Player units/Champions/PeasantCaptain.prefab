@@ -67,6 +67,7 @@ GameObject:
   - component: {fileID: 95102504449343892}
   - component: {fileID: 114620061347068990}
   - component: {fileID: 82951621171441978}
+  - component: {fileID: 114129381156184224}
   m_Layer: 0
   m_Name: PeasantCaptain
   m_TagString: Player unit
@@ -587,6 +588,17 @@ MonoBehaviour:
   OverrideAttenuation: 0
   OverrideMinDistance: 0
   OverrideMaxDistance: 0
+--- !u!114 &114129381156184224
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1131093518672646}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1945736824a566747b29970c36aa1193, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114152071382324088
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -888,6 +900,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isEnemy: 0
   Speed: 1
+  isRallyingShoutBoostActive: 0
+  isDashing: 0
 --- !u!114 &114881867424622876
 MonoBehaviour:
   m_ObjectHideFlags: 1

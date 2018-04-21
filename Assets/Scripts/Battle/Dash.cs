@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Dash : MonoBehaviour {
 
-    int dashEffect = 2;
+    float dashEffect = 1.5f;
 
     bool isCooldown = false;
     float dashDuration = 2f;
@@ -15,15 +15,15 @@ public class Dash : MonoBehaviour {
     float defaultMoveSpeed;
     float defaultAnimSpeed;
 
-    Animator animator;
+    AnimatorSpeed animatorSpeed;
     WaypointFollower waypointFollower;
 
     void Start()
     {
         waypointFollower = gameObject.GetComponent<WaypointFollower>();
-        animator = gameObject.GetComponent<Animator>();
+        animatorSpeed = gameObject.GetComponent<AnimatorSpeed>();
         defaultMoveSpeed = waypointFollower.Speed;
-        defaultAnimSpeed = animator.speed;
+        defaultAnimSpeed = animatorSpeed.speed;
     }
 
 	void OnMouseDown()
@@ -38,8 +38,9 @@ public class Dash : MonoBehaviour {
             dashAvailableTime = Time.time + dashCooldown;
             dashResetTime = Time.time + dashDuration;
             
-            waypointFollower.Speed *= dashEffect;
-            animator.speed *= dashEffect;
+            waypointFollower.ChangeSpeed(dashEffect);
+            waypointFollower.isDashing = true;
+            animatorSpeed.ChangeAnimSpeed(dashEffect);
         }
     }
 
@@ -47,8 +48,12 @@ public class Dash : MonoBehaviour {
     {
         if (Time.time > dashResetTime)
         {
-            waypointFollower.Speed = defaultMoveSpeed;
-            animator.speed = defaultAnimSpeed;
+            if (waypointFollower.isDashing == true)
+            {
+                waypointFollower.isDashing = false;
+                animatorSpeed.ChangeAnimSpeed(dashEffect);
+            }
+            animatorSpeed.speed = defaultAnimSpeed;
         }
     }
 }

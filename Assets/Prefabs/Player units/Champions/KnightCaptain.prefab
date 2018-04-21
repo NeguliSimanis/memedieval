@@ -116,6 +116,7 @@ GameObject:
   - component: {fileID: 95936024481190558}
   - component: {fileID: 114955344522801792}
   - component: {fileID: 82194924363304722}
+  - component: {fileID: 114171684480625912}
   m_Layer: 0
   m_Name: KnightCaptain
   m_TagString: Player unit
@@ -565,6 +566,17 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114171684480625912
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1131093518672646}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1945736824a566747b29970c36aa1193, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114231169805226478
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -901,6 +913,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isEnemy: 0
   Speed: 1
+  isRallyingShoutBoostActive: 0
+  isDashing: 0
 --- !u!114 &114955344522801792
 MonoBehaviour:
   m_ObjectHideFlags: 1

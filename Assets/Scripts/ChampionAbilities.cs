@@ -280,12 +280,43 @@ public class ChampionAbilities : MonoBehaviour {
 
     void StartRallyingShout()
     {
-        Debug.Log("RallyingShout activated");
+        
+        WaypointFollower waypointFollower;
+        PlayerUnit[] playerUnits;
+        playerUnits = Object.FindObjectsOfType<PlayerUnit>();
+        foreach (PlayerUnit playerUnit in playerUnits)
+        {
+            if (gameObject != playerUnit.gameObject)
+            {
+                Debug.Log(playerUnit.gameObject.name + " boosted");
+                waypointFollower = playerUnit.gameObject.GetComponent<WaypointFollower>();
+                waypointFollower.ChangeSpeed(4f);
+                waypointFollower.isRallyingShoutBoostActive = true;
+            }
+            //playerUnit.gameObject.GetComponent<Health>().StartRegen(healAmount, Time.time + abilityEffectDuration);
+        }
     }
 
     void EndRallyingShout()
     {
         Debug.Log("RallyingShout deactivated");
+
+        WaypointFollower waypointFollower;
+        PlayerUnit[] playerUnits;
+        playerUnits = Object.FindObjectsOfType<PlayerUnit>();
+        foreach (PlayerUnit playerUnit in playerUnits)
+        {
+            if (playerUnit.gameObject != this.gameObject)
+            {
+                waypointFollower = playerUnit.gameObject.GetComponent<WaypointFollower>();
+                if (waypointFollower.isRallyingShoutBoostActive)
+                {
+                    waypointFollower.Speed -= 10f;
+                    waypointFollower.isRallyingShoutBoostActive = false;
+                }
+            }
+            //playerUnit.gameObject.GetComponent<Health>().StartRegen(healAmount, Time.time + abilityEffectDuration);
+        }
     }
 
 }
