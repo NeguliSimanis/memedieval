@@ -35,6 +35,8 @@ public class RecruitUI : MonoBehaviour {
     Button switchCameraButton;
     [SerializeField]
     GameObject faceCreateButtonPanel;
+    [SerializeField]
+    GameObject defaultFaceObject;
 
     [SerializeField]
     GameObject saveChampionButtonPanel;
@@ -80,6 +82,10 @@ public class RecruitUI : MonoBehaviour {
         if (championCreate.GetDeviceLength() <= 1)
         {
             switchCameraButton.gameObject.SetActive(false);
+        }
+        if (championCreate.GetDeviceLength() == 0)
+        {
+            defaultFaceObject.SetActive(true);
         }
         else
             switchCameraButton.gameObject.SetActive(true);

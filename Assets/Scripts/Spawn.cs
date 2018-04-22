@@ -50,9 +50,39 @@ public class Spawn : MonoBehaviour
     {
         if (!Enemy)
         {
+            CheckIfAvailable();
             SetPriceModifiers();
             UnitCostText.text = "Cost: " + unitCost;
         }
+    }
+
+    void CheckIfAvailable()
+    {
+        if (captain == Attack.Type.Archer)
+        {
+            // there are no archer captains
+            if (PlayerProfile.Singleton.champions.Where(x => x.properties.champClass == 2).Count()==0)
+            {
+                transform.parent.gameObject.transform.parent.gameObject.SetActive(false);
+            }
+        }
+        else if (captain == Attack.Type.Knight)
+        {
+            // there are no knight captains
+            if (PlayerProfile.Singleton.champions.Where(x => x.properties.champClass == 1).Count() == 0)
+            {
+                transform.parent.gameObject.transform.parent.gameObject.SetActive(false);
+            }
+        }
+        else
+        {
+            // there are no peasant captains
+            if (PlayerProfile.Singleton.champions.Where(x => x.properties.champClass == 0).Count() == 0)
+            {
+                transform.parent.gameObject.transform.parent.gameObject.SetActive(false);
+            }
+        }
+        //var c = PlayerProfile.Singleton.champions.Where(x => x.properties.champClass == 0).First();
     }
 
     void SetPriceModifiers()

@@ -37,6 +37,8 @@ public class CreateChampion : MonoBehaviour
     public bool hasPicture = false;
     private WebCamTexture backCam;
     public Texture2D pic;
+    [SerializeField]
+    private Texture2D defaultPicture;
 
     public RawImage background;
 
@@ -208,7 +210,8 @@ public class CreateChampion : MonoBehaviour
         // it's a rare case where the Unity doco is pretty clear,
         // http://docs.unity3d.com/ScriptReference/WaitForEndOfFrame.html
         // be sure to scroll down to the SECOND long example on that doco page 
-
+        if (devices.Length == 0)
+            yield break;
         Texture2D photo = new Texture2D(backCam.width, backCam.height);
         photo.SetPixels(backCam.GetPixels());
         photo.Apply();
@@ -261,7 +264,7 @@ public class CreateChampion : MonoBehaviour
         player.champions.Add(champo);
         champo.properties.Name = Name1;
         champo.properties.isMan = isMan;
-        champo.properties.SetPicture(pic);
+        SetChampionPicture(champo);
         champo.properties.bio = MakeBio(Name1);
         champo.properties.quote = MakeMotto();
         SetChampionAbility(champo);
@@ -275,6 +278,16 @@ public class CreateChampion : MonoBehaviour
         PlayerProfile.Singleton.SaltCurrent -= 5;
         o.ChangeLayout(0);
 
+    }
+
+    void SetChampionPicture(Champion champion)
+    {
+        if (pic == null)
+        {
+            champion.properties.SetPicture(defaultPicture);
+        }
+        else
+            champion.properties.SetPicture(pic);
     }
 
     void SetChampionAbility(Champion champion)

@@ -89,7 +89,9 @@ public class ChampionData
         Debug.Log("picture height " + pictureHeight);
         Debug.Log("picture Format " + pictureFormat);
         Debug.Log("mipmap count " + texture.mipmapCount);*/
-
+        pictureHeight = texture.height;
+        pictureWidth = texture.width;
+        pictureFormat = texture.format;
         picture = texture.GetRawTextureData();
     }
 
