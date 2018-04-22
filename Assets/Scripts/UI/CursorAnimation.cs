@@ -6,7 +6,8 @@ using UnityEngine.UI;
 public class CursorAnimation : MonoBehaviour {
 
     //GameObject cursorClickObject;
-    //GameObject canvas;
+    GameObject canvasParent;
+    
     //string canvasName = "Canvas";
 
     Animator cursorAnimator;
@@ -14,12 +15,35 @@ public class CursorAnimation : MonoBehaviour {
     int xOffset = 45;
     int yOffset = -40;
 
+    bool isActive = false;
     void Start()
     {
         HideCursor();
-        //canvas = GameObject.Find(canvasName);
-       // cursorClickObject = canvas.GetComponent<CursorAnimFinder>().cursorAnim;
+        SetScale();
         cursorAnimator = gameObject.GetComponent<Animator>();
+        
+       // cursorClickObject = canvas.GetComponent<CursorAnimFinder>().cursorAnim;
+    }
+
+    void OnEnable()
+    {
+        if (isActive == false)
+        {
+            Debug.Log("started later");
+            isActive = true;
+            SetScale();
+            cursorAnimator = gameObject.GetComponent<Animator>();
+        }
+    }
+
+    void SetScale()
+    {
+        //Debug.Log("setting scale");
+        canvasParent = transform.parent.gameObject;
+        gameObject.transform.localScale = new Vector3(1f/canvasParent.transform.localScale.x, 1f / canvasParent.transform.localScale.y, 1f / canvasParent.transform.localScale.z);
+        /*if (canvasParent.transform.localScale.x > 1.2)
+            gameObject.transform.localScale = new Vector3(canvasParent.transform.localScale.x / 3, canvasParent.transform.localScale.y / 3, canvasParent.transform.localScale.z / 3);
+        else */
     }
 
     void HideCursor()
@@ -35,19 +59,18 @@ public class CursorAnimation : MonoBehaviour {
 
     void PlayClickAnim()
     {
-        Debug.Log("playing animation");
         cursorAnimator.SetTrigger("Click");
     }
-        
+       
 
 	void Update ()
     {
-        gameObject.transform.position = new Vector3(Input.mousePosition.x + xOffset, Input.mousePosition.y + yOffset, Input.mousePosition.z);
-
+        if (!isActive)
+            return;
+        gameObject.transform.position = new Vector3(Input.mousePosition.x, Input.mousePosition.y, Input.mousePosition.z); //new Vector3(Input.mousePosition.x + xOffset, Input.mousePosition.y + yOffset, Input.mousePosition.z);
         if (Input.GetMouseButtonDown(0))
         {
-            PlayClickAnim();
-            
+            PlayClickAnim(); 
         }
 
        /* if (isAnimActive)

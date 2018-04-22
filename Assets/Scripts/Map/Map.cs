@@ -7,6 +7,9 @@ using UnityEngine.SceneManagement;
 
 public class Map : MonoBehaviour {
 
+    [SerializeField]
+    GameObject mapChildren;
+
     #region variables
     [SerializeField]
     GameObject battleController;
@@ -250,7 +253,7 @@ public class Map : MonoBehaviour {
 
             battleObject.SetActive(true);
             PlayerProfile.Singleton.ModifyBattleProperties();
-            this.gameObject.SetActive(false);
+            mapChildren.SetActive(false);
         }  
 
         else
