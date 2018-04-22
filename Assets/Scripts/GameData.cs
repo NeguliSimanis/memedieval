@@ -106,10 +106,10 @@ public class ChampionData
     public void ChooseRandomAbility()
     {
         int abilityID;
-        //int abilityID = Random.Range(0, (int)Ability.AbilityCount);
+        abilityID = Random.Range(0, (int)Ability.AbilityCount);
 
-        Debug.Log("Ability selection not set to random!");
-        abilityID = 0;
+        //Debug.Log("Ability selection not set to random!"); abilityID = 0;
+
         currentChampionAbility = (Ability)abilityID;
         //Debug.Log("Ability " + currentChampionAbility + " chosen");
     }

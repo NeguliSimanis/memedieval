@@ -5,23 +5,58 @@ using UnityEngine.UI;
 
 public class CursorAnimation : MonoBehaviour {
 
-    [SerializeField]
-    GameObject cursorClickAnim;
+    //GameObject cursorClickObject;
+    //GameObject canvas;
+    //string canvasName = "Canvas";
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
+    Animator cursorAnimator;
+
+    int xOffset = 45;
+    int yOffset = -40;
+
+    void Start()
+    {
+        HideCursor();
+        //canvas = GameObject.Find(canvasName);
+       // cursorClickObject = canvas.GetComponent<CursorAnimFinder>().cursorAnim;
+        cursorAnimator = gameObject.GetComponent<Animator>();
+    }
+
+    void HideCursor()
+    {
+        Cursor.visible = false;
+    }
+
+
+    void ShowCursor()
+    {
+        Cursor.visible = true;
+    }
+
+    void PlayClickAnim()
+    {
+        Debug.Log("playing animation");
+        cursorAnimator.SetTrigger("Click");
+    }
+        
+
+	void Update ()
+    {
+        gameObject.transform.position = new Vector3(Input.mousePosition.x + xOffset, Input.mousePosition.y + yOffset, Input.mousePosition.z);
+
         if (Input.GetMouseButtonDown(0))
-            Debug.Log("Pressed primary button.");
+        {
+            PlayClickAnim();
+            
+        }
 
-        if (Input.GetMouseButtonDown(1))
-            Debug.Log("Pressed secondary button.");
-
-        if (Input.GetMouseButtonDown(2))
-            Debug.Log("Pressed middle click.");
+       /* if (isAnimActive)
+        {
+            if (Time.time > clickEndTime)
+            {
+               // ShowCursor();
+                EndClickAnim();
+            }
+        }*/
     }
 }
