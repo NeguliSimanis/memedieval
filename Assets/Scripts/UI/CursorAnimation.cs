@@ -25,16 +25,6 @@ public class CursorAnimation : MonoBehaviour {
        // cursorClickObject = canvas.GetComponent<CursorAnimFinder>().cursorAnim;
     }
 
-    void OnEnable()
-    {
-        if (isActive == false)
-        {
-            Debug.Log("started later");
-            isActive = true;
-            SetScale();
-            cursorAnimator = gameObject.GetComponent<Animator>();
-        }
-    }
 
     void SetScale()
     {
@@ -65,11 +55,10 @@ public class CursorAnimation : MonoBehaviour {
 
 	void Update ()
     {
-        if (!isActive)
-            return;
         gameObject.transform.position = new Vector3(Input.mousePosition.x, Input.mousePosition.y, Input.mousePosition.z); //new Vector3(Input.mousePosition.x + xOffset, Input.mousePosition.y + yOffset, Input.mousePosition.z);
         if (Input.GetMouseButtonDown(0))
         {
+            Debug.Log("called click");
             PlayClickAnim(); 
         }
 
