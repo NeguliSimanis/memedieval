@@ -60,31 +60,38 @@ public class Spawn : MonoBehaviour
     {
         if (captain == Attack.Type.Archer)
         {
-            // there are no archer captains
-            if (PlayerProfile.Singleton.champions.Where(x => x.properties.champClass == 2).Count()==0)
-            {
-                transform.parent.gameObject.transform.parent.gameObject.SetActive(false);
-            }
+            CheckChampClass(2);
         }
         else if (captain == Attack.Type.Knight)
         {
-            // there are no knight captains
-            if (PlayerProfile.Singleton.champions.Where(x => x.properties.champClass == 1).Count() == 0)
-            {
-                transform.parent.gameObject.transform.parent.gameObject.SetActive(false);
-            }
+            CheckChampClass(1);
         }
         else
         {
-            // there are no peasant captains
-            if (PlayerProfile.Singleton.champions.Where(x => x.properties.champClass == 0).Count() == 0)
-            {
-                transform.parent.gameObject.transform.parent.gameObject.SetActive(false);
-            }
+            CheckChampClass(0);
         }
-        //var c = PlayerProfile.Singleton.champions.Where(x => x.properties.champClass == 0).First();
     }
 
+    void CheckChampClass(int classID)
+    {
+        int champCount = 0;
+        foreach (Champion champion in PlayerProfile.Singleton.champions)
+        {
+            if (champion.properties.champClass == classID && champion.invitedToBattle)
+            {
+                champCount++;
+            }
+        }
+        if (champCount == 0)
+        {
+            DisablePlayerSpawn();
+        }
+    }
+
+    void DisablePlayerSpawn()
+    {
+        transform.parent.gameObject.transform.parent.gameObject.SetActive(false);
+    }
     void SetPriceModifiers()
     {   
         GameObject player = PlayerProfile.Singleton.gameObject;

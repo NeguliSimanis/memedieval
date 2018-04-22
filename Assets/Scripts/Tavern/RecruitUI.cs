@@ -87,8 +87,6 @@ public class RecruitUI : MonoBehaviour {
         {
             defaultFaceObject.SetActive(true);
         }
-        else
-            switchCameraButton.gameObject.SetActive(true);
     }
 
     void SaveFace()
