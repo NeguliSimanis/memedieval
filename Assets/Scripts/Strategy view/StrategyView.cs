@@ -66,6 +66,7 @@ public class StrategyView : MonoBehaviour {
             // initialize button text
             newChampionCard.transform.Find("Text").gameObject.GetComponent<Text>().text = champion.properties.Name;
             newChampionCard.transform.Find("ChampionProperties").gameObject.GetComponent<Text>().text = "LV " + (champion.properties.level + 1) + " "+ champion.GetClassName();
+            newChampionCard.transform.Find("ChampionAbility").gameObject.GetComponent<Text>().text = "Ability: " + champion.properties.GetAbilityString();
 
             // initialize button markers
             if (champion.invitedToBattle)

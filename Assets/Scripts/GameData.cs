@@ -54,7 +54,7 @@ public class ChampionData
     public string quote;
     public bool isDead;
 
-    public enum Ability { RallyingShout, BerserkFury, Prayer, AbilityCount };
+    public enum Ability { Warhorn, BerserkFury, Prayer, AbilityCount };
     public Ability currentChampionAbility;
    // public AudioClip championAbilitySFX;
 
@@ -112,6 +112,22 @@ public class ChampionData
 
         currentChampionAbility = (Ability)abilityID;
         //Debug.Log("Ability " + currentChampionAbility + " chosen");
+    }
+
+    public string GetAbilityString()
+    {
+        if (currentChampionAbility == Ability.BerserkFury)
+        {
+            return "Berserk Fury";
+        }
+        else if (currentChampionAbility == Ability.Prayer)
+        {
+            return "Prayer";
+        }
+        else 
+        {
+            return "Warhorn";
+        }
     }
 }
     #endregion

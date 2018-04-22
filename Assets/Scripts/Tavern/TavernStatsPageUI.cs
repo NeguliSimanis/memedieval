@@ -227,20 +227,6 @@ public class TavernStatsPageUI : MonoBehaviour {
 
     void SetChampionAbilityText()
     {
-        string newAbilityText;
-        if (_activeChamp.properties.currentChampionAbility == ChampionData.Ability.BerserkFury)
-        {
-            newAbilityText = "Berserk Fury";
-        }
-        else if (_activeChamp.properties.currentChampionAbility == ChampionData.Ability.Prayer)
-        {
-            newAbilityText = "Prayer";
-        }
-        else //(_activeChamp.properties.currentChampionAbility == ChampionData.Ability.RallyingShout)
-        {
-            newAbilityText = "Rallying Shout";
-        }
-
-        abilityText.text = "Ability: " + newAbilityText;
+        abilityText.text = "Ability: " + _activeChamp.properties.GetAbilityString();
     }
 }

@@ -135,7 +135,7 @@ public class ChampionAbilities : MonoBehaviour {
         {
             StartPrayer();
         }
-        else if (ability == ChampionData.Ability.RallyingShout)
+        else if (ability == ChampionData.Ability.Warhorn)
         {
             StartRallyingShout();
         }
@@ -209,7 +209,7 @@ public class ChampionAbilities : MonoBehaviour {
         {
             EndPrayer();
         }
-        else if (ability == ChampionData.Ability.RallyingShout)
+        else if (ability == ChampionData.Ability.Warhorn)
         {
             EndRallyingShout();
         }
