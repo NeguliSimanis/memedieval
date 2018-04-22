@@ -48,8 +48,8 @@ public class ChampionAbilities : MonoBehaviour {
 
     #region berserk fury
     private PlayerUnit championUnit;
-    float furyAttackSpeedEffect = 0.3f;
-    float furyMoveSpeedEffect = 3f;
+    float furyAttackSpeedEffect = 0.35f;
+    float furyMoveSpeedEffect = 3.5f;
     float defaultAttackCooldown;
     #endregion
 
@@ -257,6 +257,7 @@ public class ChampionAbilities : MonoBehaviour {
         Debug.Log("Berserk fury activated");
         defaultAttackCooldown = championUnit.defaultCooldown;;
         championUnit.ChangeAttackCooldown(-furyAttackSpeedEffect);
+        gameObject.transform.Find("BerserkAnimation").gameObject.SetActive(true);
         animator.speed = 3f; //animator.speed * furyMoveSpeedEffect;
         waypointFollower.Speed = 3f; // waypointFollower.Speed * furyMoveSpeedEffect;
     }
@@ -266,6 +267,7 @@ public class ChampionAbilities : MonoBehaviour {
         Debug.Log("Berserk fury deactivated");
         championUnit.defaultCooldown = defaultAttackCooldown;
         championUnit.ChangeAttackCooldown(furyAttackSpeedEffect);
+        gameObject.transform.Find("BerserkAnimation").gameObject.SetActive(false);
         animator.speed = defaultAnimSpeed;
         waypointFollower.Speed = defaultMoveSpeed;
     }
@@ -312,6 +314,9 @@ public class ChampionAbilities : MonoBehaviour {
                 // set animator speed
                 AnimatorSpeed animatorSpeed = playerUnit.gameObject.GetComponent<AnimatorSpeed>();
                 animatorSpeed.ChangeAnimSpeed(rallyingShoutMoveSpeedEffect);
+
+                // activate animation
+                playerUnit.gameObject.transform.Find("ShoutAnimation").gameObject.SetActive(true);
             }
             //playerUnit.gameObject.GetComponent<Health>().StartRegen(healAmount, Time.time + abilityEffectDuration);
         }
@@ -341,6 +346,9 @@ public class ChampionAbilities : MonoBehaviour {
                     // set animator speed
                     AnimatorSpeed animatorSpeed = playerUnit.gameObject.GetComponent<AnimatorSpeed>();
                     animatorSpeed.ChangeAnimSpeed(-rallyingShoutMoveSpeedEffect);
+
+                    // deactivate animation
+                    playerUnit.gameObject.transform.Find("ShoutAnimation").gameObject.SetActive(false);
                 }
             }
             //playerUnit.gameObject.GetComponent<Health>().StartRegen(healAmount, Time.time + abilityEffectDuration);
