@@ -5,7 +5,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{671874EB-F913-5385-59EF-D93495F9648F}</ProjectGuid>
+    <ProjectGuid>{493B91EC-8D9C-5A16-1334-4A146A2D6E77}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AssemblyName>Assembly-CSharp-Editor-firstpass</AssemblyName>
     <FileAlignment>512</FileAlignment>
@@ -247,9 +247,6 @@
     <Reference Include="UnityEditor.Android.Extensions">
       <HintPath>Library\UnityAssemblies\UnityEditor.Android.Extensions.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEditor.WebGL.Extensions">
-      <HintPath>Library\UnityAssemblies\UnityEditor.WebGL.Extensions.dll</HintPath>
-    </Reference>
     <Reference Include="UnityEditor.WindowsStandalone.Extensions">
       <HintPath>Library\UnityAssemblies\UnityEditor.WindowsStandalone.Extensions.dll</HintPath>
     </Reference>
@@ -303,13 +300,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="memedieval.CSharp.csproj">
-      <Project>{50DC342B-032F-08D0-259D-9B8702B24AE4}</Project>
-      <Name>memedieval.CSharp</Name>
+    <ProjectReference Include="MeMedieval.CSharp.csproj">
+      <Project>{3E324681-2FE1-C93E-A226-0E61E161BC0F}</Project>
+      <Name>MeMedieval.CSharp</Name>
     </ProjectReference>
-    <ProjectReference Include="memedieval.CSharp.Plugins.csproj">
-      <Project>{8C322C24-81C8-9475-2DA3-5B07BD60CDB9}</Project>
-      <Name>memedieval.CSharp.Plugins</Name>
+    <ProjectReference Include="MeMedieval.CSharp.Plugins.csproj">
+      <Project>{8B8BB009-EC11-2411-76BC-E4F77C242375}</Project>
+      <Name>MeMedieval.CSharp.Plugins</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

@@ -4,7 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 
 
-public class ChampionAbilities : MonoBehaviour {
+public class ChampionAbilities : MonoBehaviour
+{
 
     Champion champion;
 
@@ -21,7 +22,7 @@ public class ChampionAbilities : MonoBehaviour {
     bool isOnCooldown = false;
     bool isAbilityActive = false;
 
-    private float chargingDuration = 3f; 
+    private float chargingDuration = 3f;
 
     private float abilityEffectDuration = 3.5f;
     private float abilityAvailableDuration = 2f;
@@ -32,6 +33,13 @@ public class ChampionAbilities : MonoBehaviour {
     private float cooldownEndTime;
     private float waitingEndTime;
     private float abilityEffectEndTime;
+
+    [SerializeField]
+    private FMODUnity.StudioEventEmitter sfxBerserk;
+    [SerializeField]
+    private FMODUnity.StudioEventEmitter sfxPrayer;
+    [SerializeField]
+    private FMODUnity.StudioEventEmitter sfxWarhorn;
 
     [SerializeField]
     GameObject chargingBar;
@@ -67,6 +75,7 @@ public class ChampionAbilities : MonoBehaviour {
         SetDefaultValues();
         GetComponents();
         FindAbilityEffect();
+
     }
 
     void GetComponents()
@@ -76,11 +85,13 @@ public class ChampionAbilities : MonoBehaviour {
         champion = gameObject.GetComponent<Champion>();
         ability = champion.properties.currentChampionAbility;
         championUnit = gameObject.GetComponent<PlayerUnit>();
+
+
         //abilitySFX = gameObject.GetComponent<Champion>().properties.championAbilitySFX;
     }
 
     void FindAbilityEffect()
-    { 
+    {
         if (ability == ChampionData.Ability.BerserkFury)
         {
             abilityImage = GameObject.Find("BerserkFury").GetComponent<Image>();
@@ -104,7 +115,7 @@ public class ChampionAbilities : MonoBehaviour {
         defaultAnimSpeed = animator.speed;
     }
 
-	void OnMouseDown()
+    void OnMouseDown()
     {
         if (canChargeAbility)
         {
@@ -112,7 +123,7 @@ public class ChampionAbilities : MonoBehaviour {
         }
         else if (isWaitingOrder)
         {
-            UseAbility(); 
+            UseAbility();
         }
     }
 
@@ -122,11 +133,11 @@ public class ChampionAbilities : MonoBehaviour {
         abilityImage.enabled = true;
         isWaitingOrder = false;
         isOnCooldown = true;
-        
+
         abilityReadyAnimation.SetActive(false);
         cooldownEndTime = Time.time + abilityCooldown;
         abilityEffectEndTime = Time.time + abilityEffectDuration;
-       
+
         if (ability == ChampionData.Ability.BerserkFury)
         {
             StartBerserkFury();
@@ -146,7 +157,7 @@ public class ChampionAbilities : MonoBehaviour {
     void ChargeAbility()
     {
         chargingBar.gameObject.SetActive(true);
-        
+
         canChargeAbility = false;
         isChargingAbility = true;
 
@@ -166,7 +177,7 @@ public class ChampionAbilities : MonoBehaviour {
 
     void UpdateChargingBarImage()
     {
-        chargingBarImage.fillAmount = (Time.time - chargingStartTime)/chargingDuration;
+        chargingBarImage.fillAmount = (Time.time - chargingStartTime) / chargingDuration;
     }
 
     // waits when the player will use the ability
@@ -240,7 +251,7 @@ public class ChampionAbilities : MonoBehaviour {
             {
                 Debug.Log("ability reset check -1");
                 Reset(false);
-            }        
+            }
         }
         else if (isOnCooldown)
         {
@@ -248,14 +259,15 @@ public class ChampionAbilities : MonoBehaviour {
             {
                 Reset();
             }
-                
+
         }
     }
 
     void StartBerserkFury()
     {
         Debug.Log("Berserk fury activated");
-        defaultAttackCooldown = championUnit.defaultCooldown;;
+        sfxBerserk.Play();
+        defaultAttackCooldown = championUnit.defaultCooldown; ;
         championUnit.ChangeAttackCooldown(-furyAttackSpeedEffect);
         gameObject.transform.Find("BerserkAnimation").gameObject.SetActive(true);
         animator.speed = 3f; //animator.speed * furyMoveSpeedEffect;
@@ -264,7 +276,9 @@ public class ChampionAbilities : MonoBehaviour {
 
     void EndBerserkFury()
     {
+
         Debug.Log("Berserk fury deactivated");
+        sfxBerserk.Stop();
         championUnit.defaultCooldown = defaultAttackCooldown;
         championUnit.ChangeAttackCooldown(furyAttackSpeedEffect);
         gameObject.transform.Find("BerserkAnimation").gameObject.SetActive(false);
@@ -275,6 +289,7 @@ public class ChampionAbilities : MonoBehaviour {
     void StartPrayer()
     {
         Debug.Log("Prayer activated");
+        sfxPrayer.Play();
         PlayerUnit[] playerUnits;
         playerUnits = Object.FindObjectsOfType<PlayerUnit>();
         foreach (PlayerUnit playerUnit in playerUnits)
@@ -288,11 +303,12 @@ public class ChampionAbilities : MonoBehaviour {
     void EndPrayer()
     {
         Debug.Log("Prayer deactivated");
+        sfxPrayer.Stop();
     }
 
     void StartRallyingShout()
     {
-        
+
         WaypointFollower waypointFollower;
         PlayerUnit[] playerUnits;
         playerUnits = Object.FindObjectsOfType<PlayerUnit>();
@@ -320,6 +336,7 @@ public class ChampionAbilities : MonoBehaviour {
             }
             //playerUnit.gameObject.GetComponent<Health>().StartRegen(healAmount, Time.time + abilityEffectDuration);
         }
+        sfxWarhorn.Play();
     }
 
     void EndRallyingShout()
@@ -353,6 +370,7 @@ public class ChampionAbilities : MonoBehaviour {
             }
             //playerUnit.gameObject.GetComponent<Health>().StartRegen(healAmount, Time.time + abilityEffectDuration);
         }
+        sfxWarhorn.Stop();
     }
 
 }
