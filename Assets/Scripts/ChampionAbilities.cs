@@ -203,15 +203,14 @@ public class ChampionAbilities : MonoBehaviour
             Debug.Log("calling stop ability");
             StopUsingAbility();
         }
-        abilityImage.enabled = false;
+        
         canChargeAbility = allowCharging;
         waypointFollower.Speed = defaultMoveSpeed;
         animator.speed = defaultAnimSpeed;
     }
 
     void StopUsingAbility()
-    {
-        Debug.Log("stopping abbility");
+    {       
         if (ability == ChampionData.Ability.BerserkFury)
         {
             EndBerserkFury();
@@ -225,6 +224,8 @@ public class ChampionAbilities : MonoBehaviour
             EndRallyingShout();
         }
         isAbilityActive = false;
+        if (abilityImage != null)
+            abilityImage.enabled = false;
     }
 
     void Update()
@@ -373,4 +374,9 @@ public class ChampionAbilities : MonoBehaviour
         sfxWarhorn.Stop();
     }
 
+
+    void OnDestroy()
+    {
+        StopUsingAbility();
+    }
 }
