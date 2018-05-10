@@ -244,7 +244,6 @@ public class Spawn : MonoBehaviour
                         character.GetComponent<Champion>().properties.currentChampionAbility = c.properties.currentChampionAbility;
                         c.onBattle = true;
                     }
-                    Debug.Log("face added");
                 }
             }
 
@@ -279,7 +278,6 @@ public class Spawn : MonoBehaviour
                         character.GetComponent<Champion>().properties.currentChampionAbility = c.properties.currentChampionAbility;
                         c.onBattle = true;
                     }
-                    Debug.Log("face added");
                 }
             }
 
@@ -296,5 +294,9 @@ public class Spawn : MonoBehaviour
         KnightCaptainsLeft = 1;
     }
 
+    private void AddChampionFace()
+    {
+
+    }
 }
 
