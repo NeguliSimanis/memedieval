@@ -60,7 +60,7 @@ public class Champion : MonoBehaviour {
         switch (properties.champClass)
         {
             case 2:
-                return "Archer";
+                return "Archer";    
             case 1:
                 return "Knight";
             case 0:

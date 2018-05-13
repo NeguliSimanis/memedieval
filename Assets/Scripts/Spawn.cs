@@ -178,38 +178,7 @@ public class Spawn : MonoBehaviour
                 if (Health.Peasant) return;
                 else if (isCaptain)
                 {
-                    var g = new GameObject();
-                    g.AddComponent<SpriteRenderer>();
-                    GameObject captainFace = g;
-
-                    var h = character.GetComponentInChildren<Transform>();
-                    g.transform.SetParent(h.transform);
-                    GameObject thisCaptainFace = g;
-
-                    //thisCaptainFace.transform.localScale += new Vector3(1F, 1f, 1f);
-                    thisCaptainFace.transform.localPosition = new Vector3(-1.2f, 2.0f, 0);
-                    thisCaptainFace.transform.localScale = new Vector3(0.4f, 0.4f, 0);
-                    thisCaptainFace.transform.GetComponent<SpriteRenderer>().sortingLayerName = "Foreground";
-
-
-                    AvatarFace face;
-                    var c = PlayerProfile.Singleton.champions.Where(x => x.properties.champClass == 0).First();
-                    if (c != null)
-                    {
-                        face = Instantiate(avatarFacePrefab, h);
-                        face.SetFace(c.properties.LoadPictureAsTexture2D());
-                        face.transform.localPosition = new Vector3(-0.4f, 2.0f, 0);
-                        face.transform.localScale = new Vector3(0.02f, 0.02f, 0);
-                        //var p = c.picture;
-                        Debug.Log(c.properties.Name);
-
-                        //thisCaptainFace.transform.GetComponent<SpriteRenderer>().sprite = Sprite.Create(p, new Rect(0, 0, p.width, p.height), Vector2.zero);
-                        character.GetComponent<Champion>().properties.currentChampionAbility = c.properties.currentChampionAbility;
-                        c.onBattle = true;
-
-                    }
-
-                    //face.transform.GetComponent<SpriteRenderer>().sortingLayerName = "Foreground";
+                    AddChampionFace(character, 0);
                 }
             }
 
@@ -218,32 +187,7 @@ public class Spawn : MonoBehaviour
                 if (Health.Knight) return;
                 else if (isCaptain)
                 {
-                    var g = new GameObject();
-                    g.AddComponent<SpriteRenderer>();
-                    GameObject captainFace = g;
-
-                    var h = character.GetComponentInChildren<Transform>();
-                    g.transform.SetParent(h.transform);
-                    GameObject thisCaptainFace = g;
-
-                    //thisCaptainFace.transform.localScale += new Vector3(1F, 1f, 1f);
-                    thisCaptainFace.transform.localPosition = new Vector3(-1.2f, 2.0f, 0);
-                    thisCaptainFace.transform.localScale = new Vector3(0.4f, 0.4f, 0);
-                    thisCaptainFace.transform.GetComponent<SpriteRenderer>().sortingLayerName = "Foreground";
-                    AvatarFace face;
-                    var c = PlayerProfile.Singleton.champions.Where(x => x.properties.champClass == 1).First();
-                    if (c != null)
-                    {
-                        face = Instantiate(avatarFacePrefab, h);
-                        face.SetFace(c.properties.LoadPictureAsTexture2D());
-                        face.transform.localPosition = new Vector3(-0.2f, 2.5f, 0);
-                        face.transform.localScale = new Vector3(0.02f, 0.02f, 0);
-                        //var p = c.picture;
-                        //Debug.Log(c.Name);
-                        //thisCaptainFace.transform.GetComponent<SpriteRenderer>().sprite =Sprite.Create(p,new Rect(0,0,p.width,p.height),Vector2.zero);
-                        character.GetComponent<Champion>().properties.currentChampionAbility = c.properties.currentChampionAbility;
-                        c.onBattle = true;
-                    }
+                    AddChampionFace(character, 1);
                 }
             }
 
@@ -252,32 +196,7 @@ public class Spawn : MonoBehaviour
                 if (Health.Archer) return;
                 else if (isCaptain)
                 {
-                    var g = new GameObject();
-                    g.AddComponent<SpriteRenderer>();
-                    GameObject captainFace = g;
-
-                    var h = character.GetComponentInChildren<Transform>();
-                    g.transform.SetParent(h.transform);
-                    GameObject thisCaptainFace = g;
-
-                    //thisCaptainFace.transform.localScale += new Vector3(1F, 1f, 1f);
-                    thisCaptainFace.transform.localPosition = new Vector3(-1.8f, 2.0f, 0);
-                    thisCaptainFace.transform.localScale = new Vector3(0.4f, 0.4f, 0);
-                    thisCaptainFace.transform.GetComponent<SpriteRenderer>().sortingLayerName = "Foreground";
-                    AvatarFace face;
-                    var c = PlayerProfile.Singleton.champions.Where(x => x.properties.champClass == 2).First(); // this can cause errors because different champion class index is used in some places 
-                    if (c != null)
-                    {
-                        face = Instantiate(avatarFacePrefab, h);
-                        face.SetFace(c.properties.LoadPictureAsTexture2D());
-                        face.transform.localPosition = new Vector3(-0.5f, 2.5f, 0);
-                        face.transform.localScale = new Vector3(0.02f, 0.02f, 0);
-                        //var p = c.picture;
-                        //Debug.Log(c.Name);
-                        //thisCaptainFace.transform.GetComponent<SpriteRenderer>().sprite = Sprite.Create(p, new Rect(0, 0, p.width, p.height), Vector2.zero);
-                        character.GetComponent<Champion>().properties.currentChampionAbility = c.properties.currentChampionAbility;
-                        c.onBattle = true;
-                    }
+                    AddChampionFace(character, 2);
                 }
             }
 
@@ -294,9 +213,56 @@ public class Spawn : MonoBehaviour
         KnightCaptainsLeft = 1;
     }
 
-    private void AddChampionFace()
+    private void TransformChampionFace(AvatarFace championFace, int championClassID)
+    {
+        Vector3 facePosition;
+        Vector3 faceScale = new Vector3(0.02f, 0.02f, 0);
+
+        if (championClassID == 0) // peasant
+        {
+            facePosition = new Vector3(-0.2f, 2.5f, 0);
+        }
+        else if (championClassID == 1) // knight
+        {
+            facePosition = new Vector3(-0.2f, 2.5f, 0);
+        }
+        else // archer
+        {
+            facePosition = new Vector3(-0.35f, 2f, 0);
+        }
+
+        championFace.transform.localPosition = facePosition;
+        championFace.transform.localScale = faceScale;
+    }
+
+    private void AddChampionFace(WaypointFollower championUnit, int championClassID) // 1 = knight
     {
 
+        var g = new GameObject();
+        g.AddComponent<SpriteRenderer>();
+        GameObject captainFace = g;
+
+        var h = championUnit.GetComponentInChildren<Transform>();
+        g.transform.SetParent(h.transform);
+        GameObject thisCaptainFace = g;
+
+        Debug.Log("add champion face called");
+        
+        thisCaptainFace.transform.GetComponent<SpriteRenderer>().sortingLayerName = "Foreground";
+
+        AvatarFace face;
+
+        Champion summonedChampion = PlayerProfile.Singleton.champions.Where(x => x.properties.champClass == championClassID).First();
+        if (summonedChampion != null)
+        {
+            face = Instantiate(avatarFacePrefab, h);
+            face.SetFace(summonedChampion.properties.LoadPictureAsTexture2D());
+
+            TransformChampionFace(face, championClassID);
+            
+            championUnit.GetComponent<Champion>().properties.currentChampionAbility = summonedChampion.properties.currentChampionAbility;
+            summonedChampion.onBattle = true;
+        }
     }
 }
 
