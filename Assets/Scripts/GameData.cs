@@ -79,8 +79,6 @@ public class ChampionData
     public int wealth = 0;
     #endregion
 
-   
-
     public void SetPicture(Texture2D texture)
     {
        /* pictureWidth = texture.width;
@@ -111,6 +109,24 @@ public class ChampionData
         //Debug.Log("Ability selection not set to random!"); abilityID = 0;
 
         currentChampionAbility = (Ability)abilityID;
+    }
+
+    public string GetChampionClass()
+    {
+        //public int champClass; // 0 - peasant, 1 - Knight, 2 - archer (in some places peasant and archer are inversed)
+        if (champClass == 0)
+        {
+            return "Archer";
+        }
+        else if (champClass == 1)
+        {
+            return "Knight";
+        }
+        else if (champClass == 2)
+        {
+            return "Peasant";
+        }
+        return "ERROR IR GAMEDATA.GETCHAMPIONCLASS";
     }
 
     public string GetAbilityString()
