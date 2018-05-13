@@ -37,8 +37,9 @@ public class CreateChampion : MonoBehaviour
     public bool hasPicture = false;
     private WebCamTexture backCam;
     public Texture2D pic;
+
     [SerializeField]
-    private Texture2D defaultPicture;
+    private Texture2D[] defaultPictures;
 
     public RawImage background;
 
@@ -124,14 +125,31 @@ public class CreateChampion : MonoBehaviour
         return WebCamTexture.devices.Length;
     }
 
-    public Champion createChamp()
+    public Champion createRandomChamp(GameObject parentObject)
     {
-        var g = new GameObject();
-        var c = g.AddComponent<Champion>();
+        int champClassID = Random.Range(0, ChampionsPrefabs.Length);
+        GameObject championObject = Instantiate<GameObject>(ChampionsPrefabs[champClassID]);
 
-        this.gameObject.GetComponent<ChampionSkillGenerator>().GenerateChampionSkills(c);
-       
-        return c;
+        championObject.SetActive(false);
+        championObject.transform.parent = parentObject.transform;
+
+        var champo = championObject.GetComponent<Champion>();
+        string championName = gameObject.GetComponent<RandomName>().GetRandomChampionName();
+        champo.properties.champClass = champClassID;
+
+        champo.properties.Name = championName;
+        champo.properties.isMan = (Random.value > 0.5f);
+        champo.properties.bio = MakeBio(championName);
+        champo.properties.quote = MakeMotto();
+        SetChampionPicture(champo);
+        SetChampionAbility(champo);
+
+        this.gameObject.GetComponent<ChampionSkillGenerator>().GenerateChampionSkills(champo);
+
+        var stats = Instantiate(StatsContainerPrefab);
+        stats.transform.parent = champo.transform;
+            
+        return champo;
     }
 
     public void StartUsingWebcam()
@@ -221,24 +239,6 @@ public class CreateChampion : MonoBehaviour
         //CopyCaptainFace();
     }
 
-    //private void CopyCaptainFace()
-    //{
-
-    //    // display the captain face
-    //    firstCaptainFace = Instantiate(captainFaceMask, captainFacePanel.transform);
-    //    firstCaptainFace.transform.localScale = new Vector3(0.8F, 0.8f, 0.8f);
-    //    //firstCaptainFace.transform.GetChild(0).GetComponent<>
-
-    //    // store the captain face
-    //    GameObject firstCopy = Instantiate(firstCaptainFace, gameManager.transform);
-    //    firstCopy.SetActive(false);
-    //    firstCopy.gameObject.tag = "Peasant face";
-
-    //    Debug.Log("Load next scene");
-    //    backCam.Stop();
-    //}
-
-    
     public void setMan()
     {
         isMan = true;
@@ -267,6 +267,7 @@ public class CreateChampion : MonoBehaviour
         SetChampionPicture(champo);
         champo.properties.bio = MakeBio(Name1);
         champo.properties.quote = MakeMotto();
+        champo.properties.isCameraPicture = true;
         SetChampionAbility(champo);
 
         this.gameObject.GetComponent<ChampionSkillGenerator>().GenerateChampionSkills(champo);
@@ -284,7 +285,8 @@ public class CreateChampion : MonoBehaviour
     {
         if (pic == null)
         {
-            champion.properties.SetPicture(defaultPicture);
+            // 0 - archer, 1 - Knight, 2 - peasant (in some places peasant and archer are inversed)
+            champion.properties.SetPicture(defaultPictures[champion.properties.champClass]);
         }
         else
             champion.properties.SetPicture(pic);
@@ -293,21 +295,6 @@ public class CreateChampion : MonoBehaviour
     void SetChampionAbility(Champion champion)
     {
         champion.properties.ChooseRandomAbility();
-        /*
-        if (champion.properties.currentChampionAbility == ChampionData.Ability.BerserkFury)
-        {
-            champion.properties.championAbilitySFX = berserkFuryDefaultAudio;
-        }
-
-        else if (champion.properties.currentChampionAbility == ChampionData.Ability.RallyingShout)
-        {
-            champion.properties.championAbilitySFX = rallyingShoutDefaultAudio;
-        }
-
-        else // if (champion.properties.currentChampionAbility == ChampionData.Ability.Prayer)
-        {
-            champion.properties.championAbilitySFX = prayerDefaultAudio;
-        }*/
     }
 
     public void LoadChampionFromSave(ChampionData championData)

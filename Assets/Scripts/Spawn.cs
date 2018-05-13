@@ -246,7 +246,6 @@ public class Spawn : MonoBehaviour
         g.transform.SetParent(h.transform);
         GameObject thisCaptainFace = g;
 
-        Debug.Log("add champion face called");
         
         thisCaptainFace.transform.GetComponent<SpriteRenderer>().sortingLayerName = "Foreground";
 
@@ -255,11 +254,13 @@ public class Spawn : MonoBehaviour
         Champion summonedChampion = PlayerProfile.Singleton.champions.Where(x => x.properties.champClass == championClassID).First();
         if (summonedChampion != null)
         {
-            face = Instantiate(avatarFacePrefab, h);
-            face.SetFace(summonedChampion.properties.LoadPictureAsTexture2D());
+            if (summonedChampion.properties.isCameraPicture)
+            {
+                face = Instantiate(avatarFacePrefab, h);
+                face.SetFace(summonedChampion.properties.LoadPictureAsTexture2D());
+                TransformChampionFace(face, championClassID);
+            }
 
-            TransformChampionFace(face, championClassID);
-            
             championUnit.GetComponent<Champion>().properties.currentChampionAbility = summonedChampion.properties.currentChampionAbility;
             summonedChampion.onBattle = true;
         }

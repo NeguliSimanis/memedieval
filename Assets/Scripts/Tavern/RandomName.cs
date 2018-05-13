@@ -114,15 +114,17 @@ public class RandomName : MonoBehaviour {
     void Start ()
     {
         randomNameButton = this.gameObject.GetComponent<Button>();
-        randomNameButton.onClick.AddListener(RandomizeName);
+
+        if (randomNameButton != null)
+            randomNameButton.onClick.AddListener(RandomizeName);
 	}
 
     void RandomizeName()
     {
-        inputField.text = Generate();
+        inputField.text = GetRandomChampionName();
     }
 
-    string Generate()
+    public string GetRandomChampionName()
     {
         string fullName;
         string name = names[Random.Range(0, names.Length)];

@@ -56,9 +56,10 @@ public class ChampionData
 
     public enum Ability { Warhorn, BerserkFury, Prayer, AbilityCount };
     public Ability currentChampionAbility;
-   // public AudioClip championAbilitySFX;
+    // public AudioClip championAbilitySFX;
 
     #region Picture stuff
+    public bool isCameraPicture = false;
     public byte[] picture;
     private int pictureWidth = 1280;
     private int pictureHeight = 720;
@@ -107,7 +108,6 @@ public class ChampionData
     {
         int abilityID = 2;
         //abilityID = Random.Range(0, (int)Ability.AbilityCount);
-
         //Debug.Log("Ability selection not set to random!"); abilityID = 0;
 
         currentChampionAbility = (Ability)abilityID;

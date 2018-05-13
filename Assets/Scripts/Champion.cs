@@ -28,13 +28,6 @@ public class Champion : MonoBehaviour {
         properties = newProperties;
     }
     
-    /*public void LevelUP()
-    {
-        properties.level++;
-        properties.skillpoints++;
-        Debug.Log(properties.Name + " LEVEL UP");
-    }*/
-
     public void EarnExp(int exp)
     {
         Debug.Log("earned " + exp + "exp");
