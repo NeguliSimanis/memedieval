@@ -682,7 +682,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &63478036
 RectTransform:
   m_ObjectHideFlags: 0
@@ -690,7 +690,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 63478035}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 102.25, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1910683064}
@@ -2694,13 +2694,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   championRooster: {fileID: 1189311287}
   championSelectionPanel: {fileID: 411199322}
-  championButton1: {fileID: 63478035}
+  championButtonContainer1: {fileID: 63478035}
   championPicture1: {fileID: 1910683065}
-  championButton2: {fileID: 148149809}
+  championButtonContainer2: {fileID: 148149809}
   championPicture2: {fileID: 427932403}
   championTitles:
   - {fileID: 409544695}
   - {fileID: 1099059922}
+  championButtons:
+  - {fileID: 1952680917}
+  - {fileID: 1315772644}
   championInfoPanel: {fileID: 1800439678}
   hireChampionButton: {fileID: 312011001}
   createChampion: {fileID: 49394226}
@@ -2709,6 +2712,7 @@ MonoBehaviour:
   selectedChampionSubtitle: {fileID: 1381485024}
   selectedChampionBio: {fileID: 1839477037}
   selectedChampionFace: {fileID: 246872259}
+  selectedChampionCost: {fileID: 1163006261}
 --- !u!1 &265164045
 GameObject:
   m_ObjectHideFlags: 0
@@ -19358,7 +19362,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1872342649
 RectTransform:
   m_ObjectHideFlags: 0
@@ -19366,7 +19370,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1872342648}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 446, y: 225, z: 0}
+  m_LocalPosition: {x: 446, y: -223.99998, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 963671870}
@@ -19374,7 +19378,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 446, y: 225}
+  m_AnchoredPosition: {x: 446, y: -224}
   m_SizeDelta: {x: 107.1, y: 104.1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1872342650
@@ -19643,7 +19647,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1885090587}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -102.25, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1019044047}
@@ -22182,7 +22186,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Random
+  m_Text: Summon
 --- !u!222 &2036924611
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -22657,7 +22661,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2071245453
 RectTransform:
   m_ObjectHideFlags: 0

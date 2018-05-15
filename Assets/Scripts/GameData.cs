@@ -46,17 +46,20 @@ public class GameData
 public class ChampionData
 {
     //public bool onBattle; - no need to save this
-    public string Name;
-    public bool isMan; 
+
     public int level;   
     public int champClass; // 0 - peasant, 1 - Knight, 2 - archer (in some places peasant and archer are inversed)
-    public string bio;
-    public string quote;
     public bool isDead;
+    
 
     public enum Ability { Warhorn, BerserkFury, Prayer, AbilityCount };
     public Ability currentChampionAbility;
     // public AudioClip championAbilitySFX;
+
+    #region recruiting
+    public bool isSaltCostSet = false;
+    public int saltCost;
+    #endregion
 
     #region Picture stuff
     public bool isCameraPicture = false;
@@ -77,6 +80,13 @@ public class ChampionData
     public int wisdom = 0;
     public int luck = 0;
     public int wealth = 0;
+    #endregion
+
+    #region flair
+    public string Name;
+    public bool isMan;
+    public string bio;
+    public string quote;
     #endregion
 
     public void SetPicture(Texture2D texture)
@@ -143,6 +153,16 @@ public class ChampionData
         {
             return "Warhorn";
         }
+    }
+
+    public int GetSaltCost()
+    {
+        if (!isSaltCostSet)
+        {
+            saltCost = Random.Range(3, 6) + level;
+            isSaltCostSet = true;
+        }
+        return saltCost;
     }
 }
     #endregion
