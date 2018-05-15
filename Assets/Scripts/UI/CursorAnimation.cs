@@ -47,7 +47,7 @@ public class CursorAnimation : MonoBehaviour {
     void ScaleCursorAnimation()
     {
         canvasParent = transform.parent.gameObject;
-        gameObject.transform.localScale = new Vector3(1f/canvasParent.transform.localScale.x, 1f / canvasParent.transform.localScale.y, 1f / canvasParent.transform.localScale.z);
+        gameObject.transform.localScale = new Vector3(2f/canvasParent.transform.localScale.x, 2f / canvasParent.transform.localScale.y, 2f / canvasParent.transform.localScale.z);
     }
 
     void HideDefaultCursor()
