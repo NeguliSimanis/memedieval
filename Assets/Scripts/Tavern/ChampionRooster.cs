@@ -81,7 +81,14 @@ public class ChampionRooster : MonoBehaviour {
     {
         Champion selectedChampion = neutralChampions.neutralChampionsList[selectedChampionID];
         
-        // TO DO - check resources
+        // check resources
+        if (playerProfile.SaltCurrent < selectedChampion.properties.saltCost)
+        {
+            return;
+        }
+
+        // spend resources
+        playerProfile.SaltCurrent = playerProfile.SaltCurrent - selectedChampion.properties.saltCost;
 
         // recruit champion
         playerProfile.champions.Add(selectedChampion);
@@ -183,8 +190,6 @@ public class ChampionRooster : MonoBehaviour {
             DisplaySelectedChampion();
         }
     }
-
-    
 
     void DisplaySelectedChampion()
     {
