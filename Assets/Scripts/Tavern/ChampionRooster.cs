@@ -136,6 +136,11 @@ public class ChampionRooster : MonoBehaviour {
 
     void DisplayNeutralChampionsList()
     {
+        if (neutralChampions.neutralChampionsList.Count == 0)
+        {
+            noChampionsPanel.SetActive(true);
+            return;
+        }
         if (neutralChampions.neutralChampionsList[0] != null)
         {
             DisplayNeutralChampion(0, championButtonContainer1);
