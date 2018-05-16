@@ -126,7 +126,7 @@ public class ChampionData
         //public int champClass; // 0 - peasant, 1 - Knight, 2 - archer (in some places peasant and archer are inversed)
         if (champClass == 0)
         {
-            return "Archer";
+            return "Peasant";  
         }
         else if (champClass == 1)
         {
@@ -134,7 +134,7 @@ public class ChampionData
         }
         else if (champClass == 2)
         {
-            return "Peasant";
+            return "Archer";
         }
         return "ERROR IR GAMEDATA.GETCHAMPIONCLASS";
     }
