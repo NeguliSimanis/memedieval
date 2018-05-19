@@ -61,7 +61,15 @@ public class RandomName : MonoBehaviour {
         "Brom",
         "Ulric",
         "Helewys",
-        "Isolde"
+        "Isolde",
+        "Vincet",
+        "Luthien",
+        "Beren",
+        "Bruce",
+        "Giolla",
+        "Helias",
+        "Eliezer",
+        "Leopold"
     };
     #endregion
 
@@ -108,6 +116,13 @@ public class RandomName : MonoBehaviour {
         "Regiomontanus",
         "of Bayeux",
         "Montagu",
+        "van Gogh",
+        "of Doriath",
+        "Erchamion",
+        "Caine",
+        "Wace",
+        "de Tosny",
+        "the Knife"
     };
     #endregion
 
