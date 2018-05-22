@@ -14,4 +14,9 @@ public class ChampionButton : MonoBehaviour
         champion = newChampion;
         buttonObject = newButtonObject;
     }
+
+    public void DestroyButtonObject()
+    {
+        Destroy(buttonObject);
+    }
 }

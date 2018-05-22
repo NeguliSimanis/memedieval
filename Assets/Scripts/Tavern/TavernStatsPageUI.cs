@@ -186,7 +186,7 @@ public class TavernStatsPageUI : MonoBehaviour {
             buttonPrefab.GetComponent<Button>().onClick.AddListener(() => { ChangeChamp(currentChampion); });
             buttonImage.gameObject.name = currentChampion.properties.Name;
 
-            ChampionButton newChampionButton = new ChampionButton(currentChampion, buttonImage.gameObject);
+            ChampionButton newChampionButton = new ChampionButton(currentChampion, buttonPrefab);
             selectChampionButtObjects.Add(newChampionButton);
         }
         
@@ -199,14 +199,19 @@ public class TavernStatsPageUI : MonoBehaviour {
 
         // delete all champion buttons
         // NB - this is ineffective and might cause memory leak, should be changed
-        for (int i = 0; i < selectChampionButtObjects.Count; i++)
+        /*for (int i = 0; i < selectChampionButtObjects.Count; i++)
         {
             Debug.Log("disabling element " + i);
             ChampionButton tempButton = selectChampionButtObjects[i];
             GameObject tempObject = tempButton.buttonObject;
             selectChampionButtObjects.Remove(tempButton);
             Destroy(tempObject);
+        }*/
+        foreach (ChampionButton championButton in selectChampionButtObjects)
+        {
+            championButton.DestroyButtonObject();
         }
+        selectChampionButtObjects.Clear();
     }
 
     private void DisableChampionFirePopup()
