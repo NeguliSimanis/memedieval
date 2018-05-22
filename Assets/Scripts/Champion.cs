@@ -28,6 +28,19 @@ public class Champion : MonoBehaviour {
         properties = newProperties;
     }
     
+    // NOTE - does not remove champion from neutral champions list!
+    public void DeleteChampion()
+    {
+        List<Champion> playerChampions = PlayerProfile.Singleton.champions;
+        for (int i = 0; i < playerChampions.Count; i++)
+        {
+            if (playerChampions[i] == this)
+                playerChampions.Remove(playerChampions[i]);
+        }
+        
+        Destroy(this.gameObject);
+    }
+
     public void EarnExp(int exp)
     {
         Debug.Log("earned " + exp + "exp");

@@ -5,14 +5,26 @@ using UnityEngine.UI;
 
 public class TavernStatsPageUI : MonoBehaviour {
 
+    #region global variables
     public GameObject ChampSelectButtonPrefab;
     public GameObject ChampSelect;
-    private List<GameObject> _champButtons = new List<GameObject>();
-    public Champion _activeChamp;
+    private List<ChampionButton> selectChampionButtObjects = new List<ChampionButton>();
+    public Champion activeChampion;
 
     public Image avatar;
     public Text ChampionName;
     public Text ClassName;
+
+    [SerializeField] GameObject defaultStatsPanel;
+
+    [Header("Firing")]
+    [SerializeField] Button championFireButton;
+    [SerializeField] GameObject championFirePopup;
+    [SerializeField] Button confirmChampionFire;
+    [SerializeField] Button cancelChampionFire;
+    [SerializeField] Text championFireText;
+    string championFireTextIntro = "Fire ";
+    string questionMark = "?";
 
     [Header("Experience")]
     [SerializeField] Image championExpBar;
@@ -36,15 +48,68 @@ public class TavernStatsPageUI : MonoBehaviour {
     public Text BioText;
     public Text Motto;
     public GameObject[] UnitImage;
+    #endregion
+
+    private void Start()
+    {
+        AddButtonListeners();
+    }
+
+    private void AddButtonListeners()
+    {
+        //championFireButton.onClick.AddListener(OpenChampion);
+        confirmChampionFire.onClick.AddListener(FireChampion);
+    }
+
+    private void FireChampion()
+    {
+        // hide the fired champion button. 
+        foreach (ChampionButton selectChampionButt in selectChampionButtObjects)
+        {
+            if (selectChampionButt.champion == activeChampion)
+            {
+                selectChampionButtObjects.Remove(selectChampionButt);
+                Destroy(selectChampionButt.buttonObject);
+            }
+        }
+
+        // delete the champion
+        activeChampion.DeleteChampion();
+        DisableChampionFirePopup();
+
+        // display another champion if available
+        if (PlayerProfile.Singleton.champions.Count > 0)
+        {
+            activeChampion = PlayerProfile.Singleton.champions[0];
+            ChangeChamp(activeChampion);
+        }
+        else
+        {
+            defaultStatsPanel.SetActive(true);
+        }     
+    }
+
+    private void UpdateFireChampionText()
+    {
+        // e.g. Fire Ron Burgundy?
+        championFireText.text = championFireTextIntro + activeChampion.properties.Name + questionMark;
+    }
+
+    private void UpdateChampionName()
+    {
+        ChampionName.text = activeChampion.properties.Name;
+    }
 
     public void ChangeChamp(Champion c)
     {
-        _activeChamp = c;
-        var p = _activeChamp.properties.LoadPictureAsTexture2D();
+        activeChampion = c;
+        var p = activeChampion.properties.LoadPictureAsTexture2D();
         var rect = new Rect(0, 0, p.width, p.height);
-        avatar.sprite = Sprite.Create(_activeChamp.properties.LoadPictureAsTexture2D(), rect, Vector2.zero);
-        ChampionName.text = _activeChamp.properties.Name;
-        switch(_activeChamp.properties.champClass)
+        avatar.sprite = Sprite.Create(activeChampion.properties.LoadPictureAsTexture2D(), rect, Vector2.zero);
+        UpdateChampionName();
+        UpdateFireChampionText();
+
+        switch (activeChampion.properties.champClass)
         {
             case 0:
                 ClassName.text = "Level " + (c.properties.level+1) + " Peasant";
@@ -75,50 +140,84 @@ public class TavernStatsPageUI : MonoBehaviour {
 
     private void SetChampionFlairText()
     {
-        BioText.text = _activeChamp.properties.bio;
-        Motto.text = _activeChamp.properties.quote;
+        BioText.text = activeChampion.properties.bio;
+        Motto.text = activeChampion.properties.quote;
     }
 
     private void SetChampionExpBar()
     {
-        championExpBar.fillAmount = (float)_activeChamp.properties.currentExp / (float)_activeChamp.properties.nextLevelExp;
-        championExpText.text = _activeChamp.properties.currentExp.ToString() + " / " + _activeChamp.properties.nextLevelExp.ToString() + " exp";
+        championExpBar.fillAmount = (float)activeChampion.properties.currentExp / (float)activeChampion.properties.nextLevelExp;
+        championExpText.text = activeChampion.properties.currentExp.ToString() + " / " + activeChampion.properties.nextLevelExp.ToString() + " exp";
     }
 
     private void OnEnable()
     {
+        DisableChampionFirePopup();
+
         var p = PlayerProfile.Singleton;
+
+        // player has no champions - display default window
+        if (p.champions.Count == 0)
+        {
+            defaultStatsPanel.SetActive(true);
+            return;
+        }
+        else
+            defaultStatsPanel.SetActive(false);
+
+        // unload all champion information
         for (int i = 0; i < p.champions.Count; i++)
         {
+            Debug.Log("creating button " + i);
             var currentChampion = p.champions[i];
-            ChangeChamp(currentChampion);
+            ChangeChamp(currentChampion); // TO-DO: this should be executed only once per loop
             UnLoadSkills();
             LoadSkills();
 
-            var buttonp = Instantiate(ChampSelectButtonPrefab);
-            var button = buttonp.GetComponent<Image>();
-            button.gameObject.SetActive(true);
-            button.transform.SetParent(ChampSelect.transform);
+            var buttonPrefab = Instantiate(ChampSelectButtonPrefab);
+            var buttonImage = buttonPrefab.GetComponent<Image>();
+            buttonImage.gameObject.SetActive(true);
+            buttonImage.transform.SetParent(ChampSelect.transform);
 
-            var p1 = _activeChamp.properties.LoadPictureAsTexture2D();          
+            var p1 = activeChampion.properties.LoadPictureAsTexture2D();          
             var rect = new Rect(0, 0, p1.width, p1.height);
-            button.sprite= Sprite.Create(currentChampion.properties.LoadPictureAsTexture2D(), rect, Vector2.zero);
-            button.GetComponentInChildren<Text>().text = currentChampion.properties.Name;
-            buttonp.GetComponent<Button>().onClick.AddListener(() => { ChangeChamp(currentChampion); });
-            _champButtons.Add(button.gameObject);
+            buttonImage.sprite = Sprite.Create(currentChampion.properties.LoadPictureAsTexture2D(), rect, Vector2.zero);
+            buttonImage.GetComponentInChildren<Text>().text = currentChampion.properties.Name;
+            buttonPrefab.GetComponent<Button>().onClick.AddListener(() => { ChangeChamp(currentChampion); });
+            buttonImage.gameObject.name = currentChampion.properties.Name;
+
+            ChampionButton newChampionButton = new ChampionButton(currentChampion, buttonImage.gameObject);
+            selectChampionButtObjects.Add(newChampionButton);
         }
         
     }
     private void OnDisable()
     {
-        foreach (var b in _champButtons)
-            Destroy(b);
+        DisableChampionFirePopup();
+        if (PlayerProfile.Singleton.champions.Count == 0)
+            return;
+
+        // delete all champion buttons
+        // NB - this is ineffective and might cause memory leak, should be changed
+        for (int i = 0; i < selectChampionButtObjects.Count; i++)
+        {
+            Debug.Log("disabling element " + i);
+            ChampionButton tempButton = selectChampionButtObjects[i];
+            GameObject tempObject = tempButton.buttonObject;
+            selectChampionButtObjects.Remove(tempButton);
+            Destroy(tempObject);
+        }
+    }
+
+    private void DisableChampionFirePopup()
+    {
+        championFirePopup.SetActive(false);
     }
 
     private void LoadSkills()
     {
 
-        var ChampSkills = _activeChamp.GetComponentInChildren<StatsContainer>();
+        var ChampSkills = activeChampion.GetComponentInChildren<StatsContainer>();
         for (int i = 0; i < ChampSkills.stats.Count; i++)
         {
             var skill = ChampSkills.stats[i];
@@ -133,11 +232,11 @@ public class TavernStatsPageUI : MonoBehaviour {
             var b = item.gameObject.GetComponentInChildren<Button>();
             b.onClick.AddListener(() =>
             {
-                if (_activeChamp.properties.skillpoints > 0)
-                    if (_activeChamp.properties.skillpoints > 0)
+                if (activeChampion.properties.skillpoints > 0)
+                    if (activeChampion.properties.skillpoints > 0)
                     {
-                        skill.value++; _activeChamp.properties.skillpoints--;
-                        skill.value++; _activeChamp.properties.skillpoints--;
+                        skill.value++; activeChampion.properties.skillpoints--;
+                        skill.value++; activeChampion.properties.skillpoints--;
                         list[1].text = skill.value.ToString();
                     }
             });
@@ -156,17 +255,17 @@ public class TavernStatsPageUI : MonoBehaviour {
     public void UpdateSkillNumbers()
     {
         // bad hack
-        skillNumbers[0].text = _activeChamp.properties.charm.ToString();
-        skillNumbers[1].text = _activeChamp.properties.discipline.ToString();
-        skillNumbers[2].text = _activeChamp.properties.brawn.ToString();
-        skillNumbers[3].text = _activeChamp.properties.wisdom.ToString();
-        skillNumbers[4].text = _activeChamp.properties.luck.ToString();
-        skillNumbers[5].text = _activeChamp.properties.wealth.ToString();
+        skillNumbers[0].text = activeChampion.properties.charm.ToString();
+        skillNumbers[1].text = activeChampion.properties.discipline.ToString();
+        skillNumbers[2].text = activeChampion.properties.brawn.ToString();
+        skillNumbers[3].text = activeChampion.properties.wisdom.ToString();
+        skillNumbers[4].text = activeChampion.properties.luck.ToString();
+        skillNumbers[5].text = activeChampion.properties.wealth.ToString();
     }
 
     private void CheckUnspentSkillpoints()
     {
-        if (_activeChamp.properties.skillpoints <= 0)
+        if (activeChampion.properties.skillpoints <= 0)
         {
             // disable adding skillpoints
             foreach (var b in skillButtons)
@@ -184,42 +283,42 @@ public class TavernStatsPageUI : MonoBehaviour {
             // enable skillpoint text
             skillPointsText.enabled = true;
 
-            if (_activeChamp.properties.skillpoints == 1)
-                skillPointsText.text = _activeChamp.properties.skillpoints + " skillpoint";
+            if (activeChampion.properties.skillpoints == 1)
+                skillPointsText.text = activeChampion.properties.skillpoints + " skillpoint";
             else
-            skillPointsText.text = _activeChamp.properties.skillpoints + " skillpoints";
+            skillPointsText.text = activeChampion.properties.skillpoints + " skillpoints";
         }
     }
 
     public void AddSkillPoint(int skillIndex)
     {
-        if (_activeChamp.properties.skillpoints > 0)
+        if (activeChampion.properties.skillpoints > 0)
         {
             switch (skillIndex)
             {
                 case 0: // charm
-                    _activeChamp.properties.charm++;
+                    activeChampion.properties.charm++;
                     break;
                 case 1: // discipline
-                    _activeChamp.properties.discipline++;
+                    activeChampion.properties.discipline++;
                     break;
                 case 2: // brawn
-                    _activeChamp.properties.brawn++;
+                    activeChampion.properties.brawn++;
                     break;
                 case 3: // wisdom
-                    _activeChamp.properties.wisdom++;
+                    activeChampion.properties.wisdom++;
                     break;
                 case 4: // luck
-                    _activeChamp.properties.luck++;
+                    activeChampion.properties.luck++;
                     break;
                 case 5: // wealth
-                    _activeChamp.properties.wealth++;
+                    activeChampion.properties.wealth++;
                     break;
             }
 
-            var skills = _activeChamp.GetComponentInChildren<StatsContainer>();
+            var skills = activeChampion.GetComponentInChildren<StatsContainer>();
             skills.stats[skillIndex].value++;
-            _activeChamp.properties.skillpoints--;
+            activeChampion.properties.skillpoints--;
             UpdateSkillNumbers();
             CheckUnspentSkillpoints();
         }
@@ -227,6 +326,6 @@ public class TavernStatsPageUI : MonoBehaviour {
 
     void SetChampionAbilityText()
     {
-        abilityText.text = "Ability: " + _activeChamp.properties.GetAbilityString();
+        abilityText.text = "Ability: " + activeChampion.properties.GetAbilityString();
     }
 }
