@@ -303,7 +303,6 @@ public class ChampionAbilities : MonoBehaviour
 
     void EndPrayer()
     {
-        Debug.Log("Prayer deactivated");
         sfxPrayer.Stop();
     }
 

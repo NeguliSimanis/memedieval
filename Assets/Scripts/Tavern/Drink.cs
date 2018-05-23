@@ -24,7 +24,6 @@ public class Drink : MonoBehaviour {
         {
             GameData.current = new GameData();
         }
-        Debug.Log("tag: " + GameData.current.playerProfileTag);
         playerProfile = GameObject.FindGameObjectWithTag(GameData.current.playerProfileTag).GetComponent<PlayerProfile>();
 
     }

@@ -191,11 +191,11 @@ public class ChampionRooster : MonoBehaviour {
 
         if (championID == 0)
         {
-            ActivateChampionPicture(championButtonContainer1, currentChampion.properties.GetChampionClass());
+            ChampionPictureActivator.ActivateChampionPicture(championButtonContainer1, currentChampion.properties.GetChampionClass());
         }
         else
         {
-            ActivateChampionPicture(championButtonContainer2, currentChampion.properties.GetChampionClass());
+            ChampionPictureActivator.ActivateChampionPicture(championButtonContainer2, currentChampion.properties.GetChampionClass());
         }
     }
 
@@ -232,7 +232,7 @@ public class ChampionRooster : MonoBehaviour {
         selectedChampionBio.text = selectedChampionData.bio;
 
         // display face
-        ActivateChampionPicture(selectedChampionFaceContainer, selectedChampionData.GetChampionClass());
+        ChampionPictureActivator.ActivateChampionPicture(selectedChampionFaceContainer, selectedChampionData.GetChampionClass());
         
         // display cost
         selectedChampionCost.text = selectedChampionData.GetSaltCost().ToString();

@@ -51,7 +51,6 @@ public class ChampionData
     public int champClass; // 0 - peasant, 1 - Knight, 2 - archer (in some places peasant and archer are inversed)
     public bool isDead;
     
-
     public enum Ability { Warhorn, BerserkFury, Prayer, AbilityCount };
     public Ability currentChampionAbility;
     // public AudioClip championAbilitySFX;

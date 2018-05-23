@@ -7,7 +7,7 @@ public class TavernStatsPageUI : MonoBehaviour {
 
     #region global variables
     public GameObject ChampSelectButtonPrefab;
-    public GameObject ChampSelect;
+    public GameObject ChampSelectPanel;
     private List<ChampionButton> selectChampionButtObjects = new List<ChampionButton>();
     public Champion activeChampion;
 
@@ -16,6 +16,10 @@ public class TavernStatsPageUI : MonoBehaviour {
     public Text ClassName;
 
     [SerializeField] GameObject defaultStatsPanel;
+
+    [Header("Champion head")]
+    [SerializeField] GameObject cameraPictureContainer;
+    [SerializeField] GameObject defaultPictureContainer;
 
     [Header("Firing")]
     [SerializeField] Button championFireButton;
@@ -100,12 +104,30 @@ public class TavernStatsPageUI : MonoBehaviour {
         ChampionName.text = activeChampion.properties.Name;
     }
 
+    private void ChangeChampionHeadPicture()
+    {
+        // loads camera picture if possible
+        if (activeChampion.properties.isCameraPicture == true)
+        {
+            cameraPictureContainer.SetActive(true);
+            defaultPictureContainer.SetActive(false);
+            var p = activeChampion.properties.LoadPictureAsTexture2D();
+            var rect = new Rect(0, 0, p.width, p.height);
+            avatar.sprite = Sprite.Create(activeChampion.properties.LoadPictureAsTexture2D(), rect, Vector2.zero);
+        }
+        // loads default picture
+        else
+        {
+            cameraPictureContainer.SetActive(false);
+            defaultPictureContainer.SetActive(true);
+            ChampionPictureActivator.ActivateChampionPicture(defaultPictureContainer, activeChampion.properties.GetChampionClass());
+        }
+    }
+
     public void ChangeChamp(Champion c)
     {
         activeChampion = c;
-        var p = activeChampion.properties.LoadPictureAsTexture2D();
-        var rect = new Rect(0, 0, p.width, p.height);
-        avatar.sprite = Sprite.Create(activeChampion.properties.LoadPictureAsTexture2D(), rect, Vector2.zero);
+        ChangeChampionHeadPicture();
         UpdateChampionName();
         UpdateFireChampionText();
 
@@ -150,6 +172,37 @@ public class TavernStatsPageUI : MonoBehaviour {
         championExpText.text = activeChampion.properties.currentExp.ToString() + " / " + activeChampion.properties.nextLevelExp.ToString() + " exp";
     }
 
+    private void InstantiateChampionButton(Champion currentChampion)
+    {
+        var buttonPrefab = Instantiate(ChampSelectButtonPrefab);
+        var buttonImage = buttonPrefab.GetComponent<Image>();
+        buttonImage.gameObject.SetActive(true);
+        buttonImage.transform.SetParent(ChampSelectPanel.transform);
+
+        // load picture taken by camera
+        if (currentChampion.properties.isCameraPicture == true)
+        {
+            var p1 = activeChampion.properties.LoadPictureAsTexture2D();
+            var rect = new Rect(0, 0, p1.width, p1.height);
+            buttonImage.sprite = Sprite.Create(currentChampion.properties.LoadPictureAsTexture2D(), rect, Vector2.zero);
+        }
+        // load default picture
+        else
+        {
+            ChampionPictureActivator.ActivateChampionPicture(buttonPrefab, currentChampion.GetClassName());
+        }
+
+        // load champion name
+        buttonImage.GetComponentInChildren<Text>().text = currentChampion.properties.Name;
+
+        // add button listener
+        buttonPrefab.GetComponent<Button>().onClick.AddListener(() => { ChangeChamp(currentChampion); });
+
+        buttonImage.gameObject.name = currentChampion.properties.Name;
+        ChampionButton newChampionButton = new ChampionButton(currentChampion, buttonPrefab);
+        selectChampionButtObjects.Add(newChampionButton);
+    }
+
     private void OnEnable()
     {
         DisableChampionFirePopup();
@@ -168,26 +221,11 @@ public class TavernStatsPageUI : MonoBehaviour {
         // unload all champion information
         for (int i = 0; i < p.champions.Count; i++)
         {
-            Debug.Log("creating button " + i);
             var currentChampion = p.champions[i];
             ChangeChamp(currentChampion); // TO-DO: this should be executed only once per loop
             UnLoadSkills();
             LoadSkills();
-
-            var buttonPrefab = Instantiate(ChampSelectButtonPrefab);
-            var buttonImage = buttonPrefab.GetComponent<Image>();
-            buttonImage.gameObject.SetActive(true);
-            buttonImage.transform.SetParent(ChampSelect.transform);
-
-            var p1 = activeChampion.properties.LoadPictureAsTexture2D();          
-            var rect = new Rect(0, 0, p1.width, p1.height);
-            buttonImage.sprite = Sprite.Create(currentChampion.properties.LoadPictureAsTexture2D(), rect, Vector2.zero);
-            buttonImage.GetComponentInChildren<Text>().text = currentChampion.properties.Name;
-            buttonPrefab.GetComponent<Button>().onClick.AddListener(() => { ChangeChamp(currentChampion); });
-            buttonImage.gameObject.name = currentChampion.properties.Name;
-
-            ChampionButton newChampionButton = new ChampionButton(currentChampion, buttonPrefab);
-            selectChampionButtObjects.Add(newChampionButton);
+            InstantiateChampionButton(currentChampion);
         }
         
     }
