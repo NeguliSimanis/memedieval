@@ -61,7 +61,15 @@ public class ChampionRooster : MonoBehaviour {
     bool isChampionSelected = false;
     int selectedChampionID = -1;
 
-    void Start()
+   /* void Start()
+    {
+        InitializeVariables();
+        AddButtonListeners();
+        DisplayNeutralChampionsList();
+        InitializeChampionSelection();
+    }*/
+
+    void OnEnable()
     {
         InitializeVariables();
         AddButtonListeners();
@@ -143,11 +151,14 @@ public class ChampionRooster : MonoBehaviour {
 
     void DisplayNeutralChampionsList()
     {
+        //neutralChampions = playerProfile.gameObject.transform.Find(neutralChampionsObjectName).gameObject.GetComponent<NeutralChampions>();
         if (neutralChampions.neutralChampionsList.Count == 0)
         {
+            Debug.Log("no neutral champions");
             noChampionsPanel.SetActive(true);
             return;
         }
+
         if (neutralChampions.neutralChampionsList[0] != null)
         {
             DisplayNeutralChampion(0, championButtonContainer1);
@@ -156,6 +167,7 @@ public class ChampionRooster : MonoBehaviour {
         {
             DisplayNeutralChampion(1, championButtonContainer2);
         }
+
     }
 
     void DisplayNeutralChampion(int championID, GameObject currentChampionButton)

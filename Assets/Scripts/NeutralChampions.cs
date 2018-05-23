@@ -10,7 +10,7 @@ public class NeutralChampions : MonoBehaviour {
 
     public List<Champion> neutralChampionsList = new List<Champion>();
 
-    void Start ()
+    void Awake ()
     {
         InitializeVariables();
         GenerateRandomChampion(2);
