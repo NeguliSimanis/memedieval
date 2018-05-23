@@ -170,6 +170,26 @@ public class ChampionRooster : MonoBehaviour {
 
     }
 
+    void ActivateChampionPicture(GameObject pictureContainer, Champion tempChampion)
+    {
+        foreach (Transform picture in pictureContainer.transform)
+        {
+            // find and activate the picture
+            if (picture.gameObject.name == tempChampion.properties.GetChampionClass())
+            {
+                picture.gameObject.SetActive(true);
+            }
+
+            // disable all other pictures in the container
+            else
+            {
+                // ignore any buttons that are attached to the object
+                if (picture.gameObject.GetComponent<Button>() == null)
+                    picture.gameObject.SetActive(false);
+            }
+        }
+    }
+
     void DisplayNeutralChampion(int championID, GameObject currentChampionButton)
     {
         currentChampionButton.SetActive(true);
@@ -178,18 +198,20 @@ public class ChampionRooster : MonoBehaviour {
         championTitles[championID].text = currentChampion.properties.Name;
 
         #region set champion picture
-        Sprite currentChampionSprite = currentChampionButton.transform.GetChild(0).gameObject.GetComponent<Image>().sprite;
+        /*Sprite currentChampionSprite = currentChampionButton.transform.GetChild(0).gameObject.GetComponent<Image>().sprite;
         Texture2D newTexture2D = currentChampion.properties.LoadPictureAsTexture2D();
 
         Sprite newSprite = Sprite.Create(newTexture2D, new Rect(0.0f, 0.0f, newTexture2D.width, newTexture2D.height), new Vector2(0.5f, 0.5f), 100.0f);
-        currentChampionSprite = newSprite;
+        currentChampionSprite = newSprite;*/
 
         if (championID == 0)
         {
-            championPicture1.sprite = newSprite;
+            ActivateChampionPicture(championButtonContainer1, currentChampion);
+            //championPicture1.sprite = newSprite;
         }
         else
-            championPicture2.sprite = newSprite;
+            ActivateChampionPicture(championButtonContainer2, currentChampion);
+        //championPicture2.sprite = newSprite;
         #endregion
     }
 
