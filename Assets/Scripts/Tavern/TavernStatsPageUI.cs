@@ -68,7 +68,7 @@ public class TavernStatsPageUI : MonoBehaviour {
         {
             if (selectChampionButt.champion == activeChampion)
             {
-                selectChampionButtObjects.Remove(selectChampionButt);
+                // note - all buttons will be removed when user exits stats page
                 Destroy(selectChampionButt.buttonObject);
             }
         }
