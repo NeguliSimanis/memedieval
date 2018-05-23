@@ -342,8 +342,6 @@ public class ChampionAbilities : MonoBehaviour
 
     void EndRallyingShout()
     {
-        Debug.Log("RallyingShout deactivated");
-
         WaypointFollower waypointFollower;
         PlayerUnit[] playerUnits;
         playerUnits = Object.FindObjectsOfType<PlayerUnit>();
@@ -373,7 +371,6 @@ public class ChampionAbilities : MonoBehaviour
         }
         sfxWarhorn.Stop();
     }
-
 
     void OnDestroy()
     {

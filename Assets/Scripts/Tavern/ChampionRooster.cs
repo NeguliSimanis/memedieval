@@ -50,7 +50,7 @@ public class ChampionRooster : MonoBehaviour {
     [SerializeField]
     Text selectedChampionBio;
     [SerializeField]
-    Image selectedChampionFace;
+    GameObject selectedChampionFaceContainer;
     [SerializeField]
     Text selectedChampionCost;
 
@@ -61,15 +61,7 @@ public class ChampionRooster : MonoBehaviour {
     bool isChampionSelected = false;
     int selectedChampionID = -1;
 
-   /* void Start()
-    {
-        InitializeVariables();
-        AddButtonListeners();
-        DisplayNeutralChampionsList();
-        InitializeChampionSelection();
-    }*/
-
-    void OnEnable()
+   void Start()
     {
         InitializeVariables();
         AddButtonListeners();
@@ -170,12 +162,12 @@ public class ChampionRooster : MonoBehaviour {
 
     }
 
-    void ActivateChampionPicture(GameObject pictureContainer, Champion tempChampion)
+    void ActivateChampionPicture(GameObject pictureContainer, string pictureName)
     {
         foreach (Transform picture in pictureContainer.transform)
         {
             // find and activate the picture
-            if (picture.gameObject.name == tempChampion.properties.GetChampionClass())
+            if (picture.gameObject.name == pictureName)
             {
                 picture.gameObject.SetActive(true);
             }
@@ -197,22 +189,14 @@ public class ChampionRooster : MonoBehaviour {
 
         championTitles[championID].text = currentChampion.properties.Name;
 
-        #region set champion picture
-        /*Sprite currentChampionSprite = currentChampionButton.transform.GetChild(0).gameObject.GetComponent<Image>().sprite;
-        Texture2D newTexture2D = currentChampion.properties.LoadPictureAsTexture2D();
-
-        Sprite newSprite = Sprite.Create(newTexture2D, new Rect(0.0f, 0.0f, newTexture2D.width, newTexture2D.height), new Vector2(0.5f, 0.5f), 100.0f);
-        currentChampionSprite = newSprite;*/
-
         if (championID == 0)
         {
-            ActivateChampionPicture(championButtonContainer1, currentChampion);
-            //championPicture1.sprite = newSprite;
+            ActivateChampionPicture(championButtonContainer1, currentChampion.properties.GetChampionClass());
         }
         else
-            ActivateChampionPicture(championButtonContainer2, currentChampion);
-        //championPicture2.sprite = newSprite;
-        #endregion
+        {
+            ActivateChampionPicture(championButtonContainer2, currentChampion.properties.GetChampionClass());
+        }
     }
 
     void InitializeChampionSelection()
@@ -237,8 +221,6 @@ public class ChampionRooster : MonoBehaviour {
         // initialize variables
         noChampionsPanel.SetActive(false);
         ChampionData selectedChampionData = neutralChampions.neutralChampionsList[selectedChampionID].properties;
-        Texture2D newTexture2D = selectedChampionData.LoadPictureAsTexture2D();
-        Sprite newSprite = Sprite.Create(newTexture2D, new Rect(0.0f, 0.0f, newTexture2D.width, newTexture2D.height), new Vector2(0.5f, 0.5f), 100.0f);
 
         // display name
         selectedChampionName.text = selectedChampionData.Name;
@@ -250,8 +232,8 @@ public class ChampionRooster : MonoBehaviour {
         selectedChampionBio.text = selectedChampionData.bio;
 
         // display face
-        selectedChampionFace.sprite = newSprite;
-
+        ActivateChampionPicture(selectedChampionFaceContainer, selectedChampionData.GetChampionClass());
+        
         // display cost
         selectedChampionCost.text = selectedChampionData.GetSaltCost().ToString();
 
