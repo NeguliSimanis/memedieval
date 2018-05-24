@@ -8333,48 +8333,6 @@ RectTransform:
   m_AnchoredPosition: {x: -211, y: -431}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!1001 &588062037
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4900715823933538, guid: fca8e275fd907a4469c4d73acdc27cd7, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 358.07758
-      objectReference: {fileID: 0}
-    - target: {fileID: 4900715823933538, guid: fca8e275fd907a4469c4d73acdc27cd7, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 241.75954
-      objectReference: {fileID: 0}
-    - target: {fileID: 4900715823933538, guid: fca8e275fd907a4469c4d73acdc27cd7, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: -2.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4900715823933538, guid: fca8e275fd907a4469c4d73acdc27cd7, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4900715823933538, guid: fca8e275fd907a4469c4d73acdc27cd7, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4900715823933538, guid: fca8e275fd907a4469c4d73acdc27cd7, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4900715823933538, guid: fca8e275fd907a4469c4d73acdc27cd7, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4900715823933538, guid: fca8e275fd907a4469c4d73acdc27cd7, type: 2}
-      propertyPath: m_RootOrder
-      value: 9
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: fca8e275fd907a4469c4d73acdc27cd7, type: 2}
-  m_IsPrefabParent: 0
 --- !u!1 &588357279
 GameObject:
   m_ObjectHideFlags: 0
@@ -9233,6 +9191,7 @@ GameObject:
   - component: {fileID: 670350161}
   - component: {fileID: 670350160}
   - component: {fileID: 670350164}
+  - component: {fileID: 670350165}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -9314,6 +9273,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ListenerNumber: 0
+--- !u!114 &670350165
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 670350159}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02b36496588e604478dc6a5a54c02baa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerProfilePrefab: {fileID: 1529472686515804, guid: fca8e275fd907a4469c4d73acdc27cd7,
+    type: 2}
+  playerProfileTag: Player profile
 --- !u!1 &672979079
 GameObject:
   m_ObjectHideFlags: 0
