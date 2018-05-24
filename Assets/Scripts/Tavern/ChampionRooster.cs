@@ -155,7 +155,7 @@ public class ChampionRooster : MonoBehaviour {
         {
             DisplayNeutralChampion(0, championButtonContainer1);
         }
-        if (neutralChampions.neutralChampionsList[1] != null)
+        if (neutralChampions.neutralChampionsList.Count > 1)
         {
             DisplayNeutralChampion(1, championButtonContainer2);
         }

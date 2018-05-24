@@ -135,6 +135,7 @@ public class ChampionData
         {
             return "Archer";
         }
+        Debug.Log("ERROR");
         return "ERROR IR GAMEDATA.GETCHAMPIONCLASS";
     }
 

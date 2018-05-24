@@ -11,6 +11,12 @@ using UnityEngine.UI;
 
 public class CreateChampion : MonoBehaviour
 {
+    #region Android camera rotation hotfix variables
+    string wrongOrientation = "LandscapeRight";
+    string correctOrientation = "LandscapeLeft";
+    bool isRightOrientation = true;
+    #endregion
+
     [SerializeField]
     AudioClip prayerDefaultAudio;
     [SerializeField]
@@ -36,7 +42,7 @@ public class CreateChampion : MonoBehaviour
     private bool camAvailable;
     public bool hasPicture = false;
     private WebCamTexture backCam;
-    public Texture2D pic;
+    public Texture2D photoTexture;
 
     [SerializeField]
     private Texture2D[] defaultPictures;
@@ -185,11 +191,28 @@ public class CreateChampion : MonoBehaviour
     {
         if (!camAvailable)
             return;
+        AndroidOrientationCheck();
         float ratio = (float)backCam.width / (float)backCam.height;
         float scaleY = backCam.videoVerticallyMirrored ? -1f : 1f; // Find if the camera is mirrored or not
         background.rectTransform.localScale = new Vector3(1f, scaleY, 1f); // Swap the mirrored camera
         int orient = -backCam.videoRotationAngle;
         background.rectTransform.localEulerAngles = new Vector3(0, 0, orient);
+    }
+
+    // TO-DO: find a better solution
+    private void AndroidOrientationCheck()
+    {
+        if (Application.platform != RuntimePlatform.Android)
+            return;
+
+        if ((Input.deviceOrientation).ToString() == wrongOrientation)
+        {
+            isRightOrientation = false;
+        }
+        else if ((Input.deviceOrientation).ToString() == correctOrientation)
+        {
+            isRightOrientation = true;
+        }
     }
 
     public void TakePhoto()
@@ -224,19 +247,30 @@ public class CreateChampion : MonoBehaviour
     {
         // NOTE - you almost certainly have to do this here:
         yield return new WaitForEndOfFrame();
-
         // it's a rare case where the Unity doco is pretty clear,
         // http://docs.unity3d.com/ScriptReference/WaitForEndOfFrame.html
         // be sure to scroll down to the SECOND long example on that doco page 
+
+        // stop if no cameras available
         if (devices.Length == 0)
             yield break;
+
+        // get pixels from camera
         Texture2D photo = new Texture2D(backCam.width, backCam.height);
         photo.SetPixels(backCam.GetPixels());
         photo.Apply();
-        pic = photo;
+
+        // Android phone rotated - flip pixels
+        if (!isRightOrientation)
+        {
+            FlipTexture2D flipTexture2D = this.gameObject.GetComponent<FlipTexture2D>();
+            photo = flipTexture2D.FlipText(photo);
+            background.texture = photo;
+        }
+
+        // save pixels 
+        photoTexture = photo;  
         backCam.Stop();
-        //add the new captain face
-        //CopyCaptainFace();
     }
 
     public void setMan()
@@ -283,13 +317,13 @@ public class CreateChampion : MonoBehaviour
 
     void SetChampionPicture(Champion champion)
     {
-        if (pic == null)
+        if (photoTexture == null)
         {
             // 0 - archer, 1 - Knight, 2 - peasant (in some places peasant and archer are inversed)
             champion.properties.SetPicture(defaultPictures[champion.properties.champClass]);
         }
         else
-            champion.properties.SetPicture(pic);
+            champion.properties.SetPicture(photoTexture);
     }
 
     void SetChampionAbility(Champion champion)
