@@ -13,35 +13,37 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EditorBanks:
   - {fileID: 114517954911746612}
-  - {fileID: 114686215257608286}
+  - {fileID: 114064832762880044}
   EditorEvents:
-  - {fileID: 114413976904849840}
   - {fileID: 114414578334982428}
-  - {fileID: 114480369353309754}
-  - {fileID: 114259267546133752}
-  - {fileID: 114331014955429388}
-  - {fileID: 114613197020589382}
-  - {fileID: 114333576455385164}
-  - {fileID: 114739116808362584}
-  - {fileID: 114886958210001042}
-  - {fileID: 114157642886785442}
-  - {fileID: 114447551429393856}
-  - {fileID: 114522713594747524}
   - {fileID: 114041166990487232}
   - {fileID: 114143934501647594}
   - {fileID: 114277707776202638}
-  - {fileID: 114546124110946666}
-  - {fileID: 114822844772850382}
   - {fileID: 114903647776142582}
   - {fileID: 114154899971919840}
-  - {fileID: 114594029452783362}
-  - {fileID: 114489770940026110}
-  - {fileID: 114295532089348426}
-  - {fileID: 114297711695261292}
-  - {fileID: 114334415588287792}
-  MasterBankRef: {fileID: 114686215257608286}
+  - {fileID: 114102913818405662}
+  - {fileID: 114258430742862032}
+  - {fileID: 114953213658094452}
+  - {fileID: 114819238529070690}
+  - {fileID: 114914552957923318}
+  - {fileID: 114496135987814758}
+  - {fileID: 114557615473012712}
+  - {fileID: 114650392393934614}
+  - {fileID: 114602860483474046}
+  - {fileID: 114195964466598540}
+  - {fileID: 114470315832956398}
+  - {fileID: 114934093362582982}
+  - {fileID: 114744376872928336}
+  - {fileID: 114177641607897842}
+  - {fileID: 114920717551256538}
+  - {fileID: 114920949700402308}
+  - {fileID: 114126943236383692}
+  - {fileID: 114953564857856274}
+  - {fileID: 114415907761025284}
+  - {fileID: 114446693169754914}
+  MasterBankRef: {fileID: 114064832762880044}
   StringsBankRef: {fileID: 114517954911746612}
-  stringsBankWriteTime: 636600128732212868
+  stringsBankWriteTime: 636629225533766021
   cacheVersion: 2
 --- !u!114 &114003206923295908
 MonoBehaviour:
@@ -122,7 +124,7 @@ MonoBehaviour:
   Path: event:/Ui/Coins
   guid: ea18d68709e754469d13b63cc9baae5a
   Banks:
-  - {fileID: 114686215257608286}
+  - {fileID: 114064832762880044}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -185,6 +187,26 @@ MonoBehaviour:
   FileSizes:
   - Name: 
     Value: 6297376
+  Exists: 1
+--- !u!114 &114064832762880044
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: D:\GitHub\MeMedieval\Assets\Plugins\FMOD\Banks\Desktop\Master Bank.bank
+  lastModified: 636629225533716053
+  LoadResult: 0
+  FileSizes:
+  - Name: Desktop
+    Value: 12191584
+  - Name: Mobile
+    Value: 26638880
   Exists: 1
 --- !u!114 &114078645900050710
 MonoBehaviour:
@@ -258,6 +280,27 @@ MonoBehaviour:
   - Name: 
     Value: 7658624
   Exists: 1
+--- !u!114 &114102913818405662
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: event:/Tavern/DrinkMeadErDay
+  guid: 0de10030fc784d478ed35404b3ebf20c
+  Banks:
+  - {fileID: 114064832762880044}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
 --- !u!114 &114109840869107750
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -381,6 +424,28 @@ MonoBehaviour:
   Min: 0
   Max: 5
   Default: 0
+--- !u!114 &114126943236383692
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: event:/Battle/Music Test
+  guid: c293a60c004beb498d0d4a4fc1125904
+  Banks:
+  - {fileID: 114064832762880044}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters:
+  - {fileID: 114128676680818082}
+  MinDistance: 0
+  MaxDistance: 0
 --- !u!114 &114126991452328130
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -397,6 +462,36 @@ MonoBehaviour:
   Max: 5
   Default: 0
 --- !u!114 &114128506289744414
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Transition
+  Min: 0
+  Max: 5
+  Default: 0
+--- !u!114 &114128676680818082
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Transition
+  Min: 0
+  Max: 5
+  Default: 0
+--- !u!114 &114136652998851018
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
@@ -444,12 +539,12 @@ MonoBehaviour:
   Path: event:/MainMenu
   guid: 74d99d60bb9a5e4e8c5a6cc2f8b2369c
   Banks:
-  - {fileID: 114686215257608286}
+  - {fileID: 114064832762880044}
   IsStream: 1
   Is3D: 0
   IsOneShot: 0
   Parameters:
-  - {fileID: 114425428092250610}
+  - {fileID: 114211365993622942}
   MinDistance: 0
   MaxDistance: 0
 --- !u!114 &114144556653561750
@@ -550,7 +645,7 @@ MonoBehaviour:
   Path: event:/Ui/Increment
   guid: cbe4d0552b53294c8153da400b8476d5
   Banks:
-  - {fileID: 114686215257608286}
+  - {fileID: 114064832762880044}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -570,8 +665,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Path: event:/Archer/Archer_Shoot
   guid: f53c9d4613f0a74292f96c7143509599
-  Banks:
-  - {fileID: 114686215257608286}
+  Banks: []
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -608,6 +702,21 @@ MonoBehaviour:
   Min: 0
   Max: 5
   Default: 0
+--- !u!114 &114169755883801374
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Transition
+  Min: 0
+  Max: 5
+  Default: 0
 --- !u!114 &114174566115311716
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -623,6 +732,27 @@ MonoBehaviour:
   Min: 0
   Max: 5
   Default: 0
+--- !u!114 &114177641607897842
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: event:/Tavern/TavernGuy
+  guid: a0ae996ee015d44f909e3aede8d81074
+  Banks:
+  - {fileID: 114064832762880044}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
 --- !u!114 &114178007203706156
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -695,6 +825,27 @@ MonoBehaviour:
   - Name: 
     Value: 6461856
   Exists: 1
+--- !u!114 &114195964466598540
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: event:/Battle/Abilities/RallyingShoutAbility
+  guid: 81427ac3a97b624f8bfbe528887faf55
+  Banks:
+  - {fileID: 114064832762880044}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
 --- !u!114 &114203060213206848
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -711,6 +862,21 @@ MonoBehaviour:
   Max: 5
   Default: 0
 --- !u!114 &114206880895179452
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Transition
+  Min: 0
+  Max: 5
+  Default: 0
+--- !u!114 &114211365993622942
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
@@ -846,6 +1012,27 @@ MonoBehaviour:
   Min: 0
   Max: 5
   Default: 0
+--- !u!114 &114258430742862032
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: event:/Tavern/TavernMusic
+  guid: 1bc87ad67bb0694d92f73f8f0f7ecc31
+  Banks:
+  - {fileID: 114064832762880044}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
 --- !u!114 &114258538194420366
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -878,8 +1065,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Path: event:/Castle_Death
   guid: 38605595fbdab6449beebb63466e99fd
-  Banks:
-  - {fileID: 114686215257608286}
+  Banks: []
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -934,7 +1120,7 @@ MonoBehaviour:
   Path: event:/Ui/Decrement
   guid: 195f1df100d91d4ca07fe0d3213d55c5
   Banks:
-  - {fileID: 114686215257608286}
+  - {fileID: 114064832762880044}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -984,8 +1170,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Path: event:/PrayerAbility
   guid: 1dc6b8015a1cc14a9186bddd42e48ec8
-  Banks:
-  - {fileID: 114686215257608286}
+  Banks: []
   IsStream: 0
   Is3D: 0
   IsOneShot: 0
@@ -1005,8 +1190,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Path: event:/BerserkAbility
   guid: 70a1630bd57f5640b09b011da8fd7440
-  Banks:
-  - {fileID: 114686215257608286}
+  Banks: []
   IsStream: 1
   Is3D: 0
   IsOneShot: 0
@@ -1094,8 +1278,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Path: event:/Peasant/Peasant_Spawn
   guid: 8d6bb9072c71f641b5f7000e0962fd0d
-  Banks:
-  - {fileID: 114686215257608286}
+  Banks: []
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -1130,8 +1313,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Path: event:/Archer/Archer_Spawn
   guid: 9349f437cf36cf4a985b54dafdbc659f
-  Banks:
-  - {fileID: 114686215257608286}
+  Banks: []
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -1151,8 +1333,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Path: event:/RallyingShoutAbility
   guid: 81427ac3a97b624f8bfbe528887faf55
-  Banks:
-  - {fileID: 114686215257608286}
+  Banks: []
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -1466,6 +1647,21 @@ MonoBehaviour:
   - Name: 
     Value: 6297376
   Exists: 1
+--- !u!114 &114395962416693170
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Transition
+  Min: 0
+  Max: 5
+  Default: 0
 --- !u!114 &114398440784339786
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1562,13 +1758,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Path: event:/Music Test
   guid: c293a60c004beb498d0d4a4fc1125904
-  Banks:
-  - {fileID: 114686215257608286}
+  Banks: []
   IsStream: 1
   Is3D: 0
   IsOneShot: 0
   Parameters:
-  - {fileID: 114212856285081272}
+  - {fileID: 114136652998851018}
   MinDistance: 0
   MaxDistance: 0
 --- !u!114 &114414578334982428
@@ -1585,7 +1780,28 @@ MonoBehaviour:
   Path: event:/Ui/Buttonklick
   guid: 33a4c565320ee2459289e30dfd5d8540
   Banks:
-  - {fileID: 114686215257608286}
+  - {fileID: 114064832762880044}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+--- !u!114 &114415907761025284
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: event:/Battle/Archer/Archer_Shoot
+  guid: f53c9d4613f0a74292f96c7143509599
+  Banks:
+  - {fileID: 114064832762880044}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -1652,6 +1868,27 @@ MonoBehaviour:
   Min: 0
   Max: 5
   Default: 0
+--- !u!114 &114446693169754914
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: snapshot:/MusicMute
+  guid: d78f7f0718a8d944a82964ce6002efa7
+  Banks:
+  - {fileID: 114064832762880044}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
 --- !u!114 &114447551429393856
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1665,8 +1902,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Path: event:/Fire
   guid: 7ace7b243c690a49b50d6c5276b7e208
-  Banks:
-  - {fileID: 114686215257608286}
+  Banks: []
   IsStream: 1
   Is3D: 0
   IsOneShot: 0
@@ -1722,6 +1958,27 @@ MonoBehaviour:
   Min: 0
   Max: 5
   Default: 0
+--- !u!114 &114470315832956398
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: event:/Battle/Peasant/Peasant_Spawn
+  guid: 8d6bb9072c71f641b5f7000e0962fd0d
+  Banks:
+  - {fileID: 114064832762880044}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
 --- !u!114 &114480369353309754
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1735,8 +1992,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Path: event:/Peasant/PlaceholderPeasant_Attack
   guid: 3793234960b32d4d9368c96a9b463e89
-  Banks:
-  - {fileID: 114686215257608286}
+  Banks: []
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -1775,8 +2031,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Path: event:/CastleArrowBreak
   guid: ccc701ec698eb542a36f42a234a198ca
-  Banks:
-  - {fileID: 114686215257608286}
+  Banks: []
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -1802,6 +2057,27 @@ MonoBehaviour:
   - Name: 
     Value: 6461856
   Exists: 0
+--- !u!114 &114496135987814758
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: event:/Battle/CastleArrow
+  guid: 48d57a1a4d07dc4fa4ecb84fdcdce853
+  Banks:
+  - {fileID: 114064832762880044}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
 --- !u!114 &114503044000706532
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1844,13 +2120,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Path: Assets\Plugins\FMOD\Banks\Desktop\Master Bank.strings.bank
-  lastModified: 636600128732212868
+  lastModified: 636629225533766021
   LoadResult: 0
   FileSizes:
   - Name: Desktop
-    Value: 2072
+    Value: 2410
   - Name: Mobile
-    Value: 2072
+    Value: 2410
   Exists: 1
 --- !u!114 &114522713594747524
 MonoBehaviour:
@@ -1865,8 +2141,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Path: event:/TavernMusic
   guid: 1bc87ad67bb0694d92f73f8f0f7ecc31
-  Banks:
-  - {fileID: 114686215257608286}
+  Banks: []
   IsStream: 1
   Is3D: 0
   IsOneShot: 0
@@ -1935,8 +2210,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Path: event:/ShadyGuy
   guid: 69693d509d9b98479489c244c2324965
-  Banks:
-  - {fileID: 114686215257608286}
+  Banks: []
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -1992,6 +2266,27 @@ MonoBehaviour:
   Min: 0
   Max: 5
   Default: 0
+--- !u!114 &114557615473012712
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: event:/Tavern/ShadyGuy
+  guid: 69693d509d9b98479489c244c2324965
+  Banks:
+  - {fileID: 114064832762880044}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
 --- !u!114 &114560329040531962
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2008,6 +2303,21 @@ MonoBehaviour:
   Max: 5
   Default: 0
 --- !u!114 &114566785535228734
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Transition
+  Min: 0
+  Max: 5
+  Default: 0
+--- !u!114 &114570372489383384
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
@@ -2071,6 +2381,21 @@ MonoBehaviour:
   Min: 0
   Max: 5
   Default: 0
+--- !u!114 &114580531475298058
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Transition
+  Min: 0
+  Max: 5
+  Default: 0
 --- !u!114 &114593030647488188
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2099,8 +2424,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Path: event:/CastleArrow
   guid: 48d57a1a4d07dc4fa4ecb84fdcdce853
-  Banks:
-  - {fileID: 114686215257608286}
+  Banks: []
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -2160,6 +2484,27 @@ MonoBehaviour:
   Min: 0
   Max: 5
   Default: 0
+--- !u!114 &114602860483474046
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: event:/Battle/Fire
+  guid: 7ace7b243c690a49b50d6c5276b7e208
+  Banks:
+  - {fileID: 114064832762880044}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
 --- !u!114 &114604720162553946
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2252,8 +2597,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Path: event:/Unit_Death
   guid: 90a5673795164544af2444b8ea316ffe
-  Banks:
-  - {fileID: 114686215257608286}
+  Banks: []
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -2320,6 +2664,27 @@ MonoBehaviour:
   Min: 0
   Max: 5
   Default: 0
+--- !u!114 &114650392393934614
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: event:/Battle/Abilities/BerserkAbility
+  guid: 70a1630bd57f5640b09b011da8fd7440
+  Banks:
+  - {fileID: 114064832762880044}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
 --- !u!114 &114658174540465916
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2546,8 +2911,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Path: event:/Knight/Knight_Attack
   guid: a15f31d16693234ab184d9eacf66ef71
+  Banks: []
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+--- !u!114 &114744376872928336
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: event:/Battle/Archer/Archer_Spawn
+  guid: 9349f437cf36cf4a985b54dafdbc659f
   Banks:
-  - {fileID: 114686215257608286}
+  - {fileID: 114064832762880044}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -2603,6 +2988,21 @@ MonoBehaviour:
     Value: 7658912
   Exists: 1
 --- !u!114 &114753148885396502
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Transition
+  Min: 0
+  Max: 5
+  Default: 0
+--- !u!114 &114766162245998936
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
@@ -2699,6 +3099,27 @@ MonoBehaviour:
   Min: 0
   Max: 5
   Default: 0
+--- !u!114 &114819238529070690
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: event:/Battle/Peasant/PlaceholderPeasant_Attack
+  guid: 3793234960b32d4d9368c96a9b463e89
+  Banks:
+  - {fileID: 114064832762880044}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
 --- !u!114 &114822059363317908
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2733,8 +3154,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Path: event:/TavernGuy
   guid: a0ae996ee015d44f909e3aede8d81074
-  Banks:
-  - {fileID: 114686215257608286}
+  Banks: []
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -2873,6 +3293,21 @@ MonoBehaviour:
   Min: 0
   Max: 5
   Default: 0
+--- !u!114 &114879094108620810
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Transition
+  Min: 0
+  Max: 5
+  Default: 0
 --- !u!114 &114886958210001042
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2886,8 +3321,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Path: event:/Knight/Knight_Spawn
   guid: b4e8959c99b1464ca2adf555bf70a47b
-  Banks:
-  - {fileID: 114686215257608286}
+  Banks: []
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -2991,7 +3425,7 @@ MonoBehaviour:
   Path: event:/Ui/Spend Salt
   guid: bb325de3a1452e49a3a6494ecc062d76
   Banks:
-  - {fileID: 114686215257608286}
+  - {fileID: 114064832762880044}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -3062,6 +3496,69 @@ MonoBehaviour:
   Min: 0
   Max: 5
   Default: 0
+--- !u!114 &114914552957923318
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: event:/Battle/Castle_Death
+  guid: 38605595fbdab6449beebb63466e99fd
+  Banks:
+  - {fileID: 114064832762880044}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+--- !u!114 &114920717551256538
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: event:/Battle/Knight/Knight_Attack
+  guid: a15f31d16693234ab184d9eacf66ef71
+  Banks:
+  - {fileID: 114064832762880044}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+--- !u!114 &114920949700402308
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: event:/Battle/Knight/Knight_Spawn
+  guid: b4e8959c99b1464ca2adf555bf70a47b
+  Banks:
+  - {fileID: 114064832762880044}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
 --- !u!114 &114925386904814792
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3100,6 +3597,21 @@ MonoBehaviour:
   - Name: 
     Value: 6461856
   Exists: 0
+--- !u!114 &114927278866711104
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Transition
+  Min: 0
+  Max: 5
+  Default: 0
 --- !u!114 &114930338356274228
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3115,6 +3627,27 @@ MonoBehaviour:
   Min: 0
   Max: 5
   Default: 0
+--- !u!114 &114934093362582982
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: event:/Battle/Unit_Death
+  guid: 90a5673795164544af2444b8ea316ffe
+  Banks:
+  - {fileID: 114064832762880044}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
 --- !u!114 &114941781235096748
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3145,6 +3678,48 @@ MonoBehaviour:
   Min: 0
   Max: 5
   Default: 0
+--- !u!114 &114953213658094452
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: event:/Battle/Abilities/PrayerAbility
+  guid: 1dc6b8015a1cc14a9186bddd42e48ec8
+  Banks:
+  - {fileID: 114064832762880044}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+--- !u!114 &114953564857856274
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: event:/Battle/CastleArrowBreak
+  guid: ccc701ec698eb542a36f42a234a198ca
+  Banks:
+  - {fileID: 114064832762880044}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
 --- !u!114 &114955124196121156
 MonoBehaviour:
   m_ObjectHideFlags: 0

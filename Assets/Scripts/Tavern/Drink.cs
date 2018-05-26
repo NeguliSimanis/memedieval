@@ -17,6 +17,7 @@ public class Drink : MonoBehaviour {
     [SerializeField]
     float drinkAttackIncrease = 100f;
     #endregion
+    FMODUnity.StudioEventEmitter DrinkSound;
 
     void Start()
     {
@@ -25,7 +26,7 @@ public class Drink : MonoBehaviour {
             GameData.current = new GameData();
         }
         playerProfile = GameObject.FindGameObjectWithTag(GameData.current.playerProfileTag).GetComponent<PlayerProfile>();
-
+        DrinkSound = GameObject.Find("Sfx_DrinkMead").GetComponent<FMODUnity.StudioEventEmitter>();
     }
 
     // returns false if cant afford drink
@@ -35,6 +36,7 @@ public class Drink : MonoBehaviour {
         {
             // Debug.Log("That was refreshing!");
             playerProfile.Drink(drinkHPDecrease, drinkAttackIncrease);
+            DrinkSound.Play();
             return true;    
             /*
              * TO-DO:

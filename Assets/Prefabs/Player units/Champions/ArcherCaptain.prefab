@@ -251,7 +251,7 @@ GameObject:
   - component: {fileID: 114608091969442738}
   - component: {fileID: 114301696084203426}
   m_Layer: 0
-  m_Name: SfxKnightCaptain
+  m_Name: SfxArcherCaptain
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -896,7 +896,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Event: event:/Unit_Death
+  Event: event:/Battle/Unit_Death
   PlayEvent: 2
   StopEvent: 0
   CollisionTag: 
@@ -919,14 +919,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   properties:
-    Name: 
-    isMan: 0
     level: 0
     champClass: 0
-    bio: 
-    quote: 
     isDead: 0
     currentChampionAbility: 0
+    isSaltCostSet: 0
+    saltCost: 0
+    isCameraPicture: 0
     picture: 
     currentExp: 0
     nextLevelExp: 10
@@ -937,6 +936,10 @@ MonoBehaviour:
     wisdom: 0
     luck: 0
     wealth: 0
+    Name: 
+    isMan: 0
+    bio: 
+    quote: 
   onBattle: 0
   invitedToBattle: 0
 --- !u!114 &114357223199733334
@@ -1052,7 +1055,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Event: event:/Knight/Knight_Attack
+  Event: event:/Battle/Archer/Archer_Spawn
   PlayEvent: 1
   StopEvent: 0
   CollisionTag: 
@@ -1081,12 +1084,12 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1697288082441358}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Event: event:/Knight/Knight_Attack
+  Event: event:/Battle/Archer/Archer_Shoot
   PlayEvent: 0
   StopEvent: 0
   CollisionTag: 

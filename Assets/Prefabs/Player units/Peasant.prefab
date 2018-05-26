@@ -406,7 +406,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Event: event:/Peasant/PlaceholderPeasant_Attack
+  Event: event:/Battle/Peasant/PlaceholderPeasant_Attack
   PlayEvent: 0
   StopEvent: 0
   CollisionTag: 
@@ -461,7 +461,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Event: event:/Peasant/Peasant_Spawn
+  Event: event:/Battle/Peasant/Peasant_Spawn
   PlayEvent: 1
   StopEvent: 0
   CollisionTag: 
@@ -505,7 +505,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Event: event:/Unit_Death
+  Event: event:/Battle/Unit_Death
   PlayEvent: 2
   StopEvent: 0
   CollisionTag: 

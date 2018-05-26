@@ -74,11 +74,11 @@ public class MusicControl : MonoBehaviour {
                 //Debug.Log (enemyCastleHealth.CurrentHealth);
 
 
-                if (enemyCastleHealth.CurrentHealth > 400 && enemyCastleHealth.CurrentHealth < 499)
+                if (enemyCastleHealth.CurrentHealth > enemyCastleHealth.MaximumHealth * 0.90d && enemyCastleHealth.CurrentHealth < enemyCastleHealth.MaximumHealth)
                     music.SetParameter("Transition", 1f);
-                if (enemyCastleHealth.CurrentHealth > 250 && enemyCastleHealth.CurrentHealth < 399)
+                if (enemyCastleHealth.CurrentHealth > enemyCastleHealth.MaximumHealth * 0.60d && enemyCastleHealth.CurrentHealth < enemyCastleHealth.MaximumHealth * 0.89d)
                     music.SetParameter("Transition", 2f);
-                if (enemyCastleHealth.CurrentHealth > 0 && enemyCastleHealth.CurrentHealth < 249)
+                if (enemyCastleHealth.CurrentHealth > enemyCastleHealth.MaximumHealth * 0.10d && enemyCastleHealth.CurrentHealth < enemyCastleHealth.MaximumHealth * 0.59d)
                     music.SetParameter("Transition", 3f);
                 if (enemyCastleHealth.CurrentHealth <= 0)
                     music.SetParameter("Transition", 4f);

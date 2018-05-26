@@ -723,7 +723,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Event: event:/Peasant/PlaceholderPeasant_Attack
+  Event: event:/Battle/Peasant/PlaceholderPeasant_Attack
   PlayEvent: 0
   StopEvent: 0
   CollisionTag: 
@@ -757,14 +757,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   properties:
-    Name: 
-    isMan: 0
     level: 0
     champClass: 0
-    bio: 
-    quote: 
     isDead: 0
     currentChampionAbility: 0
+    isSaltCostSet: 0
+    saltCost: 0
+    isCameraPicture: 0
     picture: 
     currentExp: 0
     nextLevelExp: 10
@@ -775,6 +774,10 @@ MonoBehaviour:
     wisdom: 0
     luck: 0
     wealth: 0
+    Name: 
+    isMan: 0
+    bio: 
+    quote: 
   onBattle: 0
   invitedToBattle: 0
 --- !u!114 &114213870823303740
@@ -957,7 +960,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Event: event:/PrayerAbility
+  Event: event:/Battle/Abilities/PrayerAbility
   PlayEvent: 0
   StopEvent: 0
   CollisionTag: 
@@ -979,7 +982,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Event: event:/Peasant/Peasant_Spawn
+  Event: event:/Battle/Peasant/Peasant_Spawn
   PlayEvent: 1
   StopEvent: 0
   CollisionTag: 
@@ -1049,7 +1052,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Event: event:/Unit_Death
+  Event: event:/Battle/Unit_Death
   PlayEvent: 2
   StopEvent: 0
   CollisionTag: 
@@ -1113,7 +1116,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Event: event:/BerserkAbility
+  Event: event:/Battle/Abilities/BerserkAbility
   PlayEvent: 0
   StopEvent: 0
   CollisionTag: 
@@ -1135,7 +1138,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Event: event:/RallyingShoutAbility
+  Event: event:/Battle/Abilities/RallyingShoutAbility
   PlayEvent: 0
   StopEvent: 0
   CollisionTag: 

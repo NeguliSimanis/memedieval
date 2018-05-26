@@ -53,7 +53,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Event: event:/Archer/Archer_Shoot
+  Event: event:/Battle/Archer/Archer_Shoot
   PlayEvent: 1
   StopEvent: 0
   CollisionTag: 
@@ -77,6 +77,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Speed: 5
   Target: {fileID: 0}
+  isEnemy: 0
 --- !u!212 &212033491581640662
 SpriteRenderer:
   m_ObjectHideFlags: 1

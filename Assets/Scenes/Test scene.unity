@@ -12873,6 +12873,11 @@ Prefab:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114898787908752162, guid: 4ab34fec3f212f9458f8dc861b0d2e7e,
+        type: 2}
+      propertyPath: Event
+      value: event:/Battle/Fire
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4ab34fec3f212f9458f8dc861b0d2e7e, type: 2}
   m_IsPrefabParent: 0
@@ -13011,8 +13016,8 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1704347740}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 970.78, y: 541.76, z: 0}
-  m_LocalScale: {x: 2.4, y: 2.4, z: 2.4}
+  m_LocalPosition: {x: 522.78, y: 385.76, z: 0}
+  m_LocalScale: {x: 1.28, y: 1.28, z: 1.28}
   m_Children:
   - {fileID: 597013254}
   - {fileID: 1240351820}
@@ -13620,6 +13625,11 @@ Prefab:
     - target: {fileID: 1455949435627558, guid: 4ab34fec3f212f9458f8dc861b0d2e7e, type: 2}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114898787908752162, guid: 4ab34fec3f212f9458f8dc861b0d2e7e,
+        type: 2}
+      propertyPath: Event
+      value: event:/Battle/Fire
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4ab34fec3f212f9458f8dc861b0d2e7e, type: 2}
