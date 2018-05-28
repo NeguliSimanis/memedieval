@@ -45,7 +45,6 @@ public class GameData
 [System.Serializable]
 public class ChampionData
 {
-    //public bool onBattle; - no need to save this
 
     public int level;   
     public int champClass; // 0 - peasant, 1 - Knight, 2 - archer (in some places peasant and archer are inversed)
@@ -53,7 +52,6 @@ public class ChampionData
     
     public enum Ability { Warhorn, BerserkFury, Prayer, AbilityCount };
     public Ability currentChampionAbility;
-    // public AudioClip championAbilitySFX;
 
     #region recruiting
     public bool isSaltCostSet = false;
@@ -90,13 +88,6 @@ public class ChampionData
 
     public void SetPicture(Texture2D texture)
     {
-       /* pictureWidth = texture.width;
-        pictureHeight = texture.height;
-        pictureFormat = texture.format;
-        Debug.Log("picture width " + pictureWidth);
-        Debug.Log("picture height " + pictureHeight);
-        Debug.Log("picture Format " + pictureFormat);
-        Debug.Log("mipmap count " + texture.mipmapCount);*/
         pictureHeight = texture.height;
         pictureWidth = texture.width;
         pictureFormat = texture.format;
@@ -114,15 +105,17 @@ public class ChampionData
     public void ChooseRandomAbility()
     {
         int abilityID = 2;
+
+        #region code left for testing purposes
         //abilityID = Random.Range(0, (int)Ability.AbilityCount);
         //Debug.Log("Ability selection not set to random!"); abilityID = 0;
+        #endregion
 
         currentChampionAbility = (Ability)abilityID;
     }
 
     public string GetChampionClass()
     {
-        //public int champClass; // 0 - peasant, 1 - Knight, 2 - archer (in some places peasant and archer are inversed)
         if (champClass == 0)
         {
             return "Peasant";  

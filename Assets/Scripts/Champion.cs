@@ -61,6 +61,8 @@ public class Champion : MonoBehaviour {
         properties.nextLevelExp = Mathf.RoundToInt(properties.nextLevelExp * 1.5f);
     }
 
+    // TO-DO - REMOVE
+    //This is a carbon copy of a similar ChampionData function
     public string GetClassName()
     {
         switch (properties.champClass)
