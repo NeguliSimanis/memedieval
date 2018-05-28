@@ -18,7 +18,7 @@ public class GameData
     #region resources
     // salt
     public int salt = 10;
-    public int newChampionCost = 5; // not used everywhere
+    public int newChampionCost = 5; // TO-DO: remove; not used everywhere
 
     // ducats
     public int ducats = 10;
@@ -33,7 +33,6 @@ public class GameData
     public string enemyCastleTag = "EnemyCastle";
     public string playerProfileTag = "Player profile"; // TO-DO replace all references to PlayerProfile.Singleton
     public string enemyBalancerTag = "Enemy balancer";
-   // public string castleArrowTag = "CastleArrow";
     #endregion
 
     #region scenes
@@ -65,6 +64,7 @@ public class ChampionData
     private int pictureHeight = 720;
     private int pictureMipmapCount = 11;
     private TextureFormat pictureFormat = TextureFormat.RGBA32;
+    #endregion
 
     #region skills
     public int currentExp = 0;
@@ -105,12 +105,7 @@ public class ChampionData
     public void ChooseRandomAbility()
     {
         int abilityID = 2;
-
-        #region code left for testing purposes
-        //abilityID = Random.Range(0, (int)Ability.AbilityCount);
-        //Debug.Log("Ability selection not set to random!"); abilityID = 0;
-        #endregion
-
+        abilityID = Random.Range(0, (int)Ability.AbilityCount);
         currentChampionAbility = (Ability)abilityID;
     }
 
@@ -158,5 +153,4 @@ public class ChampionData
         return saltCost;
     }
 }
-    #endregion
 
