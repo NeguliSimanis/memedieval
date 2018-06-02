@@ -303,13 +303,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="memedieval.CSharp.Plugins.csproj">
-      <Project>{8C322C24-81C8-9475-2DA3-5B07BD60CDB9}</Project>
-      <Name>memedieval.CSharp.Plugins</Name>
-    </ProjectReference>
     <ProjectReference Include="memedieval.CSharp.csproj">
       <Project>{50DC342B-032F-08D0-259D-9B8702B24AE4}</Project>
       <Name>memedieval.CSharp</Name>
+    </ProjectReference>
+    <ProjectReference Include="memedieval.CSharp.Plugins.csproj">
+      <Project>{8C322C24-81C8-9475-2DA3-5B07BD60CDB9}</Project>
+      <Name>memedieval.CSharp.Plugins</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

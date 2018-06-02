@@ -124,14 +124,10 @@ public class PlayerProfile : MonoBehaviour
 
     void OnLevelFinishedLoading(Scene scene, LoadSceneMode mode)
     {
-       /* if (scene.name == battleSceneName)
-        {
-            ModifyBattleProperties();
-        }*/
-
         profileID++;
 
-        //destroy copies of this game object
+        // This has been replaced 
+        //destroys copies of this game object
         GameObject[] playerCopies;
         playerCopies = GameObject.FindGameObjectsWithTag(this.gameObject.tag);
         foreach (GameObject playerCopy in playerCopies)

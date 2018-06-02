@@ -71,7 +71,6 @@ public class Map : MonoBehaviour {
 
         if (isArmyReady && isCastleSelected)
         {
-            Debug.Log("check 1");
             SelectTargetCastle();
         }
     }
@@ -83,7 +82,6 @@ public class Map : MonoBehaviour {
             if (champion.invitedToBattle)
             {
                 isArmyReady = true;
-                Debug.Log("army ready");
                 break;
             }
         }
@@ -117,10 +115,8 @@ public class Map : MonoBehaviour {
         {
             if (castle == true)
             {
-                Debug.Log("castle " + destroyedCastleID + " destroyed");
                 MarkAsDestroyed(destroyedCastleID);
             }
-            //else Debug.Log("castle " + destroyedCastleID + "not destroyed");
             destroyedCastleID++;
         }
 
@@ -144,8 +140,6 @@ public class Map : MonoBehaviour {
 
     void MarkAsDestroyed(int castleID)
     {
-        Debug.Log("destroyed castle id: " + castleID);
-        Debug.Log("castles length: " + castles.Length);
         EnableDestroyedCastleMarker(castleID);
 
         // unlock the destroyed castle and all previous castles    
@@ -162,8 +156,7 @@ public class Map : MonoBehaviour {
         }    
         else if (castleID == 2 || castleID == castles.Length-1)
         {
-            //Debug.Log("castle 2 not destroyed");
-            //ActivateCastleButton(castleID + 1);
+            
         }
         // destroying a castle other than the last or third one unlocks the next castle 
         else
@@ -183,7 +176,6 @@ public class Map : MonoBehaviour {
                 foreach (Transform child in castleButtonContainers[i].transform)
                 {
                     child.gameObject.GetComponent<Image>().color = inactiveElementColor;
-                   // child.gameObject.SetActive(true);
                 }       
             }
             i++;
@@ -201,14 +193,12 @@ public class Map : MonoBehaviour {
         isCastleSelected = true;
         if (EventSystem.current.currentSelectedGameObject != null)
             selectedCastle = EventSystem.current.currentSelectedGameObject.name;
-        Debug.Log("Selected castle " + selectCastle);
 
         int currentID = 0;
         foreach (string castle in castleNames)
         {
             if (castle == selectedCastle)
             {
-                Debug.Log("Castle " + selectedCastle + " selected");
                 selectedCastleID = currentID;
                 isCastleSelected = true;
                 ActivateBattleButton();
