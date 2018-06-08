@@ -5,8 +5,7 @@ using UnityEngine;
 public class TutorialArrow : MonoBehaviour {
 
     #region tutorial
-    [SerializeField]
-    Tutorial tutorial;
+    public Tutorial tutorial;
     #endregion
 
     #region targetting

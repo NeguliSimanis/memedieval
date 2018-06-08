@@ -27,9 +27,10 @@ public class Tutorial : MonoBehaviour {
 
     #region tutorial strings
     string tutorialStringDefendKing = "Defend the king at all costs!";
-    string tutorialStringTapArrows = "TAP on arrows to stop them";
+    string tutorialStringTapArrows = "TAP on arrows to break them";
     string tutorialStringTapMoreArrows;
     string tutorialStringTapMoreArrowsTemplate = "TAP on {0} more arrows!";
+    string tutorialStringTapOnLastArrow = "TAP on 1 more arrow!";
     string tutorialStringCurses = "Curses! Send in the infantry!";
     //string tutorialStringRegularUnit = "";
     #endregion
@@ -73,19 +74,31 @@ public class Tutorial : MonoBehaviour {
 
     void TeachArrowBlock()
     {
+        HideDialogueButton();
+        currentTutorialText.transform.parent.Find("AcceptButton").gameObject.SetActive(false);
         currentTutorialText.text = tutorialStringTapArrows;
+    }
+
+    void HideDialogueButton()
+    {
+        currentTutorialText.transform.parent.Find("AcceptButton").gameObject.SetActive(false);
     }
 
     public void AddBlockedArrow()
     {
-        Debug.Log("added blocked arrow");   
         arrowsToBlock--;
-        if (arrowsToBlock == 0)
+        if (arrowsToBlock <= 0)
         {
+            return;
+        }
+        else if (arrowsToBlock == 1)
+        {
+            currentTutorialText.text = tutorialStringTapOnLastArrow;
             return;
         }
         tutorialStringTapMoreArrows = string.Format(tutorialStringTapMoreArrowsTemplate, arrowsToBlock);
         currentTutorialText.text = tutorialStringTapMoreArrows;
+        HideDialogueButton();
     }
 
 }

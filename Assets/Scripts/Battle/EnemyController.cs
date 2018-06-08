@@ -31,6 +31,8 @@ public class EnemyController : MonoBehaviour {
     TutorialArrow tutorialArrowPrefab;
     [SerializeField]
     bool isTutorial;
+    [SerializeField]
+    Tutorial tutorial;
     #endregion
 
     void Start ()
@@ -47,11 +49,23 @@ public class EnemyController : MonoBehaviour {
         arrow.Target = arrowTarget;
     }
 
+    void ShootTutorialArrow()
+    {
+        TutorialArrow arrow = Instantiate(tutorialArrowPrefab, transform.position, Quaternion.identity);
+        arrow.tutorial = tutorial;
+        //arrow.Damage = arrowDamage;
+        arrow.damage = arrowDamage;
+        arrow.Target = arrowTarget;
+    }
+
     void Update ()
     {
 		if (Time.time >= arrrowShootTime)
         {
-            ShootArrow();
+            if (isTutorial)
+                ShootTutorialArrow();
+            else
+                ShootArrow();
             arrowSpawnDelay = Random.Range(minArrowSpawnDelay, maxArrowSpawnDelay);
             arrrowShootTime = Time.time + arrowSpawnDelay;
         }
