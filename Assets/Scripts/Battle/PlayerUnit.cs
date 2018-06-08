@@ -173,7 +173,21 @@ public class PlayerUnit : MonoBehaviour {
 
     public void Die()
     {
-        GameObject deathObjectParent = Instantiate(new GameObject(), new Vector3(gameObject.transform.localPosition.x-0.2f, gameObject.transform.localPosition.y, gameObject.transform.localPosition.z), Quaternion.identity);
+        float deathLocationOffsetX;
+        if (UnitType == PlayerUnit.Type.Archer)
+        {
+            deathLocationOffsetX = 0f;
+        }
+        else if (UnitType == PlayerUnit.Type.Knight)
+        {
+            deathLocationOffsetX = -0.2f;
+        }
+        else 
+        {
+            deathLocationOffsetX = 0f;
+        }
+        Vector3 deathLocation = new Vector3(gameObject.transform.localPosition.x + deathLocationOffsetX, gameObject.transform.localPosition.y, gameObject.transform.localPosition.z);
+        GameObject deathObjectParent = Instantiate(new GameObject(), deathLocation, Quaternion.identity);
         GameObject deathObject = Instantiate(deathAnimation, deathObjectParent.transform);
        // deathObject.transform.localPosition = gameObject.transform.localPosition;
         deathObject.SetActive(true);
