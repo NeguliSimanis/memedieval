@@ -14,6 +14,8 @@ public class PlayerUnit : MonoBehaviour {
     private Type UnitType;
     [SerializeField]
     private bool isArcher;
+    [SerializeField]
+    private GameObject deathAnimation;
     #endregion
 
     #region assets
@@ -125,7 +127,6 @@ public class PlayerUnit : MonoBehaviour {
         }
     }
 
-
     void OnTriggerExit2D(Collider2D collision)
     {
         EnemyUnit target = collision.gameObject.GetComponent<EnemyUnit>();
@@ -170,6 +171,11 @@ public class PlayerUnit : MonoBehaviour {
         cooldown = defaultCooldown;
     }
 
-
+    public void Die()
+    {
+        GameObject deathObject = Instantiate(deathAnimation);
+        deathObject.SetActive(true);
+        Destroy(gameObject);
+    }
 
 }

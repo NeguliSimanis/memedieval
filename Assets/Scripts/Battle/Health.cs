@@ -122,12 +122,12 @@ public class Health : MonoBehaviour
             }
             if (IsCharacter) {
                 FindObjectOfType<ResourceTextController>().AddResources(isPlayer, meadCarrying);
-				deathSound = GameObject.Find ("SfxUnitDeath").GetComponent<FMODUnity.StudioEventEmitter> ();
+				/*deathSound = GameObject.Find ("SfxUnitDeath").GetComponent<FMODUnity.StudioEventEmitter>();
 				if (deathSound != null) {
-					deathSound.Play ();
-				}
-
-                GameObject.Destroy(gameObject);
+					deathSound.Play();
+				}*/
+                DestroyPlayerUnit();
+                //GameObject.Destroy(gameObject);
             }
             else
             {
@@ -187,6 +187,10 @@ public class Health : MonoBehaviour
         get { return victory; }
     }
 
+    void DestroyPlayerUnit()
+    {
+        gameObject.GetComponent<PlayerUnit>().Die();
+    }
 
     public void Damage(int damageAmount, Attack.Type attackingType = Attack.Type.defaultType)
     {
