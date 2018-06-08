@@ -173,8 +173,11 @@ public class PlayerUnit : MonoBehaviour {
 
     public void Die()
     {
-        GameObject deathObject = Instantiate(deathAnimation);
+        GameObject deathObjectParent = Instantiate(new GameObject(), new Vector3(gameObject.transform.localPosition.x-0.2f, gameObject.transform.localPosition.y, gameObject.transform.localPosition.z), Quaternion.identity);
+        GameObject deathObject = Instantiate(deathAnimation, deathObjectParent.transform);
+       // deathObject.transform.localPosition = gameObject.transform.localPosition;
         deathObject.SetActive(true);
+        
         Destroy(gameObject);
     }
 
