@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour {
 
-   
     GameObject enemyObject;
     [SerializeField]
     Transform enemyTransform;
@@ -24,6 +23,14 @@ public class EnemyController : MonoBehaviour {
     Transform arrowTarget;
 
     float arrrowShootTime;
+    #endregion
+
+    #region tutorial
+    [Header("Tutorial")]
+    [SerializeField]
+    TutorialArrow tutorialArrowPrefab;
+    [SerializeField]
+    bool isTutorial;
     #endregion
 
     void Start ()

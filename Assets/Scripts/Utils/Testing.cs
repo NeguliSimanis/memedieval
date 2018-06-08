@@ -5,10 +5,8 @@ using UnityEngine;
 public class Testing : MonoBehaviour {
 
     [SerializeField]
-    bool allowGamePause = true;
-   
+    bool allowGamePause = true; 
     public bool spawnEnemyUnits = true;
-  
     public bool shootCastleArrows = true;
 
     [SerializeField]
@@ -20,12 +18,6 @@ public class Testing : MonoBehaviour {
 
     void Start()
     {
-        /*GameObject[] gameControllers = GameObject.FindGameObjectsWithTag("GameController");
-        foreach (GameObject gameController in gameControllers)
-        {
-            Debug.Log(gameController.name);
-        }*/
-
         if (!spawnEnemyUnits)
         {
             enemySpawner.enabled = false;
@@ -39,6 +31,7 @@ public class Testing : MonoBehaviour {
             castleArrowController.enabled = false;
     }
 
+    
 	void Update ()
     {
         if (Input.GetKey(KeyCode.P) && allowGamePause)
