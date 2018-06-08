@@ -249,7 +249,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4744453295854158}
   - component: {fileID: 114608091969442738}
-  - component: {fileID: 114301696084203426}
   m_Layer: 0
   m_Name: SfxArcherCaptain
   m_TagString: Untagged
@@ -352,7 +351,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1762746809801768
 GameObject:
   m_ObjectHideFlags: 1
@@ -783,7 +782,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Event: event:/BerserkAbility
+  Event: event:/Battle/Abilities/BerserkAbility
   PlayEvent: 0
   StopEvent: 0
   CollisionTag: 
@@ -885,28 +884,6 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
---- !u!114 &114301696084203426
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1463505551125508}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Event: event:/Battle/Unit_Death
-  PlayEvent: 2
-  StopEvent: 0
-  CollisionTag: 
-  AllowFadeout: 1
-  TriggerOnce: 1
-  Preload: 0
-  Params: []
-  OverrideAttenuation: 0
-  OverrideMinDistance: 0
-  OverrideMaxDistance: 0
 --- !u!114 &114348254021893674
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -953,7 +930,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Event: event:/RallyingShoutAbility
+  Event: event:/Battle/Abilities/RallyingShoutAbility
   PlayEvent: 0
   StopEvent: 0
   CollisionTag: 
@@ -1006,7 +983,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Event: event:/PrayerAbility
+  Event: event:/Battle/Abilities/PrayerAbility
   PlayEvent: 0
   StopEvent: 0
   CollisionTag: 

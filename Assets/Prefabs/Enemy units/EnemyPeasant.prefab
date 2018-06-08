@@ -20,7 +20,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4632299030705088}
   - component: {fileID: 114729893959905060}
-  - component: {fileID: 114450403307193100}
   m_Layer: 0
   m_Name: SfxPeasant
   m_TagString: Untagged
@@ -192,28 +191,6 @@ MonoBehaviour:
   MaximumHealth: 20
   UnitType: 0
   killReward: 55
---- !u!114 &114450403307193100
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1331732259969148}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Event: event:/Battle/Unit_Death
-  PlayEvent: 2
-  StopEvent: 0
-  CollisionTag: 
-  AllowFadeout: 1
-  TriggerOnce: 1
-  Preload: 0
-  Params: []
-  OverrideAttenuation: 0
-  OverrideMinDistance: 0
-  OverrideMaxDistance: 0
 --- !u!114 &114459281006083988
 MonoBehaviour:
   m_ObjectHideFlags: 1

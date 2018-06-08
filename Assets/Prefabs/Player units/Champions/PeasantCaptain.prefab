@@ -90,7 +90,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1182345042069668
 GameObject:
   m_ObjectHideFlags: 1
@@ -309,7 +309,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4443352704463982}
   - component: {fileID: 114520787170439764}
-  - component: {fileID: 114714713724733062}
   m_Layer: 0
   m_Name: SfxPeasantCaptain
   m_TagString: Untagged
@@ -1041,28 +1040,6 @@ MonoBehaviour:
   chargingBar: {fileID: 1182345042069668}
   abilityReadyAnimation: {fileID: 1201586517118352}
   abilitySFX: {fileID: 0}
---- !u!114 &114714713724733062
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1550046872684072}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Event: event:/Battle/Unit_Death
-  PlayEvent: 2
-  StopEvent: 0
-  CollisionTag: 
-  AllowFadeout: 1
-  TriggerOnce: 1
-  Preload: 0
-  Params: []
-  OverrideAttenuation: 0
-  OverrideMinDistance: 0
-  OverrideMaxDistance: 0
 --- !u!114 &114811552270142788
 MonoBehaviour:
   m_ObjectHideFlags: 1

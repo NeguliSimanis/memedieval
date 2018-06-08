@@ -16,6 +16,8 @@ public class Health : MonoBehaviour
     private static bool ArcherCaptainDead;
     private static bool KnightCaptainDead;
 
+
+
     [SerializeField] private Attack.Type UnitType;
     [SerializeField] private int meadCarrying;
     [SerializeField] private bool IsCharacter;
@@ -28,6 +30,8 @@ public class Health : MonoBehaviour
     [SerializeField] LoadScene nextLevelScript;
     [SerializeField] string nextLevelToLoad;
     [SerializeField] string enemyBalancerTag = "Enemy balancer";
+
+	private FMODUnity.StudioEventEmitter deathSound;
 
 	private int currentHealth;
 	public int CurrentHealth
@@ -118,6 +122,11 @@ public class Health : MonoBehaviour
             }
             if (IsCharacter) {
                 FindObjectOfType<ResourceTextController>().AddResources(isPlayer, meadCarrying);
+				deathSound = GameObject.Find ("SfxUnitDeath").GetComponent<FMODUnity.StudioEventEmitter> ();
+				if (deathSound != null) {
+					deathSound.Play ();
+				}
+
                 GameObject.Destroy(gameObject);
             }
             else
