@@ -51,6 +51,7 @@ public class Tutorial : MonoBehaviour {
     //GameObject spawnKnightUnitButton;
 
     string tutorialStringCurses = "Curses! Send in the infantry!";
+    string tutorialStringWellFought = "Splendid victory, sire!";
     bool isTeachingSummoning = false;
 
     float firstSpawningCooldown = 1f;
@@ -97,9 +98,14 @@ public class Tutorial : MonoBehaviour {
             TeachArrowBlock();     
         }
 
-        if (isTeachingSummoning)
+        else if (isTeachingSummoning)
         {
             ShowUnitSummoning();
+        }
+
+        else if (currentTutorialText.text == tutorialStringWellFought)
+        {
+            gameObject.GetComponent<LoadScene>().loadLevel("Castle");
         }
     }
 
@@ -193,5 +199,14 @@ public class Tutorial : MonoBehaviour {
             return;
         }
         enemyUnitSpawner.SpawnTutorialKnight();
+    }
+
+    public void DefeatTutorialEnemy(GameObject enemy)
+    {
+        isTeachingSummoning = false;
+        currentTutorialText.text = tutorialStringWellFought;
+        spawnKnightButtonContainer.SetActive(false);
+        HideDialogueButton(true); // show dialogue button   
+        enemy.SetActive(false);
     }
 }
