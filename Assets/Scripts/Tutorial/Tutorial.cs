@@ -13,7 +13,7 @@ public class Tutorial : MonoBehaviour {
     Text currentTutorialText;
 
     [SerializeField]
-    Testing enemyArrowController;
+    Testing enemyController;
 
     #region dialogue setups
     [Header("Dialogue with left image")]
@@ -94,6 +94,14 @@ public class Tutorial : MonoBehaviour {
         HideDialogueButton();
         currentTutorialText.text = tutorialStringCurses;
         currentTutorialText.fontSize = defaultDialogueFontSize;
+
+        SpawnEnemyUnits(true);
+
+    }
+
+    void SpawnEnemyUnits(bool isSpawning)
+    {
+        enemyController.spawnEnemyUnits = true;
     }
 
     void TeachArrowBlock()
@@ -110,6 +118,7 @@ public class Tutorial : MonoBehaviour {
 
     void TeachUnitSummoning()
     {
+        CreateTutorialChampion();
         isTeachingSummoning = true;
 
         // hides the dialogue button
@@ -120,10 +129,17 @@ public class Tutorial : MonoBehaviour {
         currentTutorialText.fontSize = 30;
     }
 
+    void CreateTutorialChampion()
+    {
+        Debug.Log("started creation");
+        CreateChampion championCreator = PlayerProfile.Singleton.gameObject.transform.Find("ChampionCreate").gameObject.GetComponent<CreateChampion>();
+        championCreator.CreateTutorialChampion();
+    }
+
 
     void StopEnemyArrows()
     {
-        enemyArrowController.shootCastleArrows = false;
+        enemyController.shootCastleArrows = false;
     }
 
     public void AddBlockedArrow()

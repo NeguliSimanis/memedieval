@@ -16,17 +16,6 @@ public class Testing : MonoBehaviour {
 
     bool isPaused = false;
 
-    void Start()
-    {
-        if (!spawnEnemyUnits)
-        {
-            enemySpawner.enabled = false;
-        }
-        else
-            enemySpawner.enabled = true;
-    }
-
-    
 	void Update ()
     {
         if (Input.GetKey(KeyCode.P) && allowGamePause)
@@ -47,5 +36,12 @@ public class Testing : MonoBehaviour {
             castleArrowController.enabled = true;
         else
             castleArrowController.enabled = false;
+
+        if (!spawnEnemyUnits)
+        {
+            enemySpawner.enabled = false;
+        }
+        else
+            enemySpawner.enabled = true;
     }
 }

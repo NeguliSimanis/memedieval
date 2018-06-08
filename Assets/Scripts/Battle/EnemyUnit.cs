@@ -23,6 +23,11 @@ public class EnemyUnit : MonoBehaviour
 
     void Start()    
     {
+        if (GameObject.FindGameObjectWithTag(GameData.current.enemyBalancerTag).GetComponent<EnemyBalancer>() == null)
+        {
+            Debug.Log("no modifiers on enemy unit health are active");
+            return;
+        }
         enemyBalancer = GameObject.FindGameObjectWithTag(GameData.current.enemyBalancerTag).GetComponent<EnemyBalancer>();
         currentHealth = Mathf.RoundToInt(MaximumHealth * enemyBalancer.enemyUnitHPMultiplier);
         //currentHealth = MaximumHealth;

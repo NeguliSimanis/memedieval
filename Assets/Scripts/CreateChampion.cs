@@ -52,7 +52,7 @@ public class CreateChampion : MonoBehaviour
     public bool isMan;
 
     #region bio strings
-    public string[] Sentence1part1= { "{0} was born", "{0} fondly recalls the time that was spent",
+    public string[] Sentence1part1 = { "{0} was born", "{0} fondly recalls the time that was spent",
     "{0} spent the childhood","The scars borne by {0} were struck" };
     public string[] Sentence1part2 = {"in a poor family", "in a church","in a noble family","under the starry sky",
     "on the battlefield","in the woods","on a mountain","under the bridge","in secrecy","in a strange land" };
@@ -113,8 +113,8 @@ public class CreateChampion : MonoBehaviour
         int r1 = Random.Range(0, Sentence3part1.Length);
         int r2 = Random.Range(0, Sentence3part2.Length);
         int r3 = Random.Range(0, Sentence3part3.Length);
-        string Sentence = string.Format(" " + Sentence3part1[r1], charname)+ " " +
-           string.Format(Sentence3part2[r2], charname)+ " " +
+        string Sentence = string.Format(" " + Sentence3part1[r1], charname) + " " +
+           string.Format(Sentence3part2[r2], charname) + " " +
            string.Format(Sentence3part3[r3], charname);
         return Sentence;
     }
@@ -131,7 +131,7 @@ public class CreateChampion : MonoBehaviour
         return WebCamTexture.devices.Length;
     }
 
-    public Champion createRandomChamp(GameObject parentObject)
+    public Champion CreateRandomChamp(GameObject parentObject)
     {
         int champClassID = Random.Range(0, ChampionsPrefabs.Length);
         GameObject championObject = Instantiate<GameObject>(ChampionsPrefabs[champClassID]);
@@ -154,8 +154,36 @@ public class CreateChampion : MonoBehaviour
 
         var stats = Instantiate(StatsContainerPrefab);
         stats.transform.parent = champo.transform;
-            
+
         return champo;
+    }
+
+    public void CreateTutorialChampion()
+    {
+        Debug.Log("creating tutorial champion");
+        // sets champion to knight
+        int champClassID = 1;
+        GameObject championObject = Instantiate<GameObject>(ChampionsPrefabs[champClassID]);
+
+        // sets parent of champion object
+        championObject.SetActive(false);
+        championObject.transform.parent = gameObject.transform.parent;
+
+        // sets champion propertiees
+        var champo = championObject.GetComponent<Champion>();
+        string championName = gameObject.GetComponent<RandomName>().GetRandomChampionName();
+        champo.properties.champClass = champClassID;
+        champo.properties.Name = championName;
+        champo.properties.isMan = (Random.value > 0.5f);
+        champo.properties.bio = MakeBio(championName);
+        champo.properties.quote = MakeMotto();
+        SetChampionPicture(champo);
+        SetChampionAbility(champo);
+        this.gameObject.GetComponent<ChampionSkillGenerator>().GenerateChampionSkills(champo);
+
+        PlayerProfile.Singleton.champions.Add(champo);
+        var stats = Instantiate(StatsContainerPrefab);
+        stats.transform.parent = champo.transform;
     }
 
     public void StartUsingWebcam()

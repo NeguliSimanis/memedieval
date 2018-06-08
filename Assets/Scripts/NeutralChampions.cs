@@ -25,7 +25,7 @@ public class NeutralChampions : MonoBehaviour {
     {
         for (int i = 0; i < championCount; i++)
         {
-            neutralChampionsList.Add(createChampion.createRandomChamp(this.gameObject));
+            neutralChampionsList.Add(createChampion.CreateRandomChamp(this.gameObject));
         }
     }
     
