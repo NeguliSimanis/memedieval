@@ -95,7 +95,7 @@ public class ChampionSkillGenerator : MonoBehaviour {
         {
             while (skillValue > remainingSkillpoints)
             {
-                if (skillValue < minValue) Debug.Log("break doesn't work");
+                //if (skillValue < minValue) Debug.Log("break doesn't work");
                 skillValue--;
                 if (skillValue == minValue) break;
             }

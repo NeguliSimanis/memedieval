@@ -25,7 +25,6 @@ public class EnemyUnit : MonoBehaviour
     {
         if (GameObject.FindGameObjectWithTag(GameData.current.enemyBalancerTag) == null)
         {
-            Debug.Log("no modifiers on enemy unit health are active");
             return;
         }
         enemyBalancer = GameObject.FindGameObjectWithTag(GameData.current.enemyBalancerTag).GetComponent<EnemyBalancer>();

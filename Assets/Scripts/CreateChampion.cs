@@ -160,7 +160,6 @@ public class CreateChampion : MonoBehaviour
 
     public void CreateTutorialChampion()
     {
-        Debug.Log("creating tutorial champion");
         // sets champion to knight
         int champClassID = 1;
         GameObject championObject = Instantiate<GameObject>(ChampionsPrefabs[champClassID]);

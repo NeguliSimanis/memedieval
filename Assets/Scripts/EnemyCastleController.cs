@@ -5,10 +5,9 @@ using UnityEngine.UI;
 
 public class EnemyCastleController : MonoBehaviour
 {
-    private bool spawnEnemies = true;
-    public bool spawnPeasants = true;
-    public bool spawnArchers = true;
-    public bool spawnKnights = true;
+    // controls enemy spawning from the castle
+
+    public bool spawnEnemies = true;
 
     public static Attack.Type CurrentEnemy; //= Attack.Type.Archer;
     [SerializeField] private Spawn EnemyPeasant;
@@ -25,7 +24,6 @@ public class EnemyCastleController : MonoBehaviour
         CountToSpawn = SpawnCooldown;
         CountToStart = 3;
     }
-
 
     void Update()
     {
@@ -49,9 +47,6 @@ public class EnemyCastleController : MonoBehaviour
                     EnemyPeasant.SpawnCharacter();
                     return;
             }
-            if (CurrentEnemy == Attack.Type.Archer) EnemyArcher.SpawnCharacter();
-            if (CurrentEnemy == Attack.Type.Knight) EnemyKnight.SpawnCharacter();
-            if (CurrentEnemy == Attack.Type.Peasant) EnemyPeasant.SpawnCharacter();
         }
         else
         {
@@ -63,84 +58,22 @@ public class EnemyCastleController : MonoBehaviour
 
     private void ChooseEnemyClass()
     {
-        // limitations to spawnable unit types exist
-        if (!spawnPeasants || !spawnKnights || !spawnArchers)
-        {
-            LimitCurrentEnemies();
-            Debug.Log("Limiting current enemies");
-        }
-
-        // no limitations on possible unit spawns - choose randomly
-        else
-        {
-            var values = Attack.Type.GetValues(typeof(Attack.Type));
-            CurrentEnemy = (Attack.Type)values.GetValue(Random.Range(0, values.Length));
-        }
-    }
-
-    private void LimitCurrentEnemies()
-    {
-        // all classes are not allowed
-        if (!SpawnPermissionCheck())
-            return;
-
-        // select random enemy class
         var values = Attack.Type.GetValues(typeof(Attack.Type));
-        int currentEnemyID = Random.Range(0, values.Length);
-        CurrentEnemy = (Attack.Type)values.GetValue(currentEnemyID);
+        CurrentEnemy = (Attack.Type)values.GetValue(Random.Range(0, values.Length));
+        
+    } 
 
-        // two random classes is not allowed 
-        if (!IsAllowedEnemyType(Attack.Type.Archer) && !IsAllowedEnemyType(Attack.Type.Peasant))
-        {
-            CurrentEnemy = Attack.Type.Knight;
-        }
-        else if (!IsAllowedEnemyType(Attack.Type.Archer) && !IsAllowedEnemyType(Attack.Type.Knight))
-        {
-            CurrentEnemy = Attack.Type.Peasant;
-        }
-        else if (!IsAllowedEnemyType(Attack.Type.Knight) && !IsAllowedEnemyType(Attack.Type.Peasant))
-        {
-            CurrentEnemy = Attack.Type.Peasant;
-        }
-        // one random class is not allowed
-        else
-        {
-            currentEnemyID++;
-            if (currentEnemyID == values.Length)
-                currentEnemyID = 0;
-        }
-        CurrentEnemy = (Attack.Type)values.GetValue(currentEnemyID);
-    }
-
-    private bool SpawnPermissionCheck()
+    public void SpawnTutorialKnight()
     {
-        if (!spawnArchers && !spawnKnights && !spawnPeasants)
-        {
-            spawnEnemies = false;
-            return false;
-        }
-        return true;
+        EnemyKnight.SpawnCharacter();
     }
 
-    private bool IsAllowedEnemyType(Attack.Type attackType)
+    public void SpawnTutorialPeasant()
     {
-    
-        if (!spawnArchers && CurrentEnemy == attackType && attackType == Attack.Type.Archer)
-        {
-            //CurrentEnemy = Attack.Type.Peasant;
-            return false;
-        }
-        else if (!spawnPeasants && CurrentEnemy == attackType && attackType == Attack.Type.Peasant)
-        {
-            //CurrentEnemy = Attack.Type.Knight;
-            return false;
-        }
-        else if (!spawnKnights && CurrentEnemy == attackType && attackType == Attack.Type.Knight)
-        {
-            //CurrentEnemy = Attack.Type.Archer;
-            return false;
-        }
-        return true;
+        EnemyPeasant.SpawnCharacter();
     }
+
+
+
 }
 

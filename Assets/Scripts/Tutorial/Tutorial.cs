@@ -13,7 +13,7 @@ public class Tutorial : MonoBehaviour {
     Text currentTutorialText;
 
     [SerializeField]
-    Testing enemyController;
+    Testing enemyArrowController;
     [SerializeField]
     EnemyCastleController enemyUnitSpawner;
 
@@ -36,15 +36,26 @@ public class Tutorial : MonoBehaviour {
     #region arrow blocking sequence
     string tutorialStringTapArrows = "TAP on arrows to break them";
     string tutorialStringTapMoreArrows;
-    string tutorialStringTapMoreArrowsTemplate = "TAP on {0} more arrows!";
-    string tutorialStringTapOnLastArrow = "TAP on 1 more arrow!";
+    string tutorialStringTapMoreArrowsTemplate = "Break {0} more arrows!";
+    string tutorialStringTapOnLastArrow = "Break 1 more arrow!";
     string tutorialStringArrowsBlocked = "Well done sire, the enemy has wasted their arrows!";
     #endregion
 
     #region summoning units sequence
+    [Header("Unit Spawning")]
+    [SerializeField]
+    GameObject spawnKnightButtonContainer;
+    [SerializeField]
+    GameObject spawnKnightChampionButton;
+   // [SerializeField]
+    //GameObject spawnKnightUnitButton;
+
     string tutorialStringCurses = "Curses! Send in the infantry!";
     bool isTeachingSummoning = false;
-    //string tutorialStringRegularUnit = "";
+
+    float firstSpawningCooldown = 1f;
+    int firstSpawnLimit = 9;
+    int unitsSpawned = 0;
     #endregion
 
 
@@ -52,6 +63,7 @@ public class Tutorial : MonoBehaviour {
 
     void Start()
     {
+        spawnKnightButtonContainer.SetActive(false);
         InitializeVariables();
         ChooseTutorialSetup(true);
         currentTutorialText.text = tutorialStringDefendKing;
@@ -97,16 +109,18 @@ public class Tutorial : MonoBehaviour {
         currentTutorialText.text = tutorialStringCurses;
         currentTutorialText.fontSize = defaultDialogueFontSize;
 
-        SpawnEnemyUnits(true);
+        // enable spawning player units
+        spawnKnightButtonContainer.SetActive(true);
+        spawnKnightChampionButton.SetActive(false);
 
+        SpawnEnemyUnits(true);
     }
 
     void SpawnEnemyUnits(bool isSpawning)
     {
-        enemyController.spawnEnemyUnits = isSpawning;
-        enemyUnitSpawner.spawnArchers = false;
-        enemyUnitSpawner.spawnPeasants = false;
-        //enemyController
+        enemyArrowController.spawnEnemyUnits = isSpawning;
+        enemyUnitSpawner.spawnEnemies = false;
+        InvokeRepeating("TutorialEnemySpawner", 0.5f, firstSpawningCooldown);
     }
 
     void TeachArrowBlock()
@@ -136,15 +150,13 @@ public class Tutorial : MonoBehaviour {
 
     void CreateTutorialChampion()
     {
-        Debug.Log("started creation");
         CreateChampion championCreator = PlayerProfile.Singleton.gameObject.transform.Find("ChampionCreate").gameObject.GetComponent<CreateChampion>();
         championCreator.CreateTutorialChampion();
     }
 
-
     void StopEnemyArrows()
     {
-        enemyController.shootCastleArrows = false;
+        enemyArrowController.shootCastleArrows = false;
     }
 
     public void AddBlockedArrow()
@@ -167,4 +179,19 @@ public class Tutorial : MonoBehaviour {
         HideDialogueButton();
     }
 
+    void TutorialEnemySpawner()
+    {
+        unitsSpawned++;
+        SpawnKnight();
+    }
+
+    void SpawnKnight()
+    {
+        if (unitsSpawned > firstSpawnLimit)
+        {
+            Debug.Log("surpassed spawning limit");
+            return;
+        }
+        enemyUnitSpawner.SpawnTutorialKnight();
+    }
 }

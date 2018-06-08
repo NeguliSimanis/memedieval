@@ -23,6 +23,7 @@ public class Spawn : MonoBehaviour
     private static float spawnTimestamp;
     private static float enemyTimestamp;
 
+    [SerializeField] private bool isTutorial = false; // spawn button is not hidden in tutorial
     [SerializeField] private Attack.Type captain;
     [SerializeField] private bool isCaptain;
     [SerializeField] private MeMedieval.Resources resources;
@@ -44,7 +45,6 @@ public class Spawn : MonoBehaviour
     {
         ResetAllValues();
     }
-
 
     void Start()
     {
@@ -90,7 +90,8 @@ public class Spawn : MonoBehaviour
 
     void DisablePlayerSpawn()
     {
-        transform.parent.gameObject.transform.parent.gameObject.SetActive(false);
+        if (!isTutorial)
+            transform.parent.gameObject.transform.parent.gameObject.SetActive(false);
     }
     void SetPriceModifiers()
     {   
