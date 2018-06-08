@@ -23,7 +23,7 @@ public class EnemyUnit : MonoBehaviour
 
     void Start()    
     {
-        if (GameObject.FindGameObjectWithTag(GameData.current.enemyBalancerTag).GetComponent<EnemyBalancer>() == null)
+        if (GameObject.FindGameObjectWithTag(GameData.current.enemyBalancerTag) == null)
         {
             Debug.Log("no modifiers on enemy unit health are active");
             return;
