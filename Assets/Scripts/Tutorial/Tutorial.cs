@@ -14,6 +14,8 @@ public class Tutorial : MonoBehaviour {
 
     [SerializeField]
     Testing enemyController;
+    [SerializeField]
+    EnemyCastleController enemyUnitSpawner;
 
     #region dialogue setups
     [Header("Dialogue with left image")]
@@ -101,7 +103,10 @@ public class Tutorial : MonoBehaviour {
 
     void SpawnEnemyUnits(bool isSpawning)
     {
-        enemyController.spawnEnemyUnits = true;
+        enemyController.spawnEnemyUnits = isSpawning;
+        enemyUnitSpawner.spawnArchers = false;
+        enemyUnitSpawner.spawnPeasants = false;
+        //enemyController
     }
 
     void TeachArrowBlock()
