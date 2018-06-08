@@ -5,6 +5,10 @@ using UnityEngine.UI;
 public class Tutorial : MonoBehaviour {
 
     // Created on 08.06.2018
+
+
+    int defaultDialogueFontSize;
+
     [SerializeField]
     Text currentTutorialText;
 
@@ -25,15 +29,22 @@ public class Tutorial : MonoBehaviour {
     Text tutorialTextRight;
     #endregion
 
-    #region tutorial strings
     string tutorialStringDefendKing = "Defend the king at all costs!";
+
+    #region arrow blocking sequence
     string tutorialStringTapArrows = "TAP on arrows to break them";
     string tutorialStringTapMoreArrows;
     string tutorialStringTapMoreArrowsTemplate = "TAP on {0} more arrows!";
     string tutorialStringTapOnLastArrow = "TAP on 1 more arrow!";
+    string tutorialStringArrowsBlocked = "Well done sire, the enemy has wasted their arrows!";
+    #endregion
+
+    #region summoning units sequence
     string tutorialStringCurses = "Curses! Send in the infantry!";
+    bool isTeachingSummoning = false;
     //string tutorialStringRegularUnit = "";
     #endregion
+
 
     int arrowsToBlock = 5;
 
@@ -46,6 +57,7 @@ public class Tutorial : MonoBehaviour {
 
     void InitializeVariables()
     {
+        defaultDialogueFontSize = currentTutorialText.fontSize;
     }
 
     void ChooseTutorialSetup(bool isLeftSetup)
@@ -70,6 +82,18 @@ public class Tutorial : MonoBehaviour {
         {
             TeachArrowBlock();     
         }
+
+        if (isTeachingSummoning)
+        {
+            ShowUnitSummoning();
+        }
+    }
+
+    void ShowUnitSummoning()
+    {
+        HideDialogueButton();
+        currentTutorialText.text = tutorialStringCurses;
+        currentTutorialText.fontSize = defaultDialogueFontSize;
     }
 
     void TeachArrowBlock()
@@ -79,9 +103,27 @@ public class Tutorial : MonoBehaviour {
         currentTutorialText.text = tutorialStringTapArrows;
     }
 
-    void HideDialogueButton()
+    void HideDialogueButton(bool hideValue = false)
     {
-        currentTutorialText.transform.parent.Find("AcceptButton").gameObject.SetActive(false);
+        currentTutorialText.transform.parent.Find("AcceptButton").gameObject.SetActive(hideValue);
+    }
+
+    void TeachUnitSummoning()
+    {
+        isTeachingSummoning = true;
+
+        // hides the dialogue button
+        HideDialogueButton(true); 
+
+        // sets the text
+        currentTutorialText.text = tutorialStringArrowsBlocked;
+        currentTutorialText.fontSize = 30;
+    }
+
+
+    void StopEnemyArrows()
+    {
+        enemyArrowController.shootCastleArrows = false;
     }
 
     public void AddBlockedArrow()
@@ -89,6 +131,9 @@ public class Tutorial : MonoBehaviour {
         arrowsToBlock--;
         if (arrowsToBlock <= 0)
         {
+            StopEnemyArrows();
+            if (isTeachingSummoning == false)
+                TeachUnitSummoning();
             return;
         }
         else if (arrowsToBlock == 1)

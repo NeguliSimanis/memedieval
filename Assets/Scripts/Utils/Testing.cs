@@ -24,11 +24,6 @@ public class Testing : MonoBehaviour {
         }
         else
             enemySpawner.enabled = true;
-
-        if (shootCastleArrows)
-            castleArrowController.enabled = true;
-        else
-            castleArrowController.enabled = false;
     }
 
     
@@ -47,5 +42,10 @@ public class Testing : MonoBehaviour {
                 Time.timeScale = 1;
             }
         }
+
+        if (shootCastleArrows)
+            castleArrowController.enabled = true;
+        else
+            castleArrowController.enabled = false;
     }
 }
