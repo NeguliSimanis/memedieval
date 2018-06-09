@@ -118,9 +118,23 @@ public class Spawn : MonoBehaviour
             if (Attack.Type.Peasant == captain && Health.Peasant) unit.interactable = false;
         }
 
-        if (CooldownBar == null) return;
+        // disable spawning button during cooldown
+        if (spawnTimestamp + Cooldown > Time.time)
+        {
+            unit.interactable = false;
+        }
+        // enable spawning button after cooldown
+        else
+        {
+            unit.interactable = true;
+        }
+
         if (!isCaptain && !Enemy)
+        {
+            // show cooldown on UI if available
+            if (CooldownBar == null) return;
             CooldownBar.fillAmount = (spawnTimestamp + Cooldown - Time.time) / Cooldown;
+        }
     }
 
 
