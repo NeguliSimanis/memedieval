@@ -31,8 +31,8 @@ public class Spawn : MonoBehaviour
     [SerializeField] private int unitCost;
     [SerializeField] private bool Enemy;
     [SerializeField] private Image CooldownBar;
-    [SerializeField] private Button unit;
-    [SerializeField] private Button capt;
+    [SerializeField] private Button unitButton;
+    [SerializeField] private Button championButton;
 
     public Text UnitCostText;
 
@@ -110,23 +110,35 @@ public class Spawn : MonoBehaviour
 
     void Update()
     {
-        if (isCaptain && unit != null && unit.enabled)
+        if (isCaptain && unitButton != null && unitButton.enabled)
         {
             //Debug.Log("isCaptain1");
-            if (Attack.Type.Archer == captain && Health.Archer) unit.interactable = false;
-            if (Attack.Type.Knight == captain && Health.Knight) unit.interactable = false;
-            if (Attack.Type.Peasant == captain && Health.Peasant) unit.interactable = false;
+            if (Attack.Type.Archer == captain && Health.Archer) unitButton.interactable = false;
+            if (Attack.Type.Knight == captain && Health.Knight) unitButton.interactable = false;
+            if (Attack.Type.Peasant == captain && Health.Peasant) unitButton.interactable = false;
+        }
+
+        // disable button if not enough resources
+        if (!resources.IsEnoughResources(unitCost))
+        {
+            if (isCaptain)
+                championButton.interactable = false;
+            else
+                unitButton.interactable = false;
         }
 
         // disable spawning button during cooldown
         if (spawnTimestamp + Cooldown > Time.time)
         {
-            unit.interactable = false;
+            unitButton.interactable = false;
+            championButton.interactable = false;
         }
+
         // enable spawning button after cooldown
         else
         {
-            unit.interactable = true;
+            championButton.interactable = true;
+            unitButton.interactable = true;   
         }
 
         if (!isCaptain && !Enemy)
@@ -148,7 +160,7 @@ public class Spawn : MonoBehaviour
                 if (!resources.IsEnoughResources(unitCost)) return;
                 if (ArcherCaptainsLeft == 0) return;
                 ArcherCaptainsLeft--;
-                capt.interactable = false;
+                championButton.interactable = false;
             }
         }
 
@@ -161,7 +173,7 @@ public class Spawn : MonoBehaviour
                 if (!resources.IsEnoughResources(unitCost)) return;
                 if (KnightCaptainsLeft == 0) return;
                 KnightCaptainsLeft--;
-                capt.interactable = false;
+                championButton.interactable = false;
             }
         }
 
@@ -173,7 +185,7 @@ public class Spawn : MonoBehaviour
                 if (!resources.IsEnoughResources(unitCost)) return;
                 if (PeasantCaptainsLeft == 0) return;
                 PeasantCaptainsLeft--;
-                capt.interactable = false;
+                championButton.interactable = false;
             }
         }
 
