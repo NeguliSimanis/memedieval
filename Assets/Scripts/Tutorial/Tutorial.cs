@@ -215,8 +215,12 @@ public class Tutorial : MonoBehaviour {
         foreach (PlayerUnit playerUnit in playerUnits)
         {
             playerUnit.gameObject.GetComponent<WaypointFollower>().Celebrate();
-            //Debug.Log(playerUnit.gameObject.name);
         }
-        //foreach ()
+    }
+
+    public void SkipTutorial()
+    {
+        CreateTutorialChampion();
+        gameObject.GetComponent<LoadScene>().loadLevel("Castle");
     }
 }

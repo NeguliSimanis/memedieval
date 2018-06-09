@@ -233,7 +233,7 @@ public class Map : MonoBehaviour {
             // disable enemy spawning in the first battle
             if (selectedCastleID == 0)
             {
-                battleController.GetComponent<Testing>().spawnEnemyUnits = false;
+                battleController.GetComponent<Testing>().spawnEnemyUnits = true;
             }
             
             castles[selectedCastleID].SetActive(true);

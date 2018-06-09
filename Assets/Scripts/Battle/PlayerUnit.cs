@@ -121,7 +121,6 @@ public class PlayerUnit : MonoBehaviour {
 
         if (collision.gameObject.tag == enemyCastleTag)
         {
-            Debug.Log("near castle");
             enemyCastle = collision.gameObject.GetComponent<Health>();
             isNearCastle = true;
         }
@@ -145,6 +144,8 @@ public class PlayerUnit : MonoBehaviour {
     // Deals damage to target
     private void Strike()
     {
+
+
         if (isArcher)
         {
             Arrow arrow = Instantiate(ArrowPrefab, transform.position, Quaternion.identity);
@@ -158,12 +159,10 @@ public class PlayerUnit : MonoBehaviour {
         {
             if (targets.Count > 0)
             {
-                Debug.Log("Damaging units");
                 targets[0].Damage(UnitType, Damage);
             }
             else
             {
-                Debug.Log("Damaging castle");
                 enemyCastle.Damage(Damage);
             }
         }

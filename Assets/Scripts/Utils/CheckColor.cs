@@ -6,7 +6,8 @@ using UnityEngine.UI;
 public class CheckColor : MonoBehaviour {
 
 	// Use this for initialization
-	void Start () {
-        Debug.Log(gameObject.GetComponent<Image>().color);
+	void Start ()
+    {
+    //    Debug.Log(gameObject.GetComponent<Image>().color);
 	}
 }

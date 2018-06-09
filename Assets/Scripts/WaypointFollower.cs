@@ -23,7 +23,14 @@ public class WaypointFollower : MonoBehaviour
     [SerializeField] private bool hasVictoryDance = false;
     [SerializeField]
     private SpriteRenderer victoryAnimation;
-    
+
+    [SerializeField]
+    bool hasAttackAnimation;
+    [SerializeField]
+    SpriteRenderer attackAnimation;
+    float attackAnimationDuration = 0.57f;
+    float endAttackTime;
+    bool isAttackCooldown = false;
 
     private void Awake()
     {
@@ -58,12 +65,32 @@ public class WaypointFollower : MonoBehaviour
     void Update()
     {
         if (Target == null || Health.Victory || Health.GameOver) return;
+
+        // stop moving enemy unit if its attacking
         if (isEnemy && attackClass.TargetAmount() > 0)
         {
+            PlayAttackAnimation(true);
             return;
         }
-        if (!isEnemy && playerAttackClass.TargetAmount() > 0) return;
 
+        // stop moving player unit if its attacking
+        if (!isEnemy && playerAttackClass.TargetAmount() > 0)
+        {
+            PlayAttackAnimation(true);
+            return;
+        }
+
+        // don't move unit if it's playing attack animation
+        if (isAttackCooldown)
+        {
+            if (Time.time > endAttackTime)
+            {
+                isAttackCooldown = false;
+                return;
+            }
+        }
+
+        PlayAttackAnimation(false);
         transform.position = Vector3.MoveTowards(transform.position, Target.transform.position, Speed * Time.deltaTime);
 
         if (Vector3.Distance(transform.position, Target.transform.position) <= float.Epsilon)
@@ -113,6 +140,36 @@ public class WaypointFollower : MonoBehaviour
             // hides walking animation
             gameObject.GetComponent<SpriteRenderer>().enabled = false;
         }
+    }
+
+    private void PlayAttackAnimation(bool isAttacking)
+    {
+        //Debug.Log("Attacking " + isAttacking);
+        if (hasAttackAnimation)
+        {
+            if (isAttacking)
+            {
+                Debug.Log("attacking");
+                // plays attack animation
+                attackAnimation.enabled = true;
+
+                // hides walking animation
+                gameObject.GetComponent<SpriteRenderer>().enabled = false;
+
+                // sets time when to stop animating
+                endAttackTime = Time.time + attackAnimationDuration;
+                isAttackCooldown = true;
+            }
+            else if (!isAttackCooldown)
+            {
+                // hides attack animation
+                attackAnimation.enabled = false;
+
+                // plays walking animation
+                gameObject.GetComponent<SpriteRenderer>().enabled = true;
+            }
+        }
+        
     }
 }
 
