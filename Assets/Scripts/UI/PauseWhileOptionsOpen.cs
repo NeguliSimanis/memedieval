@@ -10,5 +10,9 @@ public class PauseWhileOptionsOpen : MonoBehaviour {
         {
             Time.timeScale = 0f;
         }
+        else
+        {
+            Time.timeScale = 1f;
+        }
 	}
 }
