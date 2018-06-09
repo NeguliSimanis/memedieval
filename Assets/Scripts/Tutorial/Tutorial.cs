@@ -195,7 +195,6 @@ public class Tutorial : MonoBehaviour {
     {
         if (unitsSpawned > firstSpawnLimit)
         {
-            Debug.Log("surpassed spawning limit");
             return;
         }
         enemyUnitSpawner.SpawnTutorialKnight();
@@ -203,9 +202,21 @@ public class Tutorial : MonoBehaviour {
 
     public void DefeatTutorialEnemy()
     {
+        CelebrateVictory();
         isTeachingSummoning = false;
         currentTutorialText.text = tutorialStringWellFought;
         spawnKnightButtonContainer.SetActive(false);
         HideDialogueButton(true); // show dialogue button   
+    }
+
+    private void CelebrateVictory()
+    {
+        var playerUnits = FindObjectsOfType<PlayerUnit>();
+        foreach (PlayerUnit playerUnit in playerUnits)
+        {
+            playerUnit.gameObject.GetComponent<WaypointFollower>().Celebrate();
+            //Debug.Log(playerUnit.gameObject.name);
+        }
+        //foreach ()
     }
 }

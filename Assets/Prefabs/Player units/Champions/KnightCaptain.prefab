@@ -515,7 +515,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1355238902325644}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3.0208337, y: -0.67742276, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.33333334, y: 0.33333334, z: 1}
   m_Children:
   - {fileID: 4157339143505952}
@@ -1188,6 +1188,8 @@ MonoBehaviour:
   Speed: 1
   isRallyingShoutBoostActive: 0
   isDashing: 0
+  hasVictoryDance: 1
+  victoryDanceOffsetX: -0.3
 --- !u!114 &114908506677877694
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2113,7 +2115,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1131093518672646}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -5.1308436, y: -1.8278363, z: 0.0418596}
+  m_LocalPosition: {x: -4.68, y: -1.3860886, z: 0.0418596}
   m_LocalScale: {x: 0.48, y: 0.48, z: 0.5}
   m_Children:
   - {fileID: 224574063636721212}
@@ -2130,7 +2132,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -5.1308436, y: -1.8278362}
+  m_AnchoredPosition: {x: -4.68, y: -1.3860886}
   m_SizeDelta: {x: 4.2846155, y: 5.8153844}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224391887770410438

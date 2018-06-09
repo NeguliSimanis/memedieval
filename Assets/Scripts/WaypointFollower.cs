@@ -14,10 +14,16 @@ public class WaypointFollower : MonoBehaviour
     private PlayerUnit playerAttackClass;
 
     [SerializeField] private bool isEnemy;
+
     public float Speed;
     public bool isRallyingShoutBoostActive = false;
     public bool isDashing = false;
 
+    [Header("Animations")]
+    [SerializeField] private bool hasVictoryDance = false;
+    [SerializeField]
+    private SpriteRenderer victoryAnimation;
+    
 
     private void Awake()
     {
@@ -52,7 +58,10 @@ public class WaypointFollower : MonoBehaviour
     void Update()
     {
         if (Target == null || Health.Victory || Health.GameOver) return;
-        if (isEnemy && attackClass.TargetAmount() > 0) return;
+        if (isEnemy && attackClass.TargetAmount() > 0)
+        {
+            return;
+        }
         if (!isEnemy && playerAttackClass.TargetAmount() > 0) return;
 
         transform.position = Vector3.MoveTowards(transform.position, Target.transform.position, Speed * Time.deltaTime);
@@ -84,6 +93,26 @@ public class WaypointFollower : MonoBehaviour
         totalAllies = 0;
         allyCounter = 0;
         enemyCounter = 0;
+    }
+
+    // unit stops moving
+    public void Stop()
+    {
+        Speed = 0f;
+    }
+
+    // unit stops and celebrates victory
+    public void Celebrate()
+    {
+        Stop();
+        if (hasVictoryDance)
+        {
+            // plays victory animation
+            victoryAnimation.enabled = true;
+
+            // hides walking animation
+            gameObject.GetComponent<SpriteRenderer>().enabled = false;
+        }
     }
 }
 

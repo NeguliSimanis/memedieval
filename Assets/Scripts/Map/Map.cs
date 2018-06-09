@@ -105,7 +105,6 @@ public class Map : MonoBehaviour {
         // access game data about destroyed castles
         if (GameData.current == null)
         {
-            Debug.Log("no game data object");
             GameData.current = new GameData();
         }
 
