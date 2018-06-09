@@ -4,15 +4,19 @@ using UnityEngine;
 
 public class PauseWhileOptionsOpen : MonoBehaviour {
 
-	void Update ()
+    bool isPaused = false;
+
+    public void Pause()
     {
-		if (gameObject.activeSelf == true)
-        {
+        isPaused = !isPaused;
+
+        if (isPaused)
             Time.timeScale = 0f;
-        }
         else
         {
             Time.timeScale = 1f;
+            gameObject.SetActive(false);
         }
-	}
+    }
+
 }

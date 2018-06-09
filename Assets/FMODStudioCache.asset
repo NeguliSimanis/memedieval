@@ -13,7 +13,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EditorBanks:
   - {fileID: 114517954911746612}
-  - {fileID: 114250152268203784}
+  - {fileID: 114834031108999528}
   EditorEvents:
   - {fileID: 114414578334982428}
   - {fileID: 114041166990487232}
@@ -42,10 +42,25 @@ MonoBehaviour:
   - {fileID: 114415907761025284}
   - {fileID: 114446693169754914}
   - {fileID: 114538341198389916}
-  MasterBankRef: {fileID: 114250152268203784}
+  MasterBankRef: {fileID: 114834031108999528}
   StringsBankRef: {fileID: 114517954911746612}
-  stringsBankWriteTime: 636640997853736077
+  stringsBankWriteTime: 636641051560283078
   cacheVersion: 2
+--- !u!114 &114002767933975314
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Transition
+  Min: 0
+  Max: 5
+  Default: 0
 --- !u!114 &114003206923295908
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -140,7 +155,7 @@ MonoBehaviour:
   Path: event:/Ui/Coins
   guid: ea18d68709e754469d13b63cc9baae5a
   Banks:
-  - {fileID: 114250152268203784}
+  - {fileID: 114834031108999528}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -204,6 +219,21 @@ MonoBehaviour:
   - Name: 
     Value: 6297376
   Exists: 1
+--- !u!114 &114048125070167584
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Transition
+  Min: 0
+  Max: 5
+  Default: 0
 --- !u!114 &114064832762880044
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -361,7 +391,7 @@ MonoBehaviour:
   Path: event:/Tavern/DrinkMeadErDay
   guid: 0de10030fc784d478ed35404b3ebf20c
   Banks:
-  - {fileID: 114250152268203784}
+  - {fileID: 114834031108999528}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -526,12 +556,12 @@ MonoBehaviour:
   Path: event:/Battle/Music Test
   guid: c293a60c004beb498d0d4a4fc1125904
   Banks:
-  - {fileID: 114250152268203784}
+  - {fileID: 114834031108999528}
   IsStream: 1
   Is3D: 0
   IsOneShot: 0
   Parameters:
-  - {fileID: 114994625948975180}
+  - {fileID: 114002767933975314}
   MinDistance: 0
   MaxDistance: 0
 --- !u!114 &114126991452328130
@@ -642,12 +672,12 @@ MonoBehaviour:
   Path: event:/MainMenu
   guid: 74d99d60bb9a5e4e8c5a6cc2f8b2369c
   Banks:
-  - {fileID: 114250152268203784}
+  - {fileID: 114834031108999528}
   IsStream: 1
   Is3D: 0
   IsOneShot: 0
   Parameters:
-  - {fileID: 114201573024571830}
+  - {fileID: 114048125070167584}
   MinDistance: 0
   MaxDistance: 0
 --- !u!114 &114144556653561750
@@ -763,7 +793,7 @@ MonoBehaviour:
   Path: event:/Ui/Increment
   guid: cbe4d0552b53294c8153da400b8476d5
   Banks:
-  - {fileID: 114250152268203784}
+  - {fileID: 114834031108999528}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -850,6 +880,21 @@ MonoBehaviour:
   Min: 0
   Max: 5
   Default: 0
+--- !u!114 &114172668855256900
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Trans
+  Min: 0
+  Max: 1
+  Default: 0
 --- !u!114 &114174566115311716
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -879,7 +924,7 @@ MonoBehaviour:
   Path: event:/Tavern/TavernGuy
   guid: a0ae996ee015d44f909e3aede8d81074
   Banks:
-  - {fileID: 114250152268203784}
+  - {fileID: 114834031108999528}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -987,7 +1032,7 @@ MonoBehaviour:
   Path: event:/Battle/Abilities/RallyingShoutAbility
   guid: 81427ac3a97b624f8bfbe528887faf55
   Banks:
-  - {fileID: 114250152268203784}
+  - {fileID: 114834031108999528}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -1180,7 +1225,7 @@ MonoBehaviour:
     Value: 12195584
   - Name: Mobile
     Value: 26641728
-  Exists: 1
+  Exists: 0
 --- !u!114 &114254694325662304
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1210,7 +1255,7 @@ MonoBehaviour:
   Path: event:/Tavern/TavernMusic
   guid: 1bc87ad67bb0694d92f73f8f0f7ecc31
   Banks:
-  - {fileID: 114250152268203784}
+  - {fileID: 114834031108999528}
   IsStream: 1
   Is3D: 0
   IsOneShot: 0
@@ -1334,7 +1379,7 @@ MonoBehaviour:
   Path: event:/Ui/Decrement
   guid: 195f1df100d91d4ca07fe0d3213d55c5
   Banks:
-  - {fileID: 114250152268203784}
+  - {fileID: 114834031108999528}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -2084,7 +2129,7 @@ MonoBehaviour:
   Path: event:/Ui/Buttonklick
   guid: 33a4c565320ee2459289e30dfd5d8540
   Banks:
-  - {fileID: 114250152268203784}
+  - {fileID: 114834031108999528}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -2105,7 +2150,7 @@ MonoBehaviour:
   Path: event:/Battle/Archer/Archer_Shoot
   guid: f53c9d4613f0a74292f96c7143509599
   Banks:
-  - {fileID: 114250152268203784}
+  - {fileID: 114834031108999528}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -2186,7 +2231,7 @@ MonoBehaviour:
   Path: snapshot:/MusicMute
   guid: d78f7f0718a8d944a82964ce6002efa7
   Banks:
-  - {fileID: 114250152268203784}
+  - {fileID: 114834031108999528}
   IsStream: 0
   Is3D: 0
   IsOneShot: 0
@@ -2276,7 +2321,7 @@ MonoBehaviour:
   Path: event:/Battle/Peasant/Peasant_Spawn
   guid: 8d6bb9072c71f641b5f7000e0962fd0d
   Banks:
-  - {fileID: 114250152268203784}
+  - {fileID: 114834031108999528}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -2375,7 +2420,7 @@ MonoBehaviour:
   Path: event:/Battle/CastleArrow
   guid: 48d57a1a4d07dc4fa4ecb84fdcdce853
   Banks:
-  - {fileID: 114250152268203784}
+  - {fileID: 114834031108999528}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -2439,7 +2484,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Path: Assets\Plugins\FMOD\Banks\Desktop\Master Bank.strings.bank
-  lastModified: 636640997853736077
+  lastModified: 636641051560283078
   LoadResult: 0
   FileSizes:
   - Name: Desktop
@@ -2545,12 +2590,12 @@ MonoBehaviour:
   Path: event:/Battle/VictoryLoseStinger
   guid: e2626ce9dd97f34fbddef19d78af2e89
   Banks:
-  - {fileID: 114250152268203784}
+  - {fileID: 114834031108999528}
   IsStream: 1
   Is3D: 0
   IsOneShot: 1
   Parameters:
-  - {fileID: 114299608493574498}
+  - {fileID: 114172668855256900}
   MinDistance: 0
   MaxDistance: 0
 --- !u!114 &114546124110946666
@@ -2651,7 +2696,7 @@ MonoBehaviour:
   Path: event:/Tavern/ShadyGuy
   guid: 69693d509d9b98479489c244c2324965
   Banks:
-  - {fileID: 114250152268203784}
+  - {fileID: 114834031108999528}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -2884,7 +2929,7 @@ MonoBehaviour:
   Path: event:/Battle/Fire
   guid: 7ace7b243c690a49b50d6c5276b7e208
   Banks:
-  - {fileID: 114250152268203784}
+  - {fileID: 114834031108999528}
   IsStream: 1
   Is3D: 0
   IsOneShot: 0
@@ -3064,7 +3109,7 @@ MonoBehaviour:
   Path: event:/Battle/Abilities/BerserkAbility
   guid: 70a1630bd57f5640b09b011da8fd7440
   Banks:
-  - {fileID: 114250152268203784}
+  - {fileID: 114834031108999528}
   IsStream: 1
   Is3D: 0
   IsOneShot: 0
@@ -3429,7 +3474,7 @@ MonoBehaviour:
   Path: event:/Battle/Archer/Archer_Spawn
   guid: 9349f437cf36cf4a985b54dafdbc659f
   Banks:
-  - {fileID: 114250152268203784}
+  - {fileID: 114834031108999528}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -3640,7 +3685,7 @@ MonoBehaviour:
   Path: event:/Battle/Peasant/PlaceholderPeasant_Attack
   guid: 3793234960b32d4d9368c96a9b463e89
   Banks:
-  - {fileID: 114250152268203784}
+  - {fileID: 114834031108999528}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -3721,6 +3766,27 @@ MonoBehaviour:
   FileSizes:
   - Name: 
     Value: 6461856
+  Exists: 1
+--- !u!114 &114834031108999528
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: C:\Users\Simanis Mikoss\Desktop\Unity projects\memedieval\Assets\Plugins\FMOD\Banks\Desktop\Master
+    Bank.bank
+  lastModified: 636641051560233132
+  LoadResult: 0
+  FileSizes:
+  - Name: Desktop
+    Value: 12195584
+  - Name: Mobile
+    Value: 26641728
   Exists: 1
 --- !u!114 &114843817297894270
 MonoBehaviour:
@@ -3967,7 +4033,7 @@ MonoBehaviour:
   Path: event:/Ui/Spend Salt
   guid: bb325de3a1452e49a3a6494ecc062d76
   Banks:
-  - {fileID: 114250152268203784}
+  - {fileID: 114834031108999528}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -4052,7 +4118,7 @@ MonoBehaviour:
   Path: event:/Battle/Castle_Death
   guid: 38605595fbdab6449beebb63466e99fd
   Banks:
-  - {fileID: 114250152268203784}
+  - {fileID: 114834031108999528}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -4073,7 +4139,7 @@ MonoBehaviour:
   Path: event:/Battle/Knight/Knight_Attack
   guid: a15f31d16693234ab184d9eacf66ef71
   Banks:
-  - {fileID: 114250152268203784}
+  - {fileID: 114834031108999528}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -4094,7 +4160,7 @@ MonoBehaviour:
   Path: event:/Battle/Knight/Knight_Spawn
   guid: b4e8959c99b1464ca2adf555bf70a47b
   Banks:
-  - {fileID: 114250152268203784}
+  - {fileID: 114834031108999528}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -4183,7 +4249,7 @@ MonoBehaviour:
   Path: event:/Battle/Unit_Death
   guid: 90a5673795164544af2444b8ea316ffe
   Banks:
-  - {fileID: 114250152268203784}
+  - {fileID: 114834031108999528}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -4234,7 +4300,7 @@ MonoBehaviour:
   Path: event:/Battle/Abilities/PrayerAbility
   guid: 1dc6b8015a1cc14a9186bddd42e48ec8
   Banks:
-  - {fileID: 114250152268203784}
+  - {fileID: 114834031108999528}
   IsStream: 0
   Is3D: 0
   IsOneShot: 0
@@ -4255,7 +4321,7 @@ MonoBehaviour:
   Path: event:/Battle/CastleArrowBreak
   guid: ccc701ec698eb542a36f42a234a198ca
   Banks:
-  - {fileID: 114250152268203784}
+  - {fileID: 114834031108999528}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
