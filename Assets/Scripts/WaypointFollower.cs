@@ -31,6 +31,7 @@ public class WaypointFollower : MonoBehaviour
     float attackAnimationDuration = 0.57f;
     float endAttackTime;
     bool isAttackCooldown = false;
+    SpriteRenderer spriteRenderer;
 
     private void Awake()
     {
@@ -46,6 +47,7 @@ public class WaypointFollower : MonoBehaviour
 
     void Start()
     {
+        spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
 
         if (isEnemy)
         {
@@ -69,14 +71,14 @@ public class WaypointFollower : MonoBehaviour
         // stop moving enemy unit if its attacking
         if (isEnemy && attackClass.TargetAmount() > 0)
         {
-            PlayAttackAnimation(true);
+            TriggerAttackAnimation(true);
             return;
         }
 
         // stop moving player unit if its attacking
         if (!isEnemy && playerAttackClass.TargetAmount() > 0)
         {
-            PlayAttackAnimation(true);
+            TriggerAttackAnimation(true);
             return;
         }
 
@@ -90,7 +92,7 @@ public class WaypointFollower : MonoBehaviour
             }
         }
 
-        PlayAttackAnimation(false);
+        TriggerAttackAnimation(false);
         transform.position = Vector3.MoveTowards(transform.position, Target.transform.position, Speed * Time.deltaTime);
 
         if (Vector3.Distance(transform.position, Target.transform.position) <= float.Epsilon)
@@ -138,11 +140,11 @@ public class WaypointFollower : MonoBehaviour
             victoryAnimation.enabled = true;
 
             // hides walking animation
-            gameObject.GetComponent<SpriteRenderer>().enabled = false;
+            PlayWalkingAnimation(false);
         }
     }
 
-    private void PlayAttackAnimation(bool isAttacking)
+    public void TriggerAttackAnimation(bool isAttacking)
     {
         //Debug.Log("Attacking " + isAttacking);
         if (hasAttackAnimation)
@@ -154,7 +156,7 @@ public class WaypointFollower : MonoBehaviour
                 attackAnimation.enabled = true;
 
                 // hides walking animation
-                gameObject.GetComponent<SpriteRenderer>().enabled = false;
+                PlayWalkingAnimation(false);
 
                 // sets time when to stop animating
                 endAttackTime = Time.time + attackAnimationDuration;
@@ -166,10 +168,16 @@ public class WaypointFollower : MonoBehaviour
                 attackAnimation.enabled = false;
 
                 // plays walking animation
-                gameObject.GetComponent<SpriteRenderer>().enabled = true;
+                if (victoryAnimation.enabled == false)
+                    PlayWalkingAnimation(true);
             }
-        }
-        
+        } 
+    }
+
+    void PlayWalkingAnimation(bool isWalking)
+    {
+        Debug.Log("playing walking animation " + isWalking);
+        spriteRenderer.enabled = isWalking;
     }
 }
 
