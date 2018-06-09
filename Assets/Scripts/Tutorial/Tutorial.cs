@@ -146,6 +146,7 @@ public class Tutorial : MonoBehaviour {
         }
         else
         {
+            Debug.Log("activating right setup");
             currentTutorialText = tutorialTextRight;
             tutorialSetupRight.SetActive(true);
             tutorialSetupLeft.SetActive(false);
@@ -173,6 +174,7 @@ public class Tutorial : MonoBehaviour {
     void ShowUnitSummoning()
     {
         HideDialogueButton();
+        ChooseTutorialSetup(false);
         currentTutorialText.text = tutorialStringCurses;
         currentTutorialText.fontSize = defaultDialogueFontSize;
 
@@ -265,6 +267,8 @@ public class Tutorial : MonoBehaviour {
     {
         CelebrateVictory();
         isTeachingSummoning = false;
+        ChooseTutorialSetup(true);
+        currentTutorialText.fontSize = defaultDialogueFontSize;
         currentTutorialText.text = tutorialStringWellFought;
         spawnKnightButtonContainer.SetActive(false);
         HideDialogueButton(true); // show dialogue button   
