@@ -48,8 +48,6 @@ public class ChangeCaptainImage : MonoBehaviour
         thisCaptainFace.transform.GetChild(0).GetComponent<SpriteRenderer>().sortingLayerName = "Foreground";
         gameObject.GetComponent<Image>().sprite = captainFace.transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>().sprite;
 
-
-        //captainFaceImage.Im
     }
 	
 }

@@ -22,6 +22,15 @@ public class CursorAnimation : MonoBehaviour {
 
     void Start()
     {
+        if (Application.platform == RuntimePlatform.Android)
+        {
+            animateCursor = true;
+        }
+        else
+        {
+            this.gameObject.SetActive(false);
+            animateCursor = false;
+        }
         if (animateCursor)
         {
             HideDefaultCursor();

@@ -17,7 +17,7 @@ public class GameData
 
     #region resources
     // salt
-    public int salt = 10;
+    public int salt = 5;
     public int newChampionCost = 5; // TO-DO: remove; not used everywhere
 
     // ducats

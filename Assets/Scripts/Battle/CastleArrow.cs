@@ -102,7 +102,6 @@ public class CastleArrow : MonoBehaviour {
         //check for errors in result
         if (float.IsNaN(result.x) || float.IsNaN(result.y))
         {
-            Debug.Log("physics error");
             return new Vector2(-5.268912f, 6.279245f); // return default value
         }
         else
