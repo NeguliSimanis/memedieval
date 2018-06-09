@@ -141,7 +141,7 @@ public class Health : MonoBehaviour
             {
                 if (isPlayer)
                 {
-                    Debug.Log("player loses");
+                    MournDefeat();
                     gameOver = true;
                     victory = false;
                 }
