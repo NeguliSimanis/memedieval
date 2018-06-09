@@ -31,9 +31,20 @@ public class Tutorial : MonoBehaviour {
     Text tutorialTextRight;
     #endregion
 
+    #region intro sequence
+    [Header("Intro Animation")]
+    [SerializeField] GameObject enemyArcher;
+    [SerializeField] float archerMoveSpeed;
+    [SerializeField] GameObject archerDestination;
+    Animator dialogueAnimator;
+    bool isArcherAppearing = false;
+    bool archerAppeared = false;
+    #endregion
+
     string tutorialStringDefendKing = "Defend the king at all costs!";
 
     #region arrow blocking sequence
+    int arrowsToBlock = 5;
     string tutorialStringTapArrows = "TAP on arrows to break them";
     string tutorialStringTapMoreArrows;
     string tutorialStringTapMoreArrowsTemplate = "Break {0} more arrows!";
@@ -45,10 +56,6 @@ public class Tutorial : MonoBehaviour {
     [Header("Unit Spawning")]
     [SerializeField]
     GameObject spawnKnightButtonContainer;
-    [SerializeField]
-    GameObject spawnKnightChampionButton;
-   // [SerializeField]
-    //GameObject spawnKnightUnitButton;
 
     string tutorialStringCurses = "Curses! Send in the infantry!";
     string tutorialStringWellFought = "Splendid victory, sire!";
@@ -59,11 +66,65 @@ public class Tutorial : MonoBehaviour {
     int unitsSpawned = 0;
     #endregion
 
-
-    int arrowsToBlock = 5;
-
     void Start()
     {
+        // Disable dialogue
+        dialogueAnimator = tutorialSetupLeft.transform.parent.gameObject.GetComponent<Animator>();
+        dialogueAnimator.enabled = false;
+
+        // disable enemy arrows 
+        enemyArrowController.shootCastleArrows = false;
+
+        // TODO - play king animation
+
+        // play archer animation (over immediately if player clicks)
+        isArcherAppearing = true;
+
+
+        // TODO - start tutorial when time passes or player taps somewhere
+    }
+
+    void Update()
+    {
+        // load next level if player taps anywhere at the end of tutorial
+        if (currentTutorialText.text == tutorialStringWellFought && Input.GetMouseButtonDown(0))
+        {
+            gameObject.GetComponent<LoadScene>().loadLevel("Castle");
+        }
+
+        // move archer during the intro
+        if (isArcherAppearing)
+        {
+            MoveArcher();
+
+            // increase archer speed during the intro if the player taps anywhere
+            if (Input.GetMouseButtonDown(0))
+            {
+                archerMoveSpeed += archerMoveSpeed;
+            }
+        }
+
+        // start the turoial after archer has moved to position 
+        else if (!archerAppeared)
+        {
+            enemyArrowController.shootCastleArrows = true;
+            StartTutorial();
+            archerAppeared = true;
+        }
+    }
+
+    void MoveArcher()
+    {
+        enemyArcher.transform.position = Vector3.MoveTowards(enemyArcher.transform.localPosition, archerDestination.transform.localPosition, archerMoveSpeed * Time.deltaTime);
+        if (enemyArcher.transform.localPosition == archerDestination.transform.localPosition)
+        {
+            isArcherAppearing = false;
+        }
+    }
+
+    void StartTutorial()
+    {
+        dialogueAnimator.enabled = true;
         spawnKnightButtonContainer.SetActive(false);
         InitializeVariables();
         ChooseTutorialSetup(true);
@@ -117,7 +178,7 @@ public class Tutorial : MonoBehaviour {
 
         // enable spawning player units
         spawnKnightButtonContainer.SetActive(true);
-        spawnKnightChampionButton.SetActive(false);
+        //spawnKnightUnitButton.SetActive(false);
 
         SpawnEnemyUnits(true);
     }

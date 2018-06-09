@@ -70,7 +70,8 @@ public class RandomName : MonoBehaviour {
         "Helias",
         "Eliezer",
         "Leopold",
-        "Martin"
+        "Martin",
+        "Joonas"
     };
     #endregion
 
