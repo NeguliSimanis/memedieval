@@ -107,7 +107,6 @@ public class StrategyView : MonoBehaviour {
     {
         int championID = int.Parse(EventSystem.current.currentSelectedGameObject.name);
         PlayerProfile.Singleton.champions[championID].invitedToBattle = isSelected;
-        Debug.Log("changed champion " + championID + " state to " + isSelected);
     }
 
     void FindChampionMarkers()

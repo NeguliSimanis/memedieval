@@ -54,7 +54,7 @@ public class Champion : MonoBehaviour {
 
     private void LevelUp()
     {
-        properties.level++;
+    
         properties.skillpoints++;
         properties.nextLevelExp = Mathf.RoundToInt(properties.nextLevelExp * 1.5f);
     }

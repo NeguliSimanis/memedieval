@@ -52,7 +52,7 @@ public class Spawn : MonoBehaviour
         {
             CheckIfAvailable();
             SetPriceModifiers();
-            UnitCostText.text = "Cost: " + unitCost;
+            UnitCostText.text = unitCost;
         }
     }
 
@@ -91,7 +91,7 @@ public class Spawn : MonoBehaviour
     void DisablePlayerSpawn()
     {
         if (!isTutorial)
-            transform.parent.gameObject.transform.parent.gameObject.SetActive(false);
+            gameObject.transform.parent.gameObject.SetActive(false);
     }
     void SetPriceModifiers()
     {   
@@ -103,7 +103,6 @@ public class Spawn : MonoBehaviour
 
         if (unitCost < championEffect.minUnitPrice)
         {
-            Debug.Log("very high charm");
             unitCost = championEffect.minUnitPrice;
         }
         
