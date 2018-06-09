@@ -6,6 +6,9 @@ using UnityEngine.SceneManagement;
 
 public class Health : MonoBehaviour
 {
+    private bool isCelebratingVictory = false;
+    private bool isMourningDefeat = false;
+    private bool isLoadingNextLevel = false;
     private bool isRegening = false;
     private float regenEndTime;
     private int regenPerSecond;
@@ -28,7 +31,7 @@ public class Health : MonoBehaviour
 
 
     [SerializeField] LoadScene nextLevelScript;
-    [SerializeField] string nextLevelToLoad;
+    [SerializeField] string nextLevelToLoad = "Castle";
     [SerializeField] string enemyBalancerTag = "Enemy balancer";
 
 
@@ -67,6 +70,12 @@ public class Health : MonoBehaviour
 
     void Update()
     {
+        if (isCelebratingVictory && Input.GetMouseButtonDown(0))
+        {
+            if (!isLoadingNextLevel)
+                StartCoroutine(LoadNextLevelAfterDelay());
+        }
+
         if (isRegening && Time.time > regenEndTime)
         {
             EndRegen();
@@ -83,7 +92,6 @@ public class Health : MonoBehaviour
             if (victory)
             {
                 PlayerProfile.Singleton.lastGameStatus = 1;
-                Debug.Log("victory");
             }
             else
             {
@@ -105,7 +113,11 @@ public class Health : MonoBehaviour
                 Spawn.ResetAllValues();
                 WaypointFollower.ResetAllValues();
                 ResetAllValues();
-                SceneManager.LoadScene("Castle");
+                if (victory)
+                    CelebrateVictory();
+                else
+                    MournDefeat();
+                
             }
 
         }
@@ -151,7 +163,6 @@ public class Health : MonoBehaviour
         // mark destroyed castle
         int defeatedCastleID = GameObject.FindGameObjectWithTag(enemyBalancerTag).GetComponent<EnemyBalancer>().currentCastleID;
         GameData.current.destroyedCastles[defeatedCastleID] = true;
-        Debug.Log("castle " + defeatedCastleID + "marked as destroyed");
 
         PlayerProfile.Singleton.gameObject.GetComponent<ChampionEffect>().ResetChampionEffect();
     }
@@ -280,5 +291,34 @@ public class Health : MonoBehaviour
         MaximumHealth = value;
         currentHealth = value;
     }
+
+    private void CelebrateVictory()
+    {
+        if (!isCelebratingVictory)
+        {
+            isCelebratingVictory = true;
+            var playerUnits = FindObjectsOfType<PlayerUnit>();
+            foreach (PlayerUnit playerUnit in playerUnits)
+            {
+                playerUnit.gameObject.GetComponent<WaypointFollower>().Celebrate();
+            }
+        }
+    }
+
+    private void MournDefeat()
+    {
+        isMourningDefeat = true;
+        if (!isLoadingNextLevel)
+            StartCoroutine(LoadNextLevelAfterDelay());
+    }
+
+    IEnumerator LoadNextLevelAfterDelay(float delay = 3f)
+    {  
+        isLoadingNextLevel = true;
+        Debug.Log("loading next level");
+        yield return new WaitForSeconds(delay);
+        SceneManager.LoadScene(nextLevelToLoad);
+    }
+
 }
 

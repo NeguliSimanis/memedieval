@@ -43,7 +43,6 @@ public class Champion : MonoBehaviour {
 
     public void EarnExp(int exp)
     {
-        Debug.Log("earned " + exp + "exp");
         properties.currentExp += exp;
         
         while (properties.currentExp >= properties.nextLevelExp)
@@ -55,7 +54,6 @@ public class Champion : MonoBehaviour {
 
     private void LevelUp()
     {
-        Debug.Log("level up");
         properties.level++;
         properties.skillpoints++;
         properties.nextLevelExp = Mathf.RoundToInt(properties.nextLevelExp * 1.5f);

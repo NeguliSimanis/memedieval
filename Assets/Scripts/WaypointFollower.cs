@@ -33,6 +33,7 @@ public class WaypointFollower : MonoBehaviour
     bool isAttackCooldown = false;
     SpriteRenderer spriteRenderer;
 
+
     private void Awake()
     {
         ResetAllValues();
@@ -151,7 +152,6 @@ public class WaypointFollower : MonoBehaviour
         {
             if (isAttacking)
             {
-                Debug.Log("attacking");
                 // plays attack animation
                 attackAnimation.enabled = true;
 
@@ -176,7 +176,6 @@ public class WaypointFollower : MonoBehaviour
 
     void PlayWalkingAnimation(bool isWalking)
     {
-        Debug.Log("playing walking animation " + isWalking);
         spriteRenderer.enabled = isWalking;
     }
 }
