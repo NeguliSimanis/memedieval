@@ -52,7 +52,7 @@ public class Spawn : MonoBehaviour
         {
             CheckIfAvailable();
             SetPriceModifiers();
-            UnitCostText.text = unitCost;
+            UnitCostText.text = unitCost.ToString();
         }
     }
 
