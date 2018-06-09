@@ -201,12 +201,11 @@ public class Tutorial : MonoBehaviour {
         enemyUnitSpawner.SpawnTutorialKnight();
     }
 
-    public void DefeatTutorialEnemy(GameObject enemy)
+    public void DefeatTutorialEnemy()
     {
         isTeachingSummoning = false;
         currentTutorialText.text = tutorialStringWellFought;
         spawnKnightButtonContainer.SetActive(false);
         HideDialogueButton(true); // show dialogue button   
-        enemy.SetActive(false);
     }
 }

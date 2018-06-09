@@ -4,20 +4,26 @@ using UnityEngine;
 
 public class TutorialArcher : MonoBehaviour {
 
-    [SerializeField]
-    Tutorial tutorial;
-
-    void Start()
-    {
-        Debug.Log("for sparta");
-    }
+    [SerializeField] Tutorial tutorial;
+    [SerializeField] GameObject deathAnimation;
 
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.tag == "Player unit")
         {
-            Debug.Log("TUTORIAL COMPLETE");
-            tutorial.DefeatTutorialEnemy(this.gameObject);
+            tutorial.DefeatTutorialEnemy();
+            Die();
         }
+    }
+
+    private void Die()
+    {
+        Vector3 deathLocation = new Vector3(gameObject.transform.localPosition.x, gameObject.transform.localPosition.y, gameObject.transform.localPosition.z);
+        GameObject deathObjectParent = Instantiate(new GameObject(), deathLocation, Quaternion.identity);
+        deathObjectParent.name = "EnemyTutorialArcherDeathAnimation";
+        GameObject deathObject = Instantiate(deathAnimation, deathObjectParent.transform);
+        deathObject.SetActive(true);
+
+        gameObject.SetActive(false);
     }
 }

@@ -64,7 +64,7 @@ public class EnemyUnit : MonoBehaviour
         }
         else if (UnitType == Attack.Type.Knight)
         {
-            deathLocationOffsetX = -0.3f;
+            deathLocationOffsetX = -0.1f;
         }
         else
         {
