@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4417436825613438}
   - component: {fileID: 212142017014135030}
   - component: {fileID: 95317138619377004}
+  - component: {fileID: 114608512424992886}
   m_Layer: 0
   m_Name: DeathAnimation
   m_TagString: Player unit
@@ -259,6 +260,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3dd8327b4d12ad84ab085a15fe145c7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114608512424992886
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1124046325135626}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: event:/Battle/Unit_Death
+  PlayEvent: 0
+  StopEvent: 0
+  CollisionTag: 
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 0
+  OverrideMaxDistance: 0
 --- !u!114 &114608899937274778
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -296,6 +319,10 @@ MonoBehaviour:
   Speed: 1.2
   isRallyingShoutBoostActive: 0
   isDashing: 0
+  hasVictoryDance: 0
+  victoryAnimation: {fileID: 0}
+  hasAttackAnimation: 0
+  attackAnimation: {fileID: 0}
 --- !u!212 &212118692134248674
 SpriteRenderer:
   m_ObjectHideFlags: 1
