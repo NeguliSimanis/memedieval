@@ -265,6 +265,7 @@ GameObject:
   - component: {fileID: 4576911661515558}
   - component: {fileID: 212709022394310436}
   - component: {fileID: 95391286524531868}
+  - component: {fileID: 114545220604829692}
   m_Layer: 0
   m_Name: DeathAnimation
   m_TagString: Player unit
@@ -1058,6 +1059,28 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectToFollow: {fileID: 0}
+--- !u!114 &114545220604829692
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1355238902325644}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: event:/Battle/Unit_Death
+  PlayEvent: 0
+  StopEvent: 0
+  CollisionTag: 
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 0
+  OverrideMaxDistance: 0
 --- !u!114 &114554789302471524
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2090,7 +2113,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1131093518672646}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.93, y: -1.1600001, z: 0.0418596}
+  m_LocalPosition: {x: -5.1308436, y: -1.8278363, z: 0.0418596}
   m_LocalScale: {x: 0.48, y: 0.48, z: 0.5}
   m_Children:
   - {fileID: 224574063636721212}
@@ -2107,7 +2130,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 2.93, y: -1.16}
+  m_AnchoredPosition: {x: -5.1308436, y: -1.8278362}
   m_SizeDelta: {x: 4.2846155, y: 5.8153844}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224391887770410438

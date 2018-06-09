@@ -31,7 +31,6 @@ public class Health : MonoBehaviour
     [SerializeField] string nextLevelToLoad;
     [SerializeField] string enemyBalancerTag = "Enemy balancer";
 
-	private FMODUnity.StudioEventEmitter deathSound;
 
 	private int currentHealth;
 	public int CurrentHealth
@@ -122,10 +121,7 @@ public class Health : MonoBehaviour
             }
             if (IsCharacter) {
                 FindObjectOfType<ResourceTextController>().AddResources(isPlayer, meadCarrying);
-				/*deathSound = GameObject.Find ("SfxUnitDeath").GetComponent<FMODUnity.StudioEventEmitter>();
-				if (deathSound != null) {
-					deathSound.Play();
-				}*/
+
                 DestroyPlayerUnit();
                 //GameObject.Destroy(gameObject);
             }

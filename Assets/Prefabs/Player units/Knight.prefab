@@ -118,6 +118,7 @@ GameObject:
   - component: {fileID: 4780729838587378}
   - component: {fileID: 212860794586874454}
   - component: {fileID: 95440436500463364}
+  - component: {fileID: 114555115824924742}
   m_Layer: 0
   m_Name: DeathAnimation
   m_TagString: Player unit
@@ -199,7 +200,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1876256455711626
 GameObject:
   m_ObjectHideFlags: 1
@@ -255,7 +256,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1736995468023074}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 2.9095018, y: -0.108970135, z: 0.0418596}
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children: []
   m_Father: {fileID: 4780729838587378}
@@ -505,6 +506,28 @@ MonoBehaviour:
   nextLevelToLoad: 
   enemyBalancerTag: Enemy balancer
   MaximumHealth: 24
+--- !u!114 &114555115824924742
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1599554425786932}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: event:/Battle/Unit_Death
+  PlayEvent: 0
+  StopEvent: 0
+  CollisionTag: 
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 0
+  OverrideMaxDistance: 0
 --- !u!114 &114673752636256332
 MonoBehaviour:
   m_ObjectHideFlags: 1
