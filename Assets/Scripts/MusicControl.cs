@@ -73,7 +73,6 @@ public class MusicControl : MonoBehaviour {
             {
 
                 enemyCastleHealth = GameObject.FindGameObjectWithTag("EnemyCastle").GetComponent<Health>();
-                Debug.Log (enemyCastleHealth.CurrentHealth);
 
 
                 if (enemyCastleHealth.CurrentHealth > enemyCastleHealth.MaximumHealth * 0.90f && enemyCastleHealth.CurrentHealth < enemyCastleHealth.MaximumHealth)
