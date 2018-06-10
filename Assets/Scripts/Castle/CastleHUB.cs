@@ -269,9 +269,7 @@ public class CastleHUB : MonoBehaviour {
 
         //ducats
         float obtainDucatChance = playerProfile.gameObject.GetComponent<ChampionEffect>().ducatFindChance;
-        Debug.Log("ducat chance: " + obtainDucatChance);
         float ducatRoll = Random.Range(0f, 0.99f);
-        Debug.Log("ducat roll: " + ducatRoll);
 
         if (obtainDucatChance > ducatRoll)
             playerProfile.DucatCurrent++;

@@ -11,6 +11,8 @@ public class Map : MonoBehaviour {
     GameObject mapChildren;
 
     #region variables
+    bool isBattleShortcutEnabled = false;
+
     [SerializeField]
     GameObject battleController;
 
@@ -189,6 +191,20 @@ public class Map : MonoBehaviour {
 
     void SelectTargetCastle()
     {
+        // castle was already selected -> enter battle or strategy view
+        if (isBattleShortcutEnabled && selectedCastle == EventSystem.current.currentSelectedGameObject.name)
+        {
+            CheckArmyReadiness();
+            if (isArmyReady)
+            {
+                EnterBattle();
+            }
+            else
+            {
+                EnterStrategyView();
+            }
+        }
+
         isCastleSelected = true;
         if (EventSystem.current.currentSelectedGameObject != null)
             selectedCastle = EventSystem.current.currentSelectedGameObject.name;
@@ -263,8 +279,14 @@ public class Map : MonoBehaviour {
 
     void ActivateCastleMarker()
     {
+        EnableBattleShortcut();
         selectedCastleMarker = castleButtonContainers[selectedCastleID].transform.Find(selectedCastleMarkerName).gameObject;
         selectedCastleMarker.SetActive(true);
     }
      
+    void EnableBattleShortcut()
+    {
+        isBattleShortcutEnabled = true;
+        //EnterBattle();
+    }
 }
