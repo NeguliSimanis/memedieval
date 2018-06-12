@@ -134,30 +134,36 @@ public class TavernStatsPageUI : MonoBehaviour {
         switch (activeChampion.properties.champClass)
         {
             case 0:
-                ClassName.text = "Level " + (c.properties.level+1) + " Peasant";
                 UnitImage[1].SetActive(false);
                 UnitImage[2].SetActive(false);
                 UnitImage[0].SetActive(true);
                 break;
-            case 1:
-                ClassName.text = "Level " + (c.properties.level + 1) + " Knight";
+            case 1:              
                 UnitImage[1].SetActive(true);
                 UnitImage[2].SetActive(false);
                 UnitImage[0].SetActive(false);
                 break;  
             case 2:
-                ClassName.text = "Level " + (c.properties.level + 1) + " Archer";
                 UnitImage[1].SetActive(false);
                 UnitImage[2].SetActive(true);
                 UnitImage[0].SetActive(false);
                 break;
         }
-        
+        SetChampionClassText();
         SetChampionFlairText();
         SetChampionAbilityText();
         SetChampionExpBar();
         UpdateSkillNumbers();
         CheckUnspentSkillpoints();
+    }
+
+    private void SetChampionClassText()
+    {
+        // e.g Level 1
+        ClassName.text = "Level " + (activeChampion.properties.level + 1);
+
+        // e.g Level 1 Archer
+        ClassName.text = ClassName.text + " " + activeChampion.properties.GetChampionClass();
     }
 
     private void SetChampionFlairText()

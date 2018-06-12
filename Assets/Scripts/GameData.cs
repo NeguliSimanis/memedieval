@@ -11,7 +11,6 @@ using UnityEngine;
 [System.Serializable]
 public class GameData
 {
-    
     public static GameData current;
     public List<ChampionData> championList = new List<ChampionData>();
 
@@ -45,7 +44,7 @@ public class GameData
 public class ChampionData
 {
 
-    public int level;   
+    public int level; // actual level is 1 higher
     public int champClass; // 0 - peasant, 1 - Knight, 2 - archer (in some places peasant and archer are inversed)
     public bool isDead;
     

@@ -44,9 +44,9 @@ public class Map : MonoBehaviour {
     public static bool isCastleSelected = false;
 
     #region battle button
-    [SerializeField] Button battleButton;
-    [SerializeField] GameObject battleButtonActiveImage;
-    [SerializeField] Text battleButtonText;
+    //[SerializeField] Button battleButton;
+    //[SerializeField] GameObject battleButtonActiveImage;
+    //[SerializeField] Text battleButtonText;
 
     private string selectCastle = "Select castle";
     private string noCastleSelected = "No castle selected!";
@@ -92,15 +92,15 @@ public class Map : MonoBehaviour {
     void AddButtonListeners()
     {
         selectChampionsButton.onClick.AddListener(EnterStrategyView);
-        battleButton.onClick.AddListener(EnterBattle);
+        //battleButton.onClick.AddListener(EnterBattle);
         closeMapButton.onClick.AddListener(CloseMap);
     }
 
     // activates castles that have been unlocked
     void LoadMap()
     {
-        if (!isArmyReady)
-            HideBattleButton();
+        //if (!isArmyReady)
+            //HideBattleButton();
 
         SetCastleButtonContainers();
 
@@ -238,8 +238,8 @@ public class Map : MonoBehaviour {
 
     void ActivateBattleButton()
     {
-        if (isArmyReady)
-            battleButton.gameObject.SetActive(true);
+        //if (isArmyReady)
+           // battleButton.gameObject.SetActive(true);
     }
 
     void EnterBattle()
@@ -263,13 +263,13 @@ public class Map : MonoBehaviour {
 
         else
         {
-            battleButtonText.text = noCastleSelected;
+            //battleButtonText.text = noCastleSelected;
         }
     }
 
     void HideBattleButton()
     {
-        battleButton.gameObject.SetActive(false);
+       // battleButton.gameObject.SetActive(false);
     }
 
     void EnterStrategyView()

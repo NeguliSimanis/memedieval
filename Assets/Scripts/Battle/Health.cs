@@ -169,7 +169,11 @@ public class Health : MonoBehaviour
 
     private void AllocateExp()
     {
-        ChampionEffect championEffect =  PlayerProfile.Singleton.gameObject.GetComponent<ChampionEffect>();
+        ExpController expController = GameObject.FindGameObjectWithTag("BattleController").GetComponent<ExpController>();
+
+        expController.AllocateChampionExp();
+
+        /*ChampionEffect championEffect =  PlayerProfile.Singleton.gameObject.GetComponent<ChampionEffect>();
 
         foreach (Champion champion in PlayerProfile.Singleton.champions)
         {
@@ -180,7 +184,7 @@ public class Health : MonoBehaviour
                 champion.EarnExp(championEffect.championFinalExpEarn);
                 champion.onBattle = false;
             }
-        }
+        }*/
     }
 
     public static bool GameOver
