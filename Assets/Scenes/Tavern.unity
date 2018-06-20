@@ -2378,7 +2378,7 @@ GameObject:
   - component: {fileID: 195927236}
   - component: {fileID: 195927235}
   m_Layer: 5
-  m_Name: Button
+  m_Name: Champion3Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3733,16 +3733,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   championRooster: {fileID: 1189311287}
   championSelectionPanel: {fileID: 411199322}
-  championButtonContainer1: {fileID: 63478035}
-  championPicture1: {fileID: 741315097}
-  championButtonContainer2: {fileID: 148149809}
-  championPicture2: {fileID: 427932403}
+  championButtonContainers:
+  - {fileID: 63478035}
+  - {fileID: 148149809}
+  - {fileID: 1822907987}
   championTitles:
   - {fileID: 409544695}
   - {fileID: 1099059922}
+  - {fileID: 1391693420}
   championButtons:
   - {fileID: 1952680917}
   - {fileID: 1315772644}
+  - {fileID: 195927235}
   championInfoPanel: {fileID: 1800439678}
   hireChampionButton: {fileID: 312011001}
   noChampionsPanel: {fileID: 1617103223}
@@ -6700,7 +6702,7 @@ GameObject:
   - component: {fileID: 409544696}
   - component: {fileID: 409544695}
   m_Layer: 5
-  m_Name: Text
+  m_Name: Champion1Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15086,7 +15088,7 @@ GameObject:
   - component: {fileID: 1099059923}
   - component: {fileID: 1099059922}
   m_Layer: 5
-  m_Name: Text
+  m_Name: Champion2Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -17101,7 +17103,7 @@ GameObject:
   - component: {fileID: 1315772645}
   - component: {fileID: 1315772644}
   m_Layer: 5
-  m_Name: Button
+  m_Name: Champion2Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -18281,7 +18283,7 @@ GameObject:
   - component: {fileID: 1391693421}
   - component: {fileID: 1391693420}
   m_Layer: 5
-  m_Name: Text
+  m_Name: Champion3Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -23443,7 +23445,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1822907988
 RectTransform:
   m_ObjectHideFlags: 0
@@ -25542,7 +25544,7 @@ GameObject:
   - component: {fileID: 1952680918}
   - component: {fileID: 1952680917}
   m_Layer: 5
-  m_Name: Button
+  m_Name: Champion1Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

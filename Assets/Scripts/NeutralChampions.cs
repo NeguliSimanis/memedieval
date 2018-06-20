@@ -7,13 +7,14 @@ public class NeutralChampions : MonoBehaviour {
 
     CreateChampion createChampion;
     string createChampionName = "ChampionCreate";
+    int startingChampionsCount = 3; // with how many neutral champions the game starts
 
     public List<Champion> neutralChampionsList = new List<Champion>();
 
     void Awake ()
     {
         InitializeVariables();
-        GenerateRandomChampion(2);
+        GenerateRandomChampion(startingChampionsCount);
 	}
 
     void InitializeVariables()

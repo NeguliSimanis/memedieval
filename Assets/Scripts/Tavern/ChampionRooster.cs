@@ -13,20 +13,11 @@ public class ChampionRooster : MonoBehaviour {
 
     [Header("Random champion buttons")]
     [SerializeField]
-    GameObject championButtonContainer1;
+    GameObject[] championButtonContainers; // championButton parent objects
     [SerializeField]
-    Image championPicture1;
-
+    Text[] championTitles; // name & surname
     [SerializeField]
-    GameObject championButtonContainer2;
-    [SerializeField]
-    Image championPicture2;
-
-    [SerializeField]
-    Text[] championTitles;
-    [SerializeField]
-    Button[] championButtons;
-    int[] championButtonIDs = { 0, 1 };
+    Button[] championButtons; // shows more info about champion
 
     [Header("Random champion recruiting")]
     [SerializeField]
@@ -59,26 +50,60 @@ public class ChampionRooster : MonoBehaviour {
     string neutralChampionsObjectName = "ChampionRooster";
 
     bool isChampionSelected = false;
-    int selectedChampionID = -1;
+    int selectedChampionButtonID = -1;
 
-   void Start()
+    void Start()
     {
         InitializeVariables();
-        AddButtonListeners();
+        InitializeButtons();
         DisplayNeutralChampionsList();
         InitializeChampionSelection();
     }
 
-    void AddButtonListeners()
+    void InitializeButtons()
     {
-        createChampion.onClick.AddListener(OpenChampionCreation);
-        championButtons[0].onClick.AddListener(SelectChampion0);
-        championButtons[1].onClick.AddListener(SelectChampion1);
+        // initialize button for champion creation
+        createChampion.onClick.AddListener(OpenChampionCreation); // disabled on v 0.1.4
+
+        // initialize buttons that select champion
+        InitializeChampionButtons();
+
+        // initialize button for hiring champion
         hireChampionButton.onClick.AddListener(HireSelectedChampion);
+    }
+
+    void InitializeChampionButtons()
+    {
+        int neutralChampionCount = neutralChampions.neutralChampionsList.Count;
+
+        // go through all the champion buttons
+        for (int i = 0; i < championButtons.Length; i++)
+        {
+            // hide all buttons in case they were left active in editor
+            championButtonContainers[i].SetActive(false);
+
+            if (i < neutralChampionCount)
+            {
+                // show button if there's a neutral champion available
+                championButtonContainers[i].SetActive(true);
+
+                // add button listener
+                int tempID = i;
+                championButtons[i].onClick.AddListener(() => SelectChampion(tempID));
+            }  
+        }
+    }
+
+    void SelectChampion(int championButtonID)
+    {
+        selectedChampionButtonID = championButtonID;
+        DisplaySelectedChampion();
     }
 
     void HireSelectedChampion()
     {
+        // load champion data
+        int selectedChampionID = GetSelectedChampionID();
         Champion selectedChampion = neutralChampions.neutralChampionsList[selectedChampionID];
         
         // check resources
@@ -100,38 +125,12 @@ public class ChampionRooster : MonoBehaviour {
 
     void HideChampionButtonContainer()
     {
-        if (selectedChampionID == 0)
-        {
-            championButtonContainer1.SetActive(false);
-            if (neutralChampions.neutralChampionsList.Count == 0)
-            {
-                championButtonContainer2.SetActive(false);
-            }
-        }
-        else if (selectedChampionID == 1)
-        {
-            championButtonContainer2.SetActive(false);
-        }
-        selectedChampionID = 0;
-        DisplaySelectedChampion();
-    }
+        // remove button listener
+        championButtons[selectedChampionButtonID].onClick.RemoveListener(() => SelectChampion(selectedChampionButtonID));
 
-    void SelectChampion0()
-    {
-        selectedChampionID = 0;
-        DisplaySelectedChampion();
-    }
-
-    void SelectChampion1()
-    {
-        if (neutralChampions.neutralChampionsList.Count == 1)
-        {
-            selectedChampionID = 0;
-        }
-        else
-        {
-            selectedChampionID = 1;
-        }
+        // disable button container
+        championButtonContainers[selectedChampionButtonID].SetActive(false);
+        selectedChampionButtonID = 0;
         DisplaySelectedChampion();
     }
 
@@ -143,76 +142,68 @@ public class ChampionRooster : MonoBehaviour {
 
     void DisplayNeutralChampionsList()
     {
-        //neutralChampions = playerProfile.gameObject.transform.Find(neutralChampionsObjectName).gameObject.GetComponent<NeutralChampions>();
-        if (neutralChampions.neutralChampionsList.Count == 0)
+        int neutralChampionCount = neutralChampions.neutralChampionsList.Count;
+
+        // check if there are neutral champions
+        if (neutralChampionCount == 0)
         {
             Debug.Log("no neutral champions");
             noChampionsPanel.SetActive(true);
             return;
         }
 
-        if (neutralChampions.neutralChampionsList[0] != null)
+        // go through the list of champion buttons
+        for (int i = 0; i < neutralChampionCount; i++)
         {
-            DisplayNeutralChampion(0, championButtonContainer1);
-        }
-        if (neutralChampions.neutralChampionsList.Count > 1)
-        {
-            DisplayNeutralChampion(1, championButtonContainer2);
-        }
-
-    }
-
-    void ActivateChampionPicture(GameObject pictureContainer, string pictureName)
-    {
-        foreach (Transform picture in pictureContainer.transform)
-        {
-            // find and activate the picture
-            if (picture.gameObject.name == pictureName)
-            {
-                picture.gameObject.SetActive(true);
-            }
-
-            // disable all other pictures in the container
-            else
-            {
-                // ignore any buttons that are attached to the object
-                if (picture.gameObject.GetComponent<Button>() == null)
-                    picture.gameObject.SetActive(false);
-            }
+            if (i < championButtonContainers.Length)
+                LoadChampionButton(i, championButtonContainers[i]);
         }
     }
 
-    void DisplayNeutralChampion(int championID, GameObject currentChampionButton)
+    // displays champion name, picture on the button
+    void LoadChampionButton(int championID, GameObject championButtonContainer)
     {
-        currentChampionButton.SetActive(true);
         Champion currentChampion = neutralChampions.neutralChampionsList[championID];
 
         championTitles[championID].text = currentChampion.properties.Name;
-
-        if (championID == 0)
-        {
-            ChampionPictureActivator.ActivateChampionPicture(championButtonContainer1, currentChampion.properties.GetChampionClass());
-        }
-        else
-        {
-            ChampionPictureActivator.ActivateChampionPicture(championButtonContainer2, currentChampion.properties.GetChampionClass());
-        }
+        ChampionPictureActivator.ActivateChampionPicture(championButtonContainer, currentChampion.properties.GetChampionClass());
     }
 
     void InitializeChampionSelection()
     {
-        if (selectedChampionID == -1 && neutralChampions.neutralChampionsList.Count > 0)
+        if (selectedChampionButtonID == -1 && neutralChampions.neutralChampionsList.Count > 0)
         {
             isChampionSelected = true;
-            selectedChampionID = 0;
+            selectedChampionButtonID = 0;
             DisplaySelectedChampion();
         }
     }
 
+    int GetSelectedChampionID()
+    {
+        int selectedChampionID = 0;
+        int inactiveButtons = 0;
+        for (int i = 0; i < championButtons.Length; i++)
+        {
+            if (i == selectedChampionButtonID)
+            {
+                selectedChampionID = selectedChampionButtonID - inactiveButtons;
+                return selectedChampionID;
+            }
+            if (championButtonContainers[i].activeInHierarchy == false)
+            {
+                inactiveButtons++;
+            }
+        }
+        return -1;
+    }
+
     void DisplaySelectedChampion()
     {
+        int neutralChampionCount = neutralChampions.neutralChampionsList.Count;
+
         // check if action possible
-        if (neutralChampions.neutralChampionsList.Count == 0)
+        if (neutralChampionCount == 0)
         {
             noChampionsPanel.SetActive(true);
             return;
@@ -220,6 +211,7 @@ public class ChampionRooster : MonoBehaviour {
 
         // initialize variables
         noChampionsPanel.SetActive(false);
+        int selectedChampionID = GetSelectedChampionID();
         ChampionData selectedChampionData = neutralChampions.neutralChampionsList[selectedChampionID].properties;
 
         // display name
