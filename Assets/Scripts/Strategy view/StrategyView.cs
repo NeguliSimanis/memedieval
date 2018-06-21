@@ -7,13 +7,16 @@ using UnityEngine.EventSystems;
 
 public class StrategyView : MonoBehaviour {
 
-    [SerializeField] Button closeButton;
-    [SerializeField] Button acceptButton;
+    [Header("Scene navigation")]
+    [SerializeField] Button closeButton;    // exits the strategy view
+    [SerializeField] Button acceptButton;   // exits the strategy view
     private string sceneAfterClose = "Test scene";
 
+    [Header("Champion buttons")]
     [SerializeField] GameObject championCard;
     [SerializeField] GameObject championLeftPanel;
     [SerializeField] GameObject championRightPanel;
+    [SerializeField] bool switchChampionPanels = true;
 
     private GameObject championSelectedMarker;
     private string championSelectedMarkerName = "ChampionSelected";
@@ -30,14 +33,15 @@ public class StrategyView : MonoBehaviour {
     {
         UpdateSelectionCount();
         AddButtonListeners();
-        LoadChampionList();
-        
+        LoadChampionList();      
     }
 
     void AddButtonListeners()
     {
-        closeButton.onClick.AddListener(CloseView);
-        acceptButton.onClick.AddListener(CloseView);
+        if (closeButton != null)
+            closeButton.onClick.AddListener(CloseView);
+        if (acceptButton != null)
+            acceptButton.onClick.AddListener(CloseView);
     }
 
     void LoadChampionList()
@@ -128,6 +132,6 @@ public class StrategyView : MonoBehaviour {
             if (champion.invitedToBattle == true)
                 selectedChampionCount++;
         }
-        totalChampionsSelected.text = "Champions selected: " + selectedChampionCount + "/3";
+        totalChampionsSelected.text = selectedChampionCount + "/3";
     }
 }
