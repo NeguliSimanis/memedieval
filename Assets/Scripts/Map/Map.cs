@@ -91,7 +91,6 @@ public class Map : MonoBehaviour {
 
     void AddButtonListeners()
     {
-        selectChampionsButton.onClick.AddListener(EnterStrategyView);
         //battleButton.onClick.AddListener(EnterBattle);
         closeMapButton.onClick.AddListener(CloseMap);
     }
