@@ -7,6 +7,7 @@ using UnityEngine.EventSystems;
 
 public class StrategyView : MonoBehaviour {
 
+    #region variables
     [Header("Scene navigation")]
     [SerializeField] Button closeButton;    // exits the strategy view
     [SerializeField] Button acceptButton;   // exits the strategy view
@@ -16,7 +17,7 @@ public class StrategyView : MonoBehaviour {
     [SerializeField] GameObject championCard;
     [SerializeField] GameObject championLeftPanel;
     [SerializeField] GameObject championRightPanel;
-    [SerializeField] bool switchChampionPanels = true;
+    [SerializeField] bool shortAbilityText = true;
 
     private GameObject championSelectedMarker;
     private string championSelectedMarkerName = "ChampionSelected";
@@ -28,6 +29,12 @@ public class StrategyView : MonoBehaviour {
     int currentChampionID;
     int selectedChampionCount = 0;
     int maxAllowedChampionCount = 3;
+
+    #region champion pictures
+    private string championPortraitContainerName = "ChampionPortraits";
+    private GameObject championPortraitContainer;
+    #endregion
+    #endregion
 
     void Start()
     {
@@ -68,11 +75,19 @@ public class StrategyView : MonoBehaviour {
             newChampionCard.GetComponent<Button>().onClick.AddListener(SelectChampion);
 
             // initialize button text
-            newChampionCard.transform.Find("Text").gameObject.GetComponent<Text>().text = champion.properties.Name;
+            newChampionCard.transform.Find("Text").gameObject.GetComponent<Text>().text = champion.properties.GetFirstName();
             newChampionCard.transform.Find("ChampionProperties").gameObject.GetComponent<Text>().text = "LV " + (champion.properties.level + 1) + " "+ champion.GetClassName();
-            newChampionCard.transform.Find("ChampionAbility").gameObject.GetComponent<Text>().text = "Ability: " + champion.properties.GetAbilityString();
 
-            // initialize button markers
+            // intialize ability text
+            if (shortAbilityText)
+                newChampionCard.transform.Find("ChampionAbility").gameObject.GetComponent<Text>().text = champion.properties.GetAbilityString();
+            else
+                newChampionCard.transform.Find("ChampionAbility").gameObject.GetComponent<Text>().text = "Ability: " + champion.properties.GetAbilityString();
+
+            // initialize champion face image
+            ShowChampionFace(newChampionCard, champion);
+
+            // initialize button markers (shows if champion is invited to battle)
             if (champion.invitedToBattle)
             {
                 newChampionCard.transform.Find(championSelectedMarkerName).gameObject.SetActive(true);
@@ -80,6 +95,16 @@ public class StrategyView : MonoBehaviour {
 
             currentChampionID++;
         }
+    }
+
+    void ShowChampionFace(GameObject currentChampionCard, Champion currentChampion)
+    {
+        if (currentChampionCard.transform.Find(championPortraitContainerName) == null)
+            return;
+
+        championPortraitContainer = currentChampionCard.transform.Find(championPortraitContainerName).gameObject;
+
+        ChampionPictureActivator.ActivateChampionPictureB(championPortraitContainer, currentChampion.properties.GetChampionClass());
     }
 
     void SelectChampion()

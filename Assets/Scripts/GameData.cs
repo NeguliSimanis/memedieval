@@ -142,6 +142,24 @@ public class ChampionData
         }
     }
 
+    public string GetFirstName()
+    {
+        string firstName = "";
+        bool firstNameFound = false;
+
+        foreach (char c in Name)
+        {
+            if (c == ' ')
+            {
+                firstNameFound = true;
+                break;
+            }
+            else if (!firstNameFound)
+                firstName = firstName + c;
+        }
+        return firstName;
+    }
+        
     public int GetSaltCost()
     {
         if (!isSaltCostSet)
