@@ -9,12 +9,15 @@ using UnityEngine;
 public class ToggleGameObject : MonoBehaviour {
 
     [SerializeField]
-    GameObject target;
+    GameObject[] targets;
 
     public void ToggleActiveState()
     {
-        bool currentState = target.activeInHierarchy;
-        target.SetActive(!currentState);
+        foreach (GameObject target in targets)
+        {
+            bool currentState = target.activeInHierarchy;
+            target.SetActive(!currentState);
+        }
     }
 }
 
