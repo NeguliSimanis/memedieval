@@ -36,14 +36,14 @@ public class SaveLoad : MonoBehaviour
         GameData.current.salt = PlayerProfile.Singleton.SaltCurrent;
         GameData.current.ducats = PlayerProfile.Singleton.DucatCurrent;
         int championCount = PlayerProfile.Singleton.champions.Count;
-      
+
+        GameData.current.championList.Clear();
         for (int i = 0; i < championCount; i++)
         {
             GameData.current.championList.Add(PlayerProfile.Singleton.champions[i].properties);
-            Debug.Log("Saving skillpoints" + PlayerProfile.Singleton.champions[i].properties.skillpoints);
-            Debug.Log("Saving charm skillpoints" + PlayerProfile.Singleton.champions[i].properties.charm);
         }
 
+        SaveLoad.savedGames.Clear();
         SaveLoad.savedGames.Add(GameData.current);
         BinaryFormatter bf = new BinaryFormatter();
         FileStream file = File.Create(Application.persistentDataPath + "/savedGames.gd");
@@ -60,9 +60,13 @@ public class SaveLoad : MonoBehaviour
             FileStream file = File.Open(Application.persistentDataPath + "/savedGames.gd", FileMode.Open);
             SaveLoad.savedGames = (List<GameData>)bf.Deserialize(file);
 
-            // set player resources - DOES NOT UPDATE GameData!
+            // set player resources
             PlayerProfile.Singleton.SaltCurrent = SaveLoad.savedGames[0].salt;          
             PlayerProfile.Singleton.DucatCurrent = SaveLoad.savedGames[0].ducats;
+
+            // load game data
+            GameData.current = new GameData();
+            GameData.current.LoadGameProgress(SaveLoad.savedGames[0]);
 
             ClearChampionData();
 

@@ -25,8 +25,6 @@ public class HelpText : MonoBehaviour {
         LoadHelpTexts();      
         UpdateHelpText();
         SetupButtons();
-        Debug.Log("manual length " + manualLength);
-        Debug.Log("current manual id " + currentManualID);
     }
 
     void UpdateHelpText()

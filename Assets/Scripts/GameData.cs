@@ -38,6 +38,13 @@ public class GameData
     public string tavernSceneName = "Tavern";
     public string battleSceneName = "Test scene";
     #endregion
+
+    public void LoadGameProgress(GameData previousProgress)
+    {
+        if (GameData.current == null)
+            GameData.current = new GameData();
+        GameData.current = previousProgress;
+    }
 }
 
 [System.Serializable]

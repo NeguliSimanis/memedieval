@@ -12211,6 +12211,11 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 53c06276afe177046a5e93a993088337, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &894230868 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1493750198792574, guid: cca90e0e2dfbc684fa234f698594bc59,
+    type: 2}
+  m_PrefabInternal: {fileID: 1936239281}
 --- !u!1 &919284960
 GameObject:
   m_ObjectHideFlags: 0
@@ -12660,6 +12665,7 @@ GameObject:
   - component: {fileID: 942761090}
   - component: {fileID: 942761089}
   - component: {fileID: 942761088}
+  - component: {fileID: 942761091}
   m_Layer: 5
   m_Name: Options
   m_TagString: Untagged
@@ -12723,7 +12729,29 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 942761089}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1513575812}
+        m_MethodName: Play
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 942761091}
+        m_MethodName: ToggleActiveState
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &942761089
@@ -12759,6 +12787,19 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 942761086}
+--- !u!114 &942761091
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 942761086}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3113921af35a8a84aadb1b9bad18aad2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targets:
+  - {fileID: 894230868}
 --- !u!1 &952406413
 GameObject:
   m_ObjectHideFlags: 0
@@ -25260,11 +25301,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1493750198792574, guid: cca90e0e2dfbc684fa234f698594bc59, type: 2}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1670266448065936, guid: cca90e0e2dfbc684fa234f698594bc59, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 224585721469835210, guid: cca90e0e2dfbc684fa234f698594bc59,
         type: 2}
@@ -25277,6 +25318,21 @@ Prefab:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 224585721469835210, guid: cca90e0e2dfbc684fa234f698594bc59,
+        type: 2}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224313139005053014, guid: cca90e0e2dfbc684fa234f698594bc59,
+        type: 2}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224313139005053014, guid: cca90e0e2dfbc684fa234f698594bc59,
+        type: 2}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224313139005053014, guid: cca90e0e2dfbc684fa234f698594bc59,
         type: 2}
       propertyPath: m_LocalScale.z
       value: 1

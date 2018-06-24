@@ -93,6 +93,7 @@ public class Spawn : MonoBehaviour
         if (!isTutorial)
             gameObject.transform.parent.gameObject.SetActive(false);
     }
+
     void SetPriceModifiers()
     {   
         GameObject player = PlayerProfile.Singleton.gameObject;
@@ -118,37 +119,40 @@ public class Spawn : MonoBehaviour
             if (Attack.Type.Peasant == captain && Health.Peasant) unitButton.interactable = false;
         }
 
-        // disable button if not enough resources
-        if (!resources.IsEnoughResources(unitCost))
+        // disabling player unit summoning buttons
+        if (!Enemy)
         {
-            if (isCaptain)
-                championButton.interactable = false;
-            else
+            // disable button if not enough resources
+            if (!resources.IsEnoughResources(unitCost))
+            {
+                if (isCaptain)
+                    championButton.interactable = false;
+                else
+                    unitButton.interactable = false;
+            }
+
+            // disable spawning button during cooldown
+            if (spawnTimestamp + Cooldown > Time.time)
+            {
                 unitButton.interactable = false;
+                championButton.interactable = false;
+            }
+
+            // enable spawning button after cooldown
+            else
+            {
+                championButton.interactable = true;
+                unitButton.interactable = true;
+            }
         }
 
-        // disable spawning button during cooldown
-        if (spawnTimestamp + Cooldown > Time.time)
-        {
-            unitButton.interactable = false;
-            championButton.interactable = false;
-        }
-
-        // enable spawning button after cooldown
-        else
-        {
-            championButton.interactable = true;
-            unitButton.interactable = true;   
-        }
-
+        // show cooldown on UI if available
         if (!isCaptain && !Enemy)
-        {
-            // show cooldown on UI if available
+        {    
             if (CooldownBar == null) return;
             CooldownBar.fillAmount = (spawnTimestamp + Cooldown - Time.time) / Cooldown;
         }
     }
-
 
     public void SpawnCharacter()
     {

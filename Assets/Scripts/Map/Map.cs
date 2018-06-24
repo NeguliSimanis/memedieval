@@ -43,23 +43,9 @@ public class Map : MonoBehaviour {
     public static int selectedCastleID;
     public static bool isCastleSelected = false;
 
-    #region battle button
-    //[SerializeField] Button battleButton;
-    //[SerializeField] GameObject battleButtonActiveImage;
-    //[SerializeField] Text battleButtonText;
-
-    private string selectCastle = "Select castle";
-    private string noCastleSelected = "No castle selected!";
-    #endregion
-
     #region selecting champions
     bool isArmyReady = false;
     private string strategyViewScene = "Strategy view";
-
-    [SerializeField]
-    Button selectChampionsButton;
-    private string selectChampionsButtonDefaultText = "Select Champions";
-    private string selectChampionsButtonSelectedText = "Change Army";
     #endregion
     #endregion
 
@@ -98,8 +84,6 @@ public class Map : MonoBehaviour {
     // activates castles that have been unlocked
     void LoadMap()
     {
-        //if (!isArmyReady)
-            //HideBattleButton();
 
         SetCastleButtonContainers();
 
