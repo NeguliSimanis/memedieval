@@ -22,7 +22,7 @@ public class NeutralChampions : MonoBehaviour {
         createChampion = transform.parent.Find(createChampionName).gameObject.GetComponent<CreateChampion>();
     }
 	
-    void GenerateRandomChampion(int championCount)
+    public void GenerateRandomChampion(int championCount)
     {
         for (int i = 0; i < championCount; i++)
         {

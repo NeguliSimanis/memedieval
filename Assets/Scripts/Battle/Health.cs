@@ -84,6 +84,7 @@ public class Health : MonoBehaviour
 
         if (victory || gameOver)
         {
+            EndBattle();
             PlayerProfile.Singleton.ResetBattleProperties();
             if (victory)
             {
@@ -144,6 +145,15 @@ public class Health : MonoBehaviour
                 else if (!isPlayer) WinBattle(); 
             }
         }
+    }
+
+    void EndBattle()
+    {
+        if (BattleOver.manager == null)
+            BattleOver.manager = new BattleOver();
+
+        // currently only creates new champions
+        BattleOver.manager.EndBattle();
     }
 
     public void WinBattle()
@@ -235,7 +245,6 @@ public class Health : MonoBehaviour
         regenPerSecond = (int)(amount/(regenEndTime-Time.time));
         isRegening = true;
         StartCoroutine(Regen());
-
         gameObject.transform.Find("RegenAnimation").gameObject.SetActive(true);
     }
 
