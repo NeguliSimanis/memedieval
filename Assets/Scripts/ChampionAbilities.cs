@@ -200,7 +200,6 @@ public class ChampionAbilities : MonoBehaviour
             StopWaitingOrder();
         if (isAbilityActive)
         {
-            Debug.Log("calling stop ability");
             StopUsingAbility();
         }
         
@@ -250,7 +249,6 @@ public class ChampionAbilities : MonoBehaviour
         {
             if (Time.time > abilityEffectEndTime)
             {
-                Debug.Log("ability reset check -1");
                 Reset(false);
             }
         }
@@ -266,7 +264,6 @@ public class ChampionAbilities : MonoBehaviour
 
     void StartBerserkFury()
     {
-        Debug.Log("Berserk fury activated");
         sfxBerserk.Play();
         defaultAttackCooldown = championUnit.defaultCooldown; ;
         championUnit.ChangeAttackCooldown(-furyAttackSpeedEffect);
@@ -277,8 +274,6 @@ public class ChampionAbilities : MonoBehaviour
 
     void EndBerserkFury()
     {
-
-        Debug.Log("Berserk fury deactivated");
         sfxBerserk.Stop();
         championUnit.defaultCooldown = defaultAttackCooldown;
         championUnit.ChangeAttackCooldown(furyAttackSpeedEffect);

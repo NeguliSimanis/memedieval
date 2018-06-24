@@ -3506,7 +3506,6 @@ MonoBehaviour:
   - Villandraut
   - Rois Ducs
   - Beynac
-  selectChampionsButton: {fileID: 0}
 --- !u!1 &363543789
 GameObject:
   m_ObjectHideFlags: 0
@@ -7801,6 +7800,46 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 77ccb4e4a72951a4793bdd536388c9d6, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &873629398
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 873629400}
+  - component: {fileID: 873629399}
+  m_Layer: 0
+  m_Name: BattleCheat
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &873629399
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 873629398}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6095adf6448c1c4b931861fa71fcb58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &873629400
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 873629398}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 248.42978, y: -298.86484, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &882688596
 GameObject:
   m_ObjectHideFlags: 0
@@ -10354,7 +10393,7 @@ MonoBehaviour:
   fire: {fileID: 1862595184}
   isCaptain: 0
   nextLevelScript: {fileID: 1277796074}
-  nextLevelToLoad: Defeat menu
+  nextLevelToLoad: Castle
   enemyBalancerTag: Enemy balancer
   MaximumHealth: 10
 --- !u!61 &1277796076

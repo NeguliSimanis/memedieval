@@ -19,8 +19,6 @@ public class Health : MonoBehaviour
     private static bool ArcherCaptainDead;
     private static bool KnightCaptainDead;
 
-
-
     [SerializeField] private Attack.Type UnitType;
     [SerializeField] private int meadCarrying;
     [SerializeField] private bool IsCharacter;
@@ -29,11 +27,9 @@ public class Health : MonoBehaviour
     [SerializeField] private GameObject fire;
     [SerializeField] private bool isCaptain;
 
-
     [SerializeField] LoadScene nextLevelScript;
     [SerializeField] string nextLevelToLoad = "Castle";
     [SerializeField] string enemyBalancerTag = "Enemy balancer";
-
 
 	private int currentHealth;
 	public int CurrentHealth
@@ -150,7 +146,7 @@ public class Health : MonoBehaviour
         }
     }
 
-    void WinBattle()
+    public void WinBattle()
     {
         victory = true;
         AllocateExp();
@@ -232,7 +228,6 @@ public class Health : MonoBehaviour
         }
     }
 
-
     public void StartRegen (int amount, float targetTime)
     {   
         regenEndTime = targetTime;
@@ -261,7 +256,6 @@ public class Health : MonoBehaviour
         StopCoroutine(Regen());
         isRegening = false;
         gameObject.transform.Find("RegenAnimation").gameObject.SetActive(false);
-        Debug.Log("regen ended");
     }
 
     public static bool Archer
@@ -269,12 +263,10 @@ public class Health : MonoBehaviour
         get { return ArcherCaptainDead; }
     }
 
-
     public static bool Knight
     {
         get { return KnightCaptainDead; }
     }
-
 
     public static bool Peasant
     {
@@ -319,7 +311,6 @@ public class Health : MonoBehaviour
     IEnumerator LoadNextLevelAfterDelay(float delay = 3f)
     {  
         isLoadingNextLevel = true;
-        Debug.Log("loading next level");
         yield return new WaitForSeconds(delay);
         SceneManager.LoadScene(nextLevelToLoad);
     }

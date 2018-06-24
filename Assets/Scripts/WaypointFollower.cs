@@ -41,9 +41,7 @@ public class WaypointFollower : MonoBehaviour
 
     public void ChangeSpeed(float amount)
     {
-        Debug.Log("speed before: " + Speed);
         Speed = Speed + amount;
-        Debug.Log("new speed: " + Speed);
     }
 
     void Start()

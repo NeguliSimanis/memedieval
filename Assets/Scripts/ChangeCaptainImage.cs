@@ -22,7 +22,6 @@ public class ChangeCaptainImage : MonoBehaviour
     {
         if (!GameObject.FindGameObjectWithTag("Game manager"))
         {
-            Debug.Log("No game manager object found!");
             return;
         }
         gameManager = GameObject.FindGameObjectWithTag("Game manager");

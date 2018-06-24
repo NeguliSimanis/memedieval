@@ -199,7 +199,6 @@ public class Map : MonoBehaviour {
             {
                 selectedCastleID = currentID;
                 isCastleSelected = true;
-                ActivateBattleButton();
             }
             currentID++;
         }
@@ -219,17 +218,12 @@ public class Map : MonoBehaviour {
         castleButtonContainers[castleID].transform.Find(destroyedMarkerName).gameObject.SetActive(true);
     }
 
-    void ActivateBattleButton()
-    {
-        //if (isArmyReady)
-           // battleButton.gameObject.SetActive(true);
-    }
-
     void EnterBattle()
     {
-        if (isCastleSelected)
+        CheckArmyReadiness();
+        if (isCastleSelected && isArmyReady)
         {
-            // disable enemy spawning in the first battle
+            // enable enemy spawning in the first battle
             if (selectedCastleID == 0)
             {
                 battleController.GetComponent<Testing>().spawnEnemyUnits = true;
@@ -243,16 +237,6 @@ public class Map : MonoBehaviour {
             PlayerProfile.Singleton.ModifyBattleProperties();
             mapChildren.SetActive(false);
         }  
-
-        else
-        {
-            //battleButtonText.text = noCastleSelected;
-        }
-    }
-
-    void HideBattleButton()
-    {
-       // battleButton.gameObject.SetActive(false);
     }
 
     void EnterStrategyView()
@@ -270,6 +254,5 @@ public class Map : MonoBehaviour {
     void EnableBattleShortcut()
     {
         isBattleShortcutEnabled = true;
-        //EnterBattle();
     }
 }
