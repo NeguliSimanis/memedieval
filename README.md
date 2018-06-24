@@ -14,3 +14,5 @@ A Unity game for Android devices and Windows Desktop
 ## Art
 * images should be named like this: frame_small
 
+## Testing
+* there is an object called BattleCheat in the battle scene. If it's active, you can instantly win battle by pressing "w"
