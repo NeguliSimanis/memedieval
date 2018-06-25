@@ -15,4 +15,6 @@ A Unity game for Android devices and Windows Desktop
 * images should be named like this: frame_small
 
 ## Testing
-* there is an object called BattleCheat in the battle scene. If it's active, you can instantly win battle by pressing "w"
+* If BattleCheat is active in the battle scene, you can:
+** instantly win battle by pressing "w"
+** get free meat by pressing "m"
