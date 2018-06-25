@@ -2,6 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// controls resources in Tavern
+/// </summary>
+
 public class ResourceControl : MonoBehaviour {
 
     [SerializeField]

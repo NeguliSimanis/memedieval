@@ -113,10 +113,9 @@ public class Spawn : MonoBehaviour
     {
         if (isCaptain && unitButton != null && unitButton.enabled)
         {
-            //Debug.Log("isCaptain1");
-            if (Attack.Type.Archer == captain && Health.Archer) unitButton.interactable = false;
-            if (Attack.Type.Knight == captain && Health.Knight) unitButton.interactable = false;
-            if (Attack.Type.Peasant == captain && Health.Peasant) unitButton.interactable = false;
+           // if (Attack.Type.Archer == captain && Health.Archer) unitButton.interactable = false;
+           // if (Attack.Type.Knight == captain && Health.Knight) unitButton.interactable = false;
+            //if (Attack.Type.Peasant == captain && Health.Peasant) unitButton.interactable = false;
         }
 
         // disabling player unit summoning buttons
@@ -154,6 +153,7 @@ public class Spawn : MonoBehaviour
         }
     }
 
+
     public void SpawnCharacter()
     {
         if (captain == Attack.Type.Archer)
@@ -164,7 +164,7 @@ public class Spawn : MonoBehaviour
                 if (!resources.IsEnoughResources(unitCost)) return;
                 if (ArcherCaptainsLeft == 0) return;
                 ArcherCaptainsLeft--;
-                championButton.interactable = false;
+                DisableChampionButton(true);
             }
         }
 
@@ -177,7 +177,7 @@ public class Spawn : MonoBehaviour
                 if (!resources.IsEnoughResources(unitCost)) return;
                 if (KnightCaptainsLeft == 0) return;
                 KnightCaptainsLeft--;
-                championButton.interactable = false;
+                DisableChampionButton(true);
             }
         }
 
@@ -189,7 +189,7 @@ public class Spawn : MonoBehaviour
                 if (!resources.IsEnoughResources(unitCost)) return;
                 if (PeasantCaptainsLeft == 0) return;
                 PeasantCaptainsLeft--;
-                championButton.interactable = false;
+                DisableChampionButton(true);
             }
         }
 
@@ -235,6 +235,13 @@ public class Spawn : MonoBehaviour
         }
     }
 
+    void DisableChampionButton(bool disableCompletely = false)
+    {
+        championButton.interactable = false;
+        if (!disableCompletely)
+            return;
+        championButton.gameObject.SetActive(false);
+    }
 
     public static void ResetAllValues()
     {

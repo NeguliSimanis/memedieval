@@ -10,18 +10,25 @@ using UnityEngine;
 public class BattleCheat : MonoBehaviour
 {
     string playerCastleTag = "Player castle";
-    bool isCheatActive = false;
+    bool isVictoryCheatActive = false;
+
+    int meatPerCheat = 10;
+    [SerializeField] private MeMedieval.Resources playerResources; 
 
     void Update ()
     {
 	    if (Input.GetKey(KeyCode.W))
         {
-            if (!isCheatActive)
+            if (!isVictoryCheatActive)
             {
-                isCheatActive = true;
+                isVictoryCheatActive = true;
                 Debug.Log("Victory cheat");
                 GameObject.FindGameObjectWithTag(playerCastleTag).GetComponent<Health>().WinBattle();
             }          
+        }
+        if (Input.GetKeyDown(KeyCode.M))
+        {
+            playerResources.Amount += meatPerCheat;
         }
     }
 }

@@ -18,6 +18,7 @@ namespace MeMedieval
         {
             if (isPlayerResources)
             {
+                Debug.Log(gameObject.name);
                 ChampionEffect championEffect = PlayerProfile.Singleton.gameObject.GetComponent<ChampionEffect>();
                 resources = Mathf.RoundToInt(resources * championEffect.startingMeatCoefficient);
             }
@@ -35,7 +36,6 @@ namespace MeMedieval
                 resources += resourcesPerFiveSeconds;
             }
         }
-
 
         public bool WasEnoughResources(int resources)
         {

@@ -15,9 +15,9 @@ public class Health : MonoBehaviour
 
     private static bool victory;
     private static bool gameOver;
-    private static bool PeasantCaptainDead;
-    private static bool ArcherCaptainDead;
-    private static bool KnightCaptainDead;
+    private static bool peasantChampionDead;
+    private static bool archerChampionDead;
+    private static bool knightChampionDead;
 
     [SerializeField] private Attack.Type UnitType;
     [SerializeField] private int meadCarrying;
@@ -123,16 +123,13 @@ public class Health : MonoBehaviour
         {
             if (isCaptain)
             {
-                //Debug.Log("Captain died");
-                if (UnitType == Attack.Type.Archer) ArcherCaptainDead = true;
-                if (UnitType == Attack.Type.Peasant) PeasantCaptainDead = true;
-                if (UnitType == Attack.Type.Knight) KnightCaptainDead = true;
+                if (UnitType == Attack.Type.Archer) archerChampionDead = true;
+                if (UnitType == Attack.Type.Peasant) peasantChampionDead = true;
+                if (UnitType == Attack.Type.Knight) knightChampionDead = true;
             }
             if (IsCharacter) {
                 FindObjectOfType<ResourceTextController>().AddResources(isPlayer, meadCarrying);
-
                 DestroyPlayerUnit();
-                //GameObject.Destroy(gameObject);
             }
             else
             {
@@ -178,19 +175,6 @@ public class Health : MonoBehaviour
         ExpController expController = GameObject.FindGameObjectWithTag("BattleController").GetComponent<ExpController>();
 
         expController.AllocateChampionExp();
-
-        /*ChampionEffect championEffect =  PlayerProfile.Singleton.gameObject.GetComponent<ChampionEffect>();
-
-        foreach (Champion champion in PlayerProfile.Singleton.champions)
-        {
-            //Debug.Log("checking champion");
-            if (champion.invitedToBattle == true)
-            {
-                //Debug.Log(champion.properties.Name + " deserves exp");
-                champion.EarnExp(championEffect.championFinalExpEarn);
-                champion.onBattle = false;
-            }
-        }*/
     }
 
     public static bool GameOver
@@ -269,26 +253,26 @@ public class Health : MonoBehaviour
 
     public static bool Archer
     {
-        get { return ArcherCaptainDead; }
+        get { return archerChampionDead; }
     }
 
     public static bool Knight
     {
-        get { return KnightCaptainDead; }
+        get { return knightChampionDead; }
     }
 
     public static bool Peasant
     {
-        get { return PeasantCaptainDead; }
+        get { return peasantChampionDead; }
     }
 
     public void ResetAllValues()
     {
         victory = false;
         gameOver = false;
-        PeasantCaptainDead = false;
-        ArcherCaptainDead = false;
-        KnightCaptainDead = false;
+        peasantChampionDead = false;
+        archerChampionDead = false;
+        knightChampionDead = false;
     }
 
     public void SetMaxHealth(int value)
