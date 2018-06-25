@@ -10,6 +10,7 @@ public class ResizeOnClick : MonoBehaviour {
     [SerializeField]
     float resizeDuration = 0.15f;
     Vector3 defaultSize;
+    public bool isResized = false;
 
     private void Start()
     {
@@ -18,6 +19,7 @@ public class ResizeOnClick : MonoBehaviour {
 
     public void ChangeSize()
     {
+        isResized = true;
         float xResize = gameObject.transform.localScale.x * resizeAmount;
         float yResize = gameObject.transform.localScale.y * resizeAmount;
         float zResize = gameObject.transform.localScale.z * resizeAmount;
@@ -33,6 +35,7 @@ public class ResizeOnClick : MonoBehaviour {
 
     private void ResetOriginalSize()
     {
+        isResized = false;
         gameObject.transform.localScale = defaultSize;
     }
 }

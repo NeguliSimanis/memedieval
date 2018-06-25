@@ -103,7 +103,6 @@ public class Health : MonoBehaviour
                     }
                 }
             }
-            if (nextLevelScript == null) Debug.Log("LoadScene script not specified in inspector");
             if (nextLevelScript == null) Debug.Log("Next level name not specified in inspector");
             else// nextLevelScript.loadLevel(nextLevelToLoad); 
             {
@@ -114,7 +113,6 @@ public class Health : MonoBehaviour
                     CelebrateVictory();
                 else
                     MournDefeat();
-                
             }
 
         }

@@ -16,6 +16,8 @@ public class Spawn : MonoBehaviour
     game objects
 
      ************************/
+    private bool isChampionDying = false;
+    private bool isUnitDying = false;
 
     private static int PeasantCaptainsLeft;
     private static int ArcherCaptainsLeft;
@@ -113,14 +115,16 @@ public class Spawn : MonoBehaviour
     {
         if (isCaptain && unitButton != null && unitButton.enabled)
         {
-           // if (Attack.Type.Archer == captain && Health.Archer) unitButton.interactable = false;
-           // if (Attack.Type.Knight == captain && Health.Knight) unitButton.interactable = false;
-            //if (Attack.Type.Peasant == captain && Health.Peasant) unitButton.interactable = false;
+            if (Attack.Type.Archer == captain && Health.Archer) unitButton.interactable = false;
+            if (Attack.Type.Knight == captain && Health.Knight) unitButton.interactable = false;
+            if (Attack.Type.Peasant == captain && Health.Peasant) unitButton.interactable = false;
         }
 
         // disabling player unit summoning buttons
         if (!Enemy)
         {
+            CheckIfDeadChampion();
+
             // disable button if not enough resources
             if (!resources.IsEnoughResources(unitCost))
             {
@@ -151,6 +155,39 @@ public class Spawn : MonoBehaviour
             if (CooldownBar == null) return;
             CooldownBar.fillAmount = (spawnTimestamp + Cooldown - Time.time) / Cooldown;
         }
+
+        if (isChampionDying == true)
+        {
+            DisableSpawnButton(true);          
+        }
+        if (isUnitDying == true)
+        {
+            DisableSpawnButton(false);
+        }
+    }
+
+    void CheckIfDeadChampion()
+    {
+        if (!Health.Archer && captain == Attack.Type.Archer)
+            return;
+        if (!Health.Knight && captain == Attack.Type.Knight)
+            return;
+        if (!Health.Peasant && captain == Attack.Type.Peasant)
+            return;
+        // champion is dead, must disable spawning regular units
+        StartDisablingUnitButt();
+    }
+
+    void DisableSpawnButton(bool isChampion)
+    {
+        // wait until spawn button resizing effect is over before disabling button object
+        if (gameObject.GetComponent<ResizeOnClick>().isResized != true)
+        {
+            if (isChampion)
+                championButton.gameObject.SetActive(false);
+            else
+                unitButton.gameObject.SetActive(false);
+        }           
     }
 
 
@@ -164,7 +201,7 @@ public class Spawn : MonoBehaviour
                 if (!resources.IsEnoughResources(unitCost)) return;
                 if (ArcherCaptainsLeft == 0) return;
                 ArcherCaptainsLeft--;
-                DisableChampionButton(true);
+                StartDisablingChampionButt();
             }
         }
 
@@ -177,7 +214,7 @@ public class Spawn : MonoBehaviour
                 if (!resources.IsEnoughResources(unitCost)) return;
                 if (KnightCaptainsLeft == 0) return;
                 KnightCaptainsLeft--;
-                DisableChampionButton(true);
+                StartDisablingChampionButt();
             }
         }
 
@@ -189,7 +226,7 @@ public class Spawn : MonoBehaviour
                 if (!resources.IsEnoughResources(unitCost)) return;
                 if (PeasantCaptainsLeft == 0) return;
                 PeasantCaptainsLeft--;
-                DisableChampionButton(true);
+                StartDisablingChampionButt();
             }
         }
 
@@ -235,12 +272,17 @@ public class Spawn : MonoBehaviour
         }
     }
 
-    void DisableChampionButton(bool disableCompletely = false)
+    void StartDisablingChampionButt()
     {
         championButton.interactable = false;
-        if (!disableCompletely)
-            return;
-        championButton.gameObject.SetActive(false);
+        isChampionDying = true;
+    }
+
+    void StartDisablingUnitButt()
+    {
+        unitButton.interactable = false;
+        unitButton.gameObject.SetActive(false);
+        isUnitDying = true;
     }
 
     public static void ResetAllValues()
