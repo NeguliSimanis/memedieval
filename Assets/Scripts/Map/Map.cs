@@ -65,6 +65,7 @@ public class Map : MonoBehaviour {
 
     void CheckArmyReadiness()
     {
+        isArmyReady = false;
         foreach (Champion champion in PlayerProfile.Singleton.champions)
         {
             if (champion.invitedToBattle)
