@@ -166,7 +166,16 @@ public class ChampionData
         }
         return firstName;
     }
-        
+    
+    // sir/lady    
+    public string GetTitle()
+    {
+        if (isMan)
+            return "Sir";
+        else
+            return "Lady";
+    }
+
     public int GetSaltCost()
     {
         if (!isSaltCostSet)

@@ -224,7 +224,6 @@ public class Map : MonoBehaviour {
         CheckArmyReadiness();
         if (isCastleSelected && isArmyReady)
         {
-            // enable enemy spawning in the first battle
             if (selectedCastleID == 0)
             {
                 battleController.GetComponent<Testing>().spawnEnemyUnits = true;

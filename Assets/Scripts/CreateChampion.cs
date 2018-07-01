@@ -158,7 +158,7 @@ public class CreateChampion : MonoBehaviour
         return champo;
     }
 
-    public void CreateTutorialChampion()
+    public Champion CreateTutorialChampion()
     {
         // sets champion to knight
         int champClassID = 1;
@@ -183,6 +183,8 @@ public class CreateChampion : MonoBehaviour
         PlayerProfile.Singleton.champions.Add(champo);
         var stats = Instantiate(StatsContainerPrefab);
         stats.transform.parent = champo.transform;
+
+        return champo;
     }
 
     public void StartUsingWebcam()

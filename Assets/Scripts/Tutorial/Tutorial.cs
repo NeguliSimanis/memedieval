@@ -5,10 +5,12 @@ using UnityEngine.UI;
 public class Tutorial : MonoBehaviour {
 
     // Created on 08.06.2018
+    GameObject pierre;
 
+    Champion tutorialChampion;
+    Image tutorialChampionFace;
 
     int defaultDialogueFontSize;
-
     [SerializeField]
     Text currentTutorialText;
 
@@ -20,13 +22,13 @@ public class Tutorial : MonoBehaviour {
     #region dialogue setups
     [Header("Dialogue with left image")]
     [SerializeField]
-    GameObject tutorialSetupLeft;
+    GameObject []tutorialSetupLeft;
     [SerializeField]
     Text tutorialTextLeft;
 
     [Header("Dialogue with right image")]
     [SerializeField]
-    GameObject tutorialSetupRight;
+    GameObject [] tutorialSetupRight;
     [SerializeField]
     Text tutorialTextRight;
     #endregion
@@ -58,8 +60,12 @@ public class Tutorial : MonoBehaviour {
     GameObject spawnKnightButtonContainer;
 
     string tutorialStringCurses = "Curses! Send in the infantry!";
+    string tutorialStringWorryNotSire = "Worry not, sire! My knights will defend the king!";
     string tutorialStringWellFought = "Splendid victory, sire!";
     bool isTeachingSummoning = false;
+    bool waitingForEnemyToSpeak = false;
+    bool waitingForChampionToSpeak = false;
+    bool waitingForSummoningOptions = false;
 
     float firstSpawningCooldown = 1f;
     int firstSpawnLimit = 9;
@@ -68,20 +74,18 @@ public class Tutorial : MonoBehaviour {
 
     void Start()
     {
+        // display champion spawning buttons
+        spawnKnightButtonContainer.SetActive(false);
+
         // Disable dialogue
-        dialogueAnimator = tutorialSetupLeft.transform.parent.gameObject.GetComponent<Animator>();
+        dialogueAnimator = tutorialSetupLeft[0].transform.parent.gameObject.GetComponent<Animator>();
         dialogueAnimator.enabled = false;
 
         // disable enemy arrows 
         enemyArrowController.shootCastleArrows = false;
 
-        // TODO - play king animation
-
         // play archer animation (over immediately if player clicks)
         isArcherAppearing = true;
-
-
-        // TODO - start tutorial when time passes or player taps somewhere
     }
 
     void Update()
@@ -125,7 +129,6 @@ public class Tutorial : MonoBehaviour {
     void StartTutorial()
     {
         dialogueAnimator.enabled = true;
-        spawnKnightButtonContainer.SetActive(false);
         InitializeVariables();
         ChooseTutorialSetup(true);
         currentTutorialText.text = tutorialStringDefendKing;
@@ -141,15 +144,32 @@ public class Tutorial : MonoBehaviour {
         if (isLeftSetup)
         {
             currentTutorialText = tutorialTextLeft;
-            tutorialSetupLeft.SetActive(true);
-            tutorialSetupRight.SetActive(false);
+            EnableRightSetup(false);
+            EnableLeftSetup(true);
         }
         else
         {
-            Debug.Log("activating right setup");
             currentTutorialText = tutorialTextRight;
-            tutorialSetupRight.SetActive(true);
-            tutorialSetupLeft.SetActive(false);
+            EnableRightSetup(true); 
+            EnableLeftSetup(false); 
+        }
+    }
+
+    void EnableLeftSetup(bool setActive)
+    {
+        int objectCount = tutorialSetupLeft.Length;
+        for (int i = 0; i < objectCount; i++)
+        {
+            tutorialSetupLeft[i].SetActive(setActive);
+        }
+    }
+
+    void EnableRightSetup(bool setActive)
+    {
+        int objectCount = tutorialSetupRight.Length;
+        for (int i = 0; i < objectCount; i++)
+        {
+            tutorialSetupRight[i].SetActive(setActive);
         }
     }
 
@@ -159,30 +179,86 @@ public class Tutorial : MonoBehaviour {
         {
             TeachArrowBlock();     
         }
-
-        else if (isTeachingSummoning)
+        else if (waitingForEnemyToSpeak)
+        {
+            DisplayEnemyDialogue();
+        }
+        else if (waitingForChampionToSpeak)
+        {
+            DisplayChampionDialogue();
+        }
+        else if (waitingForSummoningOptions)
         {
             ShowUnitSummoning();
         }
-
         else if (currentTutorialText.text == tutorialStringWellFought)
         {
             gameObject.GetComponent<LoadScene>().loadLevel("Castle");
         }
     }
 
-    void ShowUnitSummoning()
+    void DisplayEnemyDialogue()
     {
-        HideDialogueButton();
+        waitingForEnemyToSpeak = false;
+        waitingForChampionToSpeak = true;
+
+        // enable enemy dialogue game objects
         ChooseTutorialSetup(false);
+
+        // set enemy dialogue text
         currentTutorialText.text = tutorialStringCurses;
         currentTutorialText.fontSize = defaultDialogueFontSize;
 
-        // enable spawning player units
-        spawnKnightButtonContainer.SetActive(true);
-        //spawnKnightUnitButton.SetActive(false);
-
         SpawnEnemyUnits(true);
+    }
+   
+    void DisplayChampionDialogue(bool display = true)
+    {
+        if (display)
+        {
+            waitingForChampionToSpeak = false;
+            waitingForSummoningOptions = true;
+
+            // activate the left dialogue setup game objects
+            ChooseTutorialSetup(true);
+
+            HidePierre(true);
+
+            // display champion dialogue text
+            currentTutorialText.text = tutorialStringWorryNotSire;
+
+            // display champion face
+            if (tutorialChampionFace == null)
+                tutorialChampionFace = tutorialSetupLeft[0].transform.parent.Find("Champion").GetComponent<Image>();
+            tutorialChampionFace.enabled = true;
+
+            // display champion name
+            string championTitle = tutorialChampion.properties.GetTitle() + " " + tutorialChampion.properties.GetFirstName();
+            SetLeftNameTagText(championTitle);
+        }
+        else
+        {
+            // hide champion face
+            tutorialChampionFace.enabled = false;
+        }
+    }
+
+    void SetLeftNameTagText(string nameTagText)
+    {
+        foreach (GameObject gameObject in tutorialSetupLeft)
+        {
+            if (gameObject.name == "LeftNametag")
+            {
+                gameObject.transform.Find("Text").gameObject.GetComponent<Text>().text = nameTagText;
+            }
+        }
+    }
+
+    void ShowUnitSummoning()
+    {
+        //HideDialogueButton();
+        dialogueAnimator.SetBool("isOver", true);
+        spawnKnightButtonContainer.SetActive(true);
     }
 
     void SpawnEnemyUnits(bool isSpawning)
@@ -206,21 +282,13 @@ public class Tutorial : MonoBehaviour {
 
     void TeachUnitSummoning()
     {
-        CreateTutorialChampion();
         isTeachingSummoning = true;
-
-        // hides the dialogue button
-        HideDialogueButton(true); 
-
-        // sets the text
-        currentTutorialText.text = tutorialStringArrowsBlocked;
-        currentTutorialText.fontSize = 30;
     }
 
     void CreateTutorialChampion()
     {
         CreateChampion championCreator = PlayerProfile.Singleton.gameObject.transform.Find("ChampionCreate").gameObject.GetComponent<CreateChampion>();
-        championCreator.CreateTutorialChampion();
+        tutorialChampion = championCreator.CreateTutorialChampion();
     }
 
     void StopEnemyArrows()
@@ -235,7 +303,7 @@ public class Tutorial : MonoBehaviour {
         {
             StopEnemyArrows();
             if (isTeachingSummoning == false)
-                TeachUnitSummoning();
+                CongratulateOnBlockingArrows();
             return;
         }
         else if (arrowsToBlock == 1)
@@ -248,10 +316,46 @@ public class Tutorial : MonoBehaviour {
         HideDialogueButton();
     }
 
+    // happens when you have blocked all the arrows
+    void CongratulateOnBlockingArrows()
+    {
+        CreateTutorialChampion();
+
+        // shows player dialogue button
+        HideDialogueButton(true);
+
+        // sets the congratulation text
+        currentTutorialText.text = tutorialStringArrowsBlocked;
+        currentTutorialText.fontSize = 30;
+
+        waitingForEnemyToSpeak = true;
+    }   
+
     void TutorialEnemySpawner()
     {
         unitsSpawned++;
         SpawnKnight();
+    }
+
+    void HidePierre(bool hide = true)
+    {
+        // find Pierre
+        if (pierre == null)
+        {
+            foreach (GameObject gameObject in tutorialSetupLeft)
+            {
+                if (gameObject.name == "Pierre")
+                    pierre = gameObject;
+            }
+        }
+        // hide/show Pierre
+        pierre.SetActive(!hide);
+
+        // reset nametag when Pierre appears again
+        if (!hide)
+        {
+            SetLeftNameTagText("Pierre");
+        }
     }
 
     void SpawnKnight()
@@ -267,11 +371,26 @@ public class Tutorial : MonoBehaviour {
     {
         CelebrateVictory();
         isTeachingSummoning = false;
+
+        // show/hide the characters
+        HidePierre(false);
+        DisplayChampionDialogue(false);
+        
+        // bring up the dialogue panel
+        dialogueAnimator.SetBool("isVictory", true);
+
+        // enable game objects for left tutorial setup
         ChooseTutorialSetup(true);
+
+        // setup victory dialogue texts
         currentTutorialText.fontSize = defaultDialogueFontSize;
         currentTutorialText.text = tutorialStringWellFought;
+
+        // disable unit spawning
         spawnKnightButtonContainer.SetActive(false);
-        HideDialogueButton(true); // show dialogue button   
+
+        // show dialogue button 
+        HideDialogueButton(true);   
     }
 
     private void CelebrateVictory()
