@@ -219,7 +219,7 @@ public class Map : MonoBehaviour {
         castleButtonContainers[castleID].transform.Find(destroyedMarkerName).gameObject.SetActive(true);
     }
 
-    void EnterBattle()
+    public void EnterBattle()
     {
         CheckArmyReadiness();
         if (isCastleSelected && isArmyReady)

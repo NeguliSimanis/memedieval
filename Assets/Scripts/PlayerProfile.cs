@@ -15,6 +15,7 @@ public class PlayerProfile : MonoBehaviour
     [SerializeField]
     string battleSceneName = "Test scene";
 
+    public bool armySelectedInStrategyView = false;
     //private int baseHealth = 100;      // goes down from drinking
     //private float attackModifier = 1f;   // goes up as you drink
     #endregion
@@ -124,10 +125,14 @@ public class PlayerProfile : MonoBehaviour
 
     void OnLevelFinishedLoading(Scene scene, LoadSceneMode mode)
     {
-        profileID++;
+        DestroyPlayerProfileCopies();
+        if (scene.name == battleSceneName)
+            InitializeBattleScene();
+    }
 
-        // This has been replaced 
-        //destroys copies of this game object
+    void DestroyPlayerProfileCopies()
+    {
+        profileID++;
         GameObject[] playerCopies;
         playerCopies = GameObject.FindGameObjectsWithTag(this.gameObject.tag);
         foreach (GameObject playerCopy in playerCopies)
@@ -140,5 +145,18 @@ public class PlayerProfile : MonoBehaviour
             }
         }
     }
+
+    // starts battle without displaying map if just exited strategy view
+    void InitializeBattleScene()
+    {
+        if (armySelectedInStrategyView)
+        {
+            armySelectedInStrategyView = false;
+
+            // TODO: replace finding game object with singleton?
+            GameObject.Find("Map").GetComponent<Map>().EnterBattle();
+        }
+    }
+
     #endregion
 }

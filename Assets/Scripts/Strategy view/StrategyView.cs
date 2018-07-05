@@ -46,9 +46,9 @@ public class StrategyView : MonoBehaviour {
     void AddButtonListeners()
     {
         if (closeButton != null)
-            closeButton.onClick.AddListener(CloseView);
+            closeButton.onClick.AddListener(delegate { CloseView(false); });
         if (acceptButton != null)
-            acceptButton.onClick.AddListener(CloseView);
+            acceptButton.onClick.AddListener(delegate { CloseView(true); });
     }
 
     void LoadChampionList()
@@ -144,8 +144,12 @@ public class StrategyView : MonoBehaviour {
         championSelectedMarker = EventSystem.current.currentSelectedGameObject.transform.Find(championSelectedMarkerName).gameObject;
     }
 
-    void CloseView()
+    void CloseView(bool enterBattleAfterClose = true)
     {
+        if (selectedChampionCount > 0 && enterBattleAfterClose == true)
+        {
+            PlayerProfile.Singleton.armySelectedInStrategyView = true;
+        }
         SceneManager.LoadScene(sceneAfterClose);
     }
     
