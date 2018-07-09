@@ -22,7 +22,6 @@ public class BattleCheat : MonoBehaviour
             if (!isVictoryCheatActive)
             {
                 isVictoryCheatActive = true;
-                Debug.Log("Victory cheat");
                 GameObject.FindGameObjectWithTag(playerCastleTag).GetComponent<Health>().WinBattle();
             }          
         }

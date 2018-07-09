@@ -6,11 +6,11 @@ using UnityEngine.EventSystems; // to get the name of the selected button
 using UnityEngine.SceneManagement;
 
 public class Map : MonoBehaviour {
-
+    #region variables
+    
     [SerializeField]
     GameObject mapChildren;
 
-    #region variables
     bool isBattleShortcutEnabled = false;
 
     [SerializeField]
@@ -41,26 +41,24 @@ public class Map : MonoBehaviour {
 
     public static string selectedCastle;
     public static int selectedCastleID;
-    public static bool isCastleSelected = false;
+    private bool isCastleSelected = false;
 
     #region selecting champions
     bool isArmyReady = false;
     private string strategyViewScene = "Strategy view";
     #endregion
+
+    bool anyObjectSelected = false;
+    string selectedObjectName;
     #endregion
 
     void Start()
     {
         ActivateCastleButton(0);
-        AddButtonListeners();
+        closeMapButton.onClick.AddListener(CloseMap);
         LoadMap();
         HideUnavailableCastles();
         CheckArmyReadiness();
-
-        if (isArmyReady && isCastleSelected)
-        {
-            SelectTargetCastle();
-        }
     }
 
     void CheckArmyReadiness()
@@ -76,16 +74,9 @@ public class Map : MonoBehaviour {
         }
     }
 
-    void AddButtonListeners()
-    {
-        //battleButton.onClick.AddListener(EnterBattle);
-        closeMapButton.onClick.AddListener(CloseMap);
-    }
-
     // activates castles that have been unlocked
     void LoadMap()
     {
-
         SetCastleButtonContainers();
 
         // access game data about destroyed castles
@@ -104,9 +95,6 @@ public class Map : MonoBehaviour {
             }
             destroyedCastleID++;
         }
-
-        if (isCastleSelected)
-            ActivateCastleMarker();
     }
 
     void SetCastleButtonContainers()
@@ -151,16 +139,23 @@ public class Map : MonoBehaviour {
         }
     }
 
+    // recolors inactive castles to black
     void HideUnavailableCastles()
     {
         int i = 0;
+        Image castleImageElement;
         foreach (Button castleButton in castleButtons)
         {
             if (castleButton.enabled == false)
             {
                 foreach (Transform child in castleButtonContainers[i].transform)
                 {
-                    child.gameObject.GetComponent<Image>().color = inactiveElementColor;
+                    castleImageElement = child.gameObject.GetComponent<Image>();
+                    // recolor only visible elements
+                    if (castleImageElement.color.a > 0)
+                    {
+                        castleImageElement.color = inactiveElementColor;
+                    }
                 }       
             }
             i++;
@@ -169,6 +164,10 @@ public class Map : MonoBehaviour {
 
     void ActivateCastleButton(int castleID)
     {
+        if (castleButtons[castleID].enabled == true)
+        {
+            return; // for avoiding additions of multiple listeners
+        }
         castleButtons[castleID].enabled = true;
         castleButtons[castleID].onClick.AddListener(SelectTargetCastle);
     }
@@ -176,27 +175,30 @@ public class Map : MonoBehaviour {
     void SelectTargetCastle()
     {
         // castle was already selected -> enter battle or strategy view
-        if (isBattleShortcutEnabled && selectedCastle == EventSystem.current.currentSelectedGameObject.name)
+        if (isCastleSelected && isBattleShortcutEnabled)
         {
-            CheckArmyReadiness();
-            if (isArmyReady)
+            if (selectedCastle == selectedObjectName)
             {
-                EnterBattle();
-            }
-            else
-            {
-                EnterStrategyView();
-            }
+                CheckArmyReadiness();
+                if (isArmyReady)
+                {
+                    EnterBattle();
+                }
+                else
+                {
+                    EnterStrategyView();
+                }
+            }       
         }
 
-        isCastleSelected = true;
-        if (EventSystem.current.currentSelectedGameObject != null)
-            selectedCastle = EventSystem.current.currentSelectedGameObject.name;
+       // isCastleSelected = true;
+        if (anyObjectSelected)
+            selectedCastle = selectedObjectName;
 
         int currentID = 0;
-        foreach (string castle in castleNames)
+        foreach (string castleName in castleNames)
         {
-            if (castle == selectedCastle)
+            if (castleName == selectedCastle)
             {
                 selectedCastleID = currentID;
                 isCastleSelected = true;
@@ -204,7 +206,7 @@ public class Map : MonoBehaviour {
             currentID++;
         }
 
-        // disable castle marker that are not currently selected
+        // disable castle marker that is not currently selected
         if (selectedCastleMarker != null)
         {
             selectedCastleMarker.SetActive(false);
@@ -221,22 +223,18 @@ public class Map : MonoBehaviour {
 
     public void EnterBattle()
     {
-        CheckArmyReadiness();
-        if (isCastleSelected && isArmyReady)
+        if (selectedCastleID == 0)
         {
-            if (selectedCastleID == 0)
-            {
-                battleController.GetComponent<Testing>().spawnEnemyUnits = true;
-            }
+            battleController.GetComponent<Testing>().spawnEnemyUnits = true;
+        }
             
-            castles[selectedCastleID].SetActive(true);
-            EnemyBalancer activatedEnemyCastle = castles[selectedCastleID].GetComponent<EnemyBalancer>();
-            activatedEnemyCastle.currentCastleID = selectedCastleID;
+        castles[selectedCastleID].SetActive(true);
+        EnemyBalancer activatedEnemyCastle = castles[selectedCastleID].GetComponent<EnemyBalancer>();
+        activatedEnemyCastle.currentCastleID = selectedCastleID;
 
-            battleObject.SetActive(true);
-            PlayerProfile.Singleton.ModifyBattleProperties();
-            mapChildren.SetActive(false);
-        }  
+        battleObject.SetActive(true);
+        PlayerProfile.Singleton.ModifyBattleProperties();
+        mapChildren.SetActive(false);          
     }
 
     void EnterStrategyView()
@@ -246,13 +244,22 @@ public class Map : MonoBehaviour {
 
     void ActivateCastleMarker()
     {
-        EnableBattleShortcut();
+        isBattleShortcutEnabled = true;
         selectedCastleMarker = castleButtonContainers[selectedCastleID].transform.Find(selectedCastleMarkerName).gameObject;
         selectedCastleMarker.SetActive(true);
     }
-     
-    void EnableBattleShortcut()
+
+    ////////////// 09.07.2018 //////////////
+
+    public void UnselectCastle(string castleName)
     {
-        isBattleShortcutEnabled = true;
+        // TODO add this to buttons
     }
+
+    public void SelectGameObject(string selectedObject)
+    {
+        anyObjectSelected = true;
+        selectedObjectName = selectedObject;
+    }
+
 }
