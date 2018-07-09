@@ -11,6 +11,22 @@ Prefab:
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 1529472686515804}
   m_IsPrefabParent: 1
+--- !u!1 &1208005074816134
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4073844794385920}
+  - component: {fileID: 114092102635298072}
+  m_Layer: 0
+  m_Name: TimeControl
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1529472686515804
 GameObject:
   m_ObjectHideFlags: 0
@@ -21,7 +37,6 @@ GameObject:
   - component: {fileID: 4900715823933538}
   - component: {fileID: 114966100985811746}
   - component: {fileID: 114892528796807458}
-  - component: {fileID: 114428564772373090}
   - component: {fileID: 114726119767806526}
   - component: {fileID: 114160482598264780}
   - component: {fileID: 114409104781831364}
@@ -79,6 +94,19 @@ Transform:
   m_Father: {fileID: 4900715823933538}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4073844794385920
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1208005074816134}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4900715823933538}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4297767603028136
 Transform:
   m_ObjectHideFlags: 1
@@ -104,9 +132,21 @@ Transform:
   m_Children:
   - {fileID: 4055829699153478}
   - {fileID: 4297767603028136}
+  - {fileID: 4073844794385920}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114092102635298072
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1208005074816134}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a65a303bbde338e4e87dbf7f889ce209, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114160482598264780
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -228,17 +268,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   unlimitedResources: 0
---- !u!114 &114428564772373090
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1529472686515804}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3a021296fa6a61a48b8c2a5bc1a87c0f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114458335275174322
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -315,4 +344,5 @@ MonoBehaviour:
   name: Player
   champions: []
   battleSceneName: Test scene
+  armySelectedInStrategyView: 0
   isDrunk: 0
