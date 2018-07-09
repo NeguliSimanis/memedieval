@@ -14,7 +14,7 @@ public class BattleOver
     #region new champion generation
     int maxNeutralChampionCount = 3;
     int newChampionsPerBattle = 1;
-    float newChampionChance = 0.3f; // the chance of a new champion appearing after each battle
+    float newChampionChance = 0.5f; // the chance of a new champion appearing after each battle
     #endregion
 
     public void EndBattle()
@@ -34,6 +34,7 @@ public class BattleOver
 
         if (neutralChampions.neutralChampionsList.Count < maxNeutralChampionCount)
         {
+            Debug.Log("new champion created");
             neutralChampions.GenerateRandomChampion(newChampionsPerBattle);
         }
     }

@@ -16,7 +16,7 @@ public class QuitController : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKey(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
             if (quitGamePopop.activeInHierarchy == false)
             {
@@ -24,7 +24,10 @@ public class QuitController : MonoBehaviour
                 quitGamePopop.SetActive(true); 
             }
             else
+            {
+                Debug.Log("QUITTING BRO");
                 Application.Quit();
+            }  
         }
     }
 
