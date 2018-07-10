@@ -19,6 +19,8 @@ public class ResizeOnClick : MonoBehaviour {
 
     public void ChangeSize()
     {
+        if (!isResized)
+            defaultSize = this.gameObject.transform.localScale;
         isResized = true;
         float xResize = gameObject.transform.localScale.x * resizeAmount;
         float yResize = gameObject.transform.localScale.y * resizeAmount;

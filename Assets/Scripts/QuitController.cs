@@ -25,7 +25,6 @@ public class QuitController : MonoBehaviour
             }
             else
             {
-                Debug.Log("QUITTING BRO");
                 Application.Quit();
             }  
         }

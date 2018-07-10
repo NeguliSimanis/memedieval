@@ -153,7 +153,11 @@ public class Spawn : MonoBehaviour
         if (!isCaptain && !Enemy)
         {    
             if (CooldownBar == null) return;
-            CooldownBar.fillAmount = (spawnTimestamp + Cooldown - Time.time) / Cooldown;
+            CooldownBar.fillAmount = 1f - ((spawnTimestamp + Cooldown - Time.time) / Cooldown);
+            if (CooldownBar.fillAmount == 1f)
+            {
+                CooldownBar.gameObject.GetComponent<ResizeOnClick>().ChangeSize();
+            }
         }
 
         if (isChampionDying == true)
@@ -189,7 +193,6 @@ public class Spawn : MonoBehaviour
                 unitButton.gameObject.SetActive(false);
         }           
     }
-
 
     public void SpawnCharacter()
     {
