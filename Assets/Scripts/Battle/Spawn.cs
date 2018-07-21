@@ -18,6 +18,7 @@ public class Spawn : MonoBehaviour
      ************************/
     private bool isChampionDying = false;
     private bool isUnitDying = false;
+    private bool needToEnlargeCooldownBar = false; // used to check for
 
     private static int PeasantCaptainsLeft;
     private static int ArcherCaptainsLeft;
@@ -149,15 +150,10 @@ public class Spawn : MonoBehaviour
             }
         }
 
-        // show cooldown on UI if available
+        
         if (!isCaptain && !Enemy)
-        {    
-            if (CooldownBar == null) return;
-            CooldownBar.fillAmount = 1f - ((spawnTimestamp + Cooldown - Time.time) / Cooldown);
-            if (CooldownBar.fillAmount == 1f)
-            {
-                CooldownBar.gameObject.GetComponent<ResizeOnClick>().ChangeSize();
-            }
+        {
+            UpdateCooldownBar();
         }
 
         if (isChampionDying == true)
@@ -167,6 +163,25 @@ public class Spawn : MonoBehaviour
         if (isUnitDying == true)
         {
             DisableSpawnButton(false);
+        }
+    }
+
+    void UpdateCooldownBar()
+    {
+        // show cooldown on UI bar if available
+        if (CooldownBar == null) return;
+        CooldownBar.fillAmount = 1f - ((spawnTimestamp + Cooldown - Time.time) / Cooldown);
+    
+        // enlarge cooldown bar once unit is available for spawning
+        if (CooldownBar.fillAmount < 1f)
+        {
+            needToEnlargeCooldownBar = true;
+        }
+        else if (needToEnlargeCooldownBar)
+        {
+            Debug.Log("enlarge");
+            CooldownBar.gameObject.GetComponent<ResizeOnClick>().ChangeSize();
+            needToEnlargeCooldownBar = false;
         }
     }
 
