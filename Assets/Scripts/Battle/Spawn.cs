@@ -179,7 +179,6 @@ public class Spawn : MonoBehaviour
         }
         else if (needToEnlargeCooldownBar)
         {
-            Debug.Log("enlarge");
             CooldownBar.gameObject.GetComponent<ResizeOnClick>().ChangeSize();
             needToEnlargeCooldownBar = false;
         }
