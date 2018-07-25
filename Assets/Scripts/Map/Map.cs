@@ -7,7 +7,6 @@ using UnityEngine.SceneManagement;
 
 public class Map : MonoBehaviour {
     #region variables
-    
     [SerializeField]
     GameObject mapChildren;
 
@@ -50,6 +49,12 @@ public class Map : MonoBehaviour {
 
     bool anyObjectSelected = false;
     string selectedObjectName;
+
+    #region switching map views
+    [Header("Switching between map views")]
+    [SerializeField]
+    SwitchMapButton nextMapSwitch; // component attached to button for switching to 2nd map    
+    #endregion
     #endregion
 
     void Start()
@@ -85,16 +90,25 @@ public class Map : MonoBehaviour {
             GameData.current = new GameData();
         }
 
-        // check for destroyed castles
-        int destroyedCastleID = 0;
-        foreach (bool castle in GameData.current.destroyedCastles)
+        // check game data for destroyed castles
+        for (int i = 0; i < 4; i++)
         {
-            if (castle == true)
+            // found a castle that is destroyed
+            if (GameData.current.destroyedCastles[i] == true)
             {
-                MarkAsDestroyed(destroyedCastleID);
+                MarkAsDestroyed(i);
             }
-            destroyedCastleID++;
+            // second castle is not destroyed, cannot open next map view
+            else if (i == 2)
+            {
+                HideNextMapButton();
+            }
         }
+    }
+
+    void HideNextMapButton()
+    {
+        nextMapSwitch.DisableButton();
     }
 
     void SetCastleButtonContainers()
