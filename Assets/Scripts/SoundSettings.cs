@@ -8,19 +8,24 @@ public class SoundSettings : MonoBehaviour {
 
     [SerializeField]
     private string musicVCAPath;
-
-    public float volume;
-    public float finalVolume;
-    public bool musicMuted = true;
+	[SerializeField]
+	private string soundVCAPath;
+	private float musicVolume;
+	private float musicfinalVolume;
+	private float soundVolume;
+	private float soundFinalVolume;
+    public bool soundMuted = true;
 
 
     private FMOD.Studio.VCA musicVCA;
+	private FMOD.Studio.VCA soundVCA;
     // Use this for initialization
     void Start () {
 
         musicVCA = RuntimeManager.GetVCA(musicVCAPath);
-        musicVCA.getVolume(out volume, out finalVolume);
-
+		musicVCA.getVolume(out musicVolume, out musicfinalVolume);
+		soundVCA = RuntimeManager.GetVCA(soundVCAPath);
+		soundVCA.getVolume(out soundVolume, out soundFinalVolume);
 
         //UnityEngine.Debug.Log("volume " + volume + " - final volume:" + finalVolume);
 		
@@ -33,16 +38,18 @@ public class SoundSettings : MonoBehaviour {
 
     public void MuteMusic()
     {
-        if (musicMuted)
+		if (soundMuted)
         {
             musicVCA.setVolume(0f);
-            musicMuted = false;
+			soundVCA.setVolume(0f);
+			soundMuted = false;
         }
 
         else
         {
             musicVCA.setVolume(1f);
-            musicMuted = true;
+			soundVCA.setVolume(0f);
+			soundMuted = true;
         }
             
     }
