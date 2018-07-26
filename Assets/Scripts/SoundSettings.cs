@@ -48,7 +48,7 @@ public class SoundSettings : MonoBehaviour {
         else
         {
             musicVCA.setVolume(1f);
-			soundVCA.setVolume(0f);
+			soundVCA.setVolume(1f);
 			soundMuted = true;
         }
             
