@@ -24,7 +24,8 @@ public class GameData
     #endregion
 
     #region game progress
-    public bool[] destroyedCastles = new bool[4];
+    public bool[] destroyedCastles = new bool[8];
+    public int lastDestroyedCastle = -1;
     #endregion
 
     #region tags

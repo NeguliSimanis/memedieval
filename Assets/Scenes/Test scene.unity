@@ -3925,10 +3925,10 @@ RectTransform:
   m_LocalPosition: {x: 41, y: 13, z: 0}
   m_LocalScale: {x: 0.39999995, y: 0.39999995, z: 1}
   m_Children:
-  - {fileID: 486191907}
-  - {fileID: 521699932}
   - {fileID: 835398864}
   - {fileID: 1187734414}
+  - {fileID: 486191907}
+  - {fileID: 521699932}
   m_Father: {fileID: 1398914071}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4435,6 +4435,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29364f2e452fc9347a26c966a9fb50c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  switchMapButton: {fileID: 621620118}
   mapChildren: {fileID: 597013253}
   battleController: {fileID: 1896993539}
   closeMapButton: {fileID: 1278276241}
@@ -4444,16 +4445,28 @@ MonoBehaviour:
   - {fileID: 1619097410}
   - {fileID: 944426075}
   - {fileID: 907507697}
+  - {fileID: 752712074}
+  - {fileID: 1072772776}
+  - {fileID: 840176595}
+  - {fileID: 390892679}
   castleButtons:
   - {fileID: 759525866}
   - {fileID: 1909703077}
   - {fileID: 574137724}
   - {fileID: 252937887}
+  - {fileID: 2054767913}
+  - {fileID: 2073581234}
+  - {fileID: 2041460175}
+  - {fileID: 1610730087}
   castleNames:
   - Bonaguil
   - Villandraut
   - Rois Ducs
   - Beynac
+  - Chateaulin
+  - Tremazan
+  - Guildo
+  - Hunaudaye
   nextMapSwitch: {fileID: 621620118}
 --- !u!1 &363543789
 GameObject:
@@ -4669,6 +4682,49 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 372880881}
+--- !u!1 &390892679
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 390892680}
+  - component: {fileID: 390892681}
+  m_Layer: 0
+  m_Name: Castle8
+  m_TagString: Enemy balancer
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &390892680
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 390892679}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.0000010172527, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2035264646}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &390892681
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 390892679}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25dc119f6aab45b48b33ad30c4ada28f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentCastleID: 0
+  enemyUnitHPMultiplier: 10
+  castleMaxHealth: 1000
 --- !u!1 &398366683
 GameObject:
   m_ObjectHideFlags: 0
@@ -5833,7 +5889,7 @@ RectTransform:
   - {fileID: 1261110869}
   - {fileID: 2041460174}
   m_Father: {fileID: 335888235}
-  m_RootOrder: 0
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -6934,10 +6990,10 @@ RectTransform:
   - {fileID: 466549068}
   - {fileID: 1656067747}
   - {fileID: 1278276240}
-  - {fileID: 2019945636}
-  - {fileID: 2041404681}
   - {fileID: 1214812083}
   - {fileID: 1398914071}
+  - {fileID: 2019945636}
+  - {fileID: 2041404681}
   m_Father: {fileID: 1704347741}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -7099,6 +7155,7 @@ GameObject:
   - component: {fileID: 621620116}
   - component: {fileID: 621620115}
   - component: {fileID: 621620118}
+  - component: {fileID: 621620119}
   m_Layer: 5
   m_Name: NextMapButton
   m_TagString: Untagged
@@ -7165,7 +7222,18 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 621620118}
-        m_MethodName: SwitchMap
+        m_MethodName: StartSwitchMap
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 621620119}
+        m_MethodName: ChangeSize
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -7222,9 +7290,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buttonID: 0
+  isNextButton: 1
   mapViews:
   - {fileID: 1214812082}
   - {fileID: 1398914070}
+--- !u!114 &621620119
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 621620113}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5912c78211b25ea428184bb4b62599cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  resizeAmount: 1.2
+  resizeDuration: 0.15
+  isResized: 0
 --- !u!1 &630294441
 GameObject:
   m_ObjectHideFlags: 0
@@ -8194,7 +8277,7 @@ Prefab:
     - target: {fileID: 224468320535933408, guid: 77ccb4e4a72951a4793bdd536388c9d6,
         type: 2}
       propertyPath: m_RootOrder
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 224468320535933408, guid: 77ccb4e4a72951a4793bdd536388c9d6,
         type: 2}
@@ -8708,6 +8791,49 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 751755413}
+--- !u!1 &752712074
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 752712075}
+  - component: {fileID: 752712076}
+  m_Layer: 0
+  m_Name: Castle5
+  m_TagString: Enemy balancer
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &752712075
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 752712074}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.0000010172527, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2035264646}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &752712076
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 752712074}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25dc119f6aab45b48b33ad30c4ada28f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentCastleID: 0
+  enemyUnitHPMultiplier: 6
+  castleMaxHealth: 550
 --- !u!1 &758191783
 GameObject:
   m_ObjectHideFlags: 0
@@ -9399,6 +9525,49 @@ RectTransform:
   m_PrefabParentObject: {fileID: 224468320535933408, guid: 77ccb4e4a72951a4793bdd536388c9d6,
     type: 2}
   m_PrefabInternal: {fileID: 1870643649}
+--- !u!1 &840176595
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 840176596}
+  - component: {fileID: 840176597}
+  m_Layer: 0
+  m_Name: Castle7
+  m_TagString: Enemy balancer
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &840176596
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 840176595}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.0000010172527, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2035264646}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &840176597
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 840176595}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25dc119f6aab45b48b33ad30c4ada28f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentCastleID: 0
+  enemyUnitHPMultiplier: 8
+  castleMaxHealth: 700
 --- !u!1 &843259186
 GameObject:
   m_ObjectHideFlags: 0
@@ -11515,6 +11684,7 @@ GameObject:
   - component: {fileID: 997794558}
   - component: {fileID: 997794557}
   - component: {fileID: 997794556}
+  - component: {fileID: 997794560}
   m_Layer: 5
   m_Name: PrevMapButton
   m_TagString: Untagged
@@ -11553,6 +11723,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buttonID: 1
+  isNextButton: 0
   mapViews:
   - {fileID: 1214812082}
   - {fileID: 1398914070}
@@ -11596,7 +11767,18 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 997794556}
-        m_MethodName: SwitchMap
+        m_MethodName: StartSwitchMap
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 997794560}
+        m_MethodName: ChangeSize
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -11641,6 +11823,20 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 997794554}
+--- !u!114 &997794560
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 997794554}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5912c78211b25ea428184bb4b62599cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  resizeAmount: 1.2
+  resizeDuration: 0.15
+  isResized: 0
 --- !u!1 &999729166
 GameObject:
   m_ObjectHideFlags: 0
@@ -12292,6 +12488,49 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1065564580}
+--- !u!1 &1072772776
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1072772777}
+  - component: {fileID: 1072772778}
+  m_Layer: 0
+  m_Name: Castle6
+  m_TagString: Enemy balancer
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &1072772777
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1072772776}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.0000010172527, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2035264646}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1072772778
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1072772776}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25dc119f6aab45b48b33ad30c4ada28f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentCastleID: 0
+  enemyUnitHPMultiplier: 7
+  castleMaxHealth: 600
 --- !u!1 &1076028677
 GameObject:
   m_ObjectHideFlags: 0
@@ -13281,7 +13520,7 @@ RectTransform:
   - {fileID: 1895873292}
   - {fileID: 621620114}
   m_Father: {fileID: 597013254}
-  m_RootOrder: 5
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -14535,7 +14774,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1303466590}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 35, y: 341, z: 0}
+  m_LocalPosition: {x: 366, y: 239, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1589376027}
@@ -14543,7 +14782,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 35, y: 341}
+  m_AnchoredPosition: {x: 366, y: 239}
   m_SizeDelta: {x: 406.2, y: 128.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1303466592
@@ -14578,7 +14817,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: Liberate Bonaguil?
+  m_Text: Liberate?
 --- !u!222 &1303466593
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -14652,7 +14891,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: Liberate Beynac?
+  m_Text: Liberate?
 --- !u!222 &1309103293
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -14782,7 +15021,7 @@ Prefab:
     - target: {fileID: 224468320535933408, guid: 77ccb4e4a72951a4793bdd536388c9d6,
         type: 2}
       propertyPath: m_RootOrder
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 224468320535933408, guid: 77ccb4e4a72951a4793bdd536388c9d6,
         type: 2}
@@ -15607,7 +15846,7 @@ RectTransform:
   - {fileID: 1360554797}
   - {fileID: 997794555}
   m_Father: {fileID: 597013254}
-  m_RootOrder: 6
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -16403,7 +16642,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: Liberate Villandraut?
+  m_Text: Liberate?
 --- !u!222 &1488259083
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -16827,7 +17066,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: Liberate Rois Ducs?
+  m_Text: Liberate?
 --- !u!222 &1532981309
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -17992,7 +18231,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Villandraut
+          m_StringArgument: Hunaudaye
           m_BoolArgument: 0
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
@@ -20694,7 +20933,7 @@ Prefab:
     - target: {fileID: 224468320535933408, guid: 77ccb4e4a72951a4793bdd536388c9d6,
         type: 2}
       propertyPath: m_RootOrder
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224468320535933408, guid: 77ccb4e4a72951a4793bdd536388c9d6,
         type: 2}
@@ -22761,7 +23000,7 @@ RectTransform:
   - {fileID: 859105133}
   - {fileID: 132108050}
   m_Father: {fileID: 597013254}
-  m_RootOrder: 3
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -22981,6 +23220,10 @@ Transform:
   - {fileID: 1619097411}
   - {fileID: 944426076}
   - {fileID: 907507698}
+  - {fileID: 752712075}
+  - {fileID: 1072772777}
+  - {fileID: 840176596}
+  - {fileID: 390892680}
   m_Father: {fileID: 1896993540}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -23110,7 +23353,7 @@ RectTransform:
   m_Children:
   - {fileID: 14556464}
   m_Father: {fileID: 597013254}
-  m_RootOrder: 4
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -23215,7 +23458,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Bonaguil
+          m_StringArgument: Guildo
           m_BoolArgument: 0
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
@@ -23421,7 +23664,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Rois Ducs
+          m_StringArgument: Chateaulin
           m_BoolArgument: 0
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
@@ -23587,7 +23830,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Beynac
+          m_StringArgument: Tremazan
           m_BoolArgument: 0
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,

@@ -52,21 +52,21 @@ public class SwitchMapButton : MonoBehaviour
 
     public void StartSwitchMap()
     {
+        //
         if (!isButtonAvailable)
          {
              DisplayHelpMessage();
              return;
          }
-        
         StartCoroutine(SwitchMapAfterSeconds());
-
+        /*/
+        StartCoroutine(SwitchMapAfterSeconds());
+        //*/
     }
 
     public IEnumerator SwitchMapAfterSeconds()
     {
-        Debug.Log("started corot");
         yield return new WaitForSeconds(switchDuration);
-        Debug.Log("Continue");
         if (isNextButton)
         {
             mapViews[buttonID + 1].SetActive(true);
@@ -76,6 +76,22 @@ public class SwitchMapButton : MonoBehaviour
             mapViews[buttonID - 1].SetActive(true);
         }
         mapViews[buttonID].SetActive(false);
+    }
+
+    // called from map script
+    public void InstantSwitchMap(int mapViewID)
+    {
+        for (int i = 0; i < mapViews.Length; i++)
+        {
+            if (i == mapViewID)
+            {
+                mapViews[i].SetActive(true);
+            }
+            else
+            {
+                mapViews[i].SetActive(false);
+            }
+        }
     }
 
     void DisplayHelpMessage()

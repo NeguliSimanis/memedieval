@@ -164,6 +164,7 @@ public class Health : MonoBehaviour
         // mark destroyed castle
         int defeatedCastleID = GameObject.FindGameObjectWithTag(enemyBalancerTag).GetComponent<EnemyBalancer>().currentCastleID;
         GameData.current.destroyedCastles[defeatedCastleID] = true;
+        GameData.current.lastDestroyedCastle = defeatedCastleID;
 
         PlayerProfile.Singleton.gameObject.GetComponent<ChampionEffect>().ResetChampionEffect();
     }

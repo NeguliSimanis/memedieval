@@ -8,6 +8,9 @@ using UnityEngine.SceneManagement;
 public class Map : MonoBehaviour {
     #region variables
     [SerializeField]
+    SwitchMapButton switchMapButton;
+
+    [SerializeField]
     GameObject mapChildren;
 
     bool isBattleShortcutEnabled = false;
@@ -64,6 +67,22 @@ public class Map : MonoBehaviour {
         LoadMap();
         HideUnavailableCastles();
         CheckArmyReadiness();
+        ShowCorrectMapView();
+    }
+
+    // shows the map view where the last destroyed castle was located
+    void ShowCorrectMapView()
+    {
+        // one of first castles was destroyed last - show first view
+        if (GameData.current.lastDestroyedCastle < 4)
+        {
+            switchMapButton.InstantSwitchMap(0);
+        }
+        // one of latter castles was destroyed - show second view
+        else
+        {
+            switchMapButton.InstantSwitchMap(1);
+        }
     }
 
     void CheckArmyReadiness()
@@ -90,18 +109,25 @@ public class Map : MonoBehaviour {
             GameData.current = new GameData();
         }
 
-        // check game data for destroyed castles
-        for (int i = 0; i < 4; i++)
+        // check game data for destroyed castles in the first view
+        for (int i = 0; i < 8; i++)
         {
             // found a castle that is destroyed
             if (GameData.current.destroyedCastles[i] == true)
             {
                 MarkAsDestroyed(i);
             }
-            // second castle is not destroyed, cannot open next map view
-            else if (i == 2)
+            // found a castle that's not destroyed
+            else
             {
-                HideNextMapButton();
+                // check if the castle can is already available for attacking
+                CheckIfCastleUnlocked(i);
+
+                // second castle not destroyed, cannot open next map view
+                if (i == 2)
+                {
+                    HideNextMapButton();
+                }
             }
         }
     }
@@ -125,32 +151,39 @@ public class Map : MonoBehaviour {
         SceneManager.LoadScene(sceneAfterCloseMap);
     }
 
-    void MarkAsDestroyed(int castleID)
+    void CheckIfCastleUnlocked(int castleID)
     {
-        EnableDestroyedCastleMarker(castleID);
-
-        // unlock the destroyed castle and all previous castles    
-        for (int i = castleID; i >= 0; i--)
+        // first castle is destroyed - unlocks the second and third castles
+        if (GameData.current.destroyedCastles[0] == true)
+        {
+            if (castleID == 1 || castleID == 2)
+            {
+                ActivateCastleButton(castleID);
+            }
+        }
+        // fourth castle is unlocked by destroying the 2nd one
+        if (castleID == 3 && GameData.current.destroyedCastles[1] == true)
         {
             ActivateCastleButton(castleID);
         }
+        // fifth castle is unlocked by destroying the 3d one
+        else if (castleID == 4 && GameData.current.destroyedCastles[2] == true)
+        {
+            ActivateCastleButton(castleID);
+        }
+        // all other cases - if previous castle is destroyed, this one is unlocked
+        else if (castleID != 4 && castleID != 3)
+        {
+            if (castleID > 0 && GameData.current.destroyedCastles[castleID - 1] == true)
+                ActivateCastleButton(castleID);
+        }
+    }
 
-        // destroying first castle unlocks the second and third castles
-        if (castleID == 0)
-        {
-            ActivateCastleButton(castleID + 1);
-            ActivateCastleButton(castleID + 2);
-        }    
-        else if (castleID == 2 || castleID == castles.Length-1)
-        {
-            
-        }
-        // destroying a castle other than the last or third one unlocks the next castle 
-        else
-        {
-            ActivateCastleButton(castleID + 1);
-            ActivateCastleButton(castleID + 2);
-        }
+    // mark castle as destroyed on map
+    void MarkAsDestroyed(int castleID)
+    {
+        EnableDestroyedCastleMarker(castleID);
+        ActivateCastleButton(castleID);
     }
 
     // recolors inactive castles to black
@@ -216,6 +249,7 @@ public class Map : MonoBehaviour {
             {
                 selectedCastleID = currentID;
                 isCastleSelected = true;
+                Debug.Log("castle " + castleName + " selectde");
             }
             currentID++;
         }
@@ -261,14 +295,10 @@ public class Map : MonoBehaviour {
         isBattleShortcutEnabled = true;
         selectedCastleMarker = castleButtonContainers[selectedCastleID].transform.Find(selectedCastleMarkerName).gameObject;
         selectedCastleMarker.SetActive(true);
+        Debug.Log(selectedCastleMarker.gameObject.name);
     }
 
     ////////////// 09.07.2018 //////////////
-
-    public void UnselectCastle(string castleName)
-    {
-        // TODO add this to buttons
-    }
 
     public void SelectGameObject(string selectedObject)
     {
