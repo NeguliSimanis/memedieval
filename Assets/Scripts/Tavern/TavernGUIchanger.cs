@@ -7,8 +7,6 @@ public class TavernGUIchanger : MonoBehaviour
 {
     private ResourceControl resourceControl;
 
-	public Text ducatcount;    
-    public Text saltcount;
     public GameObject[] layouts;
 
     private TavernDialogueControl tavernDialogueContol;
@@ -17,9 +15,6 @@ public class TavernGUIchanger : MonoBehaviour
 
     private void Start()
     {
-        StartCoroutine(SetSaltCount());
-        StartCoroutine(SetDucatCount());
-
         // intialize variables
         tavernDialogueContol = this.gameObject.GetComponent<TavernDialogueControl>();
         resourceControl = PlayerProfile.Singleton.gameObject.GetComponent<ResourceControl>();
@@ -64,24 +59,5 @@ public class TavernGUIchanger : MonoBehaviour
         layouts[layoutID].SetActive(true);
         tavernDialogueContol.ResetDialogue();
     }
-
-    public IEnumerator SetSaltCount()
-    {
-        
-        while (true)
-        {
-            saltcount.text = PlayerProfile.Singleton.SaltCurrent.ToString();
-            yield return new WaitForSeconds(1);
-        }
-    }
-
-	public IEnumerator SetDucatCount()
-	{
-		while (true)
-		{
-			ducatcount.text = PlayerProfile.Singleton.DucatCurrent.ToString();
-			yield return new WaitForSeconds(1);
-		}
-	}
 
 }

@@ -24,13 +24,19 @@ public class SwitchMapButton : MonoBehaviour
 
     [SerializeField]
     private GameObject[] mapViews; // contain various castle buttons
-    private float switchDuration = 0.17f;
+    private float switchDuration = 0.17f; // how much time passes between clicking button and switching to other map view
+
+    [SerializeField]
+    private Text mapTitle;
 
     void Start ()
     {
         GetButtonImageComponent();
         defaultButtonColor = thisButtonImage.color;
         inactiveButtonColor = new Color(0, 0, 0, 1);
+        if (MapData.current == null)
+            MapData.current = new MapData();
+        SetMapTitle();
     }
 	
     void GetButtonImageComponent()
@@ -67,15 +73,18 @@ public class SwitchMapButton : MonoBehaviour
     public IEnumerator SwitchMapAfterSeconds()
     {
         yield return new WaitForSeconds(switchDuration);
+        // switching from first view to second view
         if (isNextButton)
         {
             mapViews[buttonID + 1].SetActive(true);
         }
+        // switching from second view to first view
         else
         {
-            mapViews[buttonID - 1].SetActive(true);
+            mapViews[buttonID - 1].SetActive(true);       
         }
         mapViews[buttonID].SetActive(false);
+        SetMapTitle();
     }
 
     // called from map script
@@ -90,6 +99,18 @@ public class SwitchMapButton : MonoBehaviour
             else
             {
                 mapViews[i].SetActive(false);
+            }
+        }
+        SetMapTitle();
+    }
+
+    void SetMapTitle()
+    {
+        for (int i = 0; i < mapViews.Length; i++)
+        {
+            if(mapViews[i].activeInHierarchy)
+            {
+                mapTitle.text = MapData.current.mapRegionNames[i];
             }
         }
     }
