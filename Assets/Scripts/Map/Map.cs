@@ -248,8 +248,7 @@ public class Map : MonoBehaviour {
             if (castleName == selectedCastle)
             {
                 selectedCastleID = currentID;
-                isCastleSelected = true;
-                Debug.Log("castle " + castleName + " selectde");
+                isCastleSelected = true;    
             }
             currentID++;
         }
@@ -295,7 +294,6 @@ public class Map : MonoBehaviour {
         isBattleShortcutEnabled = true;
         selectedCastleMarker = castleButtonContainers[selectedCastleID].transform.Find(selectedCastleMarkerName).gameObject;
         selectedCastleMarker.SetActive(true);
-        Debug.Log(selectedCastleMarker.gameObject.name);
     }
 
     ////////////// 09.07.2018 //////////////

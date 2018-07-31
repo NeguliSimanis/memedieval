@@ -126,6 +126,8 @@ public class PlayerProfile : MonoBehaviour
     void OnLevelFinishedLoading(Scene scene, LoadSceneMode mode)
     {
         DestroyPlayerProfileCopies();
+        // resets a health script variable
+        Health.endBattleCalled = false;
         if (scene.name == battleSceneName)
             InitializeBattleScene();
     }

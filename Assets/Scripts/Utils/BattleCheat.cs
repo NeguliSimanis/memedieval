@@ -22,7 +22,7 @@ public class BattleCheat : MonoBehaviour
             if (!isVictoryCheatActive)
             {
                 isVictoryCheatActive = true;
-                GameObject.FindGameObjectWithTag(playerCastleTag).GetComponent<Health>().WinBattle();
+                GameObject.FindGameObjectWithTag(playerCastleTag).GetComponent<Health>().EndBattle(true);
             }          
         }
         if (Input.GetKeyDown(KeyCode.M))

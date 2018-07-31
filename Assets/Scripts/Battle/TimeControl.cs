@@ -8,10 +8,11 @@ public class TimeControl : MonoBehaviour {
     /// manages unit movement etc. when game is paused or the game speed is changed
     /// </summary>
 
-    bool isGamePaused = false;
+    public static bool isGamePaused = false;
 
     public void Pause()
     {
+        Debug.Log("pausing");
         if (isGamePaused)
         {
             return;
@@ -22,6 +23,7 @@ public class TimeControl : MonoBehaviour {
 
     public void Unpause()
     {
+        Debug.Log("unpausing");
         if (!isGamePaused)
         {
             return;

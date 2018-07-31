@@ -13,8 +13,9 @@ public class Health : MonoBehaviour
     private float regenEndTime;
     private int regenPerSecond;
 
-    private static bool victory;
-    private static bool gameOver;
+    public static bool endBattleCalled = false; // to avoid calling the method multiple times
+    private static bool isVictory;
+    private static bool isDefeat;
     private static bool peasantChampionDead;
     private static bool archerChampionDead;
     private static bool knightChampionDead;
@@ -29,8 +30,7 @@ public class Health : MonoBehaviour
 
     [SerializeField] LoadScene nextLevelScript;
     [SerializeField] string nextLevelToLoad = "Castle";
-    [SerializeField] string enemyBalancerTag = "Enemy balancer";
-
+    
 	private int currentHealth;
 	public int CurrentHealth
 	{
@@ -66,12 +66,6 @@ public class Health : MonoBehaviour
 
     void Update()
     {
-        if (isCelebratingVictory && Input.GetMouseButtonDown(0))
-        {
-            if (!isLoadingNextLevel)
-                StartCoroutine(LoadNextLevelAfterDelay());
-        }
-
         if (isRegening && Time.time > regenEndTime)
         {
             EndRegen();
@@ -82,11 +76,10 @@ public class Health : MonoBehaviour
             fire.SetActive(true);
         } //else if (gameObject.tag.Equals("EnemyCastle") && fire != null && fire.activeSelf && CurrentHealth > MaximumHealth / 3f)
 
-        if (victory || gameOver)
+        if (isVictory || isDefeat)
         {
-            EndBattle();
             PlayerProfile.Singleton.ResetBattleProperties();
-            if (victory)
+            if (isVictory)
             {
                 PlayerProfile.Singleton.lastGameStatus = 1;
             }
@@ -104,19 +97,17 @@ public class Health : MonoBehaviour
                 }
             }
             if (nextLevelScript == null) Debug.Log("Next level name not specified in inspector");
-            else// nextLevelScript.loadLevel(nextLevelToLoad); 
+            else
             {
                 Spawn.ResetAllValues();
                 WaypointFollower.ResetAllValues();
                 ResetAllValues();
-                if (victory)
+                if (isVictory)
                     CelebrateVictory();
                 else
                     MournDefeat();
             }
-
         }
-        
         if (currentHealth <= 0)
         {
             if (isCaptain)
@@ -134,40 +125,39 @@ public class Health : MonoBehaviour
                 if (isPlayer)
                 {
                     MournDefeat();
-                    gameOver = true;
-                    victory = false;
+                    isDefeat = true;
+                    isVictory = false;
                 }
-                else if (!isPlayer) WinBattle(); 
+                else if (!isPlayer)
+                {
+                    CelebrateVictory();
+                    isVictory = true;
+                    isDefeat = false;
+                }
+                EndBattle(isVictory);
             }
         }
     }
 
-    void EndBattle()
+    public void EndBattle(bool isVictory = false)
     {
-        if (BattleOver.manager == null)
-            BattleOver.manager = new BattleOver();
+        if (endBattleCalled)
+            return;
+        endBattleCalled = true;
+        Debug.Log("battle ended");
 
-        // currently only creates new champions
-        BattleOver.manager.EndBattle();
-    }
+        // pause game
+        PlayerProfile.Singleton.gameObject.transform.Find("TimeControl").GetComponent<TimeControl>().Pause();
 
-    public void WinBattle()
-    {
-        victory = true;
-        AllocateExp();
+        // victory is set here again for cases when function is called from outside health script
+        Health.isVictory = isVictory; 
+
         
-        if (GameData.current == null)
-        {
-            GameData.current = new GameData();
-        }
+        BattleOver.manager = new BattleOver();
 
-        // mark destroyed castle
-        int defeatedCastleID = GameObject.FindGameObjectWithTag(enemyBalancerTag).GetComponent<EnemyBalancer>().currentCastleID;
-        GameData.current.destroyedCastles[defeatedCastleID] = true;
-        GameData.current.lastDestroyedCastle = defeatedCastleID;
-
-        PlayerProfile.Singleton.gameObject.GetComponent<ChampionEffect>().ResetChampionEffect();
+        BattleOver.manager.EndBattle(isVictory);
     }
+
 
     private void AllocateExp()
     {
@@ -178,13 +168,13 @@ public class Health : MonoBehaviour
 
     public static bool GameOver
     {
-        get { return gameOver; }
+        get { return isDefeat; }
     }
 
 
     public static bool Victory
     {
-        get { return victory; }
+        get { return isVictory; }
     }
 
     void DestroyPlayerUnit()
@@ -267,8 +257,8 @@ public class Health : MonoBehaviour
 
     public void ResetAllValues()
     {
-        victory = false;
-        gameOver = false;
+        isVictory = false;
+        isDefeat = false;
         peasantChampionDead = false;
         archerChampionDead = false;
         knightChampionDead = false;
@@ -296,15 +286,6 @@ public class Health : MonoBehaviour
     private void MournDefeat()
     {
         isMourningDefeat = true;
-        if (!isLoadingNextLevel)
-            StartCoroutine(LoadNextLevelAfterDelay());
-    }
-
-    IEnumerator LoadNextLevelAfterDelay(float delay = 3f)
-    {  
-        isLoadingNextLevel = true;
-        yield return new WaitForSeconds(delay);
-        SceneManager.LoadScene(nextLevelToLoad);
     }
 
 }
