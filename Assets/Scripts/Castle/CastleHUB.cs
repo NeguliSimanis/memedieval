@@ -241,7 +241,6 @@ public class CastleHUB : MonoBehaviour {
         if (s > 0)
         {
             servantDialogue.text = "Most glorious victory, oh great leader. You get 5 SALT! What is Your next action?";
-            ObtainVictorySpoils();
         }
         if (s < 0)
         {
@@ -258,20 +257,5 @@ public class CastleHUB : MonoBehaviour {
                 Destroy(champ.gameObject);
             }
         }
-    }
-
-    void ObtainVictorySpoils()
-    {
-        PlayerProfile playerProfile = PlayerProfile.Singleton;
-
-        //salt
-        playerProfile.SaltCurrent += 5;
-
-        //ducats
-        float obtainDucatChance = playerProfile.gameObject.GetComponent<ChampionEffect>().ducatFindChance;
-        float ducatRoll = Random.Range(0f, 0.99f);
-
-        if (obtainDucatChance > ducatRoll)
-            playerProfile.DucatCurrent++;
     }
 }

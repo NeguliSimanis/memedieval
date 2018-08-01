@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BattleOver
 {
@@ -15,6 +16,14 @@ public class BattleOver
     string enemyBalancerTag = "Enemy balancer";
     string victoryPopupTag = "Victory popup";
     string defeatPopupTag = "Defeat popup";
+    string saltAmountTag = "Victory salt";
+    string ducatAmountTag = "Victory ducat";
+    #endregion
+
+    #region battle spoils
+    int saltPerWin = 5;
+    int currentSaltGain = 0; // how much salt gained in current battle
+    int currentDucatGain = 0; // how many ducats gained in current battle
     #endregion
 
     #region new champion generation
@@ -25,16 +34,23 @@ public class BattleOver
 
     public void EndBattle(bool isVictory = false)
     {
+        ResetValues();
         GenerateNewChampions();
-
         if (isVictory)
         {
+            ObtainVictorySpoils();
             WinBattle();
         }
         else
         {
             LoseBattle();
         }
+    }
+
+    private void ResetValues()
+    {
+        currentSaltGain = 0;
+        currentDucatGain = 0;
     }
 
     public void WinBattle()
@@ -74,6 +90,10 @@ public class BattleOver
         // enables popup game object
         ToggleGameObject popupEnabler = GameObject.FindGameObjectWithTag(victoryPopupTag).GetComponent<ToggleGameObject>();
         popupEnabler.ToggleActiveState();
+
+        // update text with victory spoils 
+        GameObject.FindGameObjectWithTag(saltAmountTag).GetComponent<Text>().text = currentSaltGain.ToString();
+        GameObject.FindGameObjectWithTag(ducatAmountTag).GetComponent<Text>().text = currentDucatGain.ToString();
     }
 
     private void DisplayDefeatPopup()
@@ -103,4 +123,23 @@ public class BattleOver
         }
     }
 
+
+    void ObtainVictorySpoils()
+    {
+        PlayerProfile playerProfile = PlayerProfile.Singleton;
+
+        //salt
+        playerProfile.SaltCurrent += saltPerWin;
+        currentSaltGain = saltPerWin;
+
+        //ducats
+        float obtainDucatChance = playerProfile.gameObject.GetComponent<ChampionEffect>().ducatFindChance;
+        float ducatRoll = Random.Range(0f, 0.99f);
+
+        if (obtainDucatChance > ducatRoll)
+        {
+            playerProfile.DucatCurrent++;
+            currentDucatGain = 1;
+        }
+    }
 }

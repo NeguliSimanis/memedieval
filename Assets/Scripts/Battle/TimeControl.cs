@@ -12,7 +12,6 @@ public class TimeControl : MonoBehaviour {
 
     public void Pause()
     {
-        Debug.Log("pausing");
         if (isGamePaused)
         {
             return;
@@ -23,7 +22,6 @@ public class TimeControl : MonoBehaviour {
 
     public void Unpause()
     {
-        Debug.Log("unpausing");
         if (!isGamePaused)
         {
             return;

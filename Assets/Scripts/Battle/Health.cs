@@ -144,7 +144,6 @@ public class Health : MonoBehaviour
         if (endBattleCalled)
             return;
         endBattleCalled = true;
-        Debug.Log("battle ended");
 
         // pause game
         PlayerProfile.Singleton.gameObject.transform.Find("TimeControl").GetComponent<TimeControl>().Pause();
@@ -152,9 +151,7 @@ public class Health : MonoBehaviour
         // victory is set here again for cases when function is called from outside health script
         Health.isVictory = isVictory; 
 
-        
         BattleOver.manager = new BattleOver();
-
         BattleOver.manager.EndBattle(isVictory);
     }
 
