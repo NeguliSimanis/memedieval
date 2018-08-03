@@ -176,6 +176,7 @@ public class CreateChampion : MonoBehaviour
         champo.properties.isMan = (Random.value > 0.5f);
         champo.properties.bio = MakeBio(championName);
         champo.properties.quote = MakeMotto();
+        champo.invitedToBattle = true;
         SetChampionPicture(champo);
         SetChampionAbility(champo);
         this.gameObject.GetComponent<ChampionSkillGenerator>().GenerateChampionSkills(champo);

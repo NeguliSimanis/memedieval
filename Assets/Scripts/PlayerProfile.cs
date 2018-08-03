@@ -65,7 +65,8 @@ public class PlayerProfile : MonoBehaviour
 
     private void Start()
     {
-       // MictransactionsManager.Instance.OnTransactionSuccessful += Instance_OnTransactionSuccessful;
+        if (DisableScreenSleep.current == null)
+            DisableScreenSleep.current = new DisableScreenSleep();
     }
 
     private void Instance_OnTransactionSuccessful(MictransactionsManager.PremiumCurrencyProduct product)
@@ -126,6 +127,8 @@ public class PlayerProfile : MonoBehaviour
     void OnLevelFinishedLoading(Scene scene, LoadSceneMode mode)
     {
         DestroyPlayerProfileCopies();
+        // disable screen sleeping while the game is open 
+        DisableScreenSleep.current.DisableSleep();
         // resets a health script variable
         Health.endBattleCalled = false;
         if (scene.name == battleSceneName)
