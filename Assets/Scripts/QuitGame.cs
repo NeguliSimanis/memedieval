@@ -9,4 +9,11 @@ public class QuitGame : MonoBehaviour {
     {
         Application.Quit();
     }
+
+    public void QuitAfterSave()
+    {
+        SaveLoad gameSaver = new SaveLoad();
+        gameSaver.Save();
+        Quit();
+    }
 }
