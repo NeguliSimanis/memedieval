@@ -29,9 +29,13 @@ public class MoveCamera : MonoBehaviour
     [SerializeField]
     GameObject leftBorder;
     Renderer leftScreenBorder;
+    [SerializeField]
+    GameObject[] cameraFollowers;
+    private int cameraFollowerCount;
 
     private void Start()
     {
+        cameraFollowerCount = cameraFollowers.Length;
         leftScreenBorder = leftBorder.GetComponent<Renderer>();
         rightScreenBorder = rightBorder.GetComponent<Renderer>();
         myCamera = gameObject.GetComponent<Camera>();
@@ -76,10 +80,25 @@ public class MoveCamera : MonoBehaviour
     private void LateUpdate()
     {
         if (isCameraSlidingLeft && !canSlideLeft)
+        {
             return;
+        }
         if (isCameraSlidingRight && !canSlideRight)
+        {
             return;
+        }
+
+        // move the camera
         transform.position = transform.position + offset;
+
+        // move objects that are following the camera
+        if (isCameraSlidingLeft || isCameraSlidingRight)
+        {
+            for (int i = 0; i < cameraFollowerCount; i++)
+            {
+                cameraFollowers[i].transform.position = cameraFollowers[i].transform.position + offset;
+            }
+        }
     }
 
     private void SlideCameraHorizontally(float xOffset)

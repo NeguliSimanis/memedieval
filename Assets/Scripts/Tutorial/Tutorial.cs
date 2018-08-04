@@ -86,6 +86,8 @@ public class Tutorial : MonoBehaviour {
 
         // play archer animation (over immediately if player clicks)
         isArcherAppearing = true;
+
+        CreateTutorialChampion();
     }
 
     void Update()
@@ -319,7 +321,7 @@ public class Tutorial : MonoBehaviour {
     // happens when you have blocked all the arrows
     void CongratulateOnBlockingArrows()
     {
-        CreateTutorialChampion();
+        //CreateTutorialChampion();
 
         // shows player dialogue button
         HideDialogueButton(true);
@@ -404,7 +406,7 @@ public class Tutorial : MonoBehaviour {
 
     public void SkipTutorial()
     {
-        CreateTutorialChampion();
+       // CreateTutorialChampion();
         gameObject.GetComponent<LoadScene>().loadLevel("Castle");
     }
 }
