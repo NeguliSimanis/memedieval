@@ -63,7 +63,6 @@ public class Map : MonoBehaviour {
     void Start()
     {
         ActivateCastleButton(0);
-        closeMapButton.onClick.AddListener(CloseMap);
         LoadMap();
         HideUnavailableCastles();
         CheckArmyReadiness();

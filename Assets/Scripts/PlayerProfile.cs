@@ -128,6 +128,8 @@ public class PlayerProfile : MonoBehaviour
     {
         DestroyPlayerProfileCopies();
         // disable screen sleeping while the game is open 
+        if (DisableScreenSleep.current == null)
+            DisableScreenSleep.current = new DisableScreenSleep();
         DisableScreenSleep.current.DisableSleep();
         // resets a health script variable
         Health.endBattleCalled = false;

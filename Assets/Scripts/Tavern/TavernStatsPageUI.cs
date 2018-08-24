@@ -135,18 +135,18 @@ public class TavernStatsPageUI : MonoBehaviour {
         {
             case 0:
                 UnitImage[1].SetActive(false);
-                UnitImage[2].SetActive(false);
-                UnitImage[0].SetActive(true);
+                UnitImage[2].SetActive(false); // archer
+                UnitImage[0].SetActive(true);  // peasant
                 break;
             case 1:              
                 UnitImage[1].SetActive(true);
-                UnitImage[2].SetActive(false);
-                UnitImage[0].SetActive(false);
+                UnitImage[2].SetActive(false); // archer
+                UnitImage[0].SetActive(false);  // peasant
                 break;  
             case 2:
                 UnitImage[1].SetActive(false);
-                UnitImage[2].SetActive(true);
-                UnitImage[0].SetActive(false);
+                UnitImage[2].SetActive(true); // archer
+                UnitImage[0].SetActive(false);  // peasant
                 break;
         }
         SetChampionClassText();
@@ -180,10 +180,10 @@ public class TavernStatsPageUI : MonoBehaviour {
 
     private void InstantiateChampionButton(Champion currentChampion)
     {
-        var buttonPrefab = Instantiate(ChampSelectButtonPrefab);
+        var buttonPrefab = Instantiate(ChampSelectButtonPrefab, ChampSelectPanel.transform);
         var buttonImage = buttonPrefab.GetComponent<Image>();
         buttonImage.gameObject.SetActive(true);
-        buttonImage.transform.SetParent(ChampSelectPanel.transform);
+        //buttonImage.transform.SetParent(ChampSelectPanel.transform);
 
         // load picture taken by camera
         if (currentChampion.properties.isCameraPicture == true)

@@ -9,10 +9,7 @@ public class Spawn : MonoBehaviour
     /************************
      
      Script is attached to:
-        RecruitArcher
-        RecruitKnight
-        RecruitPeasant
-        DeployChampion
+    no
     game objects
 
      ************************/
@@ -36,6 +33,7 @@ public class Spawn : MonoBehaviour
     [SerializeField] private Image CooldownBar;
     [SerializeField] private Button unitButton;
     [SerializeField] private Button championButton;
+    [SerializeField] private Image[] hideThisWhenInsufficientMeat;
 
     public Text UnitCostText;
 
@@ -114,6 +112,8 @@ public class Spawn : MonoBehaviour
 
     void Update()
     {
+        HideButtonIfNotResources();
+
         if (isCaptain && unitButton != null && unitButton.enabled)
         {
             if (Attack.Type.Archer == captain && Health.Archer) unitButton.interactable = false;
@@ -150,8 +150,7 @@ public class Spawn : MonoBehaviour
             }
         }
 
-        
-        if (!isCaptain && !Enemy)
+        if (!Enemy)
         {
             UpdateCooldownBar();
         }
@@ -164,6 +163,15 @@ public class Spawn : MonoBehaviour
         {
             DisableSpawnButton(false);
         }
+    }
+
+    void HideButtonIfNotResources()
+    {
+       /* if 
+        foreach (Image elementToHide in hideThisWhenInsufficientMeat)
+        {
+
+        }*/
     }
 
     void UpdateCooldownBar()

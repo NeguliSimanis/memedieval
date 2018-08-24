@@ -355,6 +355,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 1870340776}
+        m_MethodName: Pause
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &142407746
@@ -754,7 +765,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 360030240}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 214, y: -215.00002, z: 0}
+  m_LocalPosition: {x: 117, y: -215.00002, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 245430409}
@@ -762,7 +773,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 214, y: -215}
+  m_AnchoredPosition: {x: 117, y: -215}
   m_SizeDelta: {x: -545.7999, y: -361.73328}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &360030242
@@ -791,13 +802,13 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 0
     m_MaxSize: 300
-    m_Alignment: 4
+    m_Alignment: 5
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: v0.1.8
+  m_Text: v.0.1.9
 --- !u!222 &360030243
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1990,6 +2001,12 @@ GameObject:
   m_PrefabParentObject: {fileID: 1670266448065936, guid: cca90e0e2dfbc684fa234f698594bc59,
     type: 2}
   m_PrefabInternal: {fileID: 1236460949}
+--- !u!114 &1870340776 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114925004993707328, guid: cca90e0e2dfbc684fa234f698594bc59,
+    type: 2}
+  m_PrefabInternal: {fileID: 1236460949}
+  m_Script: {fileID: 11500000, guid: a1ecc15b9eb88c64f9e02d7194832adb, type: 3}
 --- !u!1 &2055368781
 GameObject:
   m_ObjectHideFlags: 0

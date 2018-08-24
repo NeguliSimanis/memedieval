@@ -57,9 +57,9 @@ public class CreateChampion : MonoBehaviour
     public string[] Sentence1part2 = {"in a poor family", "in a church","in a noble family","under the starry sky",
     "on the battlefield","in the woods","on a mountain","under the bridge","in secrecy","in a strange land" };
     public string[] Sentence1part3 = { "when the bell tolled midnight.","under the guise of the night.","a long time ago.","and without shame.","illuminated by God’s light.",
-    "and guided by truth in sword."};
-    public string[] Sentence2part1 = { " But everything changed when ", " But one faithful day ", " That all changed when " };
-    public string[] Sentence2part2 = { "he infidels attacked ", "a pastor arrived to the village ", "{0} lost their dog in the woods ", "the vikings arrived" };
+    "and guided by truth in sword.", "."};
+    public string[] Sentence2part1 = { " But everything changed when", " But one faithful day", " That all changed when" };
+    public string[] Sentence2part2 = { "the infidels attacked", "a pastor arrived to the village", "{0} lost their dog in the woods", "the vikings arrived" };
     public string[] Sentence2part3 = { "and took their spouse away.", "and praised the Lord.", "and burned everything in sight.", "and drank all the mead in the village." };
     public string[] Sentence3part1 = { "Now {0}", "Ever since, {0}", "Evermore, {0}" };
     public string[] Sentence3part2 = { "roams the lands", "is on a quest", "offers their sword for hire", "spends the days at the tavern" };
