@@ -17,9 +17,9 @@ public class Spawn : MonoBehaviour
     private bool isUnitDying = false;
     private bool needToEnlargeCooldownBar = false; // used to check for
 
-    private static int PeasantCaptainsLeft;
-    private static int ArcherCaptainsLeft;
-    private static int KnightCaptainsLeft;
+    public static int PeasantCaptainsLeft;
+    public static int ArcherCaptainsLeft;
+    public static int KnightCaptainsLeft;
     private static float spawnTimestamp;
     private static float enemyTimestamp;
 
@@ -200,6 +200,7 @@ public class Spawn : MonoBehaviour
             return;
         if (!Health.Peasant && captain == Attack.Type.Peasant)
             return;
+
         // champion is dead, must disable spawning regular units
         StartDisablingUnitButt();
     }
@@ -312,9 +313,24 @@ public class Spawn : MonoBehaviour
 
     public static void ResetAllValues()
     {
-        PeasantCaptainsLeft = 1;
-        ArcherCaptainsLeft = 1;
-        KnightCaptainsLeft = 1;
+        PeasantCaptainsLeft = 0;
+        ArcherCaptainsLeft = 0;
+        KnightCaptainsLeft = 0;
+        foreach (Champion champion in PlayerProfile.Singleton.champions)
+        {
+            if (champion.GetClassName() == "Archer" && champion.invitedToBattle)
+            {
+                ArcherCaptainsLeft = 1;
+            }
+            else if (champion.GetClassName() == "Peasant" && champion.invitedToBattle)
+            {
+                PeasantCaptainsLeft = 1;
+            }
+            else if (champion.GetClassName() == "Knight" && champion.invitedToBattle)
+            {
+                KnightCaptainsLeft = 1;
+            }
+        }
     }
 
     private void TransformChampionFace(AvatarFace championFace, int championClassID)

@@ -30,7 +30,7 @@ public class Health : MonoBehaviour
 
     [SerializeField] LoadScene nextLevelScript;
     [SerializeField] string nextLevelToLoad = "Castle";
-    
+
 	private int currentHealth;
 	public int CurrentHealth
 	{
@@ -47,6 +47,11 @@ public class Health : MonoBehaviour
         ResetAllValues();
     }
 
+    [Header("Battle UI")]
+    [SerializeField]
+    GameObject surrenderButton;
+    public static bool canSurrender = false;
+    public static bool surrenderButtonEnabled = false;
 
     void Start()
     {
@@ -112,9 +117,26 @@ public class Health : MonoBehaviour
         {
             if (isCaptain)
             {
-                if (UnitType == Attack.Type.Archer) archerChampionDead = true;
-                if (UnitType == Attack.Type.Peasant) peasantChampionDead = true;
-                if (UnitType == Attack.Type.Knight) knightChampionDead = true;
+                if (UnitType == Attack.Type.Archer)
+                {
+                    archerChampionDead = true;
+                    Spawn.ArcherCaptainsLeft--;
+                }
+                if (UnitType == Attack.Type.Peasant)
+                {
+                    Spawn.PeasantCaptainsLeft--;
+                    peasantChampionDead = true;
+                }
+                if (UnitType == Attack.Type.Knight)
+                {
+                    knightChampionDead = true;
+                    Spawn.KnightCaptainsLeft--;
+                }
+                // all champions dead, enable surrender button
+                if (Spawn.PeasantCaptainsLeft <= 0 && Spawn.KnightCaptainsLeft <= 0 && Spawn.ArcherCaptainsLeft <= 0)
+                {
+                    canSurrender = true;
+                }
             }
             if (IsCharacter) {
                 FindObjectOfType<ResourceTextController>().AddResources(isPlayer, meadCarrying);
@@ -137,6 +159,20 @@ public class Health : MonoBehaviour
                 EndBattle(isVictory);
             }
         }
+        ManageSurrenderButton();
+    }
+
+    private void ManageSurrenderButton()
+    {
+        if (surrenderButton == null)
+            return;
+        if (!canSurrender)
+            return;
+        if (surrenderButtonEnabled)
+            return;
+        
+        surrenderButtonEnabled = true;
+        surrenderButton.SetActive(true);
     }
 
     public void EndBattle(bool isVictory = false)
