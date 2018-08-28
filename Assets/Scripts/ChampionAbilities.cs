@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class ChampionAbilities : MonoBehaviour
 {
-
+    
     Champion champion;
 
     WaypointFollower waypointFollower;

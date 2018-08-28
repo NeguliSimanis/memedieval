@@ -16,7 +16,7 @@ public class CreateChampion : MonoBehaviour
     string correctOrientation = "LandscapeLeft";
     bool isRightOrientation = true;
     #endregion
-
+    
     [SerializeField]
     AudioClip prayerDefaultAudio;
     [SerializeField]
@@ -51,21 +51,6 @@ public class CreateChampion : MonoBehaviour
 
     public bool isMan;
 
-    #region bio strings
-    public string[] Sentence1part1 = { "{0} was born", "{0} fondly recalls the time that was spent",
-    "{0} spent the childhood","The scars borne by {0} were struck" };
-    public string[] Sentence1part2 = {"in a poor family", "in a church","in a noble family","under the starry sky",
-    "on the battlefield","in the woods","on a mountain","under the bridge","in secrecy","in a strange land" };
-    public string[] Sentence1part3 = { "when the bell tolled midnight.","under the guise of the night.","a long time ago.","and without shame.","illuminated by God’s light.",
-    "and guided by truth in sword.", "."};
-    public string[] Sentence2part1 = { " But everything changed when", " But one faithful day", " That all changed when" };
-    public string[] Sentence2part2 = { "the infidels attacked", "a pastor arrived to the village", "{0} lost their dog in the woods", "the vikings arrived" };
-    public string[] Sentence2part3 = { "and took their spouse away.", "and praised the Lord.", "and burned everything in sight.", "and drank all the mead in the village." };
-    public string[] Sentence3part1 = { "Now {0}", "Ever since, {0}", "Evermore, {0}" };
-    public string[] Sentence3part2 = { "roams the lands", "is on a quest", "offers their sword for hire", "spends the days at the tavern" };
-    public string[] Sentence3part3 = { "in search of vengeance.", "in search of cranberries.", "to find their true self.", "to clear thy name." };
-    #endregion
-
     #region motto strings
     public string[] Motto = {
         "An veritas, an nihil",
@@ -88,34 +73,49 @@ public class CreateChampion : MonoBehaviour
 
     public string MakeSentence1(string charname)
     {
-        int r1 = Random.Range(0, Sentence1part1.Length);
-        int r2 = Random.Range(0, Sentence1part2.Length);
-        int r3 = Random.Range(0, Sentence1part3.Length);
-        string Sentence = string.Format(Sentence1part1[r1], charname) + " " +
-            string.Format(Sentence1part2[r2], charname) + " " +
-            string.Format(Sentence1part3[r3], charname);
+        // select sentence parts
+        int r1 = Random.Range(0, Strings.Sentence1part1.Length);
+        int r2 = Random.Range(0, Strings.Sentence1part2WithoutName.Length);
+        int r3 = Random.Range(0, Strings.Sentence1part3WithoutName.Length);
+
+        // concatenate sentence
+        string part1 = string.Format(Strings.Sentence1part1[r1], charname);
+        string part2 = Strings.Sentence1part2WithoutName[r2];
+        string part3 = Strings.Sentence1part3WithoutName[r3];
+        string Sentence = part1 + part2 + part3;
+
         return Sentence;
     }
 
     public string MakeSentence2(string charname)
     {
-        int r1 = Random.Range(0, Sentence2part1.Length);
-        int r2 = Random.Range(0, Sentence2part2.Length);
-        int r3 = Random.Range(0, Sentence2part3.Length);
-        string Sentence = string.Format(Sentence2part1[r1], charname) + " " +
-            string.Format(Sentence2part2[r2], charname) + " " +
-            string.Format(Sentence2part3[r3], charname);
+        // select sentence parts
+        int r1 = Random.Range(0, Strings.Sentence2part1WithoutName.Length);
+        int r2 = Random.Range(0, Strings.Sentence2part2WithoutName.Length);
+        int r3 = Random.Range(0, Strings.Sentence2part3WithoutName.Length);
+
+        // concat final result
+        string part1 = Strings.Sentence2part1WithoutName[r1];
+        string part2 = Strings.Sentence2part2WithoutName[r2];
+        string part3 = Strings.Sentence2part3WithoutName[r3];
+        string Sentence = part1 + part2 + part3;
+
         return Sentence;
     }
 
     public string MakeSentence3(string charname)
     {
-        int r1 = Random.Range(0, Sentence3part1.Length);
-        int r2 = Random.Range(0, Sentence3part2.Length);
-        int r3 = Random.Range(0, Sentence3part3.Length);
-        string Sentence = string.Format(" " + Sentence3part1[r1], charname) + " " +
-           string.Format(Sentence3part2[r2], charname) + " " +
-           string.Format(Sentence3part3[r3], charname);
+        // select sentence parts
+        int r1 = Random.Range(0, Strings.Sentence3part1.Length);
+        int r2 = Random.Range(0, Strings.Sentence3part2WithoutName.Length);
+        int r3 = Random.Range(0, Strings.Sentence3part3WithoutName.Length);
+
+        // concat the result
+        string part1 = string.Format(Strings.Sentence3part1[r1], charname);
+        string part2 = Strings.Sentence3part2WithoutName[r2];
+        string part3 = Strings.Sentence3part3WithoutName[r3];
+        string Sentence = part1 + part2 + part3;
+
         return Sentence;
     }
 
