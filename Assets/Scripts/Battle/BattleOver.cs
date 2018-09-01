@@ -74,7 +74,6 @@ public class BattleOver
 
     private void LoseBattle()
     {
-        Debug.Log("losing battle");
         DisplayDefeatPopup();
     }
 

@@ -85,9 +85,6 @@ public class ChampionAbilities : MonoBehaviour
         champion = gameObject.GetComponent<Champion>();
         ability = champion.properties.currentChampionAbility;
         championUnit = gameObject.GetComponent<PlayerUnit>();
-
-
-        //abilitySFX = gameObject.GetComponent<Champion>().properties.championAbilitySFX;
     }
 
     void FindAbilityEffect()

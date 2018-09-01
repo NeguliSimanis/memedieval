@@ -176,7 +176,7 @@ public class PlayerUnitSpawn : MonoBehaviour
         }
         else 
         {
-            unitCostProgressText.text = resources.Amount.ToString() + " / " + unitCost.ToString();
+            unitCostProgressText.text = resources.Amount.ToString();  //+ " / " + unitCost.ToString();
             unitCostProgressText.color = new Color(1, 0.92f, 0.016f, 1f);
         }
     }
@@ -240,7 +240,23 @@ public class PlayerUnitSpawn : MonoBehaviour
             character.SetTarget(startingPoint);
             spawnTimestamp = Time.time;
             if (isChampion)
+            {
+                SetChampionAbility(character.gameObject.GetComponent<Champion>());
                 StartDisablingChampionButt();
+            }
+        }
+    }
+
+    void SetChampionAbility(Champion currentChampion)
+    {
+        foreach (Champion champion in PlayerProfile.Singleton.champions)
+        {
+            // found champion who was of same class and is invited to battle
+            if (champion.invitedToBattle == true && champion.properties.GetChampionAttackType() == captain)
+            {
+                currentChampion.properties.currentChampionAbility = champion.properties.currentChampionAbility;
+                break;
+            }
         }
     }
 

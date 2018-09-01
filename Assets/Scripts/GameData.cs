@@ -134,6 +134,22 @@ public class ChampionData
         return "ERROR IR GAMEDATA.GETCHAMPIONCLASS";
     }
 
+    public Attack.Type GetChampionAttackType()
+    {
+        if (champClass == 0)
+        {
+            return Attack.Type.Peasant;
+        }
+        else if (champClass == 1)
+        {
+            return Attack.Type.Knight;
+        }
+        else 
+        {
+            return Attack.Type.Archer;
+        }
+    }
+
     public string GetAbilityString()
     {
         if (currentChampionAbility == Ability.BerserkFury)
