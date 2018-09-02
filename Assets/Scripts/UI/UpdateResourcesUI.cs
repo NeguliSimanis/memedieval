@@ -14,11 +14,14 @@ public class UpdateResourcesUI : MonoBehaviour {
 
     [SerializeField] private Text ducatCount;
     [SerializeField] private Text saltCount;
+    [SerializeField] private Text meatCount; // added 01.09.2018
 
     void Start()
     {
+        Debug.Log(gameObject.name);
         StartCoroutine(SetSaltCount());
         StartCoroutine(SetDucatCount());
+        StartCoroutine(SetMeatCount());
     }
 
     public IEnumerator SetSaltCount()
@@ -35,6 +38,16 @@ public class UpdateResourcesUI : MonoBehaviour {
         while (true)
         {
             ducatCount.text = PlayerProfile.Singleton.DucatCurrent.ToString();
+            yield return new WaitForSeconds(1);
+        }
+    }
+
+    // added 01.09.2018
+    public IEnumerator SetMeatCount()
+    {
+        while (true)
+        {
+            meatCount.text = PlayerProfile.Singleton.MeatCurrent.ToString();
             yield return new WaitForSeconds(1);
         }
     }

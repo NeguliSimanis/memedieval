@@ -30,6 +30,7 @@ public class PlayerProfile : MonoBehaviour
     #region resources
     private int saltCurrent = 5;
     private int ducatCurrent = 10;
+    private int meatCurrent = 100;
 
     public int SaltCurrent
     {
@@ -41,6 +42,12 @@ public class PlayerProfile : MonoBehaviour
     {
         get { return ducatCurrent; }
         set { ducatCurrent = value; }
+    }
+
+    public int MeatCurrent
+    {
+        get { return meatCurrent; }
+        set { meatCurrent = value; }
     }
     #endregion
 

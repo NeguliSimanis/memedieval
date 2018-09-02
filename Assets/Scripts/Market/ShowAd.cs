@@ -2,8 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Advertisements;
+using UnityEngine.UI;
 
 /// <summary>
+/// Manages ads and gives out rewards to player for watching an ad.
+/// Attached to MarketControl gameobject.
+/// 
 /// References:
 /// - https://www.youtube.com/watch?v=7LFF4S9IYKM
 /// 
@@ -12,6 +16,14 @@ using UnityEngine.Advertisements;
 public class ShowAd : MonoBehaviour
 {
     int ducatsPerAd = 3;
+
+    [SerializeField]
+    Text adNPCText;
+
+    private void Start()
+    {
+        adNPCText.text = Strings.ad_default;
+    }
 
     public void PlayAd()
     {
@@ -23,15 +35,38 @@ public class ShowAd : MonoBehaviour
         switch (result)
         {
             case ShowResult.Finished:
-                Debug.Log("ad finished");
-                PlayerProfile.Singleton.DucatCurrent += ducatsPerAd;
+                HandleAdFinished();
                 break;
             case ShowResult.Skipped:
-                Debug.Log("ad skipped");
+                HandleAdSkip();
                 break;
             case ShowResult.Failed:
-                Debug.Log("ad failed");
+                HandleAdFail();
                 break;
         }
+    }
+
+    private void HandleAdSkip()
+    {
+        adNPCText.text = Strings.ad_skipped;
+    }
+
+    private void HandleAdFail()
+    {
+        adNPCText.text = Strings.ad_failed;
+    }
+
+    private void HandleAdFinished()
+    {
+        SwitchDefaultAdText();
+        PlayerProfile.Singleton.DucatCurrent += ducatsPerAd;
+    }
+
+    private void SwitchDefaultAdText()
+    {
+        if (adNPCText.text == Strings.ad_default)
+            adNPCText.text = Strings.ad_watch_another;
+        else
+            adNPCText.text = Strings.ad_default;
     }
 }

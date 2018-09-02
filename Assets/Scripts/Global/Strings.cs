@@ -75,4 +75,11 @@ public class Strings
         "to clear thy name."
     };
     #endregion
+
+    #region MARKET
+    public static string ad_default = "Watch my fabolous play\nand coin to you I will pay";
+    public static string ad_skipped = "Coin you would be paid\nif until end you stayed";
+    public static string ad_watch_another = "Was that not nice?\nWatch more and be paid twice";
+    public static string ad_failed = "Alas, something went wrong.\nAre you disconnected from the Internet by any chance?";
+    #endregion
 }
