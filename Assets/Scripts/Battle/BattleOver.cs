@@ -36,6 +36,7 @@ public class BattleOver
     {
         ResetValues();
         GenerateNewChampions();
+        SetRemainingMeat();
         if (isVictory)
         {
             ObtainVictorySpoils();
@@ -75,6 +76,13 @@ public class BattleOver
     private void LoseBattle()
     {
         DisplayDefeatPopup();
+    }
+
+    private void SetRemainingMeat()
+    {
+        Debug.Log("setting meat bro");
+        MeMedieval.Resources resourceControl = GameObject.FindGameObjectWithTag(Strings.player_battle_resources).GetComponent<MeMedieval.Resources>();
+        PlayerProfile.Singleton.MeatCurrent = resourceControl.Amount;
     }
 
     // allocates exp to champions in case of victory in battle

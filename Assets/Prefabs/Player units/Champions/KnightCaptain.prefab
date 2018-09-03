@@ -266,6 +266,7 @@ GameObject:
   - component: {fileID: 212709022394310436}
   - component: {fileID: 95391286524531868}
   - component: {fileID: 114545220604829692}
+  - component: {fileID: 114475400343121430}
   m_Layer: 0
   m_Name: DeathAnimation
   m_TagString: Player unit
@@ -981,8 +982,8 @@ MonoBehaviour:
   isCaptain: 1
   nextLevelScript: {fileID: 0}
   nextLevelToLoad: 
-  enemyBalancerTag: Enemy balancer
   MaximumHealth: 130
+  surrenderButton: {fileID: 0}
 --- !u!114 &114385849707751662
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1038,6 +1039,18 @@ MonoBehaviour:
     quote: 
   onBattle: 0
   invitedToBattle: 0
+--- !u!114 &114475400343121430
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1355238902325644}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be56456f82bb1664d9232ed518beaf81, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  deathAnimation: {fileID: 7400000, guid: 27f1c025beef59441925a95b1683a5ba, type: 2}
 --- !u!114 &114515970272489326
 MonoBehaviour:
   m_ObjectHideFlags: 1

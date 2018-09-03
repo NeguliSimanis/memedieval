@@ -78,6 +78,7 @@ GameObject:
   - component: {fileID: 212117057194614128}
   - component: {fileID: 95842081300024884}
   - component: {fileID: 114092914582341360}
+  - component: {fileID: 114746834943346624}
   m_Layer: 0
   m_Name: DeathAnimation
   m_TagString: Player unit
@@ -326,6 +327,18 @@ MonoBehaviour:
   OverrideAttenuation: 0
   OverrideMinDistance: 0
   OverrideMaxDistance: 0
+--- !u!114 &114746834943346624
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1829367446866886}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be56456f82bb1664d9232ed518beaf81, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  deathAnimation: {fileID: 7400000, guid: 53613e6e64f46d24db21e1846d4400e9, type: 2}
 --- !u!114 &114986918646699218
 MonoBehaviour:
   m_ObjectHideFlags: 1

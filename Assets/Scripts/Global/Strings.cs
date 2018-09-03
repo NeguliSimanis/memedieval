@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class Strings
 {
+    #region TAGS
+    public static string player_battle_resources = "Player battle resources";
+    #endregion
+
     #region CHAMPION bio strings
     public static string[] Sentence1part1 =
     {

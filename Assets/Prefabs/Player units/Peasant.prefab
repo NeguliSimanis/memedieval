@@ -38,6 +38,7 @@ GameObject:
   - component: {fileID: 212084419387063610}
   - component: {fileID: 95588460488718562}
   - component: {fileID: 114861236418680010}
+  - component: {fileID: 114282572271876478}
   m_Layer: 0
   m_Name: DeathAnimation
   m_TagString: Player unit
@@ -495,6 +496,18 @@ MonoBehaviour:
   OverrideAttenuation: 0
   OverrideMinDistance: 0
   OverrideMaxDistance: 0
+--- !u!114 &114282572271876478
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1064953436824158}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be56456f82bb1664d9232ed518beaf81, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  deathAnimation: {fileID: 7400000, guid: 46244fbd610b7eb4c968500f5fe200cc, type: 2}
 --- !u!114 &114308667225171046
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -526,8 +539,8 @@ MonoBehaviour:
   isCaptain: 0
   nextLevelScript: {fileID: 0}
   nextLevelToLoad: 
-  enemyBalancerTag: Enemy balancer
   MaximumHealth: 18
+  surrenderButton: {fileID: 0}
 --- !u!114 &114634638762769494
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -608,7 +621,9 @@ MonoBehaviour:
   isRallyingShoutBoostActive: 0
   isDashing: 0
   hasVictoryDance: 0
-  victoryDanceOffsetX: 0
+  victoryAnimation: {fileID: 0}
+  hasAttackAnimation: 0
+  attackAnimation: {fileID: 0}
 --- !u!114 &114861236418680010
 MonoBehaviour:
   m_ObjectHideFlags: 1

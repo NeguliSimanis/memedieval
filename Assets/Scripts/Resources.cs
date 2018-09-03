@@ -5,12 +5,16 @@ using UnityEngine.UI; // Required when Using UI elements.
 
 namespace MeMedieval
 {
+    /// <summary>
+    /// Handles resources during battle (only meat is relevant)
+    /// </summary>
     public class Resources : MonoBehaviour
     {
         [SerializeField] private bool isPlayerResources = false;
         [SerializeField] private int resources;
         [SerializeField] private int resourcesPerFiveSeconds;
         [SerializeField] Image resourceBar;
+        [SerializeField] Text resourceText;
 
         private float second;
 
@@ -19,7 +23,7 @@ namespace MeMedieval
             if (isPlayerResources)
             {
                 ChampionEffect championEffect = PlayerProfile.Singleton.gameObject.GetComponent<ChampionEffect>();
-                resources = Mathf.RoundToInt(resources * championEffect.startingMeatCoefficient);
+                resources = Mathf.RoundToInt(PlayerProfile.Singleton.MeatCurrent * championEffect.startingMeatCoefficient);
             }
             second = 0;
         }
@@ -28,6 +32,7 @@ namespace MeMedieval
         {
             if (Health.Victory || Health.GameOver) return;
             if (resourceBar != null) resourceBar.fillAmount = resources / 1000f;
+            if (resourceText != null) resourceText.text = resources.ToString();
             second += Time.deltaTime;
             if (second >= 5)
             {

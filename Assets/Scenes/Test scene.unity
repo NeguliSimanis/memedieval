@@ -10097,6 +10097,15 @@ Prefab:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1452716332741120, guid: 422a05cf12304a440a6652d937632339, type: 2}
+      propertyPath: m_TagString
+      value: Player battle resources
+      objectReference: {fileID: 0}
+    - target: {fileID: 114897666602637178, guid: 422a05cf12304a440a6652d937632339,
+        type: 2}
+      propertyPath: resourceText
+      value: 
+      objectReference: {fileID: 351102074}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 422a05cf12304a440a6652d937632339, type: 2}
   m_IsPrefabParent: 0
@@ -10116,6 +10125,7 @@ MonoBehaviour:
   resources: 250
   resourcesPerFiveSeconds: 5
   resourceBar: {fileID: 0}
+  resourceText: {fileID: 351102074}
 --- !u!114 &729288330
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10132,6 +10142,7 @@ MonoBehaviour:
   resources: 500
   resourcesPerFiveSeconds: 5
   resourceBar: {fileID: 0}
+  resourceText: {fileID: 0}
 --- !u!1 &729901719
 GameObject:
   m_ObjectHideFlags: 0
@@ -10662,7 +10673,7 @@ GameObject:
   - component: {fileID: 729288329}
   m_Layer: 0
   m_Name: PlayerResources
-  m_TagString: Untagged
+  m_TagString: Player battle resources
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12639,7 +12650,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &881062985
 GameObject:
@@ -21218,7 +21229,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4900715823933538, guid: fca8e275fd907a4469c4d73acdc27cd7, type: 2}
       propertyPath: m_RootOrder
-      value: 8
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: fca8e275fd907a4469c4d73acdc27cd7, type: 2}
@@ -21445,7 +21456,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1579549685
 RectTransform:
   m_ObjectHideFlags: 0

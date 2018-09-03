@@ -21,7 +21,7 @@ public class Market : MonoBehaviour
 
     [Header("Exchange rates")]
     [SerializeField] int saltGainPerPurchase = 8;
-    [SerializeField] int saltPriceInDucats = 2;
+    public int saltPriceInDucats = 2;
 
     [SerializeField] int meatGainPerPurchase = 20;
     [SerializeField] int meatPriceInSalt = 4;
@@ -30,7 +30,6 @@ public class Market : MonoBehaviour
 
     void Start()
     {
-        Debug.Log("start");
         saltCostText.text = saltPriceInDucats.ToString();
         saltAmountText.text = saltGainPerPurchase.ToString();
 
@@ -51,7 +50,7 @@ public class Market : MonoBehaviour
         transactionImpossibleText.SetActive(!enableTransaction);
     }
 
-    private bool CheckIfEnoughResources(Resources offerType, Resources priceType, int priceAmount)
+    public bool CheckIfEnoughResources(Resources offerType, Resources priceType, int priceAmount)
     {
         #region buying salt
         if (offerType == Resources.Salt && priceType == Resources.Ducats)

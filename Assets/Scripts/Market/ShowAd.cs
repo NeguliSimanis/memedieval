@@ -19,10 +19,13 @@ public class ShowAd : MonoBehaviour
 
     [SerializeField]
     Text adNPCText;
+    [SerializeField]
+    Market market;
 
     private void Start()
     {
         adNPCText.text = Strings.ad_default;
+        //market.gameObject.GetComponent<Market>(); this didn't work
     }
 
     public void PlayAd()
@@ -60,6 +63,7 @@ public class ShowAd : MonoBehaviour
     {
         SwitchDefaultAdText();
         PlayerProfile.Singleton.DucatCurrent += ducatsPerAd;
+        market.CheckIfEnoughResources(Resources.Salt, Resources.Ducats, market.saltPriceInDucats);
     }
 
     private void SwitchDefaultAdText()
