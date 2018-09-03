@@ -9,7 +9,9 @@ public class Spawn : MonoBehaviour
     /************************
      
      Script is attached to:
-    no
+        EnemyArcher
+        EnemyPeasant
+        EnemyKnight
     game objects
 
      ************************/

@@ -70,9 +70,11 @@ public class EnemyUnit : MonoBehaviour
         {
             deathLocationOffsetX = 0f;
         }
+        
         Vector3 deathLocation = new Vector3(gameObject.transform.localPosition.x + deathLocationOffsetX, gameObject.transform.localPosition.y, gameObject.transform.localPosition.z);
         GameObject deathObjectParent = Instantiate(new GameObject(), deathLocation, Quaternion.identity);
         GameObject deathObject = Instantiate(deathAnimation, deathObjectParent.transform);
+        deathObject.GetComponent<Animator>().Rebind(); // this should solve the issue ofanimations sometimes note playing
         // deathObject.transform.localPosition = gameObject.transform.localPosition;
         deathObject.SetActive(true);
 
