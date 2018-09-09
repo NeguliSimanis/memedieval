@@ -6947,6 +6947,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 480397241}
+  - component: {fileID: 480397242}
   m_Layer: 5
   m_Name: Tavern
   m_TagString: Untagged
@@ -6973,6 +6974,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &480397242
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 480397240}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 047adc0ef16f0734fb2f85304c4e9c3e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mechanic: 4
 --- !u!1 &486191906
 GameObject:
   m_ObjectHideFlags: 0
@@ -23041,6 +23054,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1706401294}
+  - component: {fileID: 1706401295}
   m_Layer: 5
   m_Name: Market
   m_TagString: Untagged
@@ -23067,6 +23081,18 @@ RectTransform:
   m_AnchoredPosition: {x: 87.50006, y: 0.0000019073486}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1706401295
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1706401293}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 047adc0ef16f0734fb2f85304c4e9c3e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mechanic: 8
 --- !u!114 &1716631589 stripped
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 114163556239749698, guid: b65d0c72608e4ed478c42e5f74a9e97c,
@@ -28094,6 +28120,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 2041404681}
+  - component: {fileID: 2041404682}
   m_Layer: 5
   m_Name: ViewArmy
   m_TagString: Untagged
@@ -28120,6 +28147,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &2041404682
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2041404680}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 047adc0ef16f0734fb2f85304c4e9c3e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mechanic: 1
 --- !u!1 &2041460173
 GameObject:
   m_ObjectHideFlags: 0

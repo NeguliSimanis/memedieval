@@ -56,6 +56,9 @@ public class SaveLoad : MonoBehaviour
     {
         if (File.Exists(Application.persistentDataPath + "/savedGames.gd"))
         {
+            // not related to loading game - unpause
+            Time.timeScale = 1f;
+
             BinaryFormatter bf = new BinaryFormatter();
             FileStream file = File.Open(Application.persistentDataPath + "/savedGames.gd", FileMode.Open);
             SaveLoad.savedGames = (List<GameData>)bf.Deserialize(file);

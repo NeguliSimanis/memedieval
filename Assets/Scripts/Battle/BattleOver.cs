@@ -58,19 +58,37 @@ public class BattleOver
     {
         DisplayVictoryPopup();
         AllocateExp();
+        SetGameData();
+        TryUnlockingNewMechanic();
+        MarkCastleAsDestroyed();
 
+        // reset effect from champion skills
+        PlayerProfile.Singleton.gameObject.GetComponent<ChampionEffect>().ResetChampionEffect();  
+    }
+
+    private void TryUnlockingNewMechanic()
+    {
+        if (UnlockMechanics.current == null)
+        {
+            UnlockMechanics.current = new UnlockMechanics();
+        }
+        int defeatedCastleID = GameObject.FindGameObjectWithTag(enemyBalancerTag).GetComponent<EnemyBalancer>().currentCastleID;
+        UnlockMechanics.current.Unlock(defeatedCastleID);
+    }
+
+    private void SetGameData()
+    {
         if (GameData.current == null)
         {
             GameData.current = new GameData();
         }
+    }
 
-        // mark castle as destroyed
+    private void MarkCastleAsDestroyed()
+    {
         int defeatedCastleID = GameObject.FindGameObjectWithTag(enemyBalancerTag).GetComponent<EnemyBalancer>().currentCastleID;
         GameData.current.destroyedCastles[defeatedCastleID] = true;
         GameData.current.lastDestroyedCastle = defeatedCastleID;
-
-        // reset effect from champion skills
-        PlayerProfile.Singleton.gameObject.GetComponent<ChampionEffect>().ResetChampionEffect();  
     }
 
     private void LoseBattle()
@@ -129,7 +147,6 @@ public class BattleOver
             neutralChampions.GenerateRandomChampion(newChampionsPerBattle);
         }
     }
-
 
     void ObtainVictorySpoils()
     {

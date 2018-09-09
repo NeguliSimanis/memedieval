@@ -46,12 +46,27 @@ public class GameData
             GameData.current = new GameData();
         GameData.current = previousProgress;
     }
+    /// <summary>
+    /// Loops through all castles and returns the highest ID of a destroyed castle
+    /// </summary>
+    /// <returns></returns>
+    public int HighestDestroyedCastleID()
+    {
+        int highestCastleID = -1;
+        for (int i = 0; i < destroyedCastles.Length; i++)
+        {
+            if (destroyedCastles[i] == true && i > highestCastleID)
+            {
+                highestCastleID = i;
+            }
+        }
+        return highestCastleID;
+    }
 }
 
 [System.Serializable]
 public class ChampionData
 {
-
     public int level; // actual level is 1 higher
     public int champClass; // 0 - peasant, 1 - Knight, 2 - archer (in some places peasant and archer are inversed)
     public bool isDead;
