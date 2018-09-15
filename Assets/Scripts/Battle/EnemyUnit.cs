@@ -57,28 +57,11 @@ public class EnemyUnit : MonoBehaviour
 
     private void Die()
     {
-        float deathLocationOffsetX;
-        if (UnitType == Attack.Type.Archer)
-        {
-            deathLocationOffsetX = 0f;
-        }
-        else if (UnitType == Attack.Type.Knight)
-        {
-            deathLocationOffsetX = -0.1f;
-        }
-        else
-        {
-            deathLocationOffsetX = 0f;
-        }
-        
-        Vector3 deathLocation = new Vector3(gameObject.transform.localPosition.x + deathLocationOffsetX, gameObject.transform.localPosition.y, gameObject.transform.localPosition.z);
-        GameObject deathObjectParent = Instantiate(new GameObject(), deathLocation, Quaternion.identity);
-        GameObject deathObject = Instantiate(deathAnimation, deathObjectParent.transform);
-        deathObject.GetComponent<Animator>().Rebind(); // this should solve the issue ofanimations sometimes note playing
-        // deathObject.transform.localPosition = gameObject.transform.localPosition;
-        deathObject.SetActive(true);
-
-        Destroy(gameObject);
+        gameObject.GetComponent<Attack>().canAttack = false;
+        gameObject.GetComponent<BoxCollider2D>().enabled = false;
+        gameObject.GetComponent<CircleCollider2D>().enabled = false;
+        gameObject.GetComponent<WaypointFollower>().enabled = false;
+        deathAnimation.GetComponent<DeathAnimation>().PlayDeath();
     }
 
 }

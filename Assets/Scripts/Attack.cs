@@ -24,6 +24,7 @@ public class Attack : MonoBehaviour {
     private int Damage;
     private float damageModifier = 1f;
     private bool hasDamageModifier = false;
+    public bool canAttack = true;
     #endregion
 
     private List<Health> targets;
@@ -105,8 +106,8 @@ public class Attack : MonoBehaviour {
     // Deals damage to target
     private void Strike()
     {
-       
-        
+        if (!canAttack)
+            return;
             if (isArcher)
             {
                 Arrow arrow = Instantiate(ArrowPrefab, transform.position, Quaternion.identity);

@@ -4,17 +4,17 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Linq;
 
+/// <summary>
+/// Manages enemy unit spawning in battle. Used to handle player unit and champion spawning as well, but it now is managed by PlayerUnitSpawn
+/// 
+///      Script is attached to:
+///         EnemyArcher
+///         EnemyPeasant
+///         EnemyKnight
+///      game objects
+/// </summary>
 public class Spawn : MonoBehaviour
 {
-    /************************
-     
-     Script is attached to:
-        EnemyArcher
-        EnemyPeasant
-        EnemyKnight
-    game objects
-
-     ************************/
     private bool isChampionDying = false;
     private bool isUnitDying = false;
     private bool needToEnlargeCooldownBar = false; // used to check for
@@ -114,8 +114,6 @@ public class Spawn : MonoBehaviour
 
     void Update()
     {
-        HideButtonIfNotResources();
-
         if (isCaptain && unitButton != null && unitButton.enabled)
         {
             if (Attack.Type.Archer == captain && Health.Archer) unitButton.interactable = false;
@@ -167,15 +165,6 @@ public class Spawn : MonoBehaviour
         }
     }
 
-    void HideButtonIfNotResources()
-    {
-       /* if 
-        foreach (Image elementToHide in hideThisWhenInsufficientMeat)
-        {
-
-        }*/
-    }
-
     void UpdateCooldownBar()
     {
         // show cooldown on UI bar if available
@@ -221,43 +210,6 @@ public class Spawn : MonoBehaviour
 
     public void SpawnCharacter()
     {
-        if (captain == Attack.Type.Archer)
-        {
-            if (Health.Archer) return;
-            else if (isCaptain)
-            {
-                if (!resources.IsEnoughResources(unitCost)) return;
-                if (ArcherCaptainsLeft == 0) return;
-                ArcherCaptainsLeft--;
-                StartDisablingChampionButt();
-            }
-        }
-
-        if (captain == Attack.Type.Knight)
-        {
-            if (Health.Knight) return;
-            else if (isCaptain)
-            {
-                //Debug.Log("Knight spawned!");
-                if (!resources.IsEnoughResources(unitCost)) return;
-                if (KnightCaptainsLeft == 0) return;
-                KnightCaptainsLeft--;
-                StartDisablingChampionButt();
-            }
-        }
-
-        if (captain == Attack.Type.Peasant)
-        {
-            if (Health.Peasant) return;
-            else if (isCaptain)
-            {
-                if (!resources.IsEnoughResources(unitCost)) return;
-                if (PeasantCaptainsLeft == 0) return;
-                PeasantCaptainsLeft--;
-                StartDisablingChampionButt();
-            }
-        }
-
         if ((Enemy && (Character == null || enemyTimestamp + Cooldown >= Time.time)) ||
             (!Enemy && (Character == null || spawnTimestamp + Cooldown >= Time.time)) ||
             Health.Victory || Health.GameOver) return;
@@ -266,34 +218,6 @@ public class Spawn : MonoBehaviour
         {
             WaypointFollower character = Instantiate(Character, startingPoint.transform.position, Quaternion.identity);
             character.SetTarget(startingPoint);
-
-            // add face if captain
-            if (captain == Attack.Type.Peasant)
-            {
-                if (Health.Peasant) return;
-                else if (isCaptain)
-                {
-                    AddChampionFace(character, 0);
-                }
-            }
-
-            else if (captain == Attack.Type.Knight)
-            {
-                if (Health.Knight) return;
-                else if (isCaptain)
-                {
-                    AddChampionFace(character, 1);
-                }
-            }
-
-            else if (captain == Attack.Type.Archer)
-            {
-                if (Health.Archer) return;
-                else if (isCaptain)
-                {
-                    AddChampionFace(character, 2);
-                }
-            }
 
             if (Enemy) enemyTimestamp = Time.time;
             else spawnTimestamp = Time.time;
@@ -332,59 +256,6 @@ public class Spawn : MonoBehaviour
             {
                 KnightCaptainsLeft = 1;
             }
-        }
-    }
-
-    private void TransformChampionFace(AvatarFace championFace, int championClassID)
-    {
-        Vector3 facePosition;
-        Vector3 faceScale = new Vector3(0.02f, 0.02f, 0);
-
-        if (championClassID == 0) // peasant
-        {
-            facePosition = new Vector3(-0.2f, 2.5f, 0);
-        }
-        else if (championClassID == 1) // knight
-        {
-            facePosition = new Vector3(-0.2f, 2.5f, 0);
-        }
-        else // archer
-        {
-            facePosition = new Vector3(-0.35f, 2f, 0);
-        }
-
-        championFace.transform.localPosition = facePosition;
-        championFace.transform.localScale = faceScale;
-    }
-
-    private void AddChampionFace(WaypointFollower championUnit, int championClassID) // 1 = knight
-    {
-
-        var g = new GameObject();
-        g.AddComponent<SpriteRenderer>();
-        GameObject captainFace = g;
-
-        var h = championUnit.GetComponentInChildren<Transform>();
-        g.transform.SetParent(h.transform);
-        GameObject thisCaptainFace = g;
-
-        
-        thisCaptainFace.transform.GetComponent<SpriteRenderer>().sortingLayerName = "Foreground";
-
-        AvatarFace face;
-
-        Champion summonedChampion = PlayerProfile.Singleton.champions.Where(x => x.properties.champClass == championClassID).First();
-        if (summonedChampion != null)
-        {
-            if (summonedChampion.properties.isCameraPicture)
-            {
-                face = Instantiate(avatarFacePrefab, h);
-                face.SetFace(summonedChampion.properties.LoadPictureAsTexture2D());
-                TransformChampionFace(face, championClassID);
-            }
-
-            championUnit.GetComponent<Champion>().properties.currentChampionAbility = summonedChampion.properties.currentChampionAbility;
-            summonedChampion.onBattle = true;
         }
     }
 }

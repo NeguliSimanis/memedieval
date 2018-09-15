@@ -22,6 +22,6 @@ public class RenderController : MonoBehaviour
 
     void SetRenderLayer()
     {
-        spriteRenderer.sortingOrder = unitSortingLayers.GetLayer();
+        //spriteRenderer.sortingOrder = unitSortingLayers.GetLayer();
     }
 }

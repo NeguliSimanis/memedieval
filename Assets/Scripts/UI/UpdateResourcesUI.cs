@@ -18,7 +18,6 @@ public class UpdateResourcesUI : MonoBehaviour {
 
     void Start()
     {
-        Debug.Log(gameObject.name);
         StartCoroutine(SetSaltCount());
         StartCoroutine(SetDucatCount());
         StartCoroutine(SetMeatCount());

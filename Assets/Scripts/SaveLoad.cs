@@ -51,6 +51,20 @@ public class SaveLoad : MonoBehaviour
         file.Close();
     }
 
+    /// <summary>
+    /// Checks if there exists a save file
+    /// </summary>
+    /// <returns></returns>
+    public bool CheckSaveFile()
+    {
+        if (File.Exists(Application.persistentDataPath + "/savedGames.gd"))
+        {
+            Debug.Log(Application.persistentDataPath);
+            return true;
+        }
+        return false;
+    }
+
     // loads current game data from a local file
     public void Load()
     {
