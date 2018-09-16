@@ -14,6 +14,10 @@ public class GameData
     public static GameData current;
     public List<ChampionData> championList = new List<ChampionData>();
 
+    #region settings
+    public bool soundMuted = false;
+    #endregion
+
     #region resources
     // salt
     public int salt = 5;

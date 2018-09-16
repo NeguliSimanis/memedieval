@@ -14,7 +14,7 @@ public class SoundSettings : MonoBehaviour {
 	private float musicfinalVolume;
 	private float soundVolume;
 	private float soundFinalVolume;
-    public bool soundMuted = true;
+    public bool soundMuted = false;
 
 
     private FMOD.Studio.VCA musicVCA;
@@ -31,27 +31,24 @@ public class SoundSettings : MonoBehaviour {
 		
 	}
 	
-	// Update is called once per frame
-	void Update () {
-		
-	}
-
     public void MuteMusic()
     {
+        CreateGameData.CreateIfNoGameDataExists();
 		if (soundMuted)
-        {
-            musicVCA.setVolume(0f);
-			soundVCA.setVolume(0f);
-			soundMuted = false;
-        }
-
-        else
         {
             musicVCA.setVolume(1f);
 			soundVCA.setVolume(1f);
-			soundMuted = true;
+            UnityEngine.Debug.Log("mute not called");
+            soundMuted = false;
+            GameData.current.soundMuted = false;
         }
-            
+        else
+        {
+            musicVCA.setVolume(0f);
+			soundVCA.setVolume(0f);
+            UnityEngine.Debug.Log("mute called");
+            soundMuted = true;
+            GameData.current.soundMuted = true;
+        } 
     }
-
 }

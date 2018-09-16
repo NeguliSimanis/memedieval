@@ -59,7 +59,6 @@ public class SaveLoad : MonoBehaviour
     {
         if (File.Exists(Application.persistentDataPath + "/savedGames.gd"))
         {
-            Debug.Log(Application.persistentDataPath);
             return true;
         }
         return false;

@@ -6,20 +6,51 @@ using UnityEngine;
 /// Upon opening the game, check if save file exists.
 /// If yes, load it directly and go to map scene.
 /// 
-/// 15.09.2018.
+/// Remembers whether the saved game had muted sound
+/// 
+/// 15.09.2018. Sīmanis Mikoss
 /// </summary>
 
 public class StartMenu : MonoBehaviour
 {
+    #region variables
     [SerializeField]
-    bool loadGameAutomatically = true;
+    SoundSettings soundSettings;
+
+    [Header("Script settings")]
+    [SerializeField]
+    bool loadGameDataAutomatically = true; // if false, cannot remember whether sfx was muted
+    [SerializeField]
+    bool loadNextLVAutomatically = true;
+    bool rememberSFXSettings = true;
     string levelToLoad = "Test scene";
 
-	void Start ()
-    {
-        if (!loadGameAutomatically)
-            return;
+    // for testing if mute works after delay
+    float muteDelay = 1f;
+    float muteStartTime;
+    bool muteActive = false;
+    #endregion
 
+    void Start ()
+    {
+        muteStartTime = Time.time + muteDelay;
+        if (!loadGameDataAutomatically)
+            return;
+        LoadGameDataAutomatically();
+        LoadNextLevel();
+    }
+
+    private void Update()
+    {
+        if (Time.time > muteStartTime && !muteActive)
+        {
+            muteActive = true;
+            RememberSFXSettings();
+        }
+    }
+
+    void LoadGameDataAutomatically()
+    {
         SaveLoad saveLoad = gameObject.GetComponent<SaveLoad>();
 
         // check if save file exists
@@ -27,11 +58,22 @@ public class StartMenu : MonoBehaviour
         {
             // save exists - load data
             saveLoad.Load();
-
-            // load scene
-            gameObject.GetComponent<LoadScene>().loadLevel(levelToLoad);
         }
     }
-	
+	/// <summary>
+    /// Mutes the SFX if they were muted in the save file
+    /// </summary>
+    void RememberSFXSettings()
+    {
+        CreateGameData.CreateIfNoGameDataExists();
+        if (GameData.current.soundMuted)
+            soundSettings.MuteMusic();
+    }
 
+    void LoadNextLevel()
+    {
+        if (loadNextLVAutomatically)
+            gameObject.GetComponent<LoadScene>().loadLevel(levelToLoad);
+    }
 }
+
