@@ -163,7 +163,7 @@ public class PlayerUnitSpawn : MonoBehaviour
 
     void UpdateUnitCostText()
     {
-        if (resources.IsEnoughResources(unitCost))
+        if (isTutorial || resources.IsEnoughResources(unitCost))
         {
             unitCostProgressText.text = "ATTACK!";
             // set cost text color to yellow if the cooldown is still active
@@ -234,7 +234,7 @@ public class PlayerUnitSpawn : MonoBehaviour
             Health.Victory || Health.GameOver)
             return;
 
-        if (resources.WasEnoughResources(unitCost))
+        if (isTutorial || resources.WasEnoughResources(unitCost))
         {
             WaypointFollower character = Instantiate(Character, startingPoint.transform.position, Quaternion.identity);
             character.SetTarget(startingPoint);

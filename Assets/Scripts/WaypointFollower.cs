@@ -50,7 +50,6 @@ public class WaypointFollower : MonoBehaviour
 
         if (isEnemy)
         {
-            Debug.Log("enemy appeared");
             attackClass = gameObject.GetComponent<Attack>();
             enemyCounter++;
             totalEnemies++;
@@ -94,7 +93,6 @@ public class WaypointFollower : MonoBehaviour
 
         TriggerAttackAnimation(false);
         transform.position = Vector3.MoveTowards(transform.position, Target.transform.position, Speed * Time.deltaTime);
-        Debug.Log("current position " + transform.position + ". Target position " + Target.transform.position);
 
         if (Vector3.Distance(transform.position, Target.transform.position) <= float.Epsilon)
         {

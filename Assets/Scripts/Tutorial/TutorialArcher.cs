@@ -5,7 +5,8 @@ using UnityEngine;
 public class TutorialArcher : MonoBehaviour {
 
     [SerializeField] Tutorial tutorial;
-    [SerializeField] GameObject deathAnimation;
+    [SerializeField] Animator deathAnimator;
+    bool isDead = false;
 
     void OnTriggerEnter2D(Collider2D other)
     {
@@ -18,12 +19,18 @@ public class TutorialArcher : MonoBehaviour {
 
     private void Die()
     {
-        Vector3 deathLocation = new Vector3(gameObject.transform.localPosition.x, gameObject.transform.localPosition.y, gameObject.transform.localPosition.z);
+        if (isDead)
+            return;
+        isDead = true;
+
+        deathAnimator.SetTrigger("Die");
+
+        /*Vector3 deathLocation = new Vector3(gameObject.transform.localPosition.x, gameObject.transform.localPosition.y, gameObject.transform.localPosition.z);
         GameObject deathObjectParent = Instantiate(new GameObject(), deathLocation, Quaternion.identity);
         deathObjectParent.name = "EnemyTutorialArcherDeathAnimation";
         GameObject deathObject = Instantiate(deathAnimation, deathObjectParent.transform);
         deathObject.SetActive(true);
 
-        gameObject.SetActive(false);
+        gameObject.SetActive(false);*/
     }
 }
