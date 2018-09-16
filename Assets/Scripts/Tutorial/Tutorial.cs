@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 public class Tutorial : MonoBehaviour {
 
+    #region variables
     // Created on 08.06.2018
     GameObject pierre;
 
@@ -72,6 +73,8 @@ public class Tutorial : MonoBehaviour {
     int unitsSpawned = 0;
     #endregion
 
+    string levelAfterTutorial = "Test scene";
+    #endregion
     void Start()
     {
         // display champion spawning buttons
@@ -95,7 +98,7 @@ public class Tutorial : MonoBehaviour {
         // load next level if player taps anywhere at the end of tutorial
         if (currentTutorialText.text == tutorialStringWellFought && Input.GetMouseButtonDown(0))
         {
-            gameObject.GetComponent<LoadScene>().loadLevel("Castle");
+            LoadLevelAfterTutorial();
         }
 
         // move archer during the intro
@@ -195,7 +198,7 @@ public class Tutorial : MonoBehaviour {
         }
         else if (currentTutorialText.text == tutorialStringWellFought)
         {
-            gameObject.GetComponent<LoadScene>().loadLevel("Castle");
+            LoadLevelAfterTutorial();
         }
     }
 
@@ -406,7 +409,12 @@ public class Tutorial : MonoBehaviour {
 
     public void SkipTutorial()
     {
-       // CreateTutorialChampion();
-        gameObject.GetComponent<LoadScene>().loadLevel("Castle");
+        // CreateTutorialChampion();
+        LoadLevelAfterTutorial();
+    }
+
+    private void LoadLevelAfterTutorial()
+    {
+        gameObject.GetComponent<LoadScene>().loadLevel(levelAfterTutorial);
     }
 }
