@@ -18,3 +18,6 @@ A Unity game for Android devices and Windows Desktop
 If BattleCheat is active in the battle scene:
 * press "w" - instantly win battle
 * press "m" - get free meat
+* press "s" - get free salt
+* press "u" - unlock all game mechanics
+* press "r" - reload level
