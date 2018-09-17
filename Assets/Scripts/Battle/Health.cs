@@ -16,9 +16,9 @@ public class Health : MonoBehaviour
     public static bool endBattleCalled = false; // to avoid calling the method multiple times
     private static bool isVictory;
     private static bool isDefeat;
-    private static bool peasantChampionDead;
-    private static bool archerChampionDead;
-    private static bool knightChampionDead;
+    private static bool peasantChampionsDead;
+    private static bool archerChampionsDead;
+    private static bool knightChampionsDead;
 
     [SerializeField] private Attack.Type UnitType;
     [SerializeField] private int meadCarrying;
@@ -119,21 +119,21 @@ public class Health : MonoBehaviour
             {
                 if (UnitType == Attack.Type.Archer)
                 {
-                    archerChampionDead = true;
-                    Spawn.ArcherCaptainsLeft--;
+                    archerChampionsDead = true;
+                    Spawn.ArcherChampionsLeft--;
                 }
                 if (UnitType == Attack.Type.Peasant)
                 {
-                    Spawn.PeasantCaptainsLeft--;
-                    peasantChampionDead = true;
+                    Spawn.PeasantChampionsLeft--;
+                    peasantChampionsDead = true;
                 }
                 if (UnitType == Attack.Type.Knight)
                 {
-                    knightChampionDead = true;
-                    Spawn.KnightCaptainsLeft--;
+                    knightChampionsDead = true;
+                    Spawn.KnightChampionsLeft--;
                 }
                 // all champions dead, enable surrender button
-                if (Spawn.PeasantCaptainsLeft <= 0 && Spawn.KnightCaptainsLeft <= 0 && Spawn.ArcherCaptainsLeft <= 0)
+                if (Spawn.PeasantChampionsLeft <= 0 && Spawn.KnightChampionsLeft <= 0 && Spawn.ArcherChampionsLeft <= 0)
                 {
                     canSurrender = true;
                 }
@@ -272,29 +272,44 @@ public class Health : MonoBehaviour
         isRegening = false;
         gameObject.transform.Find("RegenAnimation").gameObject.SetActive(false);
     }
-
+    /// <summary>
+    /// LEGACY CODE
+    /// Returns true if Archer champion is dead.
+    /// This was used to determine whether we should disable player spawning regular knights when champion dies.
+    /// Since you can now have several champions of the same type, use Spawn.ArcherChampionsLeft instead
+    /// </summary>
     public static bool Archer
     {
-        get { return archerChampionDead; }
+        get { return archerChampionsDead; }
     }
-
+    /// <summary>
+    /// LEGACY CODE
+    /// Returns true if Knight champion is dead.
+    /// This was used to determine whether we should disable player spawning regular knights when champion dies.
+    /// Since you can now have several champions of the same type, use Spawn.KnightChampionsLeft instead
+    /// </summary>
     public static bool Knight
     {
-        get { return knightChampionDead; }
+        get { return knightChampionsDead; }
     }
-
+    /// <summary>
+    /// LEGACY CODE
+    /// Returns true if Peasant champion is dead.
+    /// This was used to determine whether we should disable player spawning regular knights when champion dies.
+    /// Since you can now have several champions of the same type, use Spawn.PeasantChampionsLeft instead
+    /// </summary>
     public static bool Peasant
     {
-        get { return peasantChampionDead; }
+        get { return peasantChampionsDead; }
     }
 
     public void ResetAllValues()
     {
         isVictory = false;
         isDefeat = false;
-        peasantChampionDead = false;
-        archerChampionDead = false;
-        knightChampionDead = false;
+        peasantChampionsDead = false;
+        archerChampionsDead = false;
+        knightChampionsDead = false;
     }
 
     public void SetMaxHealth(int value)

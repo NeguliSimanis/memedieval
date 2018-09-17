@@ -19,15 +19,15 @@ public class Spawn : MonoBehaviour
     private bool isUnitDying = false;
     private bool needToEnlargeCooldownBar = false; // used to check for
 
-    public static int PeasantCaptainsLeft;
-    public static int ArcherCaptainsLeft;
-    public static int KnightCaptainsLeft;
+    public static int PeasantChampionsLeft;
+    public static int ArcherChampionsLeft;
+    public static int KnightChampionsLeft;
     private static float spawnTimestamp;
     private static float enemyTimestamp;
 
     [SerializeField] private bool isTutorial = false; // spawn button is not hidden in tutorial
     [SerializeField] private Attack.Type captain;
-    [SerializeField] private bool isCaptain;
+    [SerializeField] private bool isChampion;
     [SerializeField] private MeMedieval.Resources resources;
     [SerializeField] private float Cooldown;
     [SerializeField] private int unitCost;
@@ -114,7 +114,7 @@ public class Spawn : MonoBehaviour
 
     void Update()
     {
-        if (isCaptain && unitButton != null && unitButton.enabled)
+        if (isChampion && unitButton != null && unitButton.enabled)
         {
             if (Attack.Type.Archer == captain && Health.Archer) unitButton.interactable = false;
             if (Attack.Type.Knight == captain && Health.Knight) unitButton.interactable = false;
@@ -129,7 +129,7 @@ public class Spawn : MonoBehaviour
             // disable button if not enough resources
             if (!resources.IsEnoughResources(unitCost))
             {
-                if (isCaptain)
+                if (isChampion)
                     championButton.interactable = false;
                 else
                     unitButton.interactable = false;
@@ -185,11 +185,14 @@ public class Spawn : MonoBehaviour
 
     void CheckIfDeadChampion()
     {
-        if (!Health.Archer && captain == Attack.Type.Archer)
+        Debug.Log("Peasant champions left - " + PeasantChampionsLeft);
+        Debug.Log("Archer champions left - " + ArcherChampionsLeft);
+        Debug.Log("Knight champions left - " + KnightChampionsLeft);
+        if (ArcherChampionsLeft > 0 && captain == Attack.Type.Archer)
             return;
-        if (!Health.Knight && captain == Attack.Type.Knight)
+        if (KnightChampionsLeft > 0 && captain == Attack.Type.Knight)
             return;
-        if (!Health.Peasant && captain == Attack.Type.Peasant)
+        if (PeasantChampionsLeft > 0 && captain == Attack.Type.Peasant)
             return;
 
         // champion is dead, must disable spawning regular units
@@ -239,22 +242,22 @@ public class Spawn : MonoBehaviour
 
     public static void ResetAllValues()
     {
-        PeasantCaptainsLeft = 0;
-        ArcherCaptainsLeft = 0;
-        KnightCaptainsLeft = 0;
+        PeasantChampionsLeft = 0;
+        ArcherChampionsLeft = 0;
+        KnightChampionsLeft = 0;
         foreach (Champion champion in PlayerProfile.Singleton.champions)
         {
             if (champion.GetClassName() == "Archer" && champion.invitedToBattle)
             {
-                ArcherCaptainsLeft = 1;
+                ArcherChampionsLeft++;
             }
             else if (champion.GetClassName() == "Peasant" && champion.invitedToBattle)
             {
-                PeasantCaptainsLeft = 1;
+                PeasantChampionsLeft++;
             }
             else if (champion.GetClassName() == "Knight" && champion.invitedToBattle)
             {
-                KnightCaptainsLeft = 1;
+                KnightChampionsLeft++;
             }
         }
     }

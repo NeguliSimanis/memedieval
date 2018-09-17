@@ -409,7 +409,7 @@ public class Tutorial : MonoBehaviour {
 
     public void SkipTutorial()
     {
-        // CreateTutorialChampion();
+        CreateTutorialChampion();
         LoadLevelAfterTutorial();
     }
 

@@ -42,7 +42,7 @@ public class StartMenu : MonoBehaviour
 
     private void Update()
     {
-        if (Time.time > muteStartTime && !muteActive)
+        if (!muteActive)
         {
             muteActive = true;
             RememberSFXSettings();

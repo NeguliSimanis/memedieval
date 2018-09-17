@@ -21,6 +21,7 @@ public class BattleCheat : MonoBehaviour
 
     void Update ()
     {
+        // INSTANT BATTLE VICTORY
 	    if (Input.GetKey(KeyCode.W))
         {
             if (!isVictoryCheatActive)
@@ -29,20 +30,31 @@ public class BattleCheat : MonoBehaviour
                 GameObject.FindGameObjectWithTag(playerCastleTag).GetComponent<Health>().EndBattle(true);
             }          
         }
+        // INSTANT MEAT IN BATTLE
         if (Input.GetKeyDown(KeyCode.M))
         {
             playerResources.Amount += meatPerCheat;
         }
-
+        // UNLOCK ALL MECHANICS
         if (Input.GetKeyDown(KeyCode.U))
         {
             UnlockAllMechanics();
         }
-
+        // RELOAD CURRENT LEVEL
         if (Input.GetKeyDown(KeyCode.R))
         {
             ReloadLevel();
         }
+        // GET MORE SALT
+        if (Input.GetKeyDown(KeyCode.S))
+        {
+            GetSaltCheat();
+        }
+    }
+
+    void GetSaltCheat()
+    {
+        PlayerProfile.Singleton.SaltCurrent += 10;
     }
 
     void ReloadLevel()

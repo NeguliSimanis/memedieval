@@ -23,12 +23,12 @@ public class PlayerUnitSpawn : MonoBehaviour
 
     public bool needToDisableSummonButton = false; // formerly isChampionDying
     private bool isUnitDying = false;
-    private bool needToEnlargeCooldownBar = false; // used to check for
+    private bool needToEnlargeCooldownBar = false; 
     private float spawnTimestamp;
 
     [SerializeField] private bool isTutorial = false; // spawn button is not hidden in tutorial
     [SerializeField] private Attack.Type captain;
-    [SerializeField] private MeMedieval.Resources resources;
+    private MeMedieval.Resources resources;
     [SerializeField] private float Cooldown;
     [SerializeField] private int unitCost;
 
@@ -47,10 +47,17 @@ public class PlayerUnitSpawn : MonoBehaviour
 
     void Start()
     {
+        InitializeVariables();
         CheckIfAvailable();
         SetPriceModifiers();
         DisplayStaticPrice();
         //unitCostProgressText.text = unitCost.ToString();
+    }
+
+    void InitializeVariables()
+    {
+        resources = GameObject.FindGameObjectWithTag("Player battle resources").GetComponent<MeMedieval.Resources>();
+        startingPoint = GameObject.FindGameObjectWithTag("Player point").GetComponent<Waypoint>();
     }
 
     void DisplayStaticPrice()
@@ -113,6 +120,8 @@ public class PlayerUnitSpawn : MonoBehaviour
 
     void Update()
     {
+        if (resources == null && !isTutorial)
+            return;
         UpdateUnitCostText();
 
         if (unitButton != null && unitButton.enabled)

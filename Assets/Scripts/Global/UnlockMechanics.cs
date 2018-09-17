@@ -8,6 +8,7 @@ public enum MechanicType
 
     // Map
     Map_SelectChampions,
+    Map_HidePierreFirstPopup,
 
     // Battle
     Battle_SummonChampion,
@@ -60,6 +61,7 @@ public class UnlockMechanics
     {
         // Map
         allMechanics.Add(new Mechanic(0,MechanicType.Map_SelectChampions));
+        allMechanics.Add(new Mechanic(0, MechanicType.Map_HidePierreFirstPopup));
 
         // Battle
         allMechanics.Add(new Mechanic(0, MechanicType.Battle_SummonChampion));
@@ -133,19 +135,6 @@ public class UnlockMechanics
             mechanic.isEnabled = true;
         }
     }
-
-    /*public int GetMechanicUnlockID(MechanicType mechanic)
-    {
-        //int temp = castleUnlocksMechanic.FirstOrDefault(x => x.Value == "one").Key;
-        foreach (KeyValuePair<int, MechanicType> currentMechanic in castleUnlocksMechanic)
-        {
-            if (currentMechanic.Value == mechanic)
-            {
-                return currentMechanic.Key;
-            }
-        }
-        return -1;
-    }*/
 
     void GetCurrentGameData()
     {

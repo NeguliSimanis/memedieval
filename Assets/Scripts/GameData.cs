@@ -15,7 +15,7 @@ public class GameData
     public List<ChampionData> championList = new List<ChampionData>();
 
     #region settings
-    public bool soundMuted = false;
+    public bool soundMuted = true;
     #endregion
 
     #region resources
