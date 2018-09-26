@@ -133,7 +133,9 @@ public class CreateChampion : MonoBehaviour
 
     public Champion CreateRandomChamp(GameObject parentObject)
     {
+        // choose random class for chmpion
         int champClassID = Random.Range(0, ChampionsPrefabs.Length);
+
         GameObject championObject = Instantiate<GameObject>(ChampionsPrefabs[champClassID]);
 
         championObject.SetActive(false);
@@ -147,6 +149,7 @@ public class CreateChampion : MonoBehaviour
         champo.properties.isMan = (Random.value > 0.5f);
         champo.properties.bio = MakeBio(championName);
         champo.properties.quote = MakeMotto();
+        champo.properties.SetID();
         SetChampionPicture(champo);
         SetChampionAbility(champo);
 
@@ -176,6 +179,7 @@ public class CreateChampion : MonoBehaviour
         champo.properties.isMan = (Random.value > 0.5f);
         champo.properties.bio = MakeBio(championName);
         champo.properties.quote = MakeMotto();
+        champo.properties.SetID();
         champo.invitedToBattle = true;
         SetChampionPicture(champo);
         SetChampionAbility(champo);

@@ -8,8 +8,11 @@ public class Tutorial : MonoBehaviour {
     // Created on 08.06.2018
     GameObject pierre;
 
+    #region tutorial champion
     Champion tutorialChampion;
     Image tutorialChampionFace;
+    //bool tutorialChampionCreated = false;
+    #endregion
 
     int defaultDialogueFontSize;
     [SerializeField]
@@ -409,7 +412,7 @@ public class Tutorial : MonoBehaviour {
 
     public void SkipTutorial()
     {
-        CreateTutorialChampion();
+        //CreateTutorialChampion();
         LoadLevelAfterTutorial();
     }
 

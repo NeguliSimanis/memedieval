@@ -19,9 +19,7 @@ public class Spawn : MonoBehaviour
     private bool isUnitDying = false;
     private bool needToEnlargeCooldownBar = false; // used to check for
 
-    public static int PeasantChampionsLeft;
-    public static int ArcherChampionsLeft;
-    public static int KnightChampionsLeft;
+
     private static float spawnTimestamp;
     private static float enemyTimestamp;
 
@@ -43,11 +41,6 @@ public class Spawn : MonoBehaviour
     public Waypoint startingPoint;
 
     public AvatarFace avatarFacePrefab;
-
-    void Awake()
-    {
-        ResetAllValues();
-    }
 
     void Start()
     {
@@ -124,7 +117,6 @@ public class Spawn : MonoBehaviour
         // disabling player unit summoning buttons
         if (!Enemy)
         {
-            CheckIfDeadChampion();
 
             // disable button if not enough resources
             if (!resources.IsEnoughResources(unitCost))
@@ -183,25 +175,11 @@ public class Spawn : MonoBehaviour
         }
     }
 
-    void CheckIfDeadChampion()
-    {
-        Debug.Log("Peasant champions left - " + PeasantChampionsLeft);
-        Debug.Log("Archer champions left - " + ArcherChampionsLeft);
-        Debug.Log("Knight champions left - " + KnightChampionsLeft);
-        if (ArcherChampionsLeft > 0 && captain == Attack.Type.Archer)
-            return;
-        if (KnightChampionsLeft > 0 && captain == Attack.Type.Knight)
-            return;
-        if (PeasantChampionsLeft > 0 && captain == Attack.Type.Peasant)
-            return;
-
-        // champion is dead, must disable spawning regular units
-        StartDisablingUnitButt();
-    }
 
     void DisableSpawnButton(bool isChampion)
     {
         // wait until spawn button resizing effect is over before disabling button object
+        Debug.Log("disabling spawn btt");
         if (gameObject.GetComponent<ResizeOnClick>().isResized != true)
         {
             if (isChampion)
@@ -238,28 +216,6 @@ public class Spawn : MonoBehaviour
         unitButton.interactable = false;
         unitButton.gameObject.SetActive(false);
         isUnitDying = true;
-    }
-
-    public static void ResetAllValues()
-    {
-        PeasantChampionsLeft = 0;
-        ArcherChampionsLeft = 0;
-        KnightChampionsLeft = 0;
-        foreach (Champion champion in PlayerProfile.Singleton.champions)
-        {
-            if (champion.GetClassName() == "Archer" && champion.invitedToBattle)
-            {
-                ArcherChampionsLeft++;
-            }
-            else if (champion.GetClassName() == "Peasant" && champion.invitedToBattle)
-            {
-                PeasantChampionsLeft++;
-            }
-            else if (champion.GetClassName() == "Knight" && champion.invitedToBattle)
-            {
-                KnightChampionsLeft++;
-            }
-        }
     }
 }
 

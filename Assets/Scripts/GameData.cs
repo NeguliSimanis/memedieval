@@ -44,6 +44,10 @@ public class GameData
     public string battleSceneName = "Test scene";
     #endregion
 
+    #region misc
+    public int lastChampionID = 0;
+    #endregion
+
     public void LoadGameProgress(GameData previousProgress)
     {
         if (GameData.current == null)
@@ -66,11 +70,18 @@ public class GameData
         }
         return highestCastleID;
     }
+
+    public int GetNewChampionID()
+    {
+        lastChampionID++;
+        return lastChampionID;
+    }
 }
 
 [System.Serializable]
 public class ChampionData
 {
+    public int championID = -1;
     public int level; // actual level is 1 higher
     public int champClass; // 0 - peasant, 1 - Knight, 2 - archer (in some places peasant and archer are inversed)
     public bool isDead;
@@ -111,6 +122,12 @@ public class ChampionData
     public string bio;
     public string quote;
     #endregion
+
+    public void SetID()
+    {
+        CreateGameData.CreateIfNoGameDataExists();
+        championID = GameData.current.GetNewChampionID();
+    }
 
     public void SetPicture(Texture2D texture)
     {

@@ -19,6 +19,7 @@ using UnityEngine.UI;
 public class PlayerUnitSpawn : MonoBehaviour
 {
     #region variables
+    public int championID;
     [SerializeField] private bool isChampion = false;
 
     public bool needToDisableSummonButton = false; // formerly isChampionDying
@@ -31,6 +32,10 @@ public class PlayerUnitSpawn : MonoBehaviour
     private MeMedieval.Resources resources;
     [SerializeField] private float Cooldown;
     [SerializeField] private int unitCost;
+
+    public static int PeasantChampionsLeft;
+    public static int ArcherChampionsLeft;
+    public static int KnightChampionsLeft;
 
     [Header("UI elements")]
     [SerializeField] private Image CooldownBar;
@@ -45,12 +50,18 @@ public class PlayerUnitSpawn : MonoBehaviour
     public Waypoint startingPoint;
     #endregion
 
+    void Awake()
+    {
+        ResetAllValues();
+    }
+
     void Start()
     {
         InitializeVariables();
         CheckIfAvailable();
         SetPriceModifiers();
         DisplayStaticPrice();
+        Debug.Log("champion ID is " + championID);
         //unitCostProgressText.text = unitCost.ToString();
     }
 
@@ -93,6 +104,7 @@ public class PlayerUnitSpawn : MonoBehaviour
         }
         if (champCount == 0)
         {
+           // Debug.Log("disabling player spawn");
             DisablePlayerSpawn();
         }
     }
@@ -121,7 +133,11 @@ public class PlayerUnitSpawn : MonoBehaviour
     void Update()
     {
         if (resources == null && !isTutorial)
+        {
+            //Debug.Log("returning");
             return;
+        }
+        //Debug.Log("return not workign");
         UpdateUnitCostText();
 
         if (unitButton != null && unitButton.enabled)
@@ -218,12 +234,15 @@ public class PlayerUnitSpawn : MonoBehaviour
 
     void CheckIfDeadChampion()
     {
-        if (!Health.Archer && captain == Attack.Type.Archer)
+        if (isTutorial)
             return;
-        if (!Health.Knight && captain == Attack.Type.Knight)
+        if (ArcherChampionsLeft > 0 && captain == Attack.Type.Archer)
             return;
-        if (!Health.Peasant && captain == Attack.Type.Peasant)
+        if (KnightChampionsLeft > 0 && captain == Attack.Type.Knight)
             return;
+        if (PeasantChampionsLeft > 0 && captain == Attack.Type.Peasant)
+            return;
+
         // champion is dead, must disable spawning regular units
         StartDisablingUnitButt();
     }
@@ -261,8 +280,9 @@ public class PlayerUnitSpawn : MonoBehaviour
         foreach (Champion champion in PlayerProfile.Singleton.champions)
         {
             // found champion who was of same class and is invited to battle
-            if (champion.invitedToBattle == true && champion.properties.GetChampionAttackType() == captain)
+            if (champion.invitedToBattle == true && champion.properties.GetChampionAttackType() == captain && champion.properties.championID == championID)
             {
+                Debug.Log("Spawning champion " + champion.properties.GetFirstName() + " with ability " + champion.properties.GetAbilityString() + " and id " + champion.properties.championID);
                 currentChampion.properties.currentChampionAbility = champion.properties.currentChampionAbility;
                 break;
             }
@@ -280,5 +300,27 @@ public class PlayerUnitSpawn : MonoBehaviour
     {
         unitButton.interactable = false;
         needToDisableSummonButton = true;
+    }
+
+    public static void ResetAllValues()
+    {
+        PeasantChampionsLeft = 0;
+        ArcherChampionsLeft = 0;
+        KnightChampionsLeft = 0;
+        foreach (Champion champion in PlayerProfile.Singleton.champions)
+        {
+            if (champion.GetClassName() == "Archer" && champion.invitedToBattle)
+            {
+                ArcherChampionsLeft++;
+            }
+            else if (champion.GetClassName() == "Peasant" && champion.invitedToBattle)
+            {
+                PeasantChampionsLeft++;
+            }
+            else if (champion.GetClassName() == "Knight" && champion.invitedToBattle)
+            {
+                KnightChampionsLeft++;
+            }
+        }
     }
 }

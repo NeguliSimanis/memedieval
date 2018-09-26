@@ -428,7 +428,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isTutorial: 0
   captain: 0
-  isCaptain: 0
+  isChampion: 0
   resources: {fileID: 236412809}
   Cooldown: 0.9
   unitCost: 0
@@ -4687,7 +4687,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &557652995
 Transform:
   m_ObjectHideFlags: 0
@@ -8070,7 +8070,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isTutorial: 0
   captain: 0
-  isCaptain: 0
+  isChampion: 0
   resources: {fileID: 236412809}
   Cooldown: 2.2
   unitCost: 0
@@ -12505,7 +12505,6 @@ GameObject:
   - component: {fileID: 1756305289}
   - component: {fileID: 1756305288}
   - component: {fileID: 1756305286}
-  - component: {fileID: 1756305287}
   - component: {fileID: 1756305291}
   - component: {fileID: 1756305292}
   m_Layer: 5
@@ -12579,34 +12578,6 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
---- !u!114 &1756305287
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 114258985522410948, guid: 72251e6cf895eab4fbc396cf794b90a1,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1756305285}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d318584adc5d02444bcac81b2e22082a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isTutorial: 1
-  captain: 1
-  isCaptain: 0
-  resources: {fileID: 593195742}
-  Cooldown: 2
-  unitCost: 45
-  Enemy: 0
-  CooldownBar: {fileID: 183683839}
-  unitButton: {fileID: 1756305286}
-  championButton: {fileID: 1756305286}
-  hideThisWhenInsufficientMeat: []
-  UnitCostText: {fileID: 1647602419}
-  Character: {fileID: 114986918646699218, guid: 9873f8e4ff1ad9b4a828a2e7cd09a9dc,
-    type: 2}
-  startingPoint: {fileID: 712340975}
-  avatarFacePrefab: {fileID: 0}
 --- !u!114 &1756305288
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12691,6 +12662,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d66c9ab2ba892b548be0dda21f961223, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  championID: 0
   isChampion: 0
   needToDisableSummonButton: 0
   isTutorial: 1
@@ -13319,7 +13291,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isTutorial: 0
   captain: 0
-  isCaptain: 0
+  isChampion: 0
   resources: {fileID: 236412809}
   Cooldown: 1.2
   unitCost: 0

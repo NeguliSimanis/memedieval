@@ -24,12 +24,14 @@ public class SpawnUnitTents : MonoBehaviour
         {
             if (champion.invitedToBattle == true)
             {
-                SpawnTent(champion.properties.GetChampionAttackType());
+                SpawnTent(champion.properties.GetChampionAttackType(), champion.properties.championID);
+                Debug.Log("Adding champion " + champion.properties.GetFirstName() + " with ability " + champion.properties.GetAbilityString() + " and id " + champion.properties.championID);
+                //Debug.Log("Adding champion with id " + champion.GetID());
             }
         }
 	}
 
-    void SpawnTent(Attack.Type unitType)
+    void SpawnTent(Attack.Type unitType, int championID)
     {
         GameObject tent;
         if (unitType == Attack.Type.Archer)
@@ -45,7 +47,7 @@ public class SpawnUnitTents : MonoBehaviour
             tent = peasantTent;
         }
         Instantiate(tent, transform);
-        //tent.transform.GetChild(0).gameObject.GetComponent<PlayerUnitSpawn>().resources = resources;
-        //tent.transform.GetChild(1).gameObject.GetComponent<PlayerUnitSpawn>().resources = resources;
+        tent.transform.GetChild(0).gameObject.GetComponent<PlayerUnitSpawn>().championID = championID;
+        tent.transform.GetChild(1).gameObject.GetComponent<PlayerUnitSpawn>().championID = championID;
     }
 }

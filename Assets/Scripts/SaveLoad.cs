@@ -52,14 +52,24 @@ public class SaveLoad : MonoBehaviour
     }
 
     /// <summary>
-    /// Checks if there exists a save file
+    /// Checks if there exists a save file with at least one destroyed castle
     /// </summary>
     /// <returns></returns>
     public bool CheckSaveFile()
     {
         if (File.Exists(Application.persistentDataPath + "/savedGames.gd"))
         {
-            return true;
+            Debug.Log(Application.persistentDataPath);
+            BinaryFormatter bf = new BinaryFormatter();
+            FileStream file = File.Open(Application.persistentDataPath + "/savedGames.gd", FileMode.Open);
+            SaveLoad.savedGames = (List<GameData>)bf.Deserialize(file);   
+            if (SaveLoad.savedGames[0].destroyedCastles[0] == true)
+            {
+                // at least one castle has been destroyed
+                file.Close();
+                return true;
+            }
+            file.Close();
         }
         return false;
     }

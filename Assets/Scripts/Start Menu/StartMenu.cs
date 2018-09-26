@@ -25,6 +25,8 @@ public class StartMenu : MonoBehaviour
     bool rememberSFXSettings = true;
     string levelToLoad = "Test scene";
 
+    bool saveExists = false;
+
     // for testing if mute works after delay
     float muteDelay = 1f;
     float muteStartTime;
@@ -53,11 +55,12 @@ public class StartMenu : MonoBehaviour
     {
         SaveLoad saveLoad = gameObject.GetComponent<SaveLoad>();
 
-        // check if save file exists
+        // check if save file with at least one destroyed castle exists
         if (saveLoad.CheckSaveFile())
         {
             // save exists - load data
             saveLoad.Load();
+            saveExists = true;
         }
     }
 	/// <summary>
@@ -72,7 +75,7 @@ public class StartMenu : MonoBehaviour
 
     void LoadNextLevel()
     {
-        if (loadNextLVAutomatically)
+        if (loadNextLVAutomatically && saveExists)
             gameObject.GetComponent<LoadScene>().loadLevel(levelToLoad);
     }
 }

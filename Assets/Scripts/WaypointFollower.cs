@@ -126,7 +126,6 @@ public class WaypointFollower : MonoBehaviour
     // unit stops moving
     public void Stop()
     {
-        Debug.Log("Unit " + gameObject.name + " stopped");
         Speed = 0f;
     }
 

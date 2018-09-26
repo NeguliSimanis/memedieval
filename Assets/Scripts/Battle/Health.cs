@@ -104,7 +104,6 @@ public class Health : MonoBehaviour
             if (nextLevelScript == null) Debug.Log("Next level name not specified in inspector");
             else
             {
-                Spawn.ResetAllValues();
                 WaypointFollower.ResetAllValues();
                 ResetAllValues();
                 if (isVictory)
@@ -120,20 +119,20 @@ public class Health : MonoBehaviour
                 if (UnitType == Attack.Type.Archer)
                 {
                     archerChampionsDead = true;
-                    Spawn.ArcherChampionsLeft--;
+                    PlayerUnitSpawn.ArcherChampionsLeft--;
                 }
                 if (UnitType == Attack.Type.Peasant)
                 {
-                    Spawn.PeasantChampionsLeft--;
+                    PlayerUnitSpawn.PeasantChampionsLeft--;
                     peasantChampionsDead = true;
                 }
                 if (UnitType == Attack.Type.Knight)
                 {
                     knightChampionsDead = true;
-                    Spawn.KnightChampionsLeft--;
+                    PlayerUnitSpawn.KnightChampionsLeft--;
                 }
                 // all champions dead, enable surrender button
-                if (Spawn.PeasantChampionsLeft <= 0 && Spawn.KnightChampionsLeft <= 0 && Spawn.ArcherChampionsLeft <= 0)
+                if (PlayerUnitSpawn.PeasantChampionsLeft <= 0 && PlayerUnitSpawn.KnightChampionsLeft <= 0 && PlayerUnitSpawn.ArcherChampionsLeft <= 0)
                 {
                     canSurrender = true;
                 }

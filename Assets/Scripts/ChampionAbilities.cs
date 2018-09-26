@@ -308,7 +308,6 @@ public class ChampionAbilities : MonoBehaviour
         {
             if (gameObject != playerUnit.gameObject)
             {
-                Debug.Log(playerUnit.gameObject.name + " boosted");
 
                 // set move speed
                 waypointFollower = playerUnit.gameObject.GetComponent<WaypointFollower>();

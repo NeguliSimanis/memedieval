@@ -24,16 +24,10 @@ AnimationClip:
         outSlope: {x: 0, y: 0, z: 0}
         tangentMode: 0
       - serializedVersion: 2
-        time: 0.36666667
-        value: {x: 0, y: 0.5062888, z: 0.020929797}
-        inSlope: {x: 0, y: 1.499241, z: -0.05708127}
-        outSlope: {x: 0, y: 1.499241, z: -0.05708127}
-        tangentMode: 0
-      - serializedVersion: 2
         time: 0.73333335
         value: {x: 0, y: 1.0994434, z: 0}
-        inSlope: {x: 0, y: 0.7803995, z: 0}
-        outSlope: {x: 0, y: 0.7803995, z: 0}
+        inSlope: {x: 0, y: 0.473814, z: 0}
+        outSlope: {x: 0, y: 0.473814, z: 0}
         tangentMode: 0
       - serializedVersion: 2
         time: 0.93333334
@@ -115,6 +109,28 @@ AnimationClip:
     path: DeathSkull
     classID: 212
     script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 2
+        time: 0
+        value: 0
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+      - serializedVersion: 2
+        time: 0.31666666
+        value: 1
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_IsActive
+    path: DeathSkull
+    classID: 1
+    script: {fileID: 0}
   m_PPtrCurves: []
   m_SampleRate: 60
   m_WrapMode: 0
@@ -144,6 +160,13 @@ AnimationClip:
       typeID: 212
       customType: 0
       isPPtrCurve: 0
+    - serializedVersion: 2
+      path: 3456939031
+      attribute: 2086281974
+      script: {fileID: 0}
+      typeID: 1
+      customType: 0
+      isPPtrCurve: 0
     pptrCurveMapping: []
   m_AnimationClipSettings:
     serializedVersion: 2
@@ -171,12 +194,6 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 2
         time: 0
-        value: 0
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 136
-      - serializedVersion: 2
-        time: 0.36666667
         value: 0
         inSlope: 0
         outSlope: 0
@@ -216,16 +233,10 @@ AnimationClip:
         outSlope: 0
         tangentMode: 136
       - serializedVersion: 2
-        time: 0.36666667
-        value: 0.5062888
-        inSlope: 1.499241
-        outSlope: 1.499241
-        tangentMode: 136
-      - serializedVersion: 2
         time: 0.73333335
         value: 1.0994434
-        inSlope: 0.7803995
-        outSlope: 0.7803995
+        inSlope: 0.473814
+        outSlope: 0.473814
         tangentMode: 136
       - serializedVersion: 2
         time: 0.93333334
@@ -254,12 +265,6 @@ AnimationClip:
         value: 0.0418596
         inSlope: 0
         outSlope: 0
-        tangentMode: 136
-      - serializedVersion: 2
-        time: 0.36666667
-        value: 0.020929797
-        inSlope: -0.05708127
-        outSlope: -0.05708127
         tangentMode: 136
       - serializedVersion: 2
         time: 0.73333335
@@ -347,6 +352,28 @@ AnimationClip:
     attribute: m_Color.a
     path: DeathSkull
     classID: 212
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 2
+        time: 0
+        value: 0
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+      - serializedVersion: 2
+        time: 0.31666666
+        value: 1
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_IsActive
+    path: DeathSkull
+    classID: 1
     script: {fileID: 0}
   m_EulerEditorCurves: []
   m_HasGenericRootTransform: 1
