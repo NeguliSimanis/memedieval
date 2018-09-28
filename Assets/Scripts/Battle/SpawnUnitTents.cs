@@ -25,7 +25,7 @@ public class SpawnUnitTents : MonoBehaviour
             if (champion.invitedToBattle == true)
             {
                 SpawnTent(champion.properties.GetChampionAttackType(), champion.properties.championID);
-                Debug.Log("Adding champion " + champion.properties.GetFirstName() + " with ability " + champion.properties.GetAbilityString() + " and id " + champion.properties.championID);
+                //Debug.Log("Adding champion " + champion.properties.GetFirstName() + " with ability " + champion.properties.GetAbilityString() + " and id " + champion.properties.championID);
                 //Debug.Log("Adding champion with id " + champion.GetID());
             }
         }

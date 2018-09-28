@@ -2,12 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-/*
- * Script:
- * > stores all data that has to be saved/loaded 
- * > converts the loadable variables to a serializable format
- */
-
+/// <summary>
+///  * Script:
+///  > stores all data that has to be saved/loaded
+///  > converts the loadable variables to a serializable format
+/// </summary>
 [System.Serializable]
 public class GameData
 {
@@ -94,6 +93,10 @@ public class ChampionData
     public int saltCost;
     #endregion
 
+    #region Herald
+    public Color crestColor;
+    #endregion
+
     #region Picture stuff
     public bool isCameraPicture = false;
     public byte[] picture;
@@ -127,6 +130,63 @@ public class ChampionData
     {
         CreateGameData.CreateIfNoGameDataExists();
         championID = GameData.current.GetNewChampionID();
+    }
+
+    public void SetCrestColor()
+    {
+        if (Crests.crestColorsSet == false)
+        {
+            Crests.SetHeraldColors();   
+        }
+
+        int crestColorID;
+
+        #region setting champion crest color 
+        // The goal is to make each color repeat as little as possible within one class
+
+        // PEASANT
+        if (champClass == 0)
+        {
+            Debug.Log("peasant champion color count: " + Crests.unusedPeasantColors.Count);
+            Debug.Log("total color count: " + Crests.crestColors.Count);
+            // all colors have been used up - reset color rooster
+            if (Crests.unusedPeasantColors.Count == 0)
+            {
+                Crests.ResetPeasantColors();
+            }
+            crestColorID = Random.Range(0, Crests.unusedPeasantColors.Count - 1);
+            crestColor = Crests.unusedPeasantColors[crestColorID];
+            Crests.unusedPeasantColors.RemoveAt(crestColorID);
+        }
+        // KNIGHT
+        else if (champClass == 1)
+        {
+            Debug.Log("knight champion color count: " + Crests.unusedKnightColors.Count);
+            Debug.Log("total color count: " + Crests.crestColors.Count);
+            // all colors have been used up - reset color rooster
+            if (Crests.unusedKnightColors.Count == 0)
+            {
+                Crests.ResetKnightColors();
+            }
+            crestColorID = Random.Range(0, Crests.unusedKnightColors.Count - 1);
+            crestColor = Crests.unusedKnightColors[crestColorID];
+            Crests.unusedKnightColors.RemoveAt(crestColorID);
+        }
+        // ARCHER
+        else
+        {
+            Debug.Log("archeer champion color count: " + Crests.unusedArcherColors.Count);
+            Debug.Log("total color count: " + Crests.crestColors.Count);
+            // all colors have been used up - reset color rooster
+            if (Crests.unusedArcherColors.Count == 0)
+            {
+                Crests.ResetArcherColors();
+            }
+            crestColorID = Random.Range(0, Crests.unusedArcherColors.Count - 1);
+            crestColor = Crests.unusedArcherColors[crestColorID];
+            Crests.unusedArcherColors.RemoveAt(crestColorID);
+        }
+        #endregion
     }
 
     public void SetPicture(Texture2D texture)

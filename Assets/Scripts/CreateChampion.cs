@@ -135,61 +135,95 @@ public class CreateChampion : MonoBehaviour
     {
         // choose random class for chmpion
         int champClassID = Random.Range(0, ChampionsPrefabs.Length);
+        Champion champ = SetChampionProperties(champClassID, false);
 
-        GameObject championObject = Instantiate<GameObject>(ChampionsPrefabs[champClassID]);
+        // LegacY code
+        /* GameObject championObject = Instantiate<GameObject>(ChampionsPrefabs[champClassID]);
 
         championObject.SetActive(false);
         championObject.transform.parent = parentObject.transform;
 
-        var champo = championObject.GetComponent<Champion>();
+        var champ = championObject.GetComponent<Champion>();
         string championName = gameObject.GetComponent<RandomName>().GetRandomChampionName();
-        champo.properties.champClass = champClassID;
+        champ.properties.champClass = champClassID;
 
-        champo.properties.Name = championName;
-        champo.properties.isMan = (Random.value > 0.5f);
-        champo.properties.bio = MakeBio(championName);
-        champo.properties.quote = MakeMotto();
-        champo.properties.SetID();
-        SetChampionPicture(champo);
-        SetChampionAbility(champo);
+        champ.properties.Name = championName;
+        champ.properties.isMan = (Random.value > 0.5f);
+        champ.properties.bio = MakeBio(championName);
+        champ.properties.quote = MakeMotto();
+        champ.properties.SetID();
+        SetChampionPicture(champ);
+        SetChampionAbility(champ);
 
-        this.gameObject.GetComponent<ChampionSkillGenerator>().GenerateChampionSkills(champo);
+        this.gameObject.GetComponent<ChampionSkillGenerator>().GenerateChampionSkills(champ);
 
         var stats = Instantiate(StatsContainerPrefab);
-        stats.transform.parent = champo.transform;
+        stats.transform.parent = champ.transform; */
 
-        return champo;
+        return champ;
     }
 
     public Champion CreateTutorialChampion()
     {
         // sets champion to knight
         int champClassID = 1;
+        Champion champ = SetChampionProperties(champClassID, true);
+        return champ;
+    }
+
+    private Champion SetChampionProperties(int champClassID, bool isTutorialChampion)
+    {
         GameObject championObject = Instantiate<GameObject>(ChampionsPrefabs[champClassID]);
 
         // sets parent of champion object
         championObject.SetActive(false);
         championObject.transform.parent = gameObject.transform.parent;
 
-        // sets champion propertiees
-        var champo = championObject.GetComponent<Champion>();
+        #region sets champion propertiees
+        var champ = championObject.GetComponent<Champion>();
+
+        // CLASS
+        champ.properties.champClass = champClassID;
+
+        // NAME
         string championName = gameObject.GetComponent<RandomName>().GetRandomChampionName();
-        champo.properties.champClass = champClassID;
-        champo.properties.Name = championName;
-        champo.properties.isMan = (Random.value > 0.5f);
-        champo.properties.bio = MakeBio(championName);
-        champo.properties.quote = MakeMotto();
-        champo.properties.SetID();
-        champo.invitedToBattle = true;
-        SetChampionPicture(champo);
-        SetChampionAbility(champo);
-        this.gameObject.GetComponent<ChampionSkillGenerator>().GenerateChampionSkills(champo);
+        champ.properties.Name = championName;
 
-        PlayerProfile.Singleton.champions.Add(champo);
+        // GENDER
+        champ.properties.isMan = (Random.value > 0.5f);
+
+        // BIO
+        champ.properties.bio = MakeBio(championName);
+
+        // MOTTO
+        champ.properties.quote = MakeMotto();
+
+        // ID
+        champ.properties.SetID();
+
+        // PICTURE
+        SetChampionPicture(champ);
+
+        // ABILITY
+        SetChampionAbility(champ);
+
+        // SKILLS
+        this.gameObject.GetComponent<ChampionSkillGenerator>().GenerateChampionSkills(champ);
+
+        // CREST
+        champ.properties.SetCrestColor();
+        #endregion
+
         var stats = Instantiate(StatsContainerPrefab);
-        stats.transform.parent = champo.transform;
+        stats.transform.parent = champ.transform;
 
-        return champo;
+        if (isTutorialChampion)
+        {
+            champ.invitedToBattle = true;
+            PlayerProfile.Singleton.champions.Add(champ);
+        }
+
+        return champ;
     }
 
     public void StartUsingWebcam()

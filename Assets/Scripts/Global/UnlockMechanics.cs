@@ -107,16 +107,14 @@ public class UnlockMechanics
     /// </summary>
     public void Unlock (int destroyedCastleID)
     {
-        Debug.Log("Destroyed castle id: " + destroyedCastleID);
-
-        //MechanicType mechanic;
+        //Debug.Log("Destroyed castle id: " + destroyedCastleID);
 
         // castle doesn't unlock anything
         foreach (Mechanic mechanic in allMechanics)
         {
             if (mechanic.unlockCastleID == destroyedCastleID)
             {
-                Debug.Log("Castle unlocks " + mechanic.type);
+                //Debug.Log("Castle unlocks " + mechanic.type);
                 mechanic.isEnabled = true;
             }
         }

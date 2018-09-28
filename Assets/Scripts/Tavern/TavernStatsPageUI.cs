@@ -52,6 +52,9 @@ public class TavernStatsPageUI : MonoBehaviour {
     public Text BioText;
     public Text Motto;
     public GameObject[] UnitImage;
+
+    [Header("Crest")]
+    [SerializeField] Image championCrestImage;
     #endregion
 
     private void Start()
@@ -124,12 +127,18 @@ public class TavernStatsPageUI : MonoBehaviour {
         }
     }
 
+    private void UpdateChampionCrest()
+    {
+        championCrestImage.color = activeChampion.properties.crestColor;
+    }
+
     public void ChangeChamp(Champion c)
     {
         activeChampion = c;
         ChangeChampionHeadPicture();
         UpdateChampionName();
         UpdateFireChampionText();
+        UpdateChampionCrest();
 
         switch (activeChampion.properties.champClass)
         {
