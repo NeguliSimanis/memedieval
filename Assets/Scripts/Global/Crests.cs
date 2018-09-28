@@ -7,6 +7,7 @@ using UnityEngine;
 /// </summary>
 public class Crests
 {
+    public static int crestPatternCount = 2; // depends on how many crest pattern child objects you set in scene
     public static bool crestColorsSet = false;
     public static List<Color> crestColors = new List<Color>();
     public static List<Color> unusedArcherColors = new List<Color>();

@@ -55,6 +55,8 @@ public class TavernStatsPageUI : MonoBehaviour {
 
     [Header("Crest")]
     [SerializeField] Image championCrestImage;
+    [SerializeField] Image championCrestPattern;
+    [SerializeField] Image[] crestPatterns;
     #endregion
 
     private void Start()
@@ -129,7 +131,26 @@ public class TavernStatsPageUI : MonoBehaviour {
 
     private void UpdateChampionCrest()
     {
+        if (!activeChampion.properties.crestSet)
+        {
+            activeChampion.properties.SetCrest();
+        }
+
         championCrestImage.color = activeChampion.properties.crestColor;
+
+        for (int i = 0; i < Crests.crestPatternCount; i++)
+        {
+            if (i == activeChampion.properties.crestPatternID)
+            {
+                championCrestImage.gameObject.transform.GetChild(i).transform.gameObject.SetActive(true);
+            }
+            else
+            {
+                championCrestImage.gameObject.transform.GetChild(i).transform.gameObject.SetActive(false);
+            }
+        }
+        championCrestPattern = crestPatterns[0];
+
     }
 
     public void ChangeChamp(Champion c)

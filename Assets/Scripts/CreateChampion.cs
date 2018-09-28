@@ -211,7 +211,7 @@ public class CreateChampion : MonoBehaviour
         this.gameObject.GetComponent<ChampionSkillGenerator>().GenerateChampionSkills(champ);
 
         // CREST
-        champ.properties.SetCrestColor();
+        champ.properties.SetCrest();
         #endregion
 
         var stats = Instantiate(StatsContainerPrefab);
