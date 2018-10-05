@@ -24,14 +24,14 @@ public class SpawnUnitTents : MonoBehaviour
         {
             if (champion.invitedToBattle == true)
             {
-                SpawnTent(champion.properties.GetChampionAttackType(), champion.properties.championID);
+                SpawnTent(champion.properties.GetChampionAttackType(), champion.properties.championID, champion.properties);
                 //Debug.Log("Adding champion " + champion.properties.GetFirstName() + " with ability " + champion.properties.GetAbilityString() + " and id " + champion.properties.championID);
                 //Debug.Log("Adding champion with id " + champion.GetID());
             }
         }
 	}
 
-    void SpawnTent(Attack.Type unitType, int championID)
+    void SpawnTent(Attack.Type unitType, int championID, ChampionData championData)
     {
         GameObject tent;
         if (unitType == Attack.Type.Archer)
@@ -46,8 +46,17 @@ public class SpawnUnitTents : MonoBehaviour
         {
             tent = peasantTent;
         }
+        SetTentCrest(tent, championData);
         Instantiate(tent, transform);
-        tent.transform.GetChild(0).gameObject.GetComponent<PlayerUnitSpawn>().championID = championID;
-        tent.transform.GetChild(1).gameObject.GetComponent<PlayerUnitSpawn>().championID = championID;
+
+        // set champion ID for the button that summmons champions. NB - if the child number is different, script won't work
+        Debug.Log("adding tent with name" + tent.transform.GetChild(1).gameObject.name + " and with champion ID " + championID);
+        
+        tent.transform.GetChild(1).gameObject.GetComponent<PlayerUnitSpawn>().SetChampionID(championID);
+    }
+
+    void SetTentCrest(GameObject tent, ChampionData championData)
+    {
+        tent.GetComponent<TentCrest>().championData = championData;
     }
 }

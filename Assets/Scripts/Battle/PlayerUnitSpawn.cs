@@ -19,7 +19,7 @@ using UnityEngine.UI;
 public class PlayerUnitSpawn : MonoBehaviour
 {
     #region variables
-    public int championID;
+    private int championID = -1;
     [SerializeField] private bool isChampion = false;
 
     public bool needToDisableSummonButton = false; // formerly isChampionDying
@@ -61,8 +61,14 @@ public class PlayerUnitSpawn : MonoBehaviour
         CheckIfAvailable();
         SetPriceModifiers();
         DisplayStaticPrice();
+        SetTentCrest();
         Debug.Log("champion ID is " + championID);
         //unitCostProgressText.text = unitCost.ToString();
+    }
+
+    void SetTentCrest()
+    {
+
     }
 
     void InitializeVariables()
@@ -264,28 +270,43 @@ public class PlayerUnitSpawn : MonoBehaviour
 
         if (isTutorial || resources.WasEnoughResources(unitCost))
         {
+            if (isChampion)
+            {
+                //SetChampionAbility(Character.gameObject.GetComponent<Champion>());
+                StartDisablingChampionButt();
+            }
             WaypointFollower character = Instantiate(Character, startingPoint.transform.position, Quaternion.identity);
             character.SetTarget(startingPoint);
             spawnTimestamp = Time.time;
-            if (isChampion)
-            {
-                SetChampionAbility(character.gameObject.GetComponent<Champion>());
-                StartDisablingChampionButt();
-            }
         }
+    }
+
+    public void SetChampionID(int ID)
+    {
+        championID = ID;
+        SetChampionAbility(Character.gameObject.GetComponent<Champion>());
     }
 
     void SetChampionAbility(Champion currentChampion)
     {
+        bool championFound = false;
         foreach (Champion champion in PlayerProfile.Singleton.champions)
         {
             // found champion who was of same class and is invited to battle
-            if (champion.invitedToBattle == true && champion.properties.GetChampionAttackType() == captain && champion.properties.championID == championID)
+            if (champion.properties.GetChampionAttackType() == captain && champion.invitedToBattle == true)
             {
-                Debug.Log("Spawning champion " + champion.properties.GetFirstName() + " with ability " + champion.properties.GetAbilityString() + " and id " + champion.properties.championID);
-                currentChampion.properties.currentChampionAbility = champion.properties.currentChampionAbility;
-                break;
+                if (champion.properties.championID == championID)
+                {
+                    Debug.Log("Spawning champion " + champion.properties.GetFirstName() + " with ability " + champion.properties.GetAbilityString() + " and id " + champion.properties.championID);
+                    currentChampion.properties.currentChampionAbility = champion.properties.currentChampionAbility;
+                    championFound = true;
+                    break;
+                }
             }
+        }
+        if (!championFound)
+        {
+            Debug.Log("Champion not found bro!");
         }
     }
 
