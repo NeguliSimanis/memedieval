@@ -36,7 +36,7 @@ public class TentCrest : MonoBehaviour
 
     void SetTentColor()
     {
-        tentImage.color = championData.crestColor;
+        tentImage.color = championData.GetCrestColor();
     }
     
 }

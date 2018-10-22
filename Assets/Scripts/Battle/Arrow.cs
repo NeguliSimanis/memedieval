@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class Arrow : MonoBehaviour
 {
-    [SerializeField] private float Speed;
+    [SerializeField]
+    private float Speed;
     private float SelfDestruct;
     public Transform Target;
     private int damage;
@@ -38,15 +39,14 @@ public class Arrow : MonoBehaviour
         }
     }
 
-  /*  void OnTriggerEnter2D(Collider2D other)
-    {
-
-        if (other.gameObject == Target.gameObject)
-        { 
-            Destroy(gameObject);
-            Target.GetComponent<Health>().Damage(damage, Attack.Type.Archer);
-        }
-    }*/
+    /*  void OnTriggerEnter2D(Collider2D other)
+      {
+          if (other.gameObject == Target.gameObject)
+          { 
+              Destroy(gameObject);
+              Target.GetComponent<Health>().Damage(damage, Attack.Type.Archer);
+          }
+      }*/
 
     public int Damage
     {
@@ -60,4 +60,3 @@ public class Arrow : MonoBehaviour
         }
     }
 }
-

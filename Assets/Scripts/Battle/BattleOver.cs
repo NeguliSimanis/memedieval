@@ -98,7 +98,6 @@ public class BattleOver
 
     private void SetRemainingMeat()
     {
-        Debug.Log("setting meat bro");
         MeMedieval.Resources resourceControl = GameObject.FindGameObjectWithTag(Strings.player_battle_resources).GetComponent<MeMedieval.Resources>();
         PlayerProfile.Singleton.MeatCurrent = resourceControl.Amount;
     }

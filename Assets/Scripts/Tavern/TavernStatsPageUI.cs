@@ -136,7 +136,7 @@ public class TavernStatsPageUI : MonoBehaviour {
             activeChampion.properties.SetCrest();
         }
 
-        championCrestImage.color = activeChampion.properties.crestColor;
+        championCrestImage.color = activeChampion.properties.GetCrestColor();
 
         for (int i = 0; i < Crests.crestPatternCount; i++)
         {

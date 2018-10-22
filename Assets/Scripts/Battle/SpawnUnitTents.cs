@@ -50,13 +50,14 @@ public class SpawnUnitTents : MonoBehaviour
         Instantiate(tent, transform);
 
         // set champion ID for the button that summmons champions. NB - if the child number is different, script won't work
-        Debug.Log("adding tent with name" + tent.transform.GetChild(1).gameObject.name + " and with champion ID " + championID);
+       // Debug.Log("adding tent with name" + tent.transform.GetChild(1).gameObject.name + " and with champion ID " + championID);
         
         tent.transform.GetChild(1).gameObject.GetComponent<PlayerUnitSpawn>().SetChampionID(championID);
     }
 
     void SetTentCrest(GameObject tent, ChampionData championData)
     {
-        tent.GetComponent<TentCrest>().championData = championData;
+        if (tent.GetComponent<TentCrest>() != null)
+            tent.GetComponent<TentCrest>().championData = championData;
     }
 }

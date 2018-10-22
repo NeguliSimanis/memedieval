@@ -62,7 +62,6 @@ public class PlayerUnitSpawn : MonoBehaviour
         SetPriceModifiers();
         DisplayStaticPrice();
         SetTentCrest();
-        Debug.Log("champion ID is " + championID);
         //unitCostProgressText.text = unitCost.ToString();
     }
 
@@ -297,7 +296,7 @@ public class PlayerUnitSpawn : MonoBehaviour
             {
                 if (champion.properties.championID == championID)
                 {
-                    Debug.Log("Spawning champion " + champion.properties.GetFirstName() + " with ability " + champion.properties.GetAbilityString() + " and id " + champion.properties.championID);
+                    //Debug.Log("Spawning champion " + champion.properties.GetFirstName() + " with ability " + champion.properties.GetAbilityString() + " and id " + champion.properties.championID);
                     currentChampion.properties.currentChampionAbility = champion.properties.currentChampionAbility;
                     championFound = true;
                     break;

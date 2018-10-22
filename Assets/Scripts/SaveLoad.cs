@@ -52,6 +52,20 @@ public class SaveLoad : MonoBehaviour
     }
 
     /// <summary>
+    /// Loads a game level if there exists a save file with at least one destroyed castle.
+    /// Attached to Load Lord button in options panel
+    /// </summary>
+    /// <param name="sceneName">level to load if save file exists</param>
+    public void LoadSceneIfSaveExists(string sceneName)
+    {
+        if (CheckSaveFile())
+        {
+            Load();
+            gameObject.GetComponent<LoadScene>().loadLevel(sceneName);
+        }
+    }
+
+    /// <summary>
     /// Checks if there exists a save file with at least one destroyed castle
     /// </summary>
     /// <returns></returns>

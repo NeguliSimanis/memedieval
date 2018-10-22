@@ -135,6 +135,7 @@ public class CreateChampion : MonoBehaviour
     {
         // choose random class for chmpion
         int champClassID = Random.Range(0, ChampionsPrefabs.Length);
+        
         Champion champ = SetChampionProperties(champClassID, false);
 
         // LegacY code

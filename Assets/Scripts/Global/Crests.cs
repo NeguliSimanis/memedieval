@@ -16,12 +16,12 @@ public class Crests
 
     public static void SetHeraldColors()
     {
-        crestColors.Add(new Color(0.84314f, 0.82353f, 0.00000f));   // YELLOW
-        crestColors.Add(new Color(0.86275f, 0.15686f, 0.11765f));   // RED
-        crestColors.Add(new Color(0f, 0.22353f, 0.65098f));         // BLUE
-        crestColors.Add(new Color(0f, 0.60392f, 0.23922f));         // GREEN
-        crestColors.Add(new Color(1f, 0.47451f, 0f));               // ORANGE
-        crestColors.Add(new Color(0.71373f, 0.03922f, 0.60784f));   // PURPLE
+        crestColors.Add(new Color(0.84314f, 0.82353f, 0.00000f));   // YELLOW - ID 0
+        crestColors.Add(new Color(0.86275f, 0.15686f, 0.11765f));   // RED - ID 1
+        crestColors.Add(new Color(0f, 0.22353f, 0.65098f));         // BLUE - ID 2
+        crestColors.Add(new Color(0f, 0.60392f, 0.23922f));         // GREEN - ID 3
+        crestColors.Add(new Color(1f, 0.47451f, 0f));               // ORANGE - ID 4
+        crestColors.Add(new Color(0.71373f, 0.03922f, 0.60784f));   // PURPLE - ID 5
 
         ResetArcherColors();
         ResetKnightColors();

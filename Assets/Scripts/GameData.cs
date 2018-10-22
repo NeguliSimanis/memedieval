@@ -95,7 +95,7 @@ public class ChampionData
 
     #region Crest
     public bool crestSet = false;
-    public Color crestColor;
+    public int crestColorID;
     public int crestPatternID;
     #endregion
 
@@ -133,6 +133,11 @@ public class ChampionData
         CreateGameData.CreateIfNoGameDataExists();
         championID = GameData.current.GetNewChampionID();
     }
+    
+    public Color GetCrestColor()
+    {
+        return Crests.crestColors[crestColorID];
+    }
 
     public void SetCrest()
     {
@@ -147,7 +152,6 @@ public class ChampionData
         crestPatternID = Random.Range(0, Crests.crestPatternCount);
         #endregion
 
-        int crestColorID;
         #region setting champion crest color 
         // The goal is to make each color repeat as little as possible within one class
 
@@ -160,7 +164,6 @@ public class ChampionData
                 Crests.ResetPeasantColors();
             }
             crestColorID = Random.Range(0, Crests.unusedPeasantColors.Count - 1);
-            crestColor = Crests.unusedPeasantColors[crestColorID];
             Crests.unusedPeasantColors.RemoveAt(crestColorID);
         }
         // KNIGHT
@@ -172,7 +175,6 @@ public class ChampionData
                 Crests.ResetKnightColors();
             }
             crestColorID = Random.Range(0, Crests.unusedKnightColors.Count - 1);
-            crestColor = Crests.unusedKnightColors[crestColorID];
             Crests.unusedKnightColors.RemoveAt(crestColorID);
         }
         // ARCHER
@@ -184,7 +186,6 @@ public class ChampionData
                 Crests.ResetArcherColors();
             }
             crestColorID = Random.Range(0, Crests.unusedArcherColors.Count - 1);
-            crestColor = Crests.unusedArcherColors[crestColorID];
             Crests.unusedArcherColors.RemoveAt(crestColorID);
         }
         #endregion
